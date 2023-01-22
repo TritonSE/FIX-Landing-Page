@@ -1,5 +1,5 @@
-<Masthead/>
-
 <script>
-    import Masthead from '$lib/Masthead.svelte';
+  import Masthead from '$lib/masthead.svelte';
 </script>
+
+<Masthead />
