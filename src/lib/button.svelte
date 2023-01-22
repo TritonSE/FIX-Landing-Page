@@ -1,10 +1,8 @@
 <script>
-	let buttonProps = {
-	    class:[$$restProps.class]
-	}
+	
 </script>
 
-<button on:click>
+<button on:click class={$$props.class}>
     <slot/>
 </button>
 
@@ -17,6 +15,7 @@
         height:48px; 
         font-size: 16px;
         border-radius: 4px;
+        border: none;
     }
 
     button:hover {
@@ -29,6 +28,21 @@
 
     button:active{
         background-color: #F0F4F4;
+    }
+
+    .small{
+        width:84px;
+        height:40px;
+    }
+
+    .secondary{
+        background-color: transparent;
+        color: #008E7E;
+    }
+    
+   .secondary:hover {
+        background-color: #58C3AF;
+        color:white;
     }
 
 </style>

@@ -17,7 +17,11 @@
     }
 
 </style>
-<Button>this is a button</Button>
+<Button>default</Button>
+<Button class="small" on:click={()=>console.log("Clicked")}>small</Button>
+<Button class="secondary">secondary</Button>
+<Button class="secondary small">secondary</Button>
+
 
 <h1>Welcome to SvelteKit</h1>
 <p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
