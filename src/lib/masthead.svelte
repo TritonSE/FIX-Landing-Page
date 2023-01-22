@@ -1,7 +1,7 @@
 <script>
   import BackgroundCat from '$lib/assets/img/background_cat.png';
   import FixNationLogo from '$lib/assets/img/fixnation_logo.svg';
-  import TitleBlob from '$lib/assets/img/title_blob.svg';
+  import text_background_blob from '$lib/assets/img/title_blob.svg';
   import Facebook from '$lib/assets/img/facebook.svg';
   import Instagram from '$lib/assets/img/instagram.svg';
   import Twitter from '$lib/assets/img/twitter.svg';
@@ -15,10 +15,10 @@
   <img src={FixNationLogo} alt="logo for fixnation" id="logo" />
   <div id="masthead_content_container">
     <div id="action_container">
-      <img src={TitleBlob} alt="blue blob" id="titleBlob" />
+      <img src={text_background_blob} alt="blue blob" id="text_background_blob" />
       <div id="words_container">
-        <h1 id="titleBlurb">Compassionate Care for Community Cats</h1>
-        <p id="textBlurb">
+        <h1 id="subtitle_text">Compassionate Care for Community Cats</h1>
+        <p id="subtitle_description">
           Reducing the population of homeless cats in Los Angeles in the most humane way, start your
           TNR journey today.
         </p>
@@ -79,6 +79,43 @@
     margin: 0; /* Made the image fit the entire screen */
   }
 
+  #background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    margin: 0;
+    z-index: -2;
+    box-shadow: inset 0px 200px 200px 100px rgba(0, 0, 0, 0.4);
+  }
+
+  #logo {
+    margin-top: 25px;
+    display: block;
+  }
+
+  @font-face {
+    font-family: 'itc_avant_garde_gothic_ltdemi';
+    src: url('$lib/assets/fonts/itc_avant_garde_gothic_lt_demi_regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'avenir_lt_std45_book';
+    src: url('$lib/assets/fonts/avenirltstd-book-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  #text_background_blob {
+    position: absolute;
+    left: 0px;
+    z-index: -1;
+    width: 50%;
+    bottom: 8%;
+  }
+
   #masthead {
     display: flex;
     flex-direction: column;
@@ -97,13 +134,6 @@
     padding: 0px 25px 0px 25px;
   }
 
-  #words_container {
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    width: 60%;
-  }
-
   #action_container {
     box-sizing: border-box;
     height: 100%;
@@ -112,37 +142,14 @@
     padding-top: 15vh;
   }
 
-  #background {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0px;
-    margin: 0;
-    z-index: -2;
-    box-shadow: inset 0px 200px 200px 100px rgba(0, 0, 0, 0.4);
+  #words_container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 60%;
   }
 
-  #logo {
-    margin-top: 25px;
-    display: block;
-  }
-
-  #titleBlob {
-    position: absolute;
-    left: 0px;
-    z-index: -1;
-    width: 50%;
-    bottom: 8%;
-  }
-
-  @font-face {
-    font-family: 'itc_avant_garde_gothic_ltdemi';
-    src: url('$lib/assets/fonts/itc_avant_garde_gothic_lt_demi_regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-
-  #titleBlurb {
+  #subtitle_text {
     font-family: 'itc_avant_garde_gothic_ltdemi';
     font-style: normal;
     font-weight: 700;
@@ -157,14 +164,7 @@
     width: 70%;
   }
 
-  @font-face {
-    font-family: 'avenir_lt_std45_book';
-    src: url('$lib/assets/fonts/avenirltstd-book-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-
-  #textBlurb {
+  #subtitle_description {
     font-family: 'avenir_lt_std45_book';
     font-style: normal;
     font-weight: 500;
@@ -198,7 +198,6 @@
     border: 0;
 
     /* Body/Medium (Bold) */
-
     font-family: 'avenir_lt_std45_book';
     font-style: normal;
     font-weight: 900;
