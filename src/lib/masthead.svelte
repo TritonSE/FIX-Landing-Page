@@ -1,15 +1,33 @@
-<script>
-  import BackgroundCat from '$lib/assets/img/background_cat.png';
-  import FixNationLogo from '$lib/assets/img/fixnation_logo.svg';
-  import text_background_blob from '$lib/assets/img/title_blob.svg';
-  import Facebook from '$lib/assets/img/facebook.svg';
-  import Instagram from '$lib/assets/img/instagram.svg';
-  import Twitter from '$lib/assets/img/twitter.svg';
-  import Youtube from '$lib/assets/img/youtube.svg';
-  import Yelp from '$lib/assets/img/yelp.svg';
+<script lang="ts">
+    import {fade} from 'svelte/transition'
+    import { onMount } from 'svelte';
+    import BgCatHenri from '$lib/assets/img/background_cat_henri.png';
+    import BgCatPopPop from '$lib/assets/img/background_cat_poppop.png';
+    import BgCatLucky from '$lib/assets/img/background_cat_lucky.png';
+    import FixNationLogo from '$lib/assets/img/fixnation_logo.svg';
+    import text_background_blob from '$lib/assets/img/title_blob.svg';
+    import Facebook from '$lib/assets/img/facebook.svg';
+    import Instagram from '$lib/assets/img/instagram.svg';
+    import Twitter from '$lib/assets/img/twitter.svg';
+    import Youtube from '$lib/assets/img/youtube.svg';
+    import Yelp from '$lib/assets/img/yelp.svg';
+
+    const background_images: string[] = [BgCatHenri, BgCatPopPop, BgCatLucky];
+    let index = 0;
+
+    const next = () => {
+		index = (index + 1) % background_images.length
+        setTimeout(next, 2000)
+	}
+
+    next();
+
 </script>
 
-<img src={BackgroundCat} alt="black and white cat on the ground" id="background" />
+{#each [background_images[index]] as src (index)}
+	<img id="background" transition:fade {src} alt="" />
+{/each}
+
 
 <div id="masthead">
   <img src={FixNationLogo} alt="logo for fixnation" id="logo" />
