@@ -1,6 +1,6 @@
+
 <script lang="ts">
     import {fade} from 'svelte/transition'
-    import { onMount } from 'svelte';
     import BgCatHenri from '$lib/assets/img/background_cat_henri.png';
     import BgCatPopPop from '$lib/assets/img/background_cat_poppop.png';
     import BgCatLucky from '$lib/assets/img/background_cat_lucky.png';
@@ -11,6 +11,8 @@
     import Twitter from '$lib/assets/img/twitter.svg';
     import Youtube from '$lib/assets/img/youtube.svg';
     import Yelp from '$lib/assets/img/yelp.svg';
+    import GrayArrow from '$lib/assets/img/gray_arrow.svg';
+    import WhiteArrow from '$lib/assets/img/white_arrow.png';
 
     const background_images: string[] = [BgCatHenri, BgCatPopPop, BgCatLucky];
     let index = 0;
@@ -21,7 +23,6 @@
 	}
 
     next();
-
 </script>
 
 {#each [background_images[index]] as src (index)}
@@ -88,6 +89,23 @@
       >
         <img src={Yelp} alt="yelp logo" class="icon" />
       </a>
+    </div>
+  </div>
+
+  <div id="arrow_animation_container">
+    <div id="arrow_container">
+      <div class="arrow_set">
+        <img src={WhiteArrow} alt="white arrow" class="white_arrow one" />
+        <!-- <img src={GrayArrow} alt="gray arrow" class="gray_arrow" /> -->
+      </div>
+      <div class="arrow_set">
+        <img src={WhiteArrow} alt="white arrow" class="white_arrow two" />
+        <!-- <img src={GrayArrow} alt="gray arrow" class="gray_arrow" /> -->
+      </div>
+      <div class="arrow_set">
+        <img src={WhiteArrow} alt="white arrow" class="white_arrow three" />
+        <!-- <img src={GrayArrow} alt="gray arrow" class="gray_arrow" /> -->
+      </div>
     </div>
   </div>
 </div>
@@ -264,11 +282,6 @@
     right: 27.08%;
     top: 8.33%;
     bottom: 8.33%;
-
-    /* Primary Teal
-
-        Fix Nation Color 1
-        */
     z-index: 1;
     scale: 150%;
   }
@@ -283,4 +296,43 @@
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
   }
+
+    /* Arrow Animation */
+  /* Source:  https://codepen.io/rightblog/pen/EagNMN/*/
+  #arrow_container {
+    padding-bottom: 25px;
+  }
+  .arrow_set {
+    box-sizing: border-box;
+    width: 10%;
+  }
+  .one,
+  .two,
+  .three {
+    animation: mouse-scroll 0.7s infinite;
+    animation-direction: alternate;
+  }
+  .one {
+    animation-delay: alternate;
+  }
+  .two {
+    animation-delay: 0.2s;
+    margin-top: -6px;
+  }
+  .three {
+    animation-delay: 0.3s;
+    margin-top: -6px;
+  }
+  @keyframes mouse-scroll {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
 </style>
