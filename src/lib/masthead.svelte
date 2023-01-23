@@ -7,6 +7,8 @@
   import Twitter from '$lib/assets/img/twitter.svg';
   import Youtube from '$lib/assets/img/youtube.svg';
   import Yelp from '$lib/assets/img/yelp.svg';
+  import GrayArrow from '$lib/assets/img/gray_arrow.svg';
+  import WhiteArrow from '$lib/assets/img/white_arrow.png';
 </script>
 
 <img src={BackgroundCat} alt="black and white cat on the ground" id="background" />
@@ -70,6 +72,23 @@
       >
         <img src={Yelp} alt="yelp logo" class="icon" />
       </a>
+    </div>
+  </div>
+
+  <div id="arrow_animation_container">
+    <div id="arrow_container">
+      <div class="arrow_set">
+        <img src={WhiteArrow} alt="white arrow" class="white_arrow one" />
+        <!-- <img src={GrayArrow} alt="gray arrow" class="gray_arrow" /> -->
+      </div>
+      <div class="arrow_set">
+        <img src={WhiteArrow} alt="white arrow" class="white_arrow two" />
+        <!-- <img src={GrayArrow} alt="gray arrow" class="gray_arrow" /> -->
+      </div>
+      <div class="arrow_set">
+        <img src={WhiteArrow} alt="white arrow" class="white_arrow three" />
+        <!-- <img src={GrayArrow} alt="gray arrow" class="gray_arrow" /> -->
+      </div>
     </div>
   </div>
 </div>
@@ -246,11 +265,6 @@
     right: 27.08%;
     top: 8.33%;
     bottom: 8.33%;
-
-    /* Primary Teal
-
-        Fix Nation Color 1
-        */
     z-index: 1;
     scale: 150%;
   }
@@ -264,5 +278,99 @@
 
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+  }
+
+  /* Arrow Animation */
+  /* Source:  https://codepen.io/rightblog/pen/EagNMN/*/
+  #arrow_container {
+    padding-bottom: 25px;
+  }
+
+  .arrow_set {
+    box-sizing: border-box;
+    width: 10%;
+  }
+  .one,
+  .two,
+  .three {
+    -webkit-animation: mouse-scroll 1s infinite;
+    -moz-animation: mouse-scroll 1s infinite;
+    animation: mouse-scroll 1s infinite;
+  }
+
+  .one {
+    -webkit-animation-delay: 0.1s;
+    -moz-animation-delay: 0.1s;
+    -webkit-animation-direction: alternate;
+
+    animation-direction: alternate;
+    animation-delay: alternate;
+  }
+
+  .two {
+    -webkit-animation-delay: 0.2s;
+    -moz-animation-delay: 0.2s;
+    -webkit-animation-direction: alternate;
+
+    animation-delay: 0.2s;
+    animation-direction: alternate;
+
+    margin-top: -6px;
+  }
+
+  .three {
+    -webkit-animation-delay: 0.3s;
+    -moz-animation-delay: 0.3s;
+    -webkit-animation-direction: alternate;
+
+    animation-delay: 0.3s;
+    animation-direction: alternate;
+
+    margin-top: -6px;
+  }
+
+  @-webkit-keyframes mouse-scroll {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @-moz-keyframes mouse-scroll {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @-o-keyframes mouse-scroll {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  @keyframes mouse-scroll {
+    0% {
+      opacity: 0;
+    }
+    50% {
+      opacity: 0.5;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 </style>
