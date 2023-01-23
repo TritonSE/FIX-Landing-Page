@@ -1,48 +1,45 @@
 <script>
-	
 </script>
 
 <button on:click class={$$props.class}>
-    <slot/>
+  <slot />
 </button>
 
 <style>
+  button {
+    background-color: #58c3af;
+    color: white;
+    width: 100px;
+    height: 48px;
+    font-size: 16px;
+    border-radius: 4px;
+    border: none;
+  }
 
-    button {
-        background-color: #58c3af;
-        color:white;
-        width:100px;
-        height:48px; 
-        font-size: 16px;
-        border-radius: 4px;
-        border: none;
-    }
+  button:hover {
+    background-color: #1f9c8e;
+  }
 
-    button:hover {
-        background-color: #1f9c8e;
-    }
+  button:disabled {
+    background-color: #149788;
+  }
 
-    button:disabled {
-        background-color: #149788;
-    }
+  button:active {
+    background-color: #f0f4f4;
+  }
 
-    button:active{
-        background-color: #F0F4F4;
-    }
+  .small {
+    width: 84px;
+    height: 40px;
+  }
 
-    .small{
-        width:84px;
-        height:40px;
-    }
+  .secondary {
+    background-color: transparent;
+    color: #008e7e;
+  }
 
-    .secondary{
-        background-color: transparent;
-        color: #008E7E;
-    }
-    
-   .secondary:hover {
-        background-color: #58C3AF;
-        color:white;
-    }
-
+  .secondary:hover {
+    background-color: #58c3af;
+    color: white;
+  }
 </style>
