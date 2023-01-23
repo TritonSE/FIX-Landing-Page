@@ -42,4 +42,8 @@
     background-color: #58c3af;
     color: white;
   }
+
+  .secondary:active {
+    background-color: #f0f4f4;
+  }
 </style>
