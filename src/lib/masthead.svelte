@@ -293,9 +293,9 @@
   .one,
   .two,
   .three {
-    -webkit-animation: mouse-scroll 1s infinite;
-    -moz-animation: mouse-scroll 1s infinite;
-    animation: mouse-scroll 1s infinite;
+    -webkit-animation: mouse-scroll 0.7s infinite;
+    -moz-animation: mouse-scroll 0.7s infinite;
+    animation: mouse-scroll 0.7s infinite;
   }
 
   .one {
