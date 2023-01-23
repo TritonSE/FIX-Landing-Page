@@ -2,46 +2,121 @@
   import CatImage from './cat_image.svelte';
   import Shadow from '$lib/assets/cat_stories/shadow.png';
   import Paw from './paw.svelte';
+
+  const CAT_DATA = {
+    shadow: {
+      desc_abbreviated:
+        'I’m the queen of the Home Depot in Woodland Hills, where I serve as the store’s resident mouser. I came to FixNation for spay surgery and was returned the next day to my home turf, where I’m back to patrolling the aisles of the garden center and making customers smile. I’ve been told I’m an excellent example of a healthy and thriving working cat.',
+      desc_full:
+        'I’m the queen of the Home Depot in Woodland Hills, where I serve as the store’s resident mouser. I came to FixNation for spay surgery and was returned the next day to my home turf, where I’m back to patrolling the aisles of the garden center and making customers smile. I’ve been told I’m an excellent example of a healthy and thriving working cat.',
+      ig_link: 'https://www.instagram.com/shadowthehomedepotcat_/?hl=en',
+      ig_username: 'shadowthehomedepotcat_',
+      n_followers: 295
+    },
+    closeUp: {
+      desc_abbreviated:
+        'Nice to meet you! I’m your well-known resident of Hollywood Forever. You can find me sunning on...',
+      desc_full:
+        'Nice to meet you! I’m your well-known resident of Hollywood Forever. You can find me sunning on gravestones. The owners of my iconic cemetery came to FixNation years ago and asked them to spay and neuter all the community cats living on the grounds. Pretty cool right? FixNation still provides these services. ',
+      ig_link: 'https://www.instagram.com/closeupthecemeterycat/?hl=en',
+      ig_username: 'closeupthecemeterycat',
+      n_followers: 9873
+    },
+    almira: {
+      desc_abbreviated:
+        'I’m one of the cats at Jay Leno’s famous garage in the San Fernando Valley which is just a stone’s throw from our clinic. FixNation has...',
+      desc_full:
+        'I’m one of the cats at Jay Leno’s famous garage in the San Fernando Valley which is just a stone’s throw from our clinic. FixNation has sterilized a number of the Disneyland Cats living within the famous theme park and resort. We’ve all been TNR’d and are now looked after by their own team of caregivers.',
+      ig_link: 'https://www.instagram.com/disneylandcats/?hl=en',
+      ig_username: 'disneylandcats',
+      n_followers: 110000
+    }
+  };
+
+  let windowWidth = 0;
 </script>
 
-<div>
+<svelte:window bind:innerWidth={windowWidth} />
+
+<div class="root">
   <h1>Community Cats</h1>
   <h2>We’re feral, stray or owned pet cat who used to roam the outdoors. FixNation found us!</h2>
   <div class="stories-grid">
-    <CatImage image_url="/cat_stories/shadow.png" />
+    <div class="cat-image-container">
+      <CatImage image_url="/cat_stories/shadow.png" />
+      {#if windowWidth <= 600}
+        <Paw name="Shadow" />
+        <a href={CAT_DATA.shadow.ig_link}>
+          <img src="/cat_stories/instagram_white.svg" class="instagram-logo" />
+        </a>
+      {/if}
+    </div>
     <div class="column">
-      <Paw name="Shadow" />
+      {#if windowWidth > 600}<Paw name="Shadow" />{/if}
       <p class="medium-margin-above">
-        I’m the queen of the Home Depot in Woodland Hills, where I serve as the store’s resident
-        mouser. I came to FixNation for spay surgery and was returned the next day to my home turf,
-        where I’m back to patrolling the aisles of the garden center and making customers smile.
-        I’ve been told I’m an excellent example of a healthy and thriving working cat.
+        {CAT_DATA.shadow.desc_full}
       </p>
-      <p class="underline-text">See more</p>
+      {#if windowWidth > 600}
+        <p class="underline-text">See more</p>
+      {/if}
     </div>
     <div class="column large-gap">
-      <CatImage image_url="/cat_stories/close_up.png" />
+      <div class="cat-image-container">
+        {#if windowWidth <= 600}
+          <CatImage image_url="/cat_stories/close_up_full.png" />
+          <Paw name="Close Up" />
+          <a href={CAT_DATA.closeUp.ig_link}>
+            <img src="/cat_stories/instagram_white.svg" class="instagram-logo" />
+          </a>
+        {:else}
+          <CatImage image_url="/cat_stories/close_up_cropped.png" />
+        {/if}
+      </div>
       <div class="row">
-        <Paw name="Close Up" />
+        {#if windowWidth > 600}
+          <Paw name="Close Up" />
+        {/if}
         <div class="column">
-          <p>
-            Nice to meet you! I’m your well-known resident of Hollywood Forever. You can find me
-            sunning on...
-          </p>
-          <p class="underline-text">See more</p>
+          {#if windowWidth > 600}
+            <p>
+              {CAT_DATA.closeUp.desc_abbreviated}
+            </p>
+            <p class="underline-text">See more</p>
+          {:else}
+            <p>
+              {CAT_DATA.closeUp.desc_full}
+            </p>
+          {/if}
         </div>
       </div>
     </div>
     <div class="column large-gap">
-      <CatImage image_url="/cat_stories/almira.png" />
+      <div class="cat-image-container">
+        {#if windowWidth <= 600}
+          <CatImage image_url="/cat_stories/almira_full.png" />
+          <Paw name="Almira" />
+          <a href={CAT_DATA.almira.ig_link}>
+            <img src="/cat_stories/instagram_white.svg" class="instagram-logo" />
+          </a>
+        {:else}
+          <CatImage image_url="/cat_stories/almira_cropped.png" />
+        {/if}
+      </div>
       <div class="row">
-        <Paw name="Almira" />
+        {#if windowWidth > 600}
+          <Paw name="Almira" />
+        {/if}
         <div class="column">
-          <p>
-            I’m one of the cats at Jay Leno’s famous garage in the San Fernando Valley which is just
-            a stone’s throw from our clinic. FixNation has...
-          </p>
-          <p class="underline-text">See more</p>
+          {#if windowWidth > 600}
+            <p>
+              {CAT_DATA.almira.desc_abbreviated}
+            </p>
+            <p class="underline-text">See more</p>
+          {:else}
+            <p>
+              {CAT_DATA.almira.desc_full}
+            </p>
+          {/if}
         </div>
       </div>
     </div>
@@ -49,10 +124,25 @@
 </div>
 
 <style>
+  @font-face {
+    font-family: 'itc_avant_garde_gothic_ltdemi';
+    src: url('$lib/assets/fonts/itc_avant_garde_gothic_lt_demi_regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+  @font-face {
+    font-family: 'avenir_lt_std45_book';
+    src: url('$lib/assets/fonts/avenirltstd-book-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
   h1 {
     font-size: 48px;
     font-weight: 700;
     text-align: center;
+    font-family: 'itc_avant_garde_gothic_ltdemi';
   }
 
   h2 {
@@ -60,6 +150,7 @@
     font-weight: 500;
     text-align: center;
     margin: 0;
+    font-family: 'avenir_lt_std45_book';
   }
 
   p {
@@ -67,13 +158,24 @@
     font-weight: 500;
     text-align: left;
     margin: 0px;
+    font-family: 'avenir_lt_std45_book';
+  }
+
+  .root {
+    padding: 40px 12% 80px 12%;
+    padding-bottom: 90px;
+    background-color: #f0f4f4;
   }
 
   .stories-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 7%;
-    padding: 80px 160px 80px 160px;
+    gap: 90px;
+    padding-top: 80px;
+  }
+
+  .cat-image-container {
+    position: relative;
   }
 
   .column {
@@ -95,7 +197,69 @@
     flex-direction: row;
     gap: 15px;
   }
+
   .underline-text {
     text-decoration-line: underline;
+  }
+
+  p.underline-text:hover {
+    cursor: pointer;
+  }
+
+  .instagram-logo {
+    position: absolute;
+    right: 18px;
+    bottom: 18px;
+  }
+
+  @media screen and (max-width: 900px) {
+    h1 {
+      font-size: 22px;
+    }
+
+    h2 {
+      font-size: 12px;
+    }
+
+    p {
+      font-size: 12px;
+    }
+
+    .root {
+      padding: 40px;
+    }
+
+    .stories-grid {
+      padding-top: 40px;
+      gap: 65px;
+    }
+
+    .medium-margin-above {
+      margin-top: 16px;
+    }
+
+    .large-gap {
+      gap: 24px;
+    }
+  }
+
+  @media screen and (max-width: 600px) {
+    h1 {
+      font-size: 18px;
+    }
+
+    .root {
+      padding: 16px;
+    }
+
+    .stories-grid {
+      grid-template-columns: 100%;
+      gap: 40px;
+      padding-top: 16px;
+    }
+
+    .medium-margin-above {
+      margin-top: -16px;
+    }
   }
 </style>
