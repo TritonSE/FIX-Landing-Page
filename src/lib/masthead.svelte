@@ -153,7 +153,7 @@
     font-family: 'itc_avant_garde_gothic_ltdemi';
     font-style: normal;
     font-weight: 700;
-    font-size: 48px;
+    font-size: 68px;
     line-height: 150%;
     margin-top: auto;
     letter-spacing: 0.02em;
@@ -161,14 +161,14 @@
     color: #ffffff;
 
     box-sizing: border-box;
-    width: 70%;
+    width: 80%;
   }
 
   #subtitle_description {
     font-family: 'avenir_lt_std45_book';
     font-style: normal;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 30px;
     line-height: 150%;
 
     letter-spacing: 0.02em;
