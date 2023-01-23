@@ -1,6 +1,5 @@
 <script>
   import CatImage from './cat_image.svelte';
-  import Shadow from '$lib/assets/cat_stories/shadow.png';
   import Paw from './paw.svelte';
 
   const CAT_DATA = {
@@ -47,7 +46,7 @@
       {#if windowWidth <= 600}
         <Paw name="Shadow" />
         <a href={CAT_DATA.shadow.ig_link}>
-          <img src="/cat_stories/instagram_white.svg" class="instagram-logo" />
+          <img src="/cat_stories/instagram_white.svg" alt="Instagram Logo" class="instagram-logo" />
         </a>
       {/if}
     </div>
@@ -66,7 +65,11 @@
           <CatImage image_url="/cat_stories/close_up_full.png" />
           <Paw name="Close Up" />
           <a href={CAT_DATA.closeUp.ig_link}>
-            <img src="/cat_stories/instagram_white.svg" class="instagram-logo" />
+            <img
+              src="/cat_stories/instagram_white.svg"
+              alt="Instagram Logo"
+              class="instagram-logo"
+            />
           </a>
         {:else}
           <CatImage image_url="/cat_stories/close_up_cropped.png" />
@@ -96,7 +99,11 @@
           <CatImage image_url="/cat_stories/almira_full.png" />
           <Paw name="Almira" />
           <a href={CAT_DATA.almira.ig_link}>
-            <img src="/cat_stories/instagram_white.svg" class="instagram-logo" />
+            <img
+              src="/cat_stories/instagram_white.svg"
+              alt="Instagram Logo"
+              class="instagram-logo"
+            />
           </a>
         {:else}
           <CatImage image_url="/cat_stories/almira_cropped.png" />
