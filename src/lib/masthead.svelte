@@ -213,6 +213,11 @@
     flex-grow: 0;
   }
 
+  #involveButton:hover,
+  #donateButton:hover {
+    cursor: pointer;
+  }
+
   .icon_item {
     display: flex;
     flex-direction: row;
