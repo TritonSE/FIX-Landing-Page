@@ -293,75 +293,24 @@
   .one,
   .two,
   .three {
-    -webkit-animation: mouse-scroll 0.7s infinite;
-    -moz-animation: mouse-scroll 0.7s infinite;
     animation: mouse-scroll 0.7s infinite;
+    animation-direction: alternate;
   }
 
   .one {
-    -webkit-animation-delay: 0.1s;
-    -moz-animation-delay: 0.1s;
-    -webkit-animation-direction: alternate;
-
-    animation-direction: alternate;
     animation-delay: alternate;
   }
 
   .two {
-    -webkit-animation-delay: 0.2s;
-    -moz-animation-delay: 0.2s;
-    -webkit-animation-direction: alternate;
-
     animation-delay: 0.2s;
-    animation-direction: alternate;
-
     margin-top: -6px;
   }
 
   .three {
-    -webkit-animation-delay: 0.3s;
-    -moz-animation-delay: 0.3s;
-    -webkit-animation-direction: alternate;
-
     animation-delay: 0.3s;
-    animation-direction: alternate;
-
     margin-top: -6px;
   }
 
-  @-webkit-keyframes mouse-scroll {
-    0% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 0.5;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  @-moz-keyframes mouse-scroll {
-    0% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 0.5;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
-  @-o-keyframes mouse-scroll {
-    0% {
-      opacity: 0;
-    }
-    50% {
-      opacity: 0.5;
-    }
-    100% {
-      opacity: 1;
-    }
-  }
   @keyframes mouse-scroll {
     0% {
       opacity: 0;
