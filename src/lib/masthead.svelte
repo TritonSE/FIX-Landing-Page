@@ -1,34 +1,32 @@
-
 <script lang="ts">
-    import {fade} from 'svelte/transition'
-    import BgCatHenri from '$lib/assets/img/background_cat_henri.png';
-    import BgCatPopPop from '$lib/assets/img/background_cat_poppop.png';
-    import BgCatLucky from '$lib/assets/img/background_cat_lucky.png';
-    import FixNationLogo from '$lib/assets/img/fixnation_logo.svg';
-    import text_background_blob from '$lib/assets/img/title_blob.svg';
-    import Facebook from '$lib/assets/img/facebook.svg';
-    import Instagram from '$lib/assets/img/instagram.svg';
-    import Twitter from '$lib/assets/img/twitter.svg';
-    import Youtube from '$lib/assets/img/youtube.svg';
-    import Yelp from '$lib/assets/img/yelp.svg';
-    import GrayArrow from '$lib/assets/img/gray_arrow.svg';
-    import WhiteArrow from '$lib/assets/img/white_arrow.png';
+  import { fade } from 'svelte/transition';
+  import BgCatHenri from '$lib/assets/img/background_cat_henri.png';
+  import BgCatPopPop from '$lib/assets/img/background_cat_poppop.png';
+  import BgCatLucky from '$lib/assets/img/background_cat_lucky.png';
+  import FixNationLogo from '$lib/assets/img/fixnation_logo.svg';
+  import text_background_blob from '$lib/assets/img/title_blob.svg';
+  import Facebook from '$lib/assets/img/facebook.svg';
+  import Instagram from '$lib/assets/img/instagram.svg';
+  import Twitter from '$lib/assets/img/twitter.svg';
+  import Youtube from '$lib/assets/img/youtube.svg';
+  import Yelp from '$lib/assets/img/yelp.svg';
+  import GrayArrow from '$lib/assets/img/gray_arrow.svg';
+  import WhiteArrow from '$lib/assets/img/white_arrow.png';
 
-    const background_images: string[] = [BgCatHenri, BgCatPopPop, BgCatLucky];
-    let index = 0;
+  const background_images: string[] = [BgCatHenri, BgCatPopPop, BgCatLucky];
+  let index = 0;
 
-    const next = () => {
-		index = (index + 1) % background_images.length
-        setTimeout(next, 2000)
-	}
+  const next = () => {
+    index = (index + 1) % background_images.length;
+    setTimeout(next, 5000);
+  };
 
-    next();
+  next();
 </script>
 
 {#each [background_images[index]] as src (index)}
-	<img id="background" transition:fade {src} alt="" />
+  <img id="background" transition:fade {src} alt="" />
 {/each}
-
 
 <div id="masthead">
   <img src={FixNationLogo} alt="logo for fixnation" id="logo" />
@@ -297,7 +295,7 @@
     border-radius: 8px;
   }
 
-    /* Arrow Animation */
+  /* Arrow Animation */
   /* Source:  https://codepen.io/rightblog/pen/EagNMN/*/
   #arrow_container {
     padding-bottom: 25px;
@@ -334,5 +332,4 @@
       opacity: 1;
     }
   }
-
 </style>
