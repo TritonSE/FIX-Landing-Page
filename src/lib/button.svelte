@@ -1,49 +1,48 @@
-<script>
-</script>
-
-<button on:click class={$$props.class}>
+<button on:click class:small={$$props.small} class:secondary={$$props.secondary}>
   <slot />
 </button>
 
 <style>
   button {
-    background-color: #58c3af;
+    background-color: var(--color-secondary);
     color: white;
     width: 100px;
     height: 48px;
     font-size: 16px;
     border-radius: 4px;
     border: none;
+    cursor: pointer;
   }
 
   button:hover {
-    background-color: #1f9c8e;
+    background-color: var(--color-primary-dark);
   }
 
   button:disabled {
-    background-color: #149788;
+    background-color: var(--color-primary-darkest);
   }
 
   button:active {
-    background-color: #f0f4f4;
+    background-color: var(--color-gray);
   }
 
   .small {
-    width: 84px;
+    min-width: 84px;
     height: 40px;
   }
 
   .secondary {
     background-color: transparent;
-    color: #008e7e;
+    color: var(--color-primary);
+    font-weight: bold;
   }
 
   .secondary:hover {
-    background-color: #58c3af;
+    background-color: var(--color-secondary);
     color: white;
   }
 
   .secondary:active {
-    background-color: #f0f4f4;
+    background-color: var(--color-gray);
   }
 </style>
