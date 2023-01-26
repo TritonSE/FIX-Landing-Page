@@ -68,6 +68,13 @@
     --color-primary-darkest: #149788;
   }
 
+  /* Margin and padding */
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
   /* Fonts and sizing */
   h1,
   h2,
