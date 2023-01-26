@@ -14,7 +14,7 @@
     },
     closeUp: {
       desc_abbreviated:
-        'Nice to meet you! I’m your well-known resident of Hollywood Forever. You can find me sunning on...',
+        'Nice to meet you! I’m your well-known resident of Hollywood Forever. You can find me sunning on gravestones. The owners of my iconic cemetery...',
       desc_full:
         'Nice to meet you! I’m your well-known resident of Hollywood Forever. You can find me sunning on gravestones. The owners of my iconic cemetery came to FixNation years ago and asked them to spay and neuter all the community cats living on the grounds. Pretty cool right? FixNation still provides these services. ',
       ig_link: 'https://www.instagram.com/closeupthecemeterycat/?hl=en',
@@ -42,7 +42,7 @@
   <h2>We’re feral, stray or owned pet cat who used to roam the outdoors. FixNation found us!</h2>
   <div class="stories-grid">
     <div class="cat-image-container">
-      <CatImage image_url="/cat_stories/shadow.png" />
+      <CatImage image_url="/cat_stories/shadow.png" image_alt="Shadow" />
       {#if windowWidth <= 600}
         <Paw name="Shadow" />
         <a href={CAT_DATA.shadow.ig_link}>
@@ -62,7 +62,7 @@
     <div class="column large-gap">
       <div class="cat-image-container">
         {#if windowWidth <= 600}
-          <CatImage image_url="/cat_stories/close_up_full.png" />
+          <CatImage image_url="/cat_stories/close_up_full.png" image_alt="Close Up" />
           <Paw name="Close Up" />
           <a href={CAT_DATA.closeUp.ig_link}>
             <img
@@ -72,7 +72,7 @@
             />
           </a>
         {:else}
-          <CatImage image_url="/cat_stories/close_up_cropped.png" />
+          <CatImage image_url="/cat_stories/close_up_cropped.png" image_alt="Close Up" />
         {/if}
       </div>
       <div class="row">
@@ -96,7 +96,7 @@
     <div class="column large-gap">
       <div class="cat-image-container">
         {#if windowWidth <= 600}
-          <CatImage image_url="/cat_stories/almira_full.png" />
+          <CatImage image_url="/cat_stories/almira_full.png" image_alt="Almira" />
           <Paw name="Almira" />
           <a href={CAT_DATA.almira.ig_link}>
             <img
@@ -106,7 +106,7 @@
             />
           </a>
         {:else}
-          <CatImage image_url="/cat_stories/almira_cropped.png" />
+          <CatImage image_url="/cat_stories/almira_cropped.png" image_alt="Almira" />
         {/if}
       </div>
       <div class="row">
@@ -131,47 +131,26 @@
 </div>
 
 <style>
-  @font-face {
-    font-family: 'itc_avant_garde_gothic_ltdemi';
-    src: url('$lib/assets/fonts/itc_avant_garde_gothic_lt_demi_regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-
-  @font-face {
-    font-family: 'avenir_lt_std45_book';
-    src: url('$lib/assets/fonts/avenirltstd-book-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-
-  h1 {
-    font-size: 48px;
-    font-weight: 700;
+  h1,
+  h2 {
     text-align: center;
-    font-family: 'itc_avant_garde_gothic_ltdemi';
+  }
+
+  h2,
+  p {
+    margin: 0;
   }
 
   h2 {
+    font-family: 'Avenir', sans-serif !important;
     font-size: 24px;
-    font-weight: 500;
-    text-align: center;
-    margin: 0;
-    font-family: 'avenir_lt_std45_book';
-  }
-
-  p {
-    font-size: 16px;
-    font-weight: 500;
-    text-align: left;
-    margin: 0px;
-    font-family: 'avenir_lt_std45_book';
+    font-weight: normal;
   }
 
   .root {
     padding: 40px 12% 80px 12%;
     padding-bottom: 90px;
-    background-color: #f0f4f4;
+    background-color: var(--color-gray);
   }
 
   .stories-grid {

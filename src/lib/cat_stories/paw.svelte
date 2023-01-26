@@ -4,17 +4,10 @@
 
 <div>
   <h2>{name}</h2>
-  <img src="/cat_stories/paw.svg" alt="" />
+  <img src="/cat_stories/paw.svg" alt="Cat paw" />
 </div>
 
 <style>
-  @font-face {
-    font-family: 'itc_avant_garde_gothic_ltdemi';
-    src: url('$lib/assets/fonts/itc_avant_garde_gothic_lt_demi_regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-
   div {
     padding: 42px 0px 0px 50px;
     position: relative;
@@ -25,8 +18,7 @@
     font-weight: 700;
     z-index: 2;
     margin: 0;
-    color: #0c2b35;
-    font-family: 'itc_avant_garde_gothic_ltdemi';
+    color: var(--color-primary-darkest);
   }
   img {
     position: absolute;
@@ -61,7 +53,7 @@
     }
 
     h2 {
-      color: white;
+      color: var(--color-white);
     }
   }
 </style>
