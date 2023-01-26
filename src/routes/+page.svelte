@@ -27,31 +27,31 @@
 <style global>
   /* CSS controlling font sizes and faces here */
   @font-face {
-    font-family: 'Century Gothic';
+    font-family: 'ITC Avant Garde';
     font-style: normal;
     font-weight: normal;
-    src: url(/CenturyGothic.ttf);
+    src: url(/fonts/ITC_Avant_Garde.woff);
   }
 
   @font-face {
-    font-family: 'Metropolis';
+    font-family: 'Avenir';
     font-style: normal;
     font-weight: normal;
-    src: url(/Metropolis-Regular.otf);
+    src: url(/fonts/Avenir.woff);
   }
 
   @font-face {
-    font-family: 'Metropolis';
+    font-family: 'Avenir';
     font-style: normal;
-    font-weight: bold;
-    src: url(/Metropolis-Bold.otf);
+    font-weight: Bold;
+    src: url(/fonts/Avenir_Bold.otf);
   }
 
   @font-face {
     font-family: 'Material Icons';
     font-style: normal;
     font-weight: 400;
-    src: url(/MaterialIcons-Regular.woff2); /* For IE6-8 */
+    src: url(/fonts/Material_Icons.woff2); /* For IE6-8 */
   }
 
   /* Color palette */
@@ -75,17 +75,12 @@
   h4,
   h5,
   h6 {
-    font-family: 'Century Gothic' !important;
+    font-family: 'ITC Avant Garde' !important;
     line-height: 150%;
   }
 
-  p,
-  span {
-    font-family: 'Metropolis';
-  }
-
   html * {
-    font-family: 'Metropolis';
+    font-family: 'Avenir';
   }
 
   h1 {
