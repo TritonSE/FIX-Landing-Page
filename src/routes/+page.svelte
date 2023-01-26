@@ -82,12 +82,12 @@
   h4,
   h5,
   h6 {
-    font-family: 'ITC Avant Garde' !important;
+    font-family: 'ITC Avant Garde', sans-serif !important;
     line-height: 150%;
   }
 
   html * {
-    font-family: 'Avenir';
+    font-family: 'Avenir', sans-serif;
   }
 
   h1 {
