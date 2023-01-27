@@ -10,7 +10,6 @@
   import Twitter from '$lib/assets/img/twitter.svg';
   import Youtube from '$lib/assets/img/youtube.svg';
   import Yelp from '$lib/assets/img/yelp.svg';
-  import GrayArrow from '$lib/assets/img/gray_arrow.svg';
   import WhiteArrow from '$lib/assets/img/white_arrow.png';
 
   const background_images: string[] = [BgCatHenri, BgCatPopPop, BgCatLucky];
@@ -94,15 +93,12 @@
     <div id="arrow_container">
       <div class="arrow_set">
         <img src={WhiteArrow} alt="white arrow" class="white_arrow one" />
-        <!-- <img src={GrayArrow} alt="gray arrow" class="gray_arrow" /> -->
       </div>
       <div class="arrow_set">
         <img src={WhiteArrow} alt="white arrow" class="white_arrow two" />
-        <!-- <img src={GrayArrow} alt="gray arrow" class="gray_arrow" /> -->
       </div>
       <div class="arrow_set">
         <img src={WhiteArrow} alt="white arrow" class="white_arrow three" />
-        <!-- <img src={GrayArrow} alt="gray arrow" class="gray_arrow" /> -->
       </div>
     </div>
   </div>
