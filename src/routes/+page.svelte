@@ -1,28 +1,9 @@
 <script>
   import Button from '../lib/button.svelte';
+  import CatSuperhero from '../lib/cat_superhero.svelte';
 </script>
 
-<div>
-  <Button>default</Button>
-  <Button small on:click={() => console.log('Clicked')}>small</Button>
-  <Button secondary>secondary</Button>
-  <Button secondary small>secondary sm</Button>
-</div>
-
-<h1 class="display">XLarge</h1>
-<h2 class="display">Large</h2>
-<h3 class="display">Medium</h3>
-<h4 class="display">Small</h4>
-
-<h1>XLarge</h1>
-<h2>Large</h2>
-<h3>Medium</h3>
-<h4>Small</h4>
-
-<p>Body</p>
-<p class="caption">Caption</p>
-
-<span class="material-icons">face</span>
+<CatSuperhero />
 
 <style global>
   /* CSS controlling font sizes and faces here */
@@ -43,7 +24,7 @@
   @font-face {
     font-family: 'Avenir';
     font-style: normal;
-    font-weight: Bold;
+    font-weight: bold;
     src: url(/fonts/Avenir_Bold.otf);
   }
 
