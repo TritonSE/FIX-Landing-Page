@@ -4,37 +4,48 @@
   import volunteer_ic from '$lib/icons/ic_volunteer_stat.svg';
 </script>
 
-<p id="mission-statement">
-  FixNation’s mission is to reduce the population of homeless cats by sterilizing as many as
-  possible while demonstrating the effectiveness of Trap-Neuter-Return and colony management for the
-  humane care of homeless cats.
-</p>
-<div class="flex-container">
-  <div>
-    <img src={clinic_ic} class="icon" alt="clinic icon" />
-    <h2>1</h2>
-    <p>largest clinic for<br />homeless cats</p>
-  </div>
-  <div>
-    <img src={spayed_ic} class="icon" alt="sprayed icon" />
-    <h2>115k</h2>
-    <p>total cats spayed<br />or neutered</p>
-  </div>
-  <div>
-    <img src={volunteer_ic} class="icon" alt="volunteer icon" />
-    <h2>12k</h2>
-    <p>TNR volunteers trained</p>
+<div class="container">
+  <p id="mission-statement">
+    FixNation’s mission is to reduce the population of homeless cats by sterilizing as many as
+    possible while demonstrating the effectiveness of Trap-Neuter-Return and colony management for
+    the humane care of homeless cats.
+  </p>
+  <div class="flex-container">
+    <div class="stat-container">
+      <img src={clinic_ic} class="icon" alt="clinic icon" />
+      <h3 class="display">1</h3>
+      <p>largest clinic for<br />homeless cats</p>
+    </div>
+    <div class="stat-container">
+      <img src={spayed_ic} class="icon" alt="sprayed icon" />
+      <h3 class="display">220k</h3>
+      <p>total cats spayed<br />or neutered</p>
+    </div>
+    <div class="stat-container">
+      <img src={volunteer_ic} class="icon" alt="volunteer icon" />
+      <h3 class="display">12k</h3>
+      <p>TNR volunteers trained</p>
+    </div>
   </div>
 </div>
 
 <style>
+  @font-face {
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 700;
+    src: url(/fonts/Rubik_Bold.ttf);
+  }
+
+  .container {
+    max-width: 90rem;
+    margin: 0 auto;
+  }
   #mission-statement {
-    margin: 133px 198px 155px 198px;
+    margin: 6rem 9rem;
   }
   p {
     text-align: center;
-    font-weight: 900;
-    font-size: 24px;
     margin: 0px;
   }
   .icon {
@@ -43,15 +54,45 @@
   }
   .flex-container {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
-    align-items: center;
-    margin: 0px 200px;
+    align-items: flex-start;
+    margin: 0 12.5rem 4rem;
+    color: var(--color-secondary-accent);
   }
-  h2 {
+  .stat-container {
     text-align: center;
-    font-size: 86.4px;
-    font-weight: 700;
-    margin: 17px 0px 0px 0px;
+    flex: 1;
+  }
+  .stat-container p {
+    font-weight: 900;
+  }
+  .stat-container h3 {
+    font-family: 'Rubik', sans-serif !important;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 950px) {
+    #mission-statement {
+      margin: 6rem 1rem 4rem;
+    }
+    .flex-container {
+      margin: 0 4rem 4rem;
+    }
+  }
+
+  @media screen and (max-width: 650px) {
+    .flex-container {
+      display: block;
+      margin: 0 0 4rem 0;
+    }
+    .stat-container {
+      margin-top: 4rem;
+    }
+    .icon {
+      width: 6rem;
+    }
+    h3 {
+      font-size: 48px !important;
+    }
   }
 </style>
