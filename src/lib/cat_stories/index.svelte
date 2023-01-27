@@ -1,9 +1,11 @@
 <script>
   import CatImage from './cat_image.svelte';
   import Paw from './paw.svelte';
+  import CatOverlay from './cat_overlay.svelte';
 
-  const CAT_DATA = {
-    shadow: {
+  const CAT_DATA = [
+    {
+      name: 'Shadow',
       desc_abbreviated:
         'I’m the queen of the Home Depot in Woodland Hills, where I serve as the store’s resident mouser. I came to FixNation for spay surgery and was returned the next day to my home turf, where I’m back to patrolling the aisles of the garden center and making customers smile. I’ve been told I’m an excellent example of a healthy and thriving working cat.',
       desc_full:
@@ -12,7 +14,8 @@
       ig_username: 'shadowthehomedepotcat_',
       n_followers: 295
     },
-    closeUp: {
+    {
+      name: 'Close Up',
       desc_abbreviated:
         'Nice to meet you! I’m your well-known resident of Hollywood Forever. You can find me sunning on...',
       desc_full:
@@ -21,7 +24,8 @@
       ig_username: 'closeupthecemeterycat',
       n_followers: 9873
     },
-    almira: {
+    {
+      name: 'Almira',
       desc_abbreviated:
         'I’m one of the cats at Jay Leno’s famous garage in the San Fernando Valley which is just a stone’s throw from our clinic. FixNation has...',
       desc_full:
@@ -30,9 +34,19 @@
       ig_username: 'disneylandcats',
       n_followers: 110000
     }
-  };
+  ];
 
   let windowWidth = 0;
+
+  let openOverlayIndex = -1;
+
+  function closeCatOverlay() {
+    openOverlayIndex = -1;
+  }
+
+  function openCatOverlay(index) {
+    openOverlayIndex = index;
+  }
 </script>
 
 <svelte:window bind:innerWidth={windowWidth} />
@@ -44,27 +58,27 @@
     <div class="cat-image-container">
       <CatImage image_url="/cat_stories/shadow.png" />
       {#if windowWidth <= 600}
-        <Paw name="Shadow" />
-        <a href={CAT_DATA.shadow.ig_link}>
+        <Paw name={CAT_DATA[0].name} />
+        <a href={CAT_DATA[0].ig_link}>
           <img src="/cat_stories/instagram_white.svg" alt="Instagram Logo" class="instagram-logo" />
         </a>
       {/if}
     </div>
     <div class="column">
-      {#if windowWidth > 600}<Paw name="Shadow" />{/if}
+      {#if windowWidth > 600}<Paw name={CAT_DATA[0].name} />{/if}
       <p class="medium-margin-above">
-        {CAT_DATA.shadow.desc_full}
+        {CAT_DATA[0].desc_full}
       </p>
       {#if windowWidth > 600}
-        <p class="underline-text">See more</p>
+        <p class="underline-text" on:click={() => openCatOverlay(0)}>See more</p>
       {/if}
     </div>
     <div class="column large-gap">
       <div class="cat-image-container">
         {#if windowWidth <= 600}
           <CatImage image_url="/cat_stories/close_up_full.png" />
-          <Paw name="Close Up" />
-          <a href={CAT_DATA.closeUp.ig_link}>
+          <Paw name={CAT_DATA[1].name} />
+          <a href={CAT_DATA[1].ig_link}>
             <img
               src="/cat_stories/instagram_white.svg"
               alt="Instagram Logo"
@@ -77,17 +91,17 @@
       </div>
       <div class="row">
         {#if windowWidth > 600}
-          <Paw name="Close Up" />
+          <Paw name={CAT_DATA[1].name} />
         {/if}
         <div class="column">
           {#if windowWidth > 600}
             <p>
-              {CAT_DATA.closeUp.desc_abbreviated}
+              {CAT_DATA[1].desc_abbreviated}
             </p>
-            <p class="underline-text">See more</p>
+            <p class="underline-text" on:click={() => openCatOverlay(1)}>See more</p>
           {:else}
             <p>
-              {CAT_DATA.closeUp.desc_full}
+              {CAT_DATA[1].desc_full}
             </p>
           {/if}
         </div>
@@ -97,8 +111,8 @@
       <div class="cat-image-container">
         {#if windowWidth <= 600}
           <CatImage image_url="/cat_stories/almira_full.png" />
-          <Paw name="Almira" />
-          <a href={CAT_DATA.almira.ig_link}>
+          <Paw name={CAT_DATA[2].name} />
+          <a href={CAT_DATA[2].ig_link}>
             <img
               src="/cat_stories/instagram_white.svg"
               alt="Instagram Logo"
@@ -111,23 +125,29 @@
       </div>
       <div class="row">
         {#if windowWidth > 600}
-          <Paw name="Almira" />
+          <Paw name={CAT_DATA[2].name} />
         {/if}
         <div class="column">
           {#if windowWidth > 600}
             <p>
-              {CAT_DATA.almira.desc_abbreviated}
+              {CAT_DATA[2].desc_abbreviated}
             </p>
-            <p class="underline-text">See more</p>
+            <p class="underline-text" on:click={() => openCatOverlay(2)}>See more</p>
           {:else}
             <p>
-              {CAT_DATA.almira.desc_full}
+              {CAT_DATA[2].desc_full}
             </p>
           {/if}
         </div>
       </div>
     </div>
   </div>
+
+  <CatOverlay
+    open={openOverlayIndex !== -1}
+    onClose={closeCatOverlay}
+    catData={CAT_DATA[openOverlayIndex]}
+  />
 </div>
 
 <style>
