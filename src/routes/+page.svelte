@@ -1,5 +1,5 @@
 <script>
-  import Masthead from '$lib/masthead.svelte';
+  import Roadmap from '$lib/roadmap.svelte';
 </script>
 
-<Masthead />
+<Roadmap />
