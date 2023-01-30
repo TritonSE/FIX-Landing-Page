@@ -1,28 +1,8 @@
 <script>
-  import Button from '../lib/button.svelte';
+  import CatStories from '$lib/cat_stories/index.svelte';
 </script>
 
-<div class="flex-center gap">
-  <Button>default</Button>
-  <Button small on:click={() => console.log('Clicked')}>small</Button>
-  <Button secondary>secondary</Button>
-  <Button secondary small>secondary sm</Button>
-</div>
-
-<h1 class="display">XLarge</h1>
-<h2 class="display">Large</h2>
-<h3 class="display">Medium</h3>
-<h4 class="display">Small</h4>
-
-<h1>XLarge</h1>
-<h2>Large</h2>
-<h3>Medium</h3>
-<h4>Small</h4>
-
-<p>Body</p>
-<p class="caption">Caption</p>
-
-<span class="material-icons">face</span>
+<CatStories />
 
 <style global>
   /* CSS controlling font sizes and faces here */
@@ -65,7 +45,15 @@
     --color-gray: #f0f4f4;
 
     --color-primary-dark: #1f9c8e;
-    --color-primary-darkest: #149788;
+    --color-primary-darker: #149788;
+    --color-primary-darkest: #0c2b35;
+  }
+
+  /* Margin and padding */
+  html,
+  body {
+    margin: 0;
+    padding: 0;
   }
 
   /* Margin and padding */
@@ -122,6 +110,7 @@
   p,
   span {
     font-size: 16px;
+    line-height: 150%;
   }
 
   p.caption,

@@ -19,7 +19,7 @@
   }
 
   button:disabled {
-    background-color: var(--color-primary-darkest);
+    background-color: var(--color-primary-darker);
   }
 
   button:active {
