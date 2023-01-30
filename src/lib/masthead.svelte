@@ -12,7 +12,9 @@
   import Yelp from '$lib/assets/img/yelp.svg';
   import WhiteArrow from '$lib/assets/img/white_arrow.png';
 
-  const background_images: string[] = [BgCatHenri, BgCatPopPop, BgCatLucky];
+  // FIXME: Commented this out temporarily because the changing pictures was distracting
+  // const background_images: string[] = [BgCatHenri, BgCatPopPop, BgCatLucky];
+  const background_images: string[] = [BgCatLucky];
   let index = 0;
 
   const next = () => {
@@ -111,7 +113,7 @@
 
   #background {
     position: absolute;
-    width: 100%;
+    width: auto;
     height: 100%;
     top: 0px;
     margin: 0;
@@ -120,8 +122,10 @@
   }
 
   #logo {
-    margin-top: 25px;
+    margin-top: 2vh;
     display: block;
+    height: 15vh;
+    width: 10vw;
   }
 
   @font-face {
@@ -143,15 +147,20 @@
     left: 0px;
     z-index: -1;
     width: 50%;
-    bottom: 8%;
+    top: 9%;
   }
 
   #masthead {
+    /* box-sizing: border-box;
+    width: 100vw; */
+    /* margin: 0; */
+    padding: 0;
+    height: 100vh;
+    width: 100vw;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
   }
 
   #masthead_content_container {
@@ -160,8 +169,9 @@
     align-items: center;
     box-sizing: border-box;
     height: 100%;
-    width: 100%;
-    padding: 0px 25px 0px 25px;
+    /* width: 100%; */
+    width: 100vw;
+    padding: 0px 1vw 0px 1vw;
   }
 
   #action_container {
@@ -326,6 +336,32 @@
     }
     100% {
       opacity: 1;
+    }
+  }
+
+  @media only screen and (min-width: 1474px) {
+    #background {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 1750px) {
+    #subtitle_text {
+      font-size: 64px;
+    }
+    #subtitle_description {
+      font-size: 28px;
+    }
+  }
+
+  @media only screen and (max-width: 1460px) {
+    #subtitle_text {
+      font-size: 54px;
+    }
+    #subtitle_description {
+      font-size: 24px;
     }
   }
 </style>
