@@ -3,5 +3,19 @@
   import Involved from '$lib/involved.svelte';
 </script>
 
-<Involved />
-<Footer />
+<div class="flex-container">
+  <Involved />
+  <Footer />
+</div>
+
+<style>
+  .flex-container {
+    display: flex;
+    flex-direction: column;
+  }
+
+  :global(html, body) {
+    margin: 0;
+    padding: 0;
+  }
+</style>
