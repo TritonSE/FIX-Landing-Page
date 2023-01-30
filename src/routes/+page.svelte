@@ -2,7 +2,7 @@
   import Button from '../lib/button.svelte';
 </script>
 
-<div>
+<div class="flex-center gap">
   <Button>default</Button>
   <Button small on:click={() => console.log('Clicked')}>small</Button>
   <Button secondary>secondary</Button>
@@ -153,5 +153,15 @@
 
     /* Support for IE. */
     font-feature-settings: 'liga';
+  }
+
+  /* Flexbox centering */
+  .flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gap {
+    gap: 1rem;
   }
 </style>
