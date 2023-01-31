@@ -340,7 +340,11 @@
     #background {
       position: absolute;
       width: 100%;
-      height: 100%;
+      height: auto;
+    }
+    #masthead {
+      overflow: hidden;
+      position: absolute;
     }
   }
 
