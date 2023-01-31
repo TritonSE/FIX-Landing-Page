@@ -3,8 +3,9 @@
    * @type boolean
    */
   export let open;
+
   /**
-   * @type any
+   * @type {() => void}
    */
   export let onClose;
 
@@ -12,7 +13,6 @@
    * @param {{ key: string; }} event
    */
   function handleKeyPress(event) {
-    console.log('Pressed', event);
     if (event.key === 'Escape') {
       onClose();
     }
@@ -29,6 +29,15 @@
 {/if}
 
 <style>
+  @keyframes slide-overlay {
+    from {
+      right: -70%;
+    }
+    to {
+      right: 0;
+    }
+  }
+
   .root {
     width: 100vw;
     height: 100vh;
@@ -42,12 +51,18 @@
 
   .background-shadow {
     background: rgba(0, 0, 0, 0.25);
-    flex-basis: 30%;
+    width: 100%;
   }
 
   .overlay {
-    flex-basis: 70%;
+    position: absolute;
+    right: 0;
+    width: 70%;
+    max-width: 70%;
     background-color: #f0f4f4;
+    animation-name: slide-overlay;
+    animation-duration: 0.6s;
+    animation-timing-function: ease-in-out;
   }
 
   @media screen and (max-width: 600px) {

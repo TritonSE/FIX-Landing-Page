@@ -1,9 +1,18 @@
 <script>
+  import Button from '$lib/button.svelte';
   import SideOverlay from '../side_overlay.svelte';
+  import CatPost from './cat_post.svelte';
   import Paw from './paw.svelte';
 
   /**
-   * @type any
+   * @type {{
+   *  name: string;
+   *   desc_full: string;
+   *  ig_username: string;
+   *  n_followers: number;
+   *  ig_link: string;
+   *  image_path: string;
+   * }}
    */
   export let catData;
   /**
@@ -11,19 +20,32 @@
    */
   export let open;
   /**
-   * @type any
+   * @type {() => void}
    */
   export let onClose;
+
+  const INDICES = [1, 2, 3];
+  /**
+   * @param {number} number
+   */
+  function formatNum(number) {
+    if (number > 1000) {
+      return Math.floor(number / 1000) + 'K';
+    }
+    return number;
+  }
 </script>
 
 <SideOverlay {open} {onClose}>
-  <div class="root column">
-    <!-- <img /> -->
+  <div class="root">
+    <button class="close-button" on:click={onClose}>
+      <img src="/cat_stories/close.svg" alt="Close" />
+    </button>
     <div class="row root-row">
       <Paw name={catData.name} />
       <div class="column">
         <p>{catData.desc_full}</p>
-        <div class="row">
+        <div class="row small-gap ig-margin">
           <img
             class="profile-picture"
             alt={catData.name}
@@ -31,25 +53,47 @@
           />
           <div class="column">
             <a href={`https://www.instagram.com/${catData.ig_username}/?hl=en`}
-              ><p class="username">{catData.ig_username}</p></a
+              ><p class="username nomargin">{catData.ig_username}</p></a
             >
-            <p>{`${catData.n_followers} followers`}</p>
+            <p class="nomargin">{`${formatNum(catData.n_followers)} followers`}</p>
           </div>
+
+          <div class="vertical-divider" />
+
+          <a href={catData.ig_link}>
+            <Button>Follow Me</Button>
+          </a>
         </div>
 
-        <div class="row" />
+        <div class="row large-gap">
+          {#each INDICES as index}
+            <CatPost
+              image_url="cat_stories/post_images/{catData.name}/post{index}.png"
+              image_alt={catData.name}
+              link_to={catData.ig_link}
+            />
+          {/each}
+        </div>
       </div>
     </div>
-    <button class="close-button" on:click={onClose}>
-      <img src="/cat_stories/close.svg" alt="Close" />
-    </button>
+
+    <div class="top-image-container">
+      <img class="top-image" src={catData.image_path} alt={catData.name} />
+    </div>
   </div>
 </SideOverlay>
 
 <style>
+  a {
+    text-decoration: none;
+  }
+
   .root {
     align-items: center;
     position: relative;
+    display: flex;
+    flex-direction: column-reverse;
+    height: 100vh;
   }
 
   .column {
@@ -62,10 +106,21 @@
     flex-direction: row;
   }
 
+  .small-gap {
+    gap: 1rem;
+  }
+
+  .large-gap {
+    gap: 2rem;
+  }
+
   .root-row {
+    background-color: white;
     align-items: start;
     padding: 50px;
     gap: 45px;
+    position: relative;
+    z-index: 1;
   }
 
   .profile-picture {
@@ -81,8 +136,24 @@
     text-decoration-line: none;
   }
 
+  .nomargin {
+    margin: 0;
+  }
+
+  .vertical-divider {
+    width: 0;
+    height: 48px;
+    border: 1px solid black;
+  }
+
+  .ig-margin {
+    margin-top: 2.5rem;
+    margin-bottom: 1.5rem;
+  }
+
   .close-button {
     position: absolute;
+    z-index: 2;
     top: 24px;
     left: 24px;
     width: 24px;
@@ -96,9 +167,30 @@
     cursor: pointer;
   }
 
-  /* .top-image {
-        width: 100%;
-        height: 500px;
-        object-fit: contain;
-    } */
+  .top-image-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+  }
+
+  .top-image {
+    position: absolute;
+    width: 100%;
+    object-fit: cover;
+    transform: translateY(-15%);
+  }
+
+  @media screen and (max-height: 800px) {
+    .root-row {
+      padding: 25px;
+    }
+
+    .username {
+      font-size: 14px;
+    }
+
+    p {
+      font-size: 14px;
+    }
+  }
 </style>
