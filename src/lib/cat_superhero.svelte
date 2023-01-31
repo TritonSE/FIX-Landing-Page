@@ -33,20 +33,16 @@
       text: 'Return cat to where it was trapped'
     }
   ];
-
-  let windowWidth = 0;
 </script>
 
-<svelte:window bind:innerWidth={windowWidth} />
+<div class="container">
+  <div class="bubble">
+    <h1 class="header-main">How to Become a</h1>
+    <h1 class="header-comics">Cat Superhero</h1>
+    <img class="cat" src="/roadmap/hero.svg" alt="Cat superhero" />
+  </div>
 
-<div class="bubble">
-  <h1 class="header-main">How to Become a</h1>
-  <h1 class="header-comics">Cat Superhero</h1>
-  <img class="cat" src="/roadmap/hero.svg" alt="Cat superhero" />
-</div>
-
-<div class="roadmap">
-  <div class="list">
+  <div class="roadmap">
     {#each rows as { title, text }, i}
       <div class="row">
         <div class="marker">
@@ -60,28 +56,25 @@
       </div>
     {/each}
   </div>
-
-  <svg
-    class="road"
-    width="37"
-    height={windowWidth >= 350 ? '650' : '750'}
-    viewBox={windowWidth >= 350 ? '0 0 37 650' : '0 0 37 750'}
-    fill="none"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-    <rect width="37" height={windowWidth >= 350 ? '645' : '745'} rx="18.5" fill="#008E7E" />
-    <line x1="18" y1="750" x2="18" y2="0" stroke="white" stroke-width="2" stroke-dasharray="8 10" />
-  </svg>
 </div>
 
 <style>
+  /* Mobile variant only */
   @media screen and (max-width: 600px) {
     h1,
     p {
       color: var(--color-secondary-accent);
     }
 
-    .header-main,
+    .container {
+      position: relative;
+      background: var(--color-gray);
+    }
+
+    /* Text bubble and cat image */
+    .header-main {
+      font-size: 2rem;
+    }
     .header-comics {
       font-size: 2.5rem;
     }
@@ -92,59 +85,51 @@
       text-align: right;
       margin: 0 4rem 0 0;
     }
-
-    .bubble {
-      width: 100vw;
-    }
-
-    .road {
-      position: absolute;
-      top: -6rem;
-      left: 1rem;
-      z-index: -2;
-    }
-
-    .roadmap {
-      position: relative;
-      top: -4rem;
-    }
-
     .cat {
       height: auto;
       width: 5rem;
       float: right;
     }
 
-    .list {
-      margin: 8rem 0 0 1.25rem;
+    /* Roadmap, markers, and text */
+    .roadmap {
+      background-image: url(/roadmap/road.svg);
+      background-repeat: no-repeat;
+      background-size: auto 100%;
+      padding-top: 6rem;
+      margin: 0 1rem;
     }
-
     .row {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
     }
-
-    .row img {
-      width: 1.625rem;
-    }
-
-    .row img.shadow {
+    .marker {
+      width: 2.3125rem;
       position: relative;
-      left: -1.5rem;
+      z-index: 1;
+    }
+    .marker img {
+      width: 1.625rem;
+      position: absolute;
+      left: 0.3rem;
+    }
+    .marker img.shadow {
+      position: absolute;
+      left: 0.675rem;
       top: 0.125rem;
       z-index: -1;
     }
-
-    .row .text {
+    .text {
       flex: 1;
+      padding-left: 1rem;
     }
-    .row .text h1 {
+    .text h1 {
       font-size: 20px;
       margin: 0;
       text-transform: uppercase;
     }
-    .row .text p {
+    .text p {
       font-size: 14px;
       margin: 0 0 1.375rem 0;
     }
