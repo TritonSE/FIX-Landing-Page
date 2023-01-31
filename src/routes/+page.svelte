@@ -1,8 +1,9 @@
 <script>
-  import Button from '../lib/button.svelte';
   import CatSuperhero from '../lib/cat_superhero.svelte';
+  import CatStories from '$lib/cat_stories/index.svelte';
 </script>
 
+<CatStories />
 <CatSuperhero />
 
 <style global>
@@ -46,7 +47,15 @@
     --color-gray: #f0f4f4;
 
     --color-primary-dark: #1f9c8e;
-    --color-primary-darkest: #149788;
+    --color-primary-darker: #149788;
+    --color-primary-darkest: #0c2b35;
+  }
+
+  /* Margin and padding */
+  html,
+  body {
+    margin: 0;
+    padding: 0;
   }
 
   /* Margin and padding */
@@ -103,6 +112,7 @@
   p,
   span {
     font-size: 16px;
+    line-height: 150%;
   }
 
   p.caption,
@@ -134,5 +144,15 @@
 
     /* Support for IE. */
     font-feature-settings: 'liga';
+  }
+
+  /* Flexbox centering */
+  .flex-center {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .gap {
+    gap: 1rem;
   }
 </style>
