@@ -25,11 +25,15 @@
   next();
 </script>
 
-{#each [background_images[index]] as src (index)}
-  <img id="background" transition:fade {src} alt="" />
-{/each}
+
+
+<!-- {console.log(window.visualViewport.scale)} -->
+<!-- {console.log(window.innerWidth)} -->
 
 <div id="masthead">
+  {#each [background_images[index]] as src (index)}
+  <img id="background" transition:fade {src} alt="" />
+  {/each}
   <img src={FixNationLogo} alt="logo for fixnation" id="logo" />
   <div id="masthead_content_container">
     <div id="action_container">
@@ -108,15 +112,15 @@
 
 <style lang="css">
   :global(body) {
-    margin: 0; /* Made the image fit the entire screen */
+    margin: 0; /*Made the image fit the entire screen */
+    padding: 0;
   }
 
   #background {
     position: absolute;
-    width: auto;
-    height: 100%;
+    height: auto;
+    width: 100vw;
     top: 0px;
-    margin: 0;
     z-index: -2;
     box-shadow: inset 0px 200px 200px 100px rgba(0, 0, 0, 0.4);
   }
@@ -151,13 +155,10 @@
   }
 
   #masthead {
-    /* box-sizing: border-box;
-    width: 100vw; */
-    /* margin: 0; */
-    padding: 0;
+    box-sizing: border-box;
     height: 100vh;
-    width: 100vw;
-    display: flex;
+    width: 100%;
+    display: flex; 
     flex-direction: column;
     align-items: center;
     justify-content: center;
@@ -167,9 +168,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-sizing: border-box;
     height: 100%;
-    /* width: 100%; */
     width: 100vw;
     padding: 0px 1vw 0px 1vw;
   }
@@ -180,6 +179,8 @@
     display: flex;
     flex-direction: column;
     padding-top: 15vh;
+    width: 100vw;
+    flex: 1;
   }
 
   #words_container {
