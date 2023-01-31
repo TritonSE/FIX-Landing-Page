@@ -25,11 +25,6 @@
   next();
 </script>
 
-
-
-<!-- {console.log(window.visualViewport.scale)} -->
-<!-- {console.log(window.innerWidth)} -->
-
 <div id="masthead">
   {#each [background_images[index]] as src (index)}
   <img id="background" transition:fade {src} alt="" />
@@ -112,7 +107,7 @@
 
 <style lang="css">
   :global(body) {
-    margin: 0; /*Made the image fit the entire screen */
+    margin: 0; 
     padding: 0;
   }
 
@@ -120,9 +115,11 @@
     position: absolute;
     height: auto;
     width: 100vw;
-    top: 0px;
+    /* top: 0px; */
     z-index: -2;
     box-shadow: inset 0px 200px 200px 100px rgba(0, 0, 0, 0.4);
+    margin: 0;
+    padding: 0;
   }
 
   #logo {
@@ -170,7 +167,6 @@
     align-items: center;
     height: 100%;
     width: 100vw;
-    padding: 0px 1vw 0px 1vw;
   }
 
   #action_container {
