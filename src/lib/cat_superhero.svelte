@@ -37,9 +37,14 @@
 
 <div class="container">
   <div class="bubble">
-    <h1 class="header-main">How to Become a</h1>
-    <h1 class="header-comics">Cat Superhero</h1>
-    <img class="cat" src="/roadmap/hero.svg" alt="Cat superhero" />
+    <div class="crop">
+      <img src="/roadmap/bubble.svg" alt="Speech bubble" />
+    </div>
+    <div class="header">
+      <h1 class="main">how to become a</h1>
+      <h1 class="comics">CAT SUPERHERO</h1>
+      <img class="cat" src="/roadmap/hero.svg" alt="Cat superhero" />
+    </div>
   </div>
 
   <div class="roadmap">
@@ -51,7 +56,7 @@
         </div>
         <div class="text">
           <h1>{i + 1}. {title}</h1>
-          <p>{text}</p>
+          <p class:first={i == 0}>{text}</p>
         </div>
       </div>
     {/each}
@@ -59,6 +64,13 @@
 </div>
 
 <style>
+  @font-face {
+    font-family: 'Comics';
+    font-style: normal;
+    font-weight: normal;
+    src: url(/fonts/Comics.ttf);
+  }
+
   /* Mobile variant only */
   @media screen and (max-width: 600px) {
     h1,
@@ -72,23 +84,44 @@
     }
 
     /* Text bubble and cat image */
-    .header-main {
-      font-size: 2rem;
+    .bubble {
+      margin-bottom: -6rem;
     }
-    .header-comics {
-      font-size: 2.5rem;
+    .bubble .crop {
+      position: absolute;
+      z-index: 1;
+      width: 100vw;
+      overflow: hidden;
     }
-    .header-main {
-      margin: 0 0 0 4rem;
+    .crop img {
+      width: 110%;
     }
-    .header-comics {
-      text-align: right;
-      margin: 0 4rem 0 0;
+    .bubble .header {
+      position: relative;
+      z-index: 2;
+      height: 40vw;
+      box-sizing: border-box;
+      padding: 11vw 0 0 3vw;
     }
-    .cat {
+    .header .main {
+      font-size: 6vw;
+      margin: 0 0 0 20vw;
+      white-space: nowrap;
+      font-family: 'Comics', sans-serif !important;
+    }
+    .header .comics {
+      font-family: 'Comics', sans-serif !important;
+      font-size: 6vw;
+      margin: 0 4rem 0 32vw;
+      white-space: nowrap;
+    }
+    .header .cat {
+      position: absolute;
+      z-index: 1;
+      width: 25vw;
       height: auto;
-      width: 5rem;
-      float: right;
+      top: 38vw;
+      right: 2vw;
     }
 
     /* Roadmap, markers, and text */
@@ -99,12 +132,12 @@
       padding-top: 6rem;
       margin: 0 1rem;
     }
-    .row {
+    .roadmap .row {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
     }
-    .marker {
+    .row .marker {
       width: 2.3125rem;
       position: relative;
       z-index: 1;
@@ -120,11 +153,12 @@
       top: 0.125rem;
       z-index: -1;
     }
-    .text {
+    .row .text {
       flex: 1;
       padding-left: 1rem;
     }
     .text h1 {
+      font-family: 'Comics', sans-serif !important;
       font-size: 20px;
       margin: 0;
       text-transform: uppercase;
@@ -132,6 +166,9 @@
     .text p {
       font-size: 14px;
       margin: 0 0 1.375rem 0;
+    }
+    .text p.first {
+      width: 50vw;
     }
   }
 </style>
