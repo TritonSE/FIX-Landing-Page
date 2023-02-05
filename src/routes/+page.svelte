@@ -1,7 +1,9 @@
 <script>
+  import Stats from '$lib/stats.svelte';
   import CatStories from '$lib/cat_stories/index.svelte';
 </script>
 
+<Stats />
 <CatStories />
 
 <style global>
@@ -23,7 +25,7 @@
   @font-face {
     font-family: 'Avenir';
     font-style: normal;
-    font-weight: Bold;
+    font-weight: bold;
     src: url(/fonts/Avenir_Bold.otf);
   }
 
