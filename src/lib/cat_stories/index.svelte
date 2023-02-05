@@ -59,7 +59,16 @@
   <h2>We’re feral, stray or owned pet cat who used to roam the outdoors. FixNation found us!</h2>
   <div class="stories-grid">
     <div class="cat-image-container">
-      <CatImage image_url="/cat_stories/shadow.png" image_alt="Shadow" />
+      <CatImage
+        image_url="/cat_stories/shadow.png"
+        image_alt="Shadow"
+        on:click={() => openCatOverlay(0)}
+        on:keydown={(e) => {
+          if (e.key === 'Enter' || e.key === 'Space') {
+            openCatOverlay(0);
+          }
+        }}
+      />
       {#if windowWidth <= 600}
         <Paw name={CAT_DATA[0].name} />
         <a href={CAT_DATA[0].ig_link}>
@@ -73,7 +82,17 @@
         {CAT_DATA[0].desc_full}
       </p>
       {#if windowWidth > 600}
-        <p class="underline-text" on:click={() => openCatOverlay(0)}>See more</p>
+        <button
+          class="underline-text"
+          on:click={() => openCatOverlay(0)}
+          on:keydown={(e) => {
+            if (e.key === 'Enter' || e.key === 'Space') {
+              openCatOverlay(0);
+            }
+          }}
+        >
+          See more
+        </button>
       {/if}
     </div>
     <div class="column large-gap">
@@ -89,7 +108,16 @@
             />
           </a>
         {:else}
-          <CatImage image_url="/cat_stories/close_up_cropped.png" image_alt="Close Up" />
+          <CatImage
+            image_url="/cat_stories/close_up_cropped.png"
+            image_alt="Close Up"
+            on:click={() => openCatOverlay(1)}
+            on:keydown={(e) => {
+              if (e.key === 'Enter' || e.key === 'Space') {
+                openCatOverlay(1);
+              }
+            }}
+          />
         {/if}
       </div>
       <div class="row">
@@ -101,7 +129,17 @@
             <p>
               {CAT_DATA[1].desc_abbreviated}
             </p>
-            <p class="underline-text" on:click={() => openCatOverlay(1)}>See more</p>
+            <button
+              class="underline-text"
+              on:click={() => openCatOverlay(1)}
+              on:keydown={(e) => {
+                if (e.key === 'Enter' || e.key === 'Space') {
+                  openCatOverlay(1);
+                }
+              }}
+            >
+              See more
+            </button>
           {:else}
             <p>
               {CAT_DATA[1].desc_full}
@@ -123,7 +161,16 @@
             />
           </a>
         {:else}
-          <CatImage image_url="/cat_stories/almira_cropped.png" image_alt="Almira" />
+          <CatImage
+            image_url="/cat_stories/almira_cropped.png"
+            image_alt="Almira"
+            on:click={() => openCatOverlay(2)}
+            on:keydown={(e) => {
+              if (e.key === 'Enter' || e.key === 'Space') {
+                openCatOverlay(2);
+              }
+            }}
+          />
         {/if}
       </div>
       <div class="row">
@@ -135,7 +182,18 @@
             <p>
               {CAT_DATA[2].desc_abbreviated}
             </p>
-            <p class="underline-text" on:click={() => openCatOverlay(2)}>See more</p>
+            <button
+              href="javascript:void(0)"
+              class="underline-text"
+              on:click={() => openCatOverlay(2)}
+              on:keydown={(e) => {
+                if (e.key === 'Enter' || e.key === 'Space') {
+                  openCatOverlay(2);
+                }
+              }}
+            >
+              See more
+            </button>
           {:else}
             <p>
               {CAT_DATA[2].desc_full}
@@ -208,11 +266,18 @@
   }
 
   .underline-text {
-    text-decoration-line: underline;
-  }
-
-  p.underline-text:hover {
+    color: var(--color-black);
+    background: transparent;
+    font-size: 12px;
+    margin: 0;
+    padding: 0;
+    text-align: left;
+    border: none;
+    text-decoration: underline;
     cursor: pointer;
+  }
+  .underline-text:active {
+    color: var(--color-black);
   }
 
   .instagram-logo {

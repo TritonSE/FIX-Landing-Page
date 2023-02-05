@@ -1,4 +1,6 @@
 <script>
+  import { fade, fly } from 'svelte/transition';
+
   /**
    * @type boolean
    */
@@ -19,25 +21,23 @@
   }
 </script>
 
+<svelte:window on:keydown={handleKeyPress} />
+
 {#if open}
   <div class="root" on:keypress={handleKeyPress}>
-    <div class="background-shadow" on:click={onClose} on:keypress={handleKeyPress} />
-    <div class="overlay">
+    <div
+      class="background-shadow"
+      on:click={onClose}
+      on:keypress={handleKeyPress}
+      transition:fade
+    />
+    <div class="overlay" transition:fly={{ x: 200 }}>
       <slot />
     </div>
   </div>
 {/if}
 
 <style>
-  @keyframes slide-overlay {
-    from {
-      right: -70%;
-    }
-    to {
-      right: 0;
-    }
-  }
-
   .root {
     width: 100vw;
     height: 100vh;
@@ -52,6 +52,7 @@
   .background-shadow {
     background: rgba(0, 0, 0, 0.25);
     width: 100%;
+    cursor: pointer;
   }
 
   .overlay {
@@ -60,11 +61,14 @@
     width: 70%;
     max-width: 70%;
     background-color: #f0f4f4;
-    animation-name: slide-overlay;
-    animation-duration: 0.6s;
-    animation-timing-function: ease-in-out;
   }
 
+  @media screen and (max-width: 1000px) {
+    .overlay {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
   @media screen and (max-width: 600px) {
     .root {
       display: none;

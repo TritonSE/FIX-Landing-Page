@@ -115,6 +115,8 @@
   }
 
   .root-row {
+    width: 100%;
+    box-sizing: border-box;
     background-color: white;
     align-items: start;
     padding: 50px;
