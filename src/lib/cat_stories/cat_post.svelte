@@ -6,7 +6,7 @@
 
 <a href={link_to}>
   <div class="root">
-    <img src={image_url} alt={image_alt} class="cat-image" />
+    <img src={image_url + '?LJKSDF'} alt={image_alt} class="cat-image" crossorigin="anonymous" />
     <img src="/cat_stories/instagram_blue.svg" alt="Instagram Logo" class="instagram-logo" />
   </div>
 </a>

@@ -1,9 +1,12 @@
 <script>
+  import { onMount } from 'svelte';
+  import { PUBLIC_INSTAGRAM_FUNCTION_URL } from '$env/static/public';
+
   import CatImage from './cat_image.svelte';
   import Paw from './paw.svelte';
   import CatOverlay from './cat_overlay.svelte';
 
-  const CAT_DATA = [
+  const STATIC_CAT_DATA = [
     {
       name: 'Shadow',
       desc_abbreviated:
@@ -12,7 +15,13 @@
         'I’m the queen of the Home Depot in Woodland Hills, where I serve as the store’s resident mouser. I came to FixNation for spay surgery and was returned the next day to my home turf, where I’m back to patrolling the aisles of the garden center and making customers smile. I’ve been told I’m an excellent example of a healthy and thriving working cat.',
       ig_link: 'https://www.instagram.com/shadowthehomedepotcat_/?hl=en',
       ig_username: 'shadowthehomedepotcat_',
-      n_followers: 295,
+      followerCount: '295',
+      profilePicUrl: 'cat_stories/profile_pictures/Shadow.png',
+      postImageUrls: [
+        'cat_stories/post_images/Shadow/post1.png',
+        'cat_stories/post_images/Shadow/post2.png',
+        'cat_stories/post_images/Shadow/post3.png'
+      ],
       image_path: 'cat_stories/shadow.png'
     },
     {
@@ -23,7 +32,13 @@
         'Nice to meet you! I’m your well-known resident of Hollywood Forever. You can find me sunning on gravestones. The owners of my iconic cemetery came to FixNation years ago and asked them to spay and neuter all the community cats living on the grounds. Pretty cool right? FixNation still provides these services. ',
       ig_link: 'https://www.instagram.com/closeupthecemeterycat/?hl=en',
       ig_username: 'closeupthecemeterycat',
-      n_followers: 9873,
+      followerCount: '9873',
+      profilePicUrl: 'cat_stories/profile_pictures/Close Up.png',
+      postImageUrls: [
+        'cat_stories/post_images/Close Up/post1.png',
+        'cat_stories/post_images/Close Up/post2.png',
+        'cat_stories/post_images/Close Up/post3.png'
+      ],
       image_path: 'cat_stories/close_up_full.png'
     },
     {
@@ -34,10 +49,18 @@
         'I’m one of the cats at Jay Leno’s famous garage in the San Fernando Valley which is just a stone’s throw from our clinic. FixNation has sterilized a number of the Disneyland Cats living within the famous theme park and resort. We’ve all been TNR’d and are now looked after by their own team of caregivers.',
       ig_link: 'https://www.instagram.com/disneylandcats/?hl=en',
       ig_username: 'disneylandcats',
-      n_followers: 110000,
+      followerCount: '110K',
+      profilePicUrl: 'cat_stories/profile_pictures/Almira.png',
+      postImageUrls: [
+        'cat_stories/post_images/Almira/post1.png',
+        'cat_stories/post_images/Almira/post2.png',
+        'cat_stories/post_images/Almira/post3.png'
+      ],
       image_path: 'cat_stories/almira_full.png'
     }
   ];
+
+  let CAT_DATA = STATIC_CAT_DATA;
 
   let windowWidth = 0;
 
@@ -50,6 +73,28 @@
   function openCatOverlay(index) {
     openOverlayIndex = index;
   }
+
+  onMount(() => {
+    for (let i = 0; i < STATIC_CAT_DATA.length; i++) {
+      fetch(`${PUBLIC_INSTAGRAM_FUNCTION_URL}?username=${STATIC_CAT_DATA[i].ig_username}`, {})
+        .then((response) => response.json())
+        .then((data) => {
+          CAT_DATA = [
+            ...CAT_DATA.slice(0, i),
+            {
+              ...CAT_DATA[i],
+              followerCount: data[0].followerCount,
+              profilePicUrl: data[0].imageUrl,
+              postImageUrls: data[0].postImageUrls
+            },
+            ...CAT_DATA.slice(i + 1)
+          ];
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  });
 </script>
 
 <svelte:window bind:innerWidth={windowWidth} />

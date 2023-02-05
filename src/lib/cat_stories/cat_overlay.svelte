@@ -9,7 +9,9 @@
    *  name: string;
    *   desc_full: string;
    *  ig_username: string;
-   *  n_followers: number;
+   *  followerCount: string;
+   *  profilePicUrl: string;
+   *  postImageUrls: string[];
    *  ig_link: string;
    *  image_path: string;
    * }}
@@ -25,15 +27,6 @@
   export let onClose;
 
   const INDICES = [1, 2, 3];
-  /**
-   * @param {number} number
-   */
-  function formatNum(number) {
-    if (number > 1000) {
-      return Math.floor(number / 1000) + 'K';
-    }
-    return number;
-  }
 </script>
 
 <SideOverlay {open} {onClose}>
@@ -46,16 +39,12 @@
       <div class="column">
         <p>{catData.desc_full}</p>
         <div class="row small-gap ig-margin">
-          <img
-            class="profile-picture"
-            alt={catData.name}
-            src={`cat_stories/profile_pictures/${catData.name}.png`}
-          />
+          <img class="profile-picture" alt={catData.name} src={catData.profilePicUrl} />
           <div class="column">
             <a href={`https://www.instagram.com/${catData.ig_username}/?hl=en`}
               ><p class="username nomargin">{catData.ig_username}</p></a
             >
-            <p class="nomargin">{`${formatNum(catData.n_followers)} followers`}</p>
+            <p class="nomargin">{`${catData.followerCount} followers`}</p>
           </div>
 
           <div class="vertical-divider" />
@@ -68,7 +57,7 @@
         <div class="row large-gap">
           {#each INDICES as index}
             <CatPost
-              image_url="cat_stories/post_images/{catData.name}/post{index}.png"
+              image_url={catData.postImageUrls[index - 1]}
               image_alt={catData.name}
               link_to={catData.ig_link}
             />
