@@ -32,7 +32,7 @@
 
   #logo {
     vertical-align: middle;
-    height: 3.5vw;
+    height: 3vw;
     width: 2vw;
   }
 
@@ -55,18 +55,19 @@
 
   #copyright {
     text-align: start;
-    color: white;
+    color: var(--color-white);
     font-size: 1.7vw;
   }
 
   .btn {
     margin-right: 2vw;
     font-size: 1vw;
+    font-weight: 800;
     padding: 0.7vw 2vw;
     border-radius: 4px;
     border: transparent;
-    background-color: white;
-    color: #008e7e;
+    color: var(--color-white);
+    color: var(--color-primary);
   }
 
   @media screen and (max-width: 1200px) {
@@ -82,7 +83,7 @@
 
     #copyright {
       text-align: start;
-      color: white;
+      color: var(--color-white);
       font-size: 1.5vw;
     }
   }

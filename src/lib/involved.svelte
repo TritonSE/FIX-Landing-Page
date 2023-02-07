@@ -12,15 +12,15 @@
   <div class="flex-container">
     <div class="footer-container">
       <img src={volunteer} class="icon" alt="volunteer icon" />
-      <p>Volunteer</p>
+      <p class="icon-desc">Volunteer</p>
     </div>
     <div class="footer-container">
       <img src={donate} class="icon" alt="donate icon" />
-      <p>Donate</p>
+      <p class="icon-desc">Donate</p>
     </div>
     <div class="footer-container">
       <img src={employment} class="icon" alt="employment icon" />
-      <p>Employment</p>
+      <p class="icon-desc">Employment</p>
     </div>
   </div>
 </div>
@@ -43,6 +43,8 @@
   }
   p {
     margin: 2rem 0rem;
+    font-weight: 500 !important;
+    color: var(--color-black);
   }
   .icon {
     display: block;
@@ -66,6 +68,9 @@
     #inv-title {
       margin: 6rem 1rem 4rem;
     }
+    #involved-p {
+      margin: 0rem 6rem 3rem 6rem;
+    }
     .flex-container {
       margin: 0 4rem 4rem;
     }
@@ -75,6 +80,9 @@
       display: block;
       margin: 0 0 4rem 0;
     }
+    #involved-p {
+      margin: 0rem 3rem 1.5rem 3rem;
+    }
     .footer-container {
       margin-top: 4rem;
     }
@@ -83,6 +91,9 @@
     }
     h1 {
       font-size: 48px !important;
+    }
+    .icon-desc {
+      font-weight: 900 !important;
     }
   }
 </style>
