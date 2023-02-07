@@ -32,6 +32,8 @@
 
   #logo {
     vertical-align: middle;
+    height: 3.5vw;
+    width: 2vw;
   }
 
   #banner {
@@ -40,7 +42,7 @@
     background-color: rgba(255, 255, 255, 0.5);
     width: 100%;
     line-height: 2vw;
-    font-size: 1.5vw;
+    font-size: 1vw;
     text-align: center;
     vertical-align: bottom;
   }
