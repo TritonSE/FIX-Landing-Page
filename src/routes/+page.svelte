@@ -1,10 +1,12 @@
 <script>
   import Stats from '$lib/stats.svelte';
   import CatStories from '$lib/cat_stories/index.svelte';
+  import CatSuperhero from '../lib/cat_superhero.svelte';
 </script>
 
 <Stats />
 <CatStories />
+<CatSuperhero />
 
 <style global>
   /* CSS controlling font sizes and faces here */
