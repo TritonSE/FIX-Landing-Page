@@ -39,34 +39,88 @@
     bottom: 0;
     background-color: rgba(255, 255, 255, 0.5);
     width: 100%;
-    line-height: 44px;
+    line-height: 2vw;
+    font-size: 1.5vw;
     text-align: center;
     vertical-align: bottom;
   }
 
   #blob-content {
     position: absolute;
-    bottom: 15%;
-    left: 6%;
+    bottom: 12%;
+    left: 5%;
   }
 
   #copyright {
-    text-align: center;
+    text-align: start;
     color: white;
-    font-size: 24px;
+    font-size: 1.7vw;
   }
 
   .btn {
-    margin-right: 2rem;
-    padding: 0.8rem 1.5rem;
+    margin-right: 2vw;
+    font-size: 1vw;
+    padding: 0.7vw 2vw;
     border-radius: 4px;
     border: transparent;
     background-color: white;
     color: #008e7e;
   }
 
-  @media screen and (max-width: 950px) {
+  @media screen and (max-width: 1200px) {
+    #blob-content {
+      position: absolute;
+      bottom: 15%;
+      left: 3%;
+    }
+
+    .btn {
+      margin-right: 1vw;
+    }
+
+    #copyright {
+      text-align: start;
+      color: white;
+      font-size: 1.5vw;
+    }
   }
-  @media screen and (max-width: 650px) {
+  @media screen and (max-width: 950px) {
+    #blob-content {
+      position: absolute;
+      bottom: 20%;
+      left: 3%;
+    }
+
+    #footer_blob {
+      left: 50%;
+      width: 60vw;
+    }
+
+    .btn {
+      margin-right: 1rem;
+      border-radius: 2px;
+    }
+  }
+  @media screen and (max-width: 600px) {
+    #blob-content {
+      position: absolute;
+      bottom: 12%;
+      left: 6%;
+    }
+
+    #footer_blob {
+      width: 65vw;
+    }
+
+    .btn {
+      margin-right: 1vw;
+      border-radius: 1px;
+      font-size: 1.5vw;
+    }
+
+    #logo {
+      width: 3vw;
+      height: 4vw;
+    }
   }
 </style>
