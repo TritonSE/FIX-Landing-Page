@@ -10,25 +10,22 @@
   import Twitter from '$lib/assets/img/twitter.svg';
   import Youtube from '$lib/assets/img/youtube.svg';
   import Yelp from '$lib/assets/img/yelp.svg';
-  import GrayArrow from '$lib/assets/img/gray_arrow.svg';
   import WhiteArrow from '$lib/assets/img/white_arrow.png';
-
-  const background_images: string[] = [BgCatHenri, BgCatPopPop, BgCatLucky];
+  // FIXME: Commented this out temporarily because the changing pictures was distracting
+  // const background_images: string[] = [BgCatHenri, BgCatPopPop, BgCatLucky];
+  const background_images: string[] = [BgCatLucky];
   let index = 0;
-
   const next = () => {
     index = (index + 1) % background_images.length;
     setTimeout(next, 5000);
   };
-
   next();
 </script>
 
-{#each [background_images[index]] as src (index)}
-  <img id="background" transition:fade {src} alt="" />
-{/each}
-
 <div id="masthead">
+  {#each [background_images[index]] as src (index)}
+  <img id="background" transition:fade {src} alt="" />
+  {/each}
   <img src={FixNationLogo} alt="logo for fixnation" id="logo" />
   <div id="masthead_content_container">
     <div id="action_container">
@@ -94,15 +91,12 @@
     <div id="arrow_container">
       <div class="arrow_set">
         <img src={WhiteArrow} alt="white arrow" class="white_arrow one" />
-        <!-- <img src={GrayArrow} alt="gray arrow" class="gray_arrow" /> -->
       </div>
       <div class="arrow_set">
         <img src={WhiteArrow} alt="white arrow" class="white_arrow two" />
-        <!-- <img src={GrayArrow} alt="gray arrow" class="gray_arrow" /> -->
       </div>
       <div class="arrow_set">
         <img src={WhiteArrow} alt="white arrow" class="white_arrow three" />
-        <!-- <img src={GrayArrow} alt="gray arrow" class="gray_arrow" /> -->
       </div>
     </div>
   </div>
@@ -110,170 +104,145 @@
 
 <style lang="css">
   :global(body) {
-    margin: 0; /* Made the image fit the entire screen */
+    margin: 0; 
+    padding: 0;
   }
-
   #background {
     position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0px;
-    margin: 0;
+    height: auto;
+    width: 100vw;
+    /* top: 0px; */
     z-index: -2;
     box-shadow: inset 0px 200px 200px 100px rgba(0, 0, 0, 0.4);
+    margin: 0;
+    padding: 0;
   }
-
   #logo {
-    margin-top: 25px;
+    margin-top: 2vh;
     display: block;
+    height: 7vw;
+    width: auto;
   }
-
   @font-face {
     font-family: 'itc_avant_garde_gothic_ltdemi';
     src: url('$lib/assets/fonts/itc_avant_garde_gothic_lt_demi_regular-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
   }
-
   @font-face {
     font-family: 'avenir_lt_std45_book';
     src: url('$lib/assets/fonts/avenirltstd-book-webfont.woff') format('woff');
     font-weight: normal;
     font-style: normal;
   }
-
   #text_background_blob {
     position: absolute;
     left: 0px;
     z-index: -1;
     width: 50%;
-    bottom: 8%;
+    top: 9%;
   }
-
   #masthead {
-    display: flex;
+    box-sizing: border-box;
+    height: 100vh;
+    width: 100%;
+    display: flex; 
     flex-direction: column;
     align-items: center;
-    justify-content: center;
-    height: 100vh;
+    
   }
-
   #masthead_content_container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    box-sizing: border-box;
     height: 100%;
-    width: 100%;
-    padding: 0px 25px 0px 25px;
+    width: 100vw;
   }
-
   #action_container {
     box-sizing: border-box;
     height: 100%;
     display: flex;
     flex-direction: column;
     padding-top: 15vh;
+    width: 100vw;
+    flex: 1;
+    
   }
-
   #words_container {
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
     width: 60%;
   }
-
   #subtitle_text {
     font-family: 'itc_avant_garde_gothic_ltdemi';
     font-style: normal;
     font-weight: 700;
-    font-size: 68px;
+    font-size: 3.1569173630454967vw;
     line-height: 150%;
     margin-top: auto;
     letter-spacing: 0.02em;
-
     color: #ffffff;
-
     box-sizing: border-box;
     width: 80%;
   }
-
   #subtitle_description {
     font-family: 'avenir_lt_std45_book';
     font-style: normal;
     font-weight: 500;
-    font-size: 30px;
+    font-size: 1.392757660167131vw;
     line-height: 150%;
-
     letter-spacing: 0.02em;
-
     box-sizing: border-box;
     width: 90%;
-
     color: #f9f9f9;
   }
-
   #button_container {
     margin-top: 3vh;
   }
-
   #involveButton,
   #donateButton {
-    width: 145px;
-    height: 48px;
-    left: 32px;
-    top: 463px;
-
+    width: 6.731662024141133vw;
+    height: 2.2284122562674096vw;
+    left: 1.4856081708449396vw;
+    top: 21.494893221912722vw;
     margin-right: 25px;
-
     background: #f9f9f9;
     border-radius: 4px;
     border-color: white;
     border: 0;
-
     /* Body/Medium (Bold) */
     font-family: 'avenir_lt_std45_book';
     font-style: normal;
     font-weight: 900;
-    font-size: 16px;
+    font-size: 0.7428040854224698vw;
     line-height: 24px;
-
     text-align: center;
-
     color: #008e7e;
-
     flex: none;
     order: 1;
     flex-grow: 0;
   }
-
   #involveButton:hover,
   #donateButton:hover {
     cursor: pointer;
   }
-
   .icon_item {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    align-items: center;
-    padding: 8px;
+    padding: 0.3714020427112349vw;
     gap: 10px;
-
     margin: 1vw;
-    width: 40px;
-    height: 40px;
-
+    width: 1.8570102135561746vw;
+    height: 1.8570102135561746vw;
     background: #ffffff;
-
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
-
     order: 0;
     flex-grow: 0;
     z-index: -1;
   }
-
   .icon {
     position: inherit;
     left: 29.17%;
@@ -281,20 +250,16 @@
     top: 8.33%;
     bottom: 8.33%;
     z-index: 1;
-    scale: 150%;
+    scale: 100%;
   }
-
   .icon_item:hover .icon {
     filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(354deg) brightness(200%) contrast(101%);
   }
-
   .icon_item:hover {
     background: #58c3af;
-
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
   }
-
   /* Arrow Animation */
   /* Source:  https://codepen.io/rightblog/pen/EagNMN/*/
   #arrow_container {
@@ -303,6 +268,7 @@
   .arrow_set {
     box-sizing: border-box;
     width: 10%;
+    height: auto;
   }
   .one,
   .two,
@@ -332,4 +298,32 @@
       opacity: 1;
     }
   }
+  @media only screen and (min-width: 1474px) {
+    #background {
+      position: absolute;
+      width: 100%;
+      height: auto;
+    }
+    #masthead {
+      overflow: hidden;
+      position: absolute;
+    }
+  }
+  /*
+  @media only screen and (max-width: 1750px) {
+    #subtitle_text {
+      font-size: 64px;
+    }
+    #subtitle_description {
+      font-size: 28px;
+    }
+  }
+  @media only screen and (max-width: 1460px) {
+    #subtitle_text {
+      font-size: 54px;
+    }
+    #subtitle_description {
+      font-size: 24px;
+    }
+  } */
 </style>
