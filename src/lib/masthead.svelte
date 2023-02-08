@@ -34,7 +34,8 @@
     <div id="action_container">
       <img src={text_background_blob} alt="blue blob" id="text_background_blob" />
       <div id="words_container">
-        <h1 id="subtitle_text">Compassionate Care for Community Cats</h1>
+        <h1 id="subtitle_text">Compassionate Care </h1>
+        <h1 id="subtitle_text" class="second_line">for Community Cats</h1>
         <p id="subtitle_description">
           Reducing the population of homeless cats in Los Angeles in the most humane way, start your
           TNR journey today.
@@ -115,7 +116,7 @@
     position: absolute;
     height: auto;
     width: 100vw;
-    /* top: 0px; */
+    top: 0px;
     z-index: -2;
     box-shadow: inset 0px 200px 200px 100px rgba(0, 0, 0, 0.4);
     margin: 0;
@@ -174,7 +175,7 @@
     height: 100%;
     display: flex;
     flex-direction: column;
-    padding-top: 15vh;
+    justify-content: center;
     width: 100vw;
     flex: 1;
   }
@@ -184,16 +185,18 @@
     flex-direction: column;
     box-sizing: border-box;
     width: 60%;
+    padding: 1vw;
   }
 
   #subtitle_text {
     font-family: 'itc_avant_garde_gothic_ltdemi';
     font-style: normal;
     font-weight: 700;
-    font-size: 68px;
+    font-size: 3.5vw;
     line-height: 150%;
-    margin-top: auto;
+    margin: 0;
     letter-spacing: 0.02em;
+    padding-right: 2vw;
 
     color: #ffffff;
 
@@ -205,7 +208,8 @@
     font-family: 'avenir_lt_std45_book';
     font-style: normal;
     font-weight: 500;
-    font-size: 30px;
+    padding-right: 1vw;
+    font-size: 1.65vw;
     line-height: 150%;
 
     letter-spacing: 0.02em;
@@ -218,6 +222,7 @@
 
   #button_container {
     margin-top: 3vh;
+    padding-left: 1vw;
   }
 
   #involveButton,
@@ -347,17 +352,17 @@
       position: absolute;
     }
   }
-
+/* 
   @media only screen and (max-width: 1750px) {
     #subtitle_text {
-      font-size: 64px;
+      font-size: 58px;
     }
     #subtitle_description {
       font-size: 28px;
     }
   }
 
-  @media only screen and (max-width: 1460px) {
+  @media only screen and (max-width: 1500px) {
     #subtitle_text {
       font-size: 54px;
     }
@@ -365,4 +370,22 @@
       font-size: 24px;
     }
   }
+
+  @media only screen and (max-width: 1400px) {
+    #subtitle_text {
+      font-size: 50px;
+    }
+  }
+
+  @media only screen and (max-width: 1300px) {
+    #subtitle_text {
+      font-size: 46px;
+    }
+  } */
+
+  /* @media only screen and (max-width: 500px) {
+    #background {
+      width: 100%;
+    }
+  } */
 </style>
