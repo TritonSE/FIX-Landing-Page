@@ -319,9 +319,19 @@
   @media only screen and (max-width: 1750px) {
     #masthead {
       justify-content: center;
+      /* justify-content: space-evenly; */
     }
     #masthead_content_container {
-      /* height: auto; */
+      margin-top: 5vh;
+    }
+    #text_background_blob {
+      top: 12vh;
+    }
+  }
+
+  @media only screen and (max-width: 1473px) {
+    #text_background_blob {
+      top: 2vh;
     }
   }
   /*
