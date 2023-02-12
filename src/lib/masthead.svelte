@@ -90,15 +90,9 @@
 
   <div id="arrow_animation_container">
     <div id="arrow_container">
-      <div class="arrow_set">
         <img src={WhiteArrow} alt="white arrow" class="white_arrow one" />
-      </div>
-      <div class="arrow_set">
         <img src={WhiteArrow} alt="white arrow" class="white_arrow two" />
-      </div>
-      <div class="arrow_set">
         <img src={WhiteArrow} alt="white arrow" class="white_arrow three" />
-      </div>
     </div>
   </div>
 </div>
@@ -113,7 +107,6 @@
     box-sizing: border-box;
     height: auto;
     width: 100%;
-    /* top: 0px; */
     z-index: -2;
     box-shadow: inset 0px 200px 200px 100px rgba(0, 0, 0, 0.4);
     margin: 0;
@@ -266,16 +259,18 @@
   }
   /* Arrow Animation */
   /* Source:  https://codepen.io/rightblog/pen/EagNMN/*/
-  .white_arrow {
-    height: 3vh;
-  }
   #arrow_container {
-    padding-bottom: 25px;
+    padding-bottom: 1vw;
+    display: flex;
+    flex-direction: column;
   }
   .arrow_set {
     box-sizing: border-box;
     width: 10%;
-    height: 3vh;
+  }
+
+  .white_arrow {
+    height: 2vw;
   }
   .one,
   .two,
@@ -288,11 +283,9 @@
   }
   .two {
     animation-delay: 0.2s;
-    margin-top: -6px;
   }
   .three {
     animation-delay: 0.3s;
-    margin-top: -6px;
   }
   @keyframes mouse-scroll {
     0% {
@@ -319,7 +312,6 @@
   @media only screen and (max-width: 1750px) {
     #masthead {
       justify-content: center;
-      /* justify-content: space-evenly; */
     }
     #masthead_content_container {
       margin-top: 5vh;
@@ -334,21 +326,4 @@
       top: 2vh;
     }
   }
-  /*
-  @media only screen and (max-width: 1750px) {
-    #subtitle_text {
-      font-size: 64px;
-    }
-    #subtitle_description {
-      font-size: 28px;
-    }
-  }
-  @media only screen and (max-width: 1460px) {
-    #subtitle_text {
-      font-size: 54px;
-    }
-    #subtitle_description {
-      font-size: 24px;
-    }
-  } */
 </style>
