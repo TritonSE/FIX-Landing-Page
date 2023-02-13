@@ -24,7 +24,7 @@
 
 <div id="masthead">
   {#each [background_images[index]] as src (index)}
-  <img id="background" transition:fade {src} alt="" />
+    <img id="background" transition:fade {src} alt="" />
   {/each}
   <div id="masthead_main_container">
     <div id="logo_container">
@@ -34,11 +34,11 @@
       <div id="action_container">
         <img src={text_background_blob} alt="blue blob" id="text_background_blob" />
         <div id="words_container">
-          <h1 id="subtitle_text">Compassionate Care </h1>
+          <h1 id="subtitle_text">Compassionate Care</h1>
           <h1 id="subtitle_text" class="second_line">for Community Cats</h1>
           <p id="subtitle_description">
-            Reducing the population of homeless cats in Los Angeles in the most humane way, start your
-            TNR journey today.
+            Reducing the population of homeless cats in Los Angeles in the most humane way, start
+            your TNR journey today.
           </p>
         </div>
         <div id="button_container">
@@ -90,12 +90,12 @@
         </a>
       </div>
     </div>
-    
+
     <div id="arrow_animation_container">
       <div id="arrow_container">
-          <img src={WhiteArrow} alt="white arrow" class="white_arrow one" />
-          <img src={WhiteArrow} alt="white arrow" class="white_arrow two" />
-          <img src={WhiteArrow} alt="white arrow" class="white_arrow three" />
+        <img src={WhiteArrow} alt="white arrow" class="white_arrow one" />
+        <img src={WhiteArrow} alt="white arrow" class="white_arrow two" />
+        <img src={WhiteArrow} alt="white arrow" class="white_arrow three" />
       </div>
     </div>
   </div>
@@ -103,7 +103,7 @@
 
 <style lang="css">
   :global(body) {
-    margin: 0; 
+    margin: 0;
     padding: 0;
   }
   #background {
@@ -157,7 +157,7 @@
   }
   #masthead_main_container {
     position: absolute;
-    display: flex; 
+    display: flex;
     flex-direction: column;
     align-items: center;
 
@@ -362,7 +362,7 @@
       justify-content: center;
     }
     #text_background_blob {
-      top: 12vh;
+      top: 8vh;
     }
   }
 
