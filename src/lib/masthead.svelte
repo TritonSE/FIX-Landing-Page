@@ -26,73 +26,78 @@
   {#each [background_images[index]] as src (index)}
   <img id="background" transition:fade {src} alt="" />
   {/each}
-  <img src={FixNationLogo} alt="logo for fixnation" id="logo" />
-  <div id="masthead_content_container">
-    <div id="action_container">
-      <img src={text_background_blob} alt="blue blob" id="text_background_blob" />
-      <div id="words_container">
-        <h1 id="subtitle_text">Compassionate Care </h1>
-        <h1 id="subtitle_text" class="second_line">for Community Cats</h1>
-        <p id="subtitle_description">
-          Reducing the population of homeless cats in Los Angeles in the most humane way, start your
-          TNR journey today.
-        </p>
+  <div id="masthead_main_container">
+    <div id="logo_container">
+      <img src={FixNationLogo} alt="logo for fixnation" id="logo" />
+    </div>
+    <div id="masthead_content_container">
+      <div id="action_container">
+        <img src={text_background_blob} alt="blue blob" id="text_background_blob" />
+        <div id="words_container">
+          <h1 id="subtitle_text">Compassionate Care </h1>
+          <h1 id="subtitle_text" class="second_line">for Community Cats</h1>
+          <p id="subtitle_description">
+            Reducing the population of homeless cats in Los Angeles in the most humane way, start your
+            TNR journey today.
+          </p>
+        </div>
+        <div id="button_container">
+          <button id="involveButton">Get Involved</button>
+          <button id="donateButton">Donate Now</button>
+        </div>
       </div>
-      <div id="button_container">
-        <button id="involveButton">Get Involved</button>
-        <button id="donateButton">Donate Now</button>
+
+      <div id="icons">
+        <a
+          href="https://www.facebook.com/FixNationLA/"
+          target="_blank"
+          rel="noreferrer noopener"
+          class="icon_item"
+        >
+          <img src={Facebook} alt="facebook logo" class="icon" />
+        </a>
+        <a
+          href="https://www.instagram.com/fixnation/"
+          target="_blank"
+          rel="noreferrer noopener"
+          class="icon_item"
+        >
+          <img src={Instagram} alt="instagram logo" class="icon" />
+        </a>
+        <a
+          href="https://twitter.com/fixnation"
+          target="_blank"
+          rel="noreferrer noopener"
+          class="icon_item"
+        >
+          <img src={Twitter} alt="twitter logo" class="icon" />
+        </a>
+        <a
+          href="https://www.youtube.com/user/FixNationClinic"
+          target="_blank"
+          rel="noreferrer noopener"
+          class="icon_item"
+        >
+          <img src={Youtube} alt="youtube logo" class="icon" />
+        </a>
+        <a
+          href="https://www.yelp.com/biz/fixnation-los-angeles"
+          target="_blank"
+          rel="noreferrer noopener"
+          class="icon_item"
+        >
+          <img src={Yelp} alt="yelp logo" class="icon" />
+        </a>
       </div>
     </div>
+    
 
-    <div id="icons">
-      <a
-        href="https://www.facebook.com/FixNationLA/"
-        target="_blank"
-        rel="noreferrer noopener"
-        class="icon_item"
-      >
-        <img src={Facebook} alt="facebook logo" class="icon" />
-      </a>
-      <a
-        href="https://www.instagram.com/fixnation/"
-        target="_blank"
-        rel="noreferrer noopener"
-        class="icon_item"
-      >
-        <img src={Instagram} alt="instagram logo" class="icon" />
-      </a>
-      <a
-        href="https://twitter.com/fixnation"
-        target="_blank"
-        rel="noreferrer noopener"
-        class="icon_item"
-      >
-        <img src={Twitter} alt="twitter logo" class="icon" />
-      </a>
-      <a
-        href="https://www.youtube.com/user/FixNationClinic"
-        target="_blank"
-        rel="noreferrer noopener"
-        class="icon_item"
-      >
-        <img src={Youtube} alt="youtube logo" class="icon" />
-      </a>
-      <a
-        href="https://www.yelp.com/biz/fixnation-los-angeles"
-        target="_blank"
-        rel="noreferrer noopener"
-        class="icon_item"
-      >
-        <img src={Yelp} alt="yelp logo" class="icon" />
-      </a>
-    </div>
-  </div>
-
-  <div id="arrow_animation_container">
-    <div id="arrow_container">
-        <img src={WhiteArrow} alt="white arrow" class="white_arrow one" />
-        <img src={WhiteArrow} alt="white arrow" class="white_arrow two" />
-        <img src={WhiteArrow} alt="white arrow" class="white_arrow three" />
+    <div id="arrow_animation_container">
+      <div id="arrow_container">
+          <img src={WhiteArrow} alt="white arrow" class="white_arrow one" />
+          <img src={WhiteArrow} alt="white arrow" class="white_arrow two" />
+          <img src={WhiteArrow} alt="white arrow" class="white_arrow three" />
+      </div>
     </div>
   </div>
 </div>
@@ -106,11 +111,20 @@
     position: absolute;
     box-sizing: border-box;
     height: auto;
-    width: 100%;
+    width: 100vw;
     z-index: -2;
     box-shadow: inset 0px 200px 200px 100px rgba(0, 0, 0, 0.4);
     margin: 0;
     padding: 0;
+    top: 0;
+  }
+  #logo_container {
+    box-sizing: border-box;
+    height: 15%;
+    width: 100%;
+    min-height: 15vw;
+    display: flex;
+    justify-content: center;
   }
   #logo {
     margin-top: 2vh;
@@ -135,23 +149,30 @@
     left: 0px;
     z-index: -1;
     width: 50%;
-    /* top: 9%; */
     top: 2.5vh;
   }
   #masthead {
     box-sizing: border-box;
-    height: 100%;
     width: 100%;
+    height: 100vh;
+  }
+  #masthead_main_container {
+    position: absolute;
     display: flex; 
     flex-direction: column;
     align-items: center;
+
+    box-sizing: border-box;
+    width: 100%;
+    height: fit-content;
   }
   #masthead_content_container {
     display: flex;
     justify-content: space-between;
     align-items: center;
     box-sizing: border-box;
-    height: 100%;
+    height: 70%;
+    min-height: 35vw;
     width: 100vw;
   }
   #action_container {
@@ -259,10 +280,20 @@
   }
   /* Arrow Animation */
   /* Source:  https://codepen.io/rightblog/pen/EagNMN/*/
+  #arrow_animation_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    box-sizing: border-box;
+    height: 15%;
+    min-height: 15vw;
+  }
   #arrow_container {
     padding-bottom: 1vw;
     display: flex;
     flex-direction: column;
+    width: 3vw;
   }
   .arrow_set {
     box-sizing: border-box;
@@ -298,6 +329,31 @@
       opacity: 1;
     }
   }
+
+  @media only screen and (max-width: 2300px) {
+    #masthead_main_container {
+      /* padding-bottom: 5vw; */
+      /* height: 100%; */
+    }
+  }
+
+  @media only screen and (max-width: 2200px) {
+    #masthead_main_container {
+      /* aspect-ratio: 32 / 15; */
+      /* height: auto; */
+    }
+  }
+
+  @media only screen and (max-width: 1950px) {
+    #masthead {
+      box-sizing: border-box;
+      position: relative;
+    }
+    #masthead_main_container {
+      position: absolute;
+      top:0; bottom: 0; left: 0; right: 0;
+    }
+  }
   @media only screen and (min-width: 1474px) {
     #background {
       position: absolute;
@@ -312,9 +368,6 @@
   @media only screen and (max-width: 1750px) {
     #masthead {
       justify-content: center;
-    }
-    #masthead_content_container {
-      margin-top: 5vh;
     }
     #text_background_blob {
       top: 12vh;
