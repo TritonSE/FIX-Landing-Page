@@ -11,9 +11,7 @@
   import Youtube from '$lib/assets/img/youtube.svg';
   import Yelp from '$lib/assets/img/yelp.svg';
   import WhiteArrow from '$lib/assets/img/white_arrow.png';
-  // FIXME: Commented this out temporarily because the changing pictures was distracting
-  // const background_images: string[] = [BgCatHenri, BgCatPopPop, BgCatLucky];
-  const background_images: string[] = [BgCatLucky];
+  const background_images: string[] = [BgCatHenri, BgCatPopPop, BgCatLucky];
   let index = 0;
   const next = () => {
     index = (index + 1) % background_images.length;
