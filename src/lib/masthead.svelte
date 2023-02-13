@@ -78,7 +78,7 @@
           rel="noreferrer noopener"
           class="icon_item"
         >
-          <img src={Youtube} alt="youtube logo" class="icon" />
+          <img id="youtube_logo" src={Youtube} alt="youtube logo" class="icon" />
         </a>
         <a
           href="https://www.yelp.com/biz/fixnation-los-angeles"
@@ -276,6 +276,9 @@
     background: #58c3af;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
+  }
+  #youtube_logo {
+    width: 2vw;
   }
   /* Arrow Animation */
   /* Source:  https://codepen.io/rightblog/pen/EagNMN/*/
