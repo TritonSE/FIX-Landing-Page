@@ -216,24 +216,25 @@
   #button_container {
     margin-top: 3vh;
     padding-left: 1vw;
+    display: flex;
+    justify-self: center;
   }
   #involveButton,
   #donateButton {
-    width: 6.731662024141133vw;
-    height: 2.2284122562674096vw;
-    left: 1.4856081708449396vw;
-    top: 21.494893221912722vw;
-    margin-right: 25px;
+    width: 6.73vw;
+    height: 2.22vw;
+    left: 1.485vw;
+    top: 21.495vw;
+    margin-right: 2vw;
     background: #f9f9f9;
-    border-radius: 4px;
+    border-radius: 0.25vw;
     border-color: white;
     border: 0;
-    /* Body/Medium (Bold) */
     font-family: 'avenir_lt_std45_book';
     font-style: normal;
     font-weight: 900;
-    font-size: 0.7428040854224698vw;
-    line-height: 24px;
+    font-size: 0.75vw;
+    line-height: auto;
     text-align: center;
     color: #008e7e;
     flex: none;
@@ -367,11 +368,35 @@
     #text_background_blob {
       top: 8vh;
     }
+    #involveButton,
+    #donateButton {
+      width: 9vw;
+      height: 3vw;
+      font-size: 1vw;
+    }
   }
 
   @media only screen and (max-width: 1473px) {
     #text_background_blob {
       top: 2vh;
+    }
+  }
+
+  @media only screen and (max-width: 850px) {
+    #button_container {
+      margin-top: 1.5vh;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    #button_container {
+      margin-top: 0.75vh;
+    }
+  }
+
+  @media only screen and (max-width: 450px) {
+    #button_container {
+      margin-top: 0.01vh;
     }
   }
 </style>
