@@ -91,7 +91,6 @@
       </div>
     </div>
     
-
     <div id="arrow_animation_container">
       <div id="arrow_container">
           <img src={WhiteArrow} alt="white arrow" class="white_arrow one" />
@@ -122,7 +121,7 @@
     box-sizing: border-box;
     height: 15%;
     width: 100%;
-    min-height: 15vw;
+    min-height: 10vw;
     display: flex;
     justify-content: center;
   }
@@ -287,7 +286,7 @@
     align-content: center;
     box-sizing: border-box;
     height: 15%;
-    min-height: 15vw;
+    min-height: 25vw;
   }
   #arrow_container {
     padding-bottom: 1vw;
@@ -330,30 +329,22 @@
     }
   }
 
-  @media only screen and (max-width: 2300px) {
+  @media only screen and (min-width: 1515px) {
+    #logo_container {
+      min-height: 0vw;
+      margin-bottom: 2vw;
+    }
+    #masthead_content_container {
+      min-height: 0vw;
+    }
+    #arrow_animation_container {
+      min-height: 0vw;
+    }
     #masthead_main_container {
-      /* padding-bottom: 5vw; */
-      /* height: 100%; */
+      height: 100%;
     }
   }
 
-  @media only screen and (max-width: 2200px) {
-    #masthead_main_container {
-      /* aspect-ratio: 32 / 15; */
-      /* height: auto; */
-    }
-  }
-
-  @media only screen and (max-width: 1950px) {
-    #masthead {
-      box-sizing: border-box;
-      position: relative;
-    }
-    #masthead_main_container {
-      position: absolute;
-      top:0; bottom: 0; left: 0; right: 0;
-    }
-  }
   @media only screen and (min-width: 1474px) {
     #background {
       position: absolute;
@@ -365,6 +356,7 @@
       position: absolute;
     }
   }
+
   @media only screen and (max-width: 1750px) {
     #masthead {
       justify-content: center;
