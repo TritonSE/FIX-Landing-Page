@@ -153,6 +153,7 @@
     box-sizing: border-box;
     width: 100%;
     height: 100vh;
+    overflow: hidden;
   }
   #masthead_main_container {
     position: absolute;
@@ -349,9 +350,6 @@
       width: 100%;
       height: auto;
     }
-    #masthead {
-      overflow: hidden;
-    }
   }
 
   @media only screen and (max-width: 1750px) {
@@ -371,7 +369,14 @@
 
   @media only screen and (max-width: 1473px) {
     #text_background_blob {
-      top: 2vh;
+      top: 4vh;
+    }
+    #arrow_animation_container {
+      min-height: 20vw;
+    }
+    #masthead {
+      height: fit-content;
+      min-height: 60vw;
     }
   }
 
