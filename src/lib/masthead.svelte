@@ -331,7 +331,6 @@
   @media only screen and (min-width: 1515px) {
     #logo_container {
       min-height: 0vw;
-      margin-bottom: 2vw;
     }
     #masthead_content_container {
       min-height: 0vw;
