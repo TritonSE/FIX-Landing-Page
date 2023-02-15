@@ -11,7 +11,8 @@
   import Youtube from '$lib/assets/img/youtube.svg';
   import Yelp from '$lib/assets/img/yelp.svg';
   import WhiteArrow from '$lib/assets/img/white_arrow.png';
-  const background_images: string[] = [BgCatHenri, BgCatPopPop, BgCatLucky];
+  // const background_images: string[] = [BgCatHenri, BgCatPopPop, BgCatLucky];
+  const background_images: string[] = [BgCatLucky];
   let index = 0;
   const next = () => {
     index = (index + 1) % background_images.length;
@@ -149,6 +150,7 @@
     top: 2.5vh;
   }
   #masthead {
+    position: relative;
     box-sizing: border-box;
     width: 100%;
     height: 100vh;
@@ -296,11 +298,6 @@
     flex-direction: column;
     width: 3vw;
   }
-  .arrow_set {
-    box-sizing: border-box;
-    width: 10%;
-  }
-
   .white_arrow {
     height: 2vw;
   }
@@ -355,7 +352,6 @@
     }
     #masthead {
       overflow: hidden;
-      position: absolute;
     }
   }
 
