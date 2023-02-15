@@ -188,7 +188,7 @@
     flex-direction: column;
     box-sizing: border-box;
     width: 60%;
-    padding: 1vw;
+    padding: 2vw;
   }
   #subtitle_text {
     font-family: 'itc_avant_garde_gothic_ltdemi';
@@ -215,7 +215,7 @@
   }
   #button_container {
     margin-top: 3vh;
-    padding-left: 1vw;
+    padding-left: 2vw;
     display: flex;
     justify-self: center;
   }
@@ -396,5 +396,14 @@
     #button_container {
       margin-top: 0.01vh;
     }
+    #text_background_blob {
+      top: 6vw;
+    }
+    /* #subtitle_text {
+      font-size: 3.5vw;
+    }
+    #subtitle_description {
+      font-size: 1.75vw;
+    } */
   }
 </style>
