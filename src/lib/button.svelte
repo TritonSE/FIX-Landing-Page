@@ -14,6 +14,7 @@
     width: 100px;
     height: 48px;
     font-size: 16px;
+    text-decoration: none;
     border-radius: 4px;
     border: none;
     cursor: pointer;

@@ -10,7 +10,9 @@
     <img src={blob} alt="footer blob" id="footer_blob" />
   </div>
   <div id="blob-content">
-    <Button secondary small fill>FixNation Website</Button>
+    <a href="https://fixnation.org">
+      <Button secondary small fill>FixNation Website</Button>
+    </a>
     <div class="spacer" />
     <Button secondary small fill>Sign up for Newsletter</Button>
     <p id="copyright">© 2020 FixNation, Inc. All Rights Reserved.</p>
@@ -77,6 +79,12 @@
     margin: 0;
   }
 
+  @media only screen and (min-width: 1000px) {
+    #blob-content {
+      bottom: 72px;
+      left: 32px;
+    }
+  }
   @media only screen and (max-width: 400px) {
     #blob-content {
       bottom: 90px;

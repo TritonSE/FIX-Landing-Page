@@ -3,7 +3,7 @@
   export let image_alt = '';
 </script>
 
-<img src={image_url} alt={image_alt} />
+<img src={image_url} alt={image_alt} on:click on:keydown />
 
 <style>
   img {
