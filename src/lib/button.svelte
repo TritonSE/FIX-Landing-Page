@@ -1,4 +1,9 @@
-<button on:click class:small={$$props.small} class:secondary={$$props.secondary}>
+<button
+  on:click
+  class:small={$$props.small}
+  class:secondary={$$props.secondary}
+  class:fill={$$props.fill}
+>
   <slot />
 </button>
 
@@ -32,9 +37,9 @@
   }
 
   .secondary {
-    background-color: transparent;
+    background-color: var(--color-gray-lightest);
     color: var(--color-primary);
-    font-weight: bold;
+    font-weight: 400;
   }
 
   .secondary:hover {
@@ -44,5 +49,11 @@
 
   .secondary:active {
     background-color: var(--color-gray);
+  }
+
+  .fill {
+    width: unset !important;
+    padding: 12px 24px;
+    margin-bottom: 12px;
   }
 </style>

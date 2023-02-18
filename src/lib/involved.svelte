@@ -39,7 +39,8 @@
     text-align: center;
   }
   h1 {
-    margin-top: 8rem;
+    margin: 0;
+    padding: 4rem 0 2rem 0;
   }
   p {
     margin: 2rem 0rem;
@@ -65,9 +66,6 @@
     font-weight: 900;
   }
   @media screen and (max-width: 950px) {
-    #inv-title {
-      margin: 6rem 1rem 4rem;
-    }
     #involved-p {
       margin: 0rem 6rem 3rem 6rem;
     }

@@ -55,6 +55,8 @@
     --color-primary-dark: #1f9c8e;
     --color-primary-darker: #149788;
     --color-primary-darkest: #0c2b35;
+
+    --color-gray-lightest: #f9f9f9;
   }
 
   /* Margin and padding */
@@ -62,6 +64,7 @@
   body {
     margin: 0;
     padding: 0;
+    background: var(--color-gray);
   }
 
   /* Margin and padding */
