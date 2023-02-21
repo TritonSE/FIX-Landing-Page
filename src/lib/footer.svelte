@@ -3,6 +3,11 @@
 
   import blob from '$lib/icons/blob.svg';
   import logo from '$lib/icons/logo.svg';
+
+  import animated_blob from '$lib/icons/animated_blob.svg';
+  import { fly } from 'svelte/transition';
+
+  let visible = false;
 </script>
 
 <div class="container">
@@ -14,7 +19,8 @@
       <Button secondary small fill>FixNation Website</Button>
     </a>
     <div class="spacer" />
-    <Button secondary small fill>Sign up for Newsletter</Button>
+    <Button secondary small fill <button on:click={() => (visible = true)}>
+      Sign up for Newsletter</Button>
     <p id="copyright">© 2020 FixNation, Inc. All Rights Reserved.</p>
   </div>
   <div id="banner">
@@ -22,26 +28,73 @@
     <span>Built for free by&nbsp;</span>
     <a href="https://tse.ucsd.edu/">Triton Software Engineering</a>
   </div>
+
+  {#if visible}
+    <div class="animated_blob-container" transition:fly={{ x: 200, y: 200, duration: 2000 }}>
+      <div id="animated_blob" >
+        <img src={animated_blob} alt="animated footer blob" />
+      </div>
+      <button on:click={() => (visible = false)} id="blob_close">
+        x
+      </button>
+    </div>
+  {/if}
 </div>
 
 <style>
   .container {
     position: relative;
+    z-index: 0;
+    height: 800px;
   }
 
   .blob-image {
     overflow: hidden;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+  }
+ 
+  .animated_blob-container { 
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    z-index: -2;
+    width: 50%;
+    height: 100%;
   }
 
   #footer_blob {
     width: 65vw;
     margin: 0;
+    position: absolute;
+    bottom: 0;
     vertical-align: bottom;
     z-index: -1;
     max-width: 50rem;
     min-width: 35rem;
   }
 
+  #animated_blob {
+    max-width: 90vw; 
+    vertical-align: bottom;
+    position: absolute;
+    margin: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -2;
+  }
+
+  #blob_close {
+    position: absolute;
+    top:70px;
+    right:20px;
+    border: none;
+    background-color: transparent;
+    z-index: 1;
+  }
+  
   #logo {
     margin-right: 0.5rem;
   }
