@@ -1,9 +1,3 @@
-<script>
-  import clinic_ic from '$lib/icons/ic_clinic_stat.svg';
-  import spayed_ic from '$lib/icons/ic_spayed_stat.svg';
-  import volunteer_ic from '$lib/icons/ic_volunteer_stat.svg';
-</script>
-
 <div class="container">
   <p id="mission-statement">
     FixNation’s mission is to reduce the population of homeless cats by sterilizing as many as
@@ -12,17 +6,17 @@
   </p>
   <div class="flex-container">
     <div class="stat-container">
-      <img src={clinic_ic} class="icon" alt="clinic icon" />
+      <img src="/icons/ic_clinic_stat.svg" class="icon" alt="clinic icon" />
       <h3 class="display">1</h3>
       <p>largest clinic for<br />homeless cats</p>
     </div>
     <div class="stat-container">
-      <img src={spayed_ic} class="icon" alt="sprayed icon" />
+      <img src="/icons/ic_spayed_stat.svg" class="icon" alt="sprayed icon" />
       <h3 class="display">220k</h3>
       <p>total cats spayed<br />or neutered</p>
     </div>
     <div class="stat-container">
-      <img src={volunteer_ic} class="icon" alt="volunteer icon" />
+      <img src="/icons/ic_volunteer_stat.svg" class="icon" alt="volunteer icon" />
       <h3 class="display">12k</h3>
       <p>TNR volunteers trained</p>
     </div>
