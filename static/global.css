@@ -49,6 +49,7 @@ html,
 body {
   margin: 0;
   padding: 0;
+  background: var(--color-gray);
 }
 
 /* Margin and padding */
