@@ -1,9 +1,3 @@
-<script>
-  import volunteer from '$lib/icons/volunteer.svg';
-  import donate from '$lib/icons/donate.svg';
-  import employment from '$lib/icons/employment.svg';
-</script>
-
 <div class="container">
   <h1 id="inv-title">Get Involved</h1>
   <p id="involved-p">
@@ -11,15 +5,15 @@
   </p>
   <div class="flex-container">
     <div class="footer-container">
-      <img src={volunteer} class="icon" alt="volunteer icon" />
+      <img src="/icons/volunteer.svg" class="icon" alt="volunteer icon" />
       <p class="icon-desc">Volunteer</p>
     </div>
     <div class="footer-container">
-      <img src={donate} class="icon" alt="donate icon" />
+      <img src="/icons/donate.svg" class="icon" alt="donate icon" />
       <p class="icon-desc">Donate</p>
     </div>
     <div class="footer-container">
-      <img src={employment} class="icon" alt="employment icon" />
+      <img src="/icons/employment.svg" class="icon" alt="employment icon" />
       <p class="icon-desc">Employment</p>
     </div>
   </div>

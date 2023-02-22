@@ -1,13 +1,10 @@
 <script>
   import Button from '$lib/button.svelte';
-
-  import blob from '$lib/icons/blob.svg';
-  import logo from '$lib/icons/logo.svg';
 </script>
 
 <div class="container">
   <div class="blob-image">
-    <img src={blob} alt="footer blob" id="footer_blob" />
+    <img src="/icons/blob.svg" alt="footer blob" id="footer_blob" />
   </div>
   <div id="blob-content">
     <a href="https://fixnation.org">
@@ -18,7 +15,7 @@
     <p id="copyright">© 2020 FixNation, Inc. All Rights Reserved.</p>
   </div>
   <div id="banner">
-    <img src={logo} alt="TSE logo" id="logo" />
+    <img src="/icons/logo.svg" alt="TSE logo" id="logo" />
     <span>Built for free by&nbsp;</span>
     <a href="https://tse.ucsd.edu/">Triton Software Engineering</a>
   </div>
