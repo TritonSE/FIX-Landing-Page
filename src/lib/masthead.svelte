@@ -99,7 +99,7 @@
     box-sizing: border-box;
     height: auto;
     width: 100vw;
-    z-index: -2;
+    z-index: 0;
     box-shadow: inset 0px 200px 200px 100px rgba(0, 0, 0, 0.4);
     margin: 0;
     padding: 0;
@@ -122,7 +122,7 @@
   #text_background_blob {
     position: absolute;
     left: 0px;
-    z-index: -1;
+    z-index: 0;
     width: 50%;
     top: 2.5vh;
   }
@@ -167,6 +167,7 @@
     box-sizing: border-box;
     width: 60%;
     padding: 2vw;
+    z-index: 1;
   }
   #subtitle_text {
     font-size: 3.1569173630454967vw;
@@ -190,6 +191,7 @@
     padding-left: 2vw;
     display: flex;
     justify-self: center;
+    z-index: 1;
   }
   #involveButton,
   #donateButton {
