@@ -1,17 +1,11 @@
 <script lang="ts">
   import { fade } from 'svelte/transition';
-  import BgCatHenri from '$lib/assets/img/background_cat_henri.png';
-  import BgCatPopPop from '$lib/assets/img/background_cat_poppop.png';
-  import BgCatLucky from '$lib/assets/img/background_cat_lucky.png';
-  import FixNationLogo from '$lib/assets/img/fixnation_logo.svg';
-  import text_background_blob from '$lib/assets/img/title_blob.svg';
-  import Facebook from '$lib/assets/img/facebook.svg';
-  import Instagram from '$lib/assets/img/instagram.svg';
-  import Twitter from '$lib/assets/img/twitter.svg';
-  import Youtube from '$lib/assets/img/youtube.svg';
-  import Yelp from '$lib/assets/img/yelp.svg';
-  import WhiteArrow from '$lib/assets/img/white_arrow.png';
-  const background_images: string[] = [BgCatHenri, BgCatPopPop, BgCatLucky];
+
+  const background_images: string[] = [
+    '/masthead/background_cat_henri.png',
+    '/masthead/background_cat_poppop.png',
+    '/masthead/background_cat_lucky.png'
+  ];
   let index = 0;
   const next = () => {
     index = (index + 1) % background_images.length;
@@ -26,11 +20,11 @@
   {/each}
   <div id="masthead_main_container">
     <div id="logo_container">
-      <img src={FixNationLogo} alt="logo for fixnation" id="logo" />
+      <img src="/masthead/fixnation_logo.svg" alt="logo for fixnation" id="logo" />
     </div>
     <div id="masthead_content_container">
       <div id="action_container">
-        <img src={text_background_blob} alt="blue blob" id="text_background_blob" />
+        <img src="/masthead/title_blob.svg" alt="blue blob" id="text_background_blob" />
         <div id="words_container">
           <h1 id="subtitle_text">Compassionate Care</h1>
           <h1 id="subtitle_text" class="second_line">for Community Cats</h1>
@@ -52,7 +46,7 @@
           rel="noreferrer noopener"
           class="icon_item"
         >
-          <img src={Facebook} alt="facebook logo" class="icon" />
+          <img src="/masthead/facebook.svg" alt="facebook logo" class="icon" />
         </a>
         <a
           href="https://www.instagram.com/fixnation/"
@@ -60,7 +54,7 @@
           rel="noreferrer noopener"
           class="icon_item"
         >
-          <img src={Instagram} alt="instagram logo" class="icon" />
+          <img src="/masthead/instagram.svg" alt="instagram logo" class="icon" />
         </a>
         <a
           href="https://twitter.com/fixnation"
@@ -68,7 +62,7 @@
           rel="noreferrer noopener"
           class="icon_item"
         >
-          <img src={Twitter} alt="twitter logo" class="icon" />
+          <img src="/masthead/twitter.svg" alt="twitter logo" class="icon" />
         </a>
         <a
           href="https://www.youtube.com/user/FixNationClinic"
@@ -76,7 +70,7 @@
           rel="noreferrer noopener"
           class="icon_item"
         >
-          <img id="youtube_logo" src={Youtube} alt="youtube logo" class="icon" />
+          <img id="youtube_logo" src="/masthead/youtube.svg" alt="youtube logo" class="icon" />
         </a>
         <a
           href="https://www.yelp.com/biz/fixnation-los-angeles"
@@ -84,26 +78,22 @@
           rel="noreferrer noopener"
           class="icon_item"
         >
-          <img src={Yelp} alt="yelp logo" class="icon" />
+          <img src="/masthead/yelp.svg" alt="yelp logo" class="icon" />
         </a>
       </div>
     </div>
 
     <div id="arrow_animation_container">
       <div id="arrow_container">
-        <img src={WhiteArrow} alt="white arrow" class="white_arrow one" />
-        <img src={WhiteArrow} alt="white arrow" class="white_arrow two" />
-        <img src={WhiteArrow} alt="white arrow" class="white_arrow three" />
+        <img src="/masthead/white_arrow.png" alt="white arrow" class="white_arrow one" />
+        <img src="/masthead/white_arrow.png" alt="white arrow" class="white_arrow two" />
+        <img src="/masthead/white_arrow.png" alt="white arrow" class="white_arrow three" />
       </div>
     </div>
   </div>
 </div>
 
-<style lang="css">
-  :global(body) {
-    margin: 0;
-    padding: 0;
-  }
+<style>
   #background {
     position: absolute;
     box-sizing: border-box;
@@ -128,18 +118,6 @@
     display: block;
     height: 7vw;
     width: auto;
-  }
-  @font-face {
-    font-family: 'itc_avant_garde_gothic_ltdemi';
-    src: url('$lib/assets/fonts/itc_avant_garde_gothic_lt_demi_regular-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'avenir_lt_std45_book';
-    src: url('$lib/assets/fonts/avenirltstd-book-webfont.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
   }
   #text_background_blob {
     position: absolute;
@@ -191,9 +169,6 @@
     padding: 2vw;
   }
   #subtitle_text {
-    font-family: 'itc_avant_garde_gothic_ltdemi';
-    font-style: normal;
-    font-weight: 700;
     font-size: 3.1569173630454967vw;
     line-height: 150%;
     margin: 0;
@@ -203,9 +178,6 @@
     width: 80%;
   }
   #subtitle_description {
-    font-family: 'avenir_lt_std45_book';
-    font-style: normal;
-    font-weight: 500;
     font-size: 1.392757660167131vw;
     line-height: 150%;
     letter-spacing: 0.02em;
@@ -230,7 +202,7 @@
     border-radius: 0.25vw;
     border-color: white;
     border: 0;
-    font-family: 'avenir_lt_std45_book';
+    font-family: 'Avenir';
     font-style: normal;
     font-weight: 900;
     font-size: 0.75vw;
@@ -398,11 +370,5 @@
     #text_background_blob {
       top: 6vw;
     }
-    /* #subtitle_text {
-      font-size: 3.5vw;
-    }
-    #subtitle_description {
-      font-size: 1.75vw;
-    } */
   }
 </style>
