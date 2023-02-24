@@ -84,7 +84,7 @@
 </script>
 
 <div class="root">
-  <h1>Get involved</h1>
+  <h1>Get Involved</h1>
   <p>
     There are so many ways you can help homeless cats in your area. FixNation is looking for you!
   </p>
@@ -114,6 +114,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin-bottom: 2rem;
   }
 
   .cards {
