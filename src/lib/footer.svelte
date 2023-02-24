@@ -8,6 +8,8 @@
   import { fly } from 'svelte/transition';
 
   let visible = false;
+  let name = '';
+  let email = '';
 </script>
 
 <div class="container">
@@ -20,7 +22,8 @@
     </a>
     <div class="spacer" />
     <Button secondary small fill <button on:click={() => (visible = true)}>
-      Sign up for Newsletter</Button>
+      Sign up for Newsletter</Button
+    >
     <p id="copyright">© 2020 FixNation, Inc. All Rights Reserved.</p>
   </div>
   <div id="banner">
@@ -31,12 +34,16 @@
 
   {#if visible}
     <div class="animated_blob-container" transition:fly={{ x: 200, y: 200, duration: 2000 }}>
-      <div id="animated_blob" >
+      <div id="animated_blob">
         <img src={animated_blob} alt="animated footer blob" />
       </div>
-      <button on:click={() => (visible = false)} id="blob_close">
-        x
-      </button>
+      <div id="newsletter_input">
+        <p>Sign up for our newsletter to stay in touch!</p>
+        <input id="name-input" bind:value={name} placeholder="Name" />
+        <input id="email-input" bind:value={email} placeholder="Email" />
+        <Button id="signup-button" small fill>Sign Up</Button>
+      </div>
+      <!-- <button on:click={() => (visible = false)} id="blob_close"> x </button> -->
     </div>
   {/if}
 </div>
@@ -48,6 +55,27 @@
     height: 800px;
   }
 
+  input {
+    margin: 0.5rem;
+    text-align: center;
+  }
+
+  #newsletter_input {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #newsletter_input p {
+    color: var(--color-white);
+    font-weight: 900 !important;
+  }
+
+  #email-input {
+    margin-bottom: 1rem;
+  }
+
   .blob-image {
     overflow: hidden;
     position: absolute;
@@ -55,8 +83,8 @@
     width: 100%;
     height: 100%;
   }
- 
-  .animated_blob-container { 
+
+  .animated_blob-container {
     position: absolute;
     bottom: 0;
     right: 0;
@@ -77,7 +105,7 @@
   }
 
   #animated_blob {
-    max-width: 90vw; 
+    max-width: calc(100vw - 24px);
     vertical-align: bottom;
     position: absolute;
     margin: 0;
@@ -86,15 +114,15 @@
     z-index: -2;
   }
 
-  #blob_close {
+  /* #blob_close {
     position: absolute;
-    top:70px;
-    right:20px;
+    top: 70px;
+    right: 20px;
     border: none;
     background-color: transparent;
     z-index: 1;
-  }
-  
+  } */
+
   #logo {
     margin-right: 0.5rem;
   }
