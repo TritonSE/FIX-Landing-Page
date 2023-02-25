@@ -1,3 +1,8 @@
+<!--
+  stats.svelte:
+    A component showing statistics about FixNation's clinic.
+-->
+
 <div class="container">
   <p id="mission-statement">
     FixNation’s mission is to reduce the population of homeless cats by sterilizing as many as

@@ -1,3 +1,9 @@
+<!--
+  involved.svelte:
+    MVP variant of the "Get Involved" section.
+    Contains three columns that become rows on mobile.
+-->
+
 <div class="container">
   <h1 id="inv-title">Get Involved</h1>
   <p id="involved-p">

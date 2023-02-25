@@ -1,7 +1,20 @@
-<script>
+<!--
+  index.svelte:
+    "Get Involved" section entrypoint.
+-->
+<script lang="ts">
   import Card from './card.svelte';
 
-  const CARDS = [
+  type card = {
+    label: string;
+    description: string;
+    background_image_url: string;
+    background_image_alt: string;
+    light_shadow: boolean;
+    link_url: string;
+  };
+
+  const CARDS: card[] = [
     {
       label: 'events',
       description:

@@ -1,4 +1,8 @@
-<script>
+<!--
+  card.svelte:
+    A flippable card with an outbound link.
+-->
+<script lang="ts">
   import { onMount } from 'svelte';
 
   export let label = '';
@@ -9,12 +13,16 @@
   export let link_url = '';
 
   let mobile = false;
-  onMount(() => {
+  const detectMobile = () => {
     // Crude touchscreen detection via:
     //   https://stackoverflow.com/questions/4817029/whats-the-best-way-to-detect-a-touch-screen-device-using-javascript
-    mobile = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-  });
+    mobile = !!('ontouchstart' in window || navigator.maxTouchPoints > 0);
+    console.log(mobile);
+  };
+  onMount(detectMobile);
 </script>
+
+<svelte:window on:resize={detectMobile} />
 
 <a class="container" href={!mobile ? link_url : 'javascript:void(0)'}>
   <div class="root">

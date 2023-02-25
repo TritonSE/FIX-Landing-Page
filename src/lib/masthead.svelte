@@ -1,3 +1,8 @@
+<!--
+  masthead.svelte:
+    Hero masthead component, showing cat images and
+    two call-to-action buttons.
+-->
 <script lang="ts">
   import { fade } from 'svelte/transition';
 
