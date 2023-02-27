@@ -44,11 +44,12 @@
       <h1 class="main">how to become a</h1>
       <h1 class="comics">CAT SUPERHERO</h1>
       <img class="cat" src="/roadmap/hero.svg" alt="Cat superhero" />
+      <img class="road" src="/roadmap/curved_road.svg" alt="road" />
     </div>
   </div>
 
   <div class="roadmap">
-    {#each rows as { title, text }, i}
+    <!-- {#each rows as { title, text }, i}
       <div class="row">
         <div class="marker">
           <img src="/roadmap/marker.svg" alt="Roadmap marker" />
@@ -59,7 +60,7 @@
           <p class:first={i == 0}>{text}</p>
         </div>
       </div>
-    {/each}
+    {/each} -->
   </div>
 </div>
 
@@ -76,6 +77,21 @@
     h1,
     p {
       color: var(--color-secondary-accent);
+    }
+
+    img {
+      width: 10px;
+    }
+
+    .cat {
+      width: 10px;
+    }
+
+    .road {
+      /* width: 100vw; */
+      /* box-sizing: border-box; */
+      /* width: 100%; */
+      padding-top: 10000px;
     }
 
     .container {
