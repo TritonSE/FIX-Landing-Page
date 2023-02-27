@@ -13,9 +13,7 @@
 </script>
 
 <div class="container">
-  <div class="blob-image">
-    <img src={blob} alt="footer blob" id="footer_blob" />
-  </div>
+  <img src={blob} alt="footer blob" id="footer_blob" />
   <div id="blob-content">
     <a href="https://fixnation.org">
       <Button secondary small fill>FixNation Website</Button>
@@ -35,7 +33,7 @@
   {#if visible}
     <div class="animated_blob-container" transition:fly={{ x: 200, y: 200, duration: 2000 }}>
       <div id="animated_blob">
-        <img src={animated_blob} alt="animated footer blob" />
+        <img src={animated_blob} alt="animated footer blob" id="animated_footer_blob"  />
       </div>
       <div id="newsletter_input">
         <p>Sign up for our newsletter to stay in touch!</p>
@@ -65,35 +63,42 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    z-index: -2;
+    top: 20vw;
+    right: 40vw;
   }
 
   #newsletter_input p {
+    white-space: nowrap;
     color: var(--color-white);
     font-weight: 900 !important;
   }
 
-  #email-input {
-    margin-bottom: 1rem;
+  #newsletter_input input { 
+    height: 2vw;
+    width: 18vw;
   }
 
-  .blob-image {
-    overflow: hidden;
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    height: 100%;
+  #name-input { 
+    margin-top: 1rem;
+  }
+
+  #email-input {
+    margin-bottom: 2rem;
   }
 
   .animated_blob-container {
     position: absolute;
     bottom: 0;
     right: 0;
-    z-index: -2;
+    z-index: -3;
     width: 50%;
     height: 100%;
   }
 
   #footer_blob {
+    overflow: hidden;
     width: 65vw;
     margin: 0;
     position: absolute;
@@ -104,14 +109,14 @@
     min-width: 35rem;
   }
 
-  #animated_blob {
+  #animated_footer_blob {
     max-width: calc(100vw - 24px);
     vertical-align: bottom;
     position: absolute;
     margin: 0;
     bottom: 0;
     right: 0;
-    z-index: -2;
+    z-index: -3;
   }
 
   /* #blob_close {
