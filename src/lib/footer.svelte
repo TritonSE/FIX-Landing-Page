@@ -51,7 +51,7 @@
   {/if}
   {#if showForm}
     <div id="newsletter_input" transition:fly={{ x: 200, y: 200, duration: 500 }}>
-      <p>Sign up for our newsletter to stay in touch!</p>
+      <h4>Sign up for our newsletter to stay in touch!</h4>
       <input id="name-input" bind:value={name} placeholder="Name" />
       <input id="email-input" bind:value={email} placeholder="Email" />
       <Button id="signup-button" small fill <button on:click={handleSubmit}>Sign Up</Button>
@@ -72,9 +72,10 @@
 
 <style>
   .container {
+    overflow: hidden;
     position: relative;
     z-index: 0;
-    height: 800px;
+    height: 900px;
   }
 
   input {
@@ -82,20 +83,21 @@
     text-align: center;
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
     border: transparent;
-    height: 2vw;
-    width: 18vw;
+    height: 2rem;
+    width: 18rem;
   }
 
   #newsletter_input,
   #thank-you {
+    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     position: absolute;
     z-index: 1;
-    top: 20vw;
-    right: 40vw;
+    top: 20rem;
+    right: 30rem;
   }
 
   #thank-you {
@@ -103,7 +105,7 @@
     color: white;
   }
 
-  #newsletter_input p {
+  #newsletter_input h4 {
     white-space: nowrap;
     color: var(--color-white);
     font-weight: 900 !important;
@@ -139,13 +141,14 @@
   }
 
   #animated_footer_blob {
-    max-width: calc(100vw - 24px);
     vertical-align: bottom;
     position: absolute;
     margin: 0;
     bottom: 0;
     right: 0;
     z-index: -3;
+    max-width: 90vw;
+    min-width: 40rem;
   }
 
   #logo {
@@ -168,6 +171,7 @@
   }
 
   #blob-content {
+    overflow: hidden;
     position: absolute;
     bottom: 52px;
     left: 12px;
@@ -185,10 +189,45 @@
     margin: 0;
   }
 
-  @media only screen and (min-width: 1000px) {
+  @media only screen and (min-width: 1200px) {
     #blob-content {
       bottom: 72px;
       left: 32px;
+    }
+  }
+  @media only screen and (min-width: 1000px) and (max-width: 1200px) {
+    #blob-content {
+      bottom: 72px;
+      left: 32px;
+    }
+    #newsletter_input,
+    #thank-you {
+      top: 25rem;
+      right: 20rem;
+    }
+  }
+  @media only screen and (max-width: 1000px) {
+    #newsletter_input,
+    #thank-you {
+      top: 30rem;
+      right: 4rem;
+    }
+    #newsletter_input h4 {
+      font-size: 18px !important;
+    }
+  }
+  @media only screen and (max-width: 700px) {
+    #newsletter_input,
+    #thank-you {
+      top: 32rem;
+      right: 2rem;
+    }
+    #newsletter_input input {
+      width: 10rem;
+    }
+    #newsletter_input h4 {
+      margin-bottom: 0;
+      font-size: 18px !important;
     }
   }
   @media only screen and (max-width: 400px) {
@@ -198,6 +237,22 @@
     #banner {
       flex-direction: column;
       min-height: 85px;
+    }
+    #newsletter_input,
+    #thank-you {
+      align-items: flex-end;
+      top: 32rem;
+    }
+    #newsletter_input input {
+      width: 10rem;
+      margin: 0.25rem;
+    }
+    #newsletter_input h4 {
+      font-size: 16px !important;
+      margin-bottom: 0.5 rem;
+    }
+    #email-input {
+      margin-bottom: 20rem;
     }
   }
 </style>
