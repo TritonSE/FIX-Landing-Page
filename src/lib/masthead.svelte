@@ -26,8 +26,7 @@
       <div id="action_container">
         <img src="/masthead/title_blob.svg" alt="blue blob" id="text_background_blob" />
         <div id="words_container">
-          <h1 id="subtitle_text">Compassionate Care</h1>
-          <h1 id="subtitle_text" class="second_line">for Community Cats</h1>
+          <h1 id="subtitle_text">Compassionate Care for Community Cats</h1>
           <p id="subtitle_description">
             Reducing the population of homeless cats in Los Angeles in the most humane way, start
             your TNR journey today.
@@ -35,7 +34,7 @@
         </div>
         <div id="button_container">
           <button id="involveButton">Get Involved</button>
-          <button id="donateButton">Donate Now</button>
+          <button id="donateButton">Donate</button>
         </div>
       </div>
 
@@ -200,7 +199,6 @@
     left: 1.485vw;
     top: 21.495vw;
     margin-right: 2vw;
-    background: #f9f9f9;
     border-radius: 0.25vw;
     border-color: white;
     border: 0;
@@ -210,11 +208,22 @@
     font-size: 0.75vw;
     line-height: auto;
     text-align: center;
-    color: #008e7e;
     flex: none;
     order: 1;
     flex-grow: 0;
   }
+
+  #involveButton {
+    color: var(--color-primary);
+    background: #f9f9f9;
+  }
+
+  #donateButton {
+    color: white;
+    background: var(--color-primary);
+    border: 2px solid white;
+  }
+
   #involveButton:hover,
   #donateButton:hover {
     cursor: pointer;
@@ -302,21 +311,6 @@
     }
   }
 
-  @media only screen and (min-width: 1515px) {
-    #logo_container {
-      min-height: 0vw;
-    }
-    #masthead_content_container {
-      min-height: 0vw;
-    }
-    #arrow_animation_container {
-      min-height: 0vw;
-    }
-    #masthead_main_container {
-      height: 100%;
-    }
-  }
-
   @media only screen and (min-width: 1474px) {
     #background {
       position: absolute;
@@ -366,11 +360,76 @@
   }
 
   @media only screen and (max-width: 450px) {
+    #masthead {
+      min-height: 140vw;
+    }
     #button_container {
       margin-top: 0.01vh;
+      padding-left: 0;
     }
     #text_background_blob {
       top: 6vw;
+      width: 90vw;
+    }
+
+    #logo_container {
+      padding-top: 20px;
+    }
+
+    #logo {
+      height: 45px;
+    }
+
+    #masthead_content_container {
+      position: relative;
+      top: -60px;
+    }
+    #subtitle_text {
+      font-size: 4.5vw;
+    }
+    #action_container {
+      position: relative;
+      top: 35vw;
+      padding-top: 17vw;
+      padding-left: 1rem;
+    }
+    #text_background_blob {
+      top: 0;
+    }
+    #words_container {
+      width: 80%;
+      padding: 1vw;
+    }
+    #subtitle_description {
+      font-size: 3.5vw;
+      width: 100%;
+    }
+
+    .icon_item {
+      margin: 2vw;
+      width: 4vw;
+      height: 4vw;
+    }
+
+    #involveButton,
+    #donateButton {
+      height: 9vw;
+      font-size: 12px;
+      border-radius: 4px;
+      font-weight: 600;
+      margin-right: 10vw;
+    }
+
+    #involveButton {
+      width: 90px;
+    }
+
+    #donateButton {
+      width: 80px;
+    }
+
+    #arrow_animation_container {
+      display: none;
     }
   }
 </style>
