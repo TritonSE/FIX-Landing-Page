@@ -71,34 +71,28 @@
     font-weight: normal;
     src: url(/fonts/Comics.ttf);
   }
-
   /* Mobile variant only */
   @media screen and (max-width: 600px) {
     h1,
     p {
       color: var(--color-secondary-accent);
     }
-
     img {
       width: 10px;
     }
-
     .cat {
       width: 10px;
     }
-
     .road {
       /* width: 100vw; */
       /* box-sizing: border-box; */
       /* width: 100%; */
       padding-top: 10000px;
     }
-
     .container {
       position: relative;
       background: var(--color-gray);
     }
-
     /* Text bubble and cat image */
     .bubble {
       margin-bottom: -6rem;
@@ -139,7 +133,6 @@
       top: 38vw;
       right: 2vw;
     }
-
     /* Roadmap, markers, and text */
     .roadmap {
       background-image: url(/roadmap/road.svg);
