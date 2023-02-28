@@ -108,8 +108,9 @@
     }
 
     :global(body) {
-        margin: 0; /* Made the image fit the entire screen */
-    }
+    margin: 0;
+    padding: 0;
+  }
 
     #road-container {
         align-items: center;
