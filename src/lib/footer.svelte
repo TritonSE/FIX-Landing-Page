@@ -31,17 +31,18 @@
   </div>
 
   {#if visible}
-    <div class="animated_blob-container" transition:fly={{ x: 200, y: 200, duration: 2000 }}>
+    <div id="newsletter_input" transition:fly={{ x: 200, y: 200, duration: 500 }}>
+      <p>Sign up for our newsletter to stay in touch!</p>
+      <input id="name-input" bind:value={name} placeholder="Name" />
+      <input id="email-input" bind:value={email} placeholder="Email" />
+      <Button id="signup-button" small fill <button on:click={() => (visible = true)}
+        >Sign Up</Button
+      >
+    </div>
+    <div class="animated_blob-container" transition:fly={{ x: 200, y: 200, duration: 500 }}>
       <div id="animated_blob">
-        <img src={animated_blob} alt="animated footer blob" id="animated_footer_blob"  />
+        <img src={animated_blob} alt="animated footer blob" id="animated_footer_blob" />
       </div>
-      <div id="newsletter_input">
-        <p>Sign up for our newsletter to stay in touch!</p>
-        <input id="name-input" bind:value={name} placeholder="Name" />
-        <input id="email-input" bind:value={email} placeholder="Email" />
-        <Button id="signup-button" small fill>Sign Up</Button>
-      </div>
-      <!-- <button on:click={() => (visible = false)} id="blob_close"> x </button> -->
     </div>
   {/if}
 </div>
@@ -64,7 +65,7 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-    z-index: -2;
+    z-index: 1;
     top: 20vw;
     right: 40vw;
   }
@@ -75,12 +76,14 @@
     font-weight: 900 !important;
   }
 
-  #newsletter_input input { 
+  #newsletter_input input {
+    box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border: transparent;
     height: 2vw;
     width: 18vw;
   }
 
-  #name-input { 
+  #name-input {
     margin-top: 1rem;
   }
 
