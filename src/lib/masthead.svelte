@@ -407,8 +407,17 @@
 
     .icon_item {
       margin: 2vw;
+      width: 6vw;
+      height: 6vw;
+      padding: 0;
+    }
+
+    .icon {
+      min-width: 4vw;
+      min-height: 4vw;
       width: 4vw;
       height: 4vw;
+      margin: auto;
     }
 
     #involveButton,
