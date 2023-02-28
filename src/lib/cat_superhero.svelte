@@ -38,18 +38,19 @@
 <div class="container">
   <div class="bubble">
     <div class="crop">
-      <img src="/roadmap/bubble.svg" alt="Speech bubble" />
+      <img src="/roadmap/bubble.svg" class="point" alt="Speech bubble" />
+      <img src="/roadmap/round_bubble.svg" class="round" alt="Round speech bubble" />
     </div>
     <div class="header">
       <h1 class="main">how to become a</h1>
       <h1 class="comics">CAT SUPERHERO</h1>
+      <h1 class="comics-desktop">cat SUPERHERO</h1>
       <img class="cat" src="/roadmap/hero.svg" alt="Cat superhero" />
-      <img class="road" src="/roadmap/curved_road.svg" alt="road" />
     </div>
   </div>
 
   <div class="roadmap">
-    <!-- {#each rows as { title, text }, i}
+    {#each rows as { title, text }, i}
       <div class="row">
         <div class="marker">
           <img src="/roadmap/marker.svg" alt="Roadmap marker" />
@@ -60,7 +61,7 @@
           <p class:first={i == 0}>{text}</p>
         </div>
       </div>
-    {/each} -->
+    {/each}
   </div>
 </div>
 
@@ -71,6 +72,102 @@
     font-weight: normal;
     src: url(/fonts/Comics.ttf);
   }
+  /* Desktop variant only */
+  @media screen and (min-width: 800px) {
+    h1,
+    p {
+      color: var(--color-secondary-accent);
+    }
+    img {
+      width: 16vw;
+    }
+    .cat {
+      width: 16vw;
+    }
+    .roadmap {
+      background-image: url(/roadmap/curved_road.svg);
+      background-repeat: no-repeat;
+      background-size: 100% auto;
+      padding-top: 26rem;
+      z-index: -1;
+
+      display: grid;
+      grid-template-rows: repeat(5, 1fr);
+      grid-template-columns: repeat(7, 1fr);
+    }
+    .container {
+      position: relative;
+      background: var(--color-gray);
+    }
+    .bubble .crop {
+      position: absolute;
+      right: 0;
+      width: 36vw;
+    }
+    .crop img {
+      width: 90%;
+    }
+    .crop .round {
+      position: absolute;
+      right: 12vw;
+    }
+    .crop .point {
+      position: absolute;
+      right: 37vw;
+    }
+    .bubble {
+      margin-bottom: -10rem;
+    }
+    .bubble .header {
+      position: relative;
+      z-index: 2;
+      padding: 11vw 0 0 1vw;
+    }
+    .header .main {
+      font-size: 2.3vw;
+      margin: -7vw 0 0 33.5vw;
+      white-space: nowrap;
+      text-transform: capitalize;
+      font-family: 'Comics', sans-serif !important;
+    }
+    .header .comics-desktop {
+      font-family: 'Comics', sans-serif !important;
+      font-size: 2.9vw;
+      margin: -14vw 0 0 60.5vw;
+      height: auto;
+      width: 21vw;
+      word-wrap: break-word;
+      text-align: center;
+    }
+    .header .comics{
+      visibility: hidden;
+    }
+    .header .cat {
+      position: absolute;
+      z-index: 2;
+      width: 15vw;
+      height: auto;
+      top: 16vw;
+      right: 8vw;
+    }
+    .row .marker {
+      width: 2.3125rem;
+      position: relative;
+      z-index: 1;
+    }
+    .marker img {
+      width: 1.625rem;
+      position: absolute;
+      left: 0.3rem;
+    }
+    .marker img.shadow {
+      position: absolute;
+      left: 0.675rem;
+      top: 0.125rem;
+      z-index: -1;
+    }
+  }
+
   /* Mobile variant only */
   @media screen and (max-width: 600px) {
     h1,
@@ -94,6 +191,9 @@
       background: var(--color-gray);
     }
     /* Text bubble and cat image */
+    .round {
+      visibility: hidden;
+    }
     .bubble {
       margin-bottom: -6rem;
     }
@@ -124,6 +224,9 @@
       font-size: 6vw;
       margin: 0 4rem 0 32vw;
       white-space: nowrap;
+    }
+    .header .comics-desktop {
+      visibility: hidden;
     }
     .header .cat {
       position: absolute;
