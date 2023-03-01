@@ -92,7 +92,10 @@
       background-size: 100% auto;
       padding-top: 26rem;
       z-index: -1;
-      min-height: 50vw;
+      /* min-height: 50vw; */
+      height: 50vw;
+      /* box-sizing: border-box; */
+      /* min-height: 60%; */
     }
     .container {
       position: relative;
@@ -163,13 +166,13 @@
       position: relative;
     }
     .row .marker {
-      width: 2.3125rem;
+      width: 2vw;
       position: absolute;
       z-index: 1;
       top: -2.5vw;
     }
     .marker img {
-      width: 3.2rem;
+      width: 3vw;
       position: absolute;
       left: 0.3rem;
     }
@@ -181,12 +184,12 @@
     }
     .text h1 {
       font-family: 'ITC Avant Garde', sans-serif !important;
-      font-size: 18px;
+      font-size: 1vw;
       text-transform: uppercase;
       padding: 3vw 0 0 4vw;
     }
     .text p {
-      font-size: 16px;
+      font-size: 0.9vw;
       padding: 0 3.5vw 2.5vw 3.5vw;
       max-width: 10vw;
     }
@@ -206,7 +209,7 @@
       left: 19.5vw;
     }
     .trap2 {
-      bottom: 13vw;
+      top: 50vw;
       left: 9vw;
     }
     .fixnation3 {
@@ -218,15 +221,15 @@
       right: 34vw;
     }
     .fix5 {
-      bottom: 10vw;
+      top: 55vw;
       right: 37vw;
     }
     .hold6 {
-      bottom: 18vw;
+      top: 46vw;
       right: 18vw;
     }
     .return7 {
-      bottom: 5vw;
+      top: 60vw;
       right: 7vw;
     }
   }
