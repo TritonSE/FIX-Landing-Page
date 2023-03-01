@@ -158,7 +158,7 @@
       max-width: 21vw !important;
     }
     .find0 {
-      top: 17vw;
+      top: 19vw;
       left: 3vw;
     }
     .feed1 {
@@ -166,7 +166,7 @@
       left: 1vw;
     }
     .trap2 {
-      top: 42vw;
+      top: 44vw;
       left: 30vw;
     }
     .fixnation3 {
@@ -186,7 +186,7 @@
       right: 7vw;
     }
     .return7 {
-      top: 112vw;
+      top: 114vw;
       right: 2vw;
     }
   }
