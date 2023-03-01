@@ -50,20 +50,22 @@
   </div>
 
   <div class="roadmap">
-    {#each rows as { title, text }, i}
-      <div class="step_container {title.toLowerCase() + i}">
-        <div class="row">
-          <div class="marker">
-            <img src="/roadmap/marker.svg" alt="Roadmap marker" />
-            <img class="shadow" src="/roadmap/marker_shadow.svg" alt="Roadmap marker shadow" />
-          </div>
-          <div class="text">
-            <h1>{i + 1}. {title}</h1>
-            <p class:first={i == 0}>{text}</p>
+    <div class="roadmap_items">
+      {#each rows as { title, text }, i}
+        <div class="step_container {title.toLowerCase() + i}">
+          <div class="row">
+            <div class="marker">
+              <img src="/roadmap/marker.svg" alt="Roadmap marker" />
+              <img class="shadow" src="/roadmap/marker_shadow.svg" alt="Roadmap marker shadow" />
+            </div>
+            <div class="text">
+              <h1>{i + 1}. {title}</h1>
+              <p class:first={i == 0}>{text}</p>
+            </div>
           </div>
         </div>
-      </div>
-    {/each}
+      {/each}
+    </div>
   </div>
 </div>
 
@@ -74,8 +76,37 @@
     font-weight: normal;
     src: url(/fonts/Comics.ttf);
   }
+  @media screen and (min-width: 1501px) {
+    .roadmap {
+      padding-bottom: 20vw;
+    }
+  }
+  @media screen and (min-width: 1301px) and (max-width: 1500px) {
+    .roadmap {
+      padding-bottom: 20vw;
+      margin-top: 3vw;
+    }
+  }
+  @media screen and (min-width: 1001px) and (max-width: 1300px) {
+    .roadmap {
+      padding-bottom: 20vw;
+      margin-top: 5vw;
+    }
+  }
+  @media screen and (min-width: 820px) and (max-width: 1000px) {
+    .roadmap {
+      padding-bottom: 20vw;
+      margin-top: 9vw;
+    }
+  }
+  @media screen and (min-width: 677px) and (max-width: 819px) {
+    .roadmap {
+      padding-bottom: 20vw;
+      margin-top: 12vw;
+    }
+  }
   /* Desktop variant only */
-  @media screen and (min-width: 600px) {
+  @media screen and (min-width: 676px) {
     h1,
     p {
       color: var(--color-secondary-accent);
@@ -90,16 +121,15 @@
       background-image: url(/roadmap/curved_road.svg);
       background-repeat: no-repeat;
       background-size: 100% auto;
-      padding-top: 26rem;
-      z-index: -1;
-      /* min-height: 50vw; */
-      height: 50vw;
-      /* box-sizing: border-box; */
-      /* min-height: 60%; */
+      min-height: 50vw;
+      display: flex;
+      justify-content: center;
+      align-items: center;
     }
     .container {
       position: relative;
       background: var(--color-gray);
+      height: fit-content;
     }
     .bubble .crop {
       position: absolute;
@@ -142,7 +172,8 @@
       text-align: center;
     }
     .header .comics {
-      visibility: hidden;
+      opacity: 0;
+      position: absolute;
     }
     .header .cat {
       position: absolute;
@@ -235,7 +266,7 @@
   }
 
   /* Mobile variant only */
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 675px) {
     h1,
     p {
       color: var(--color-secondary-accent);
