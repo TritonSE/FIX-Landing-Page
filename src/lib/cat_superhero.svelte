@@ -75,6 +75,8 @@
     src: url(/fonts/Comics.ttf);
   }
   .roadmap {
+    background-repeat: no-repeat;
+    background-size: 100% auto;
     padding-bottom: 20vw;
   }
   @media screen and (min-width: 1501px) {
@@ -102,6 +104,50 @@
       margin-top: 12vw;
     }
   }
+  @media screen and (min-width: 1100px) {
+    .roadmap {
+      min-height: 50vw;
+      background-image: url(/roadmap/curved_road.svg);
+    }
+    .find0 {
+      top: 22.5vw;
+      left: 3vw;
+    }
+    .feed1 {
+      top: 30vw;
+      left: 19.5vw;
+    }
+    .trap2 {
+      top: 50vw;
+      left: 9vw;
+    }
+    .fixnation3 {
+      top: 40vw;
+      left: 33vw;
+    }
+    .hold4 {
+      top: 26.5vw;
+      right: 34vw;
+    }
+    .fix5 {
+      top: 55vw;
+      right: 37vw;
+    }
+    .hold6 {
+      top: 46vw;
+      right: 18vw;
+    }
+    .return7 {
+      top: 60vw;
+      right: 7vw;
+    }
+  }
+  @media screen and (min-width: 676px) and (max-width: 1099px) {
+    .roadmap {
+      background-image: url(/roadmap/tablet_curved_road.svg);
+      min-height: 100vw;
+    }
+  }
   /* Desktop variant only */
   @media screen and (min-width: 676px) {
     h1,
@@ -113,15 +159,6 @@
     }
     .cat {
       width: 16vw;
-    }
-    .roadmap {
-      background-image: url(/roadmap/curved_road.svg);
-      background-repeat: no-repeat;
-      background-size: 100% auto;
-      min-height: 50vw;
-      display: flex;
-      justify-content: center;
-      align-items: center;
     }
     .container {
       position: relative;
@@ -227,38 +264,6 @@
       margin: 0;
       padding: 0;
       position: absolute;
-    }
-    .find0 {
-      top: 22.5vw;
-      left: 3vw;
-    }
-    .feed1 {
-      top: 30vw;
-      left: 19.5vw;
-    }
-    .trap2 {
-      top: 50vw;
-      left: 9vw;
-    }
-    .fixnation3 {
-      top: 40vw;
-      left: 33vw;
-    }
-    .hold4 {
-      top: 26.5vw;
-      right: 34vw;
-    }
-    .fix5 {
-      top: 55vw;
-      right: 37vw;
-    }
-    .hold6 {
-      top: 46vw;
-      right: 18vw;
-    }
-    .return7 {
-      top: 60vw;
-      right: 7vw;
     }
   }
 
