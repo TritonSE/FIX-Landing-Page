@@ -51,14 +51,16 @@
 
   <div class="roadmap">
     {#each rows as { title, text }, i}
-      <div class="row {title}">
-        <div class="marker">
-          <img src="/roadmap/marker.svg" alt="Roadmap marker" />
-          <img class="shadow" src="/roadmap/marker_shadow.svg" alt="Roadmap marker shadow" />
-        </div>
-        <div class="text">
-          <h1>{i + 1}. {title}</h1>
-          <p class:first={i == 0}>{text}</p>
+      <div class="step_container {title.toLowerCase() + i}">
+        <div class="row">
+          <div class="marker">
+            <img src="/roadmap/marker.svg" alt="Roadmap marker" />
+            <img class="shadow" src="/roadmap/marker_shadow.svg" alt="Roadmap marker shadow" />
+          </div>
+          <div class="text">
+            <h1>{i + 1}. {title}</h1>
+            <p class:first={i == 0}>{text}</p>
+          </div>
         </div>
       </div>
     {/each}
@@ -73,7 +75,7 @@
     src: url(/fonts/Comics.ttf);
   }
   /* Desktop variant only */
-  @media screen and (min-width: 800px) {
+  @media screen and (min-width: 600px) {
     h1,
     p {
       color: var(--color-secondary-accent);
@@ -90,6 +92,7 @@
       background-size: 100% auto;
       padding-top: 26rem;
       z-index: -1;
+      min-height: 50vw;
     }
     .container {
       position: relative;
@@ -178,14 +181,53 @@
     }
     .text h1 {
       font-family: 'ITC Avant Garde', sans-serif !important;
-      font-size: 26px;
+      font-size: 18px;
       text-transform: uppercase;
       padding: 3vw 0 0 4vw;
     }
     .text p {
-      font-size: 22px;
+      font-size: 16px;
       padding: 0 3.5vw 2.5vw 3.5vw;
-      max-width: 15vw;
+      max-width: 10vw;
+    }
+
+    .step_container {
+      width: fit-content;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+    }
+    .find0 {
+      top: 22.5vw;
+      left: 3vw;
+    }
+    .feed1 {
+      top: 30vw;
+      left: 19.5vw;
+    }
+    .trap2 {
+      bottom: 13vw;
+      left: 9vw;
+    }
+    .fixnation3 {
+      top: 40vw;
+      left: 33vw;
+    }
+    .hold4 {
+      top: 26.5vw;
+      right: 34vw;
+    }
+    .fix5 {
+      bottom: 10vw;
+      right: 37vw;
+    }
+    .hold6 {
+      bottom: 18vw;
+      right: 18vw;
+    }
+    .return7 {
+      bottom: 5vw;
+      right: 7vw;
     }
   }
 
