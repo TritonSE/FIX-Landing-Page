@@ -51,7 +51,7 @@
 
   <div class="roadmap">
     {#each rows as { title, text }, i}
-      <div class="row">
+      <div class="row {title}">
         <div class="marker">
           <img src="/roadmap/marker.svg" alt="Roadmap marker" />
           <img class="shadow" src="/roadmap/marker_shadow.svg" alt="Roadmap marker shadow" />
@@ -90,10 +90,6 @@
       background-size: 100% auto;
       padding-top: 26rem;
       z-index: -1;
-
-      display: grid;
-      grid-template-rows: repeat(5, 1fr);
-      grid-template-columns: repeat(7, 1fr);
     }
     .container {
       position: relative;
@@ -139,7 +135,7 @@
       word-wrap: break-word;
       text-align: center;
     }
-    .header .comics{
+    .header .comics {
       visibility: hidden;
     }
     .header .cat {
@@ -150,13 +146,27 @@
       top: 16vw;
       right: 8vw;
     }
+    .row {
+      display: flex;
+      flex-direction: column;
+      width: fit-content;
+      max-width: 25vw;
+
+      justify-content: center;
+      align-items: center;
+      background-image: url(/roadmap/cloud.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: relative;
+    }
     .row .marker {
       width: 2.3125rem;
-      position: relative;
+      position: absolute;
       z-index: 1;
+      top: -2.5vw;
     }
     .marker img {
-      width: 1.625rem;
+      width: 3.2rem;
       position: absolute;
       left: 0.3rem;
     }
@@ -165,6 +175,17 @@
       left: 0.675rem;
       top: 0.125rem;
       z-index: -1;
+    }
+    .text h1 {
+      font-family: 'ITC Avant Garde', sans-serif !important;
+      font-size: 26px;
+      text-transform: uppercase;
+      padding: 3vw 0 0 4vw;
+    }
+    .text p {
+      font-size: 22px;
+      padding: 0 3.5vw 2.5vw 3.5vw;
+      max-width: 15vw;
     }
   }
 
@@ -179,12 +200,6 @@
     }
     .cat {
       width: 10px;
-    }
-    .road {
-      /* width: 100vw; */
-      /* box-sizing: border-box; */
-      /* width: 100%; */
-      padding-top: 10000px;
     }
     .container {
       position: relative;
