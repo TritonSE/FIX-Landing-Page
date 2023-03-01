@@ -50,22 +50,20 @@
   </div>
 
   <div class="roadmap">
-    <div class="roadmap_items">
-      {#each rows as { title, text }, i}
-        <div class="step_container {title.toLowerCase() + i}">
-          <div class="row">
-            <div class="marker">
-              <img src="/roadmap/marker.svg" alt="Roadmap marker" />
-              <img class="shadow" src="/roadmap/marker_shadow.svg" alt="Roadmap marker shadow" />
-            </div>
-            <div class="text">
-              <h1>{i + 1}. {title}</h1>
-              <p class:first={i == 0}>{text}</p>
-            </div>
+    {#each rows as { title, text }, i}
+      <div class="step_container {title.toLowerCase() + i}">
+        <div class="row">
+          <div class="marker">
+            <img src="/roadmap/marker.svg" alt="Roadmap marker" />
+            <img class="shadow" src="/roadmap/marker_shadow.svg" alt="Roadmap marker shadow" />
+          </div>
+          <div class="text">
+            <h1>{i + 1}. {title}</h1>
+            <p class:first={i == 0}>{text}</p>
           </div>
         </div>
-      {/each}
-    </div>
+      </div>
+    {/each}
   </div>
 </div>
 
@@ -76,32 +74,31 @@
     font-weight: normal;
     src: url(/fonts/Comics.ttf);
   }
+  .roadmap {
+    padding-bottom: 20vw;
+  }
   @media screen and (min-width: 1501px) {
     .roadmap {
-      padding-bottom: 20vw;
+      margin: 0;
     }
   }
   @media screen and (min-width: 1301px) and (max-width: 1500px) {
     .roadmap {
-      padding-bottom: 20vw;
       margin-top: 3vw;
     }
   }
   @media screen and (min-width: 1001px) and (max-width: 1300px) {
     .roadmap {
-      padding-bottom: 20vw;
       margin-top: 5vw;
     }
   }
   @media screen and (min-width: 820px) and (max-width: 1000px) {
     .roadmap {
-      padding-bottom: 20vw;
       margin-top: 9vw;
     }
   }
   @media screen and (min-width: 677px) and (max-width: 819px) {
     .roadmap {
-      padding-bottom: 20vw;
       margin-top: 12vw;
     }
   }
@@ -165,7 +162,7 @@
     .header .comics-desktop {
       font-family: 'Comics', sans-serif !important;
       font-size: 2.9vw;
-      margin: -14vw 0 0 60.5vw;
+      margin: -6vw 0 0 60.5vw;
       height: auto;
       width: 21vw;
       word-wrap: break-word;
