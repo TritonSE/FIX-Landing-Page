@@ -142,10 +142,52 @@
       right: 7vw;
     }
   }
+  /* Tablet View */
   @media screen and (min-width: 676px) and (max-width: 1099px) {
     .roadmap {
       background-image: url(/roadmap/tablet_curved_road.svg);
       min-height: 100vw;
+    }
+    .text h1 {
+      font-size: 1.8vw !important;
+      padding: 3vw 0 0 4vw;
+    }
+    .text p {
+      font-size: 1.6vw !important;
+      padding: 0 3.5vw 2.5vw 3.5vw;
+      max-width: 21vw !important;
+    }
+    .find0 {
+      top: 17vw;
+      left: 3vw;
+    }
+    .feed1 {
+      top: 40vw;
+      left: 1vw;
+    }
+    .trap2 {
+      top: 42vw;
+      left: 30vw;
+    }
+    .fixnation3 {
+      top: 60vw;
+      left: 40vw;
+    }
+    .hold4 {
+      top: 80vw;
+      left: 15vw;
+    }
+    .fix5 {
+      top: 78vw;
+      left: 50vw;
+    }
+    .hold6 {
+      top: 92vw;
+      right: 7vw;
+    }
+    .return7 {
+      top: 112vw;
+      right: 2vw;
     }
   }
   /* Desktop variant only */
@@ -258,7 +300,6 @@
       padding: 0 3.5vw 2.5vw 3.5vw;
       max-width: 10vw;
     }
-
     .step_container {
       width: fit-content;
       margin: 0;
