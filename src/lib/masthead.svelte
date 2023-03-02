@@ -1,3 +1,8 @@
+<!--
+  masthead.svelte:
+    Hero masthead component, showing cat images and
+    two call-to-action buttons.
+-->
 <script lang="ts">
   import { fade } from 'svelte/transition';
 
@@ -206,7 +211,7 @@
     border: 0;
     font-family: 'Avenir';
     font-style: normal;
-    font-weight: 900;
+    font-weight: 300;
     font-size: 0.75vw;
     line-height: auto;
     text-align: center;
@@ -214,10 +219,20 @@
     flex: none;
     order: 1;
     flex-grow: 0;
-  }
-  #involveButton:hover,
-  #donateButton:hover {
     cursor: pointer;
+  }
+  #donateButton {
+    background: var(--color-primary);
+    color: white;
+    border: 1.5px solid var(--color-white);
+  }
+  #involveButton:hover {
+    background-color: var(--color-secondary);
+    color: var(--color-white);
+  }
+  #donateButton:hover {
+    background-color: var(--color-white);
+    color: var(--color-primary);
   }
   .icon_item {
     display: flex;

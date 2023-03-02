@@ -1,5 +1,14 @@
-<script>
-  const rows = [
+<!--
+  cat_superhero.svelte:
+    A roadmap with Trap-Neuter-Return information.
+-->
+<script lang="ts">
+  type row = {
+    title: string;
+    text: string;
+  };
+
+  const rows: row[] = [
     {
       title: 'Find',
       text: 'Find a cat who needs your help'

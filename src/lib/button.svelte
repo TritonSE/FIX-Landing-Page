@@ -1,9 +1,15 @@
-<button
-  on:click
-  class:small={$$props.small}
-  class:secondary={$$props.secondary}
-  class:fill={$$props.fill}
->
+<!--
+  button.svelte:
+    A reusable button component.
+    Comes in small, secondary, and fill (non-wrapping) variants.
+-->
+<script>
+  export let small = false;
+  export let secondary = false;
+  export let fill = false;
+</script>
+
+<button on:click class:small class:secondary class:fill>
   <slot />
 </button>
 

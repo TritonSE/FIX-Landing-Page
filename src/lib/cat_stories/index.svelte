@@ -1,9 +1,15 @@
-<script>
+<!--
+  index.svelte:
+    Cat stories entrypoint.
+-->
+<script lang="ts">
   import CatImage from './cat_image.svelte';
   import Paw from './paw.svelte';
   import CatOverlay from './cat_overlay.svelte';
 
-  const CAT_DATA = [
+  import type { catData } from './types.ts';
+
+  const CAT_DATA: catData = [
     {
       name: 'Shadow',
       desc_abbreviated:
@@ -205,9 +211,9 @@
   </div>
 
   <CatOverlay
+    data={CAT_DATA[openOverlayIndex]}
     open={openOverlayIndex !== -1}
     onClose={closeCatOverlay}
-    catData={CAT_DATA[openOverlayIndex]}
   />
 </div>
 

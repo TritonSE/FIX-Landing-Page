@@ -1,3 +1,8 @@
+<!--
+  cat_post.svelte:
+    A component for a single Instagram post.
+    Will be populated with actual Instagram post data later on.
+-->
 <script>
   export let image_url = '';
   export let image_alt = '';

@@ -1,3 +1,7 @@
+<!--
+  footer.svelte:
+    A footer component with outbound links and TSE info.
+-->
 <script>
   import Button from '$lib/button.svelte';
 </script>
