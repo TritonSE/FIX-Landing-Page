@@ -1,3 +1,7 @@
+<!--
+  paw.svelte:
+    A reusable paw image component.
+-->
 <script>
   export let name = '';
 </script>
