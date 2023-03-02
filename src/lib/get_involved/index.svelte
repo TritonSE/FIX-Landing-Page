@@ -5,7 +5,7 @@
 <script lang="ts">
   import Card from './card.svelte';
 
-  type card = {
+  type CardData = {
     label: string;
     description: string;
     background_image_url: string;
@@ -14,7 +14,7 @@
     link_url: string;
   };
 
-  const CARDS: card[] = [
+  const CARDS: CardData[] = [
     {
       label: 'events',
       description:

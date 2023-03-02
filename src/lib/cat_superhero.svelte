@@ -3,12 +3,12 @@
     A roadmap with Trap-Neuter-Return information.
 -->
 <script lang="ts">
-  type row = {
+  type RowData = {
     title: string;
     text: string;
   };
 
-  const rows: row[] = [
+  const rows: RowData[] = [
     {
       title: 'Find',
       text: 'Find a cat who needs your help'

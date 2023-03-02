@@ -9,9 +9,9 @@
   import CatPost from './cat_post.svelte';
   import Paw from './paw.svelte';
 
-  import type { catData } from './types.ts';
+  import type { CatData } from './types.ts';
 
-  export let data: catData;
+  export let data: CatData;
   export let open: boolean;
   export let onClose: () => void;
 
@@ -31,7 +31,7 @@
     <div class="row root-row">
       <Paw name={data.name} />
       <div class="column">
-        <p>{data.desc_full}</p>
+        <p>{data.desc}</p>
         <div class="row small-gap ig-margin">
           <img
             class="profile-picture"
