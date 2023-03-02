@@ -384,19 +384,23 @@
     #involveButton,
     #donateButton {
       height: 9vw;
-      font-size: 12px;
+      font-size: 15px;
       border-radius: 4px;
       margin-right: 10vw;
-    }
-
-    #involveButton,
-    #donateButton {
       width: 25vw;
-      min-width: 90px;
+      min-width: 100px;
     }
 
     #arrow_animation_container {
       display: none;
+    }
+  }
+
+  @media only screen and (max-width: 300px) {
+    #involveButton,
+    #donateButton {
+      font-size: 12px;
+      min-width: 90px;
     }
   }
 </style>
