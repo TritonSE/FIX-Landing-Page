@@ -21,13 +21,7 @@ body {
   margin: 0;
   padding: 0;
   background: var(--color-gray);
-}
-
-/* Margin and padding */
-html,
-body {
-  margin: 0;
-  padding: 0;
+  scroll-behavior: smooth;
 }
 
 /* Fonts and sizing */
