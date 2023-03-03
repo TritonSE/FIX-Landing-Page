@@ -15,7 +15,9 @@
       <Button secondary small fill>FixNation Website</Button>
     </a>
     <div class="spacer" />
-    <Button secondary small fill>Sign up for Newsletter</Button>
+    <a href="https://fixnation.org/#fca_eoi_form_8649">
+      <Button secondary small fill>Sign up for Newsletter</Button>
+    </a>
     <p id="copyright">© 2020 FixNation, Inc. All Rights Reserved.</p>
   </div>
   <div id="banner">

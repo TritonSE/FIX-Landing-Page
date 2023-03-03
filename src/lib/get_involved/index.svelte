@@ -30,7 +30,9 @@
         'The majority of our funding comes from foundation grants and private individuals, and donations of any amount are welcomed with heartfelt gratitude.',
       background_image_url: 'get_involved/donation.png',
       background_image_alt: 'A cat with money',
-      light_shadow: true
+      light_shadow: true,
+      link_url:
+        'https://fixnation.networkforgood.com/projects/182719-helping-cats-and-communities-through-tnr-2023'
     },
     {
       label: 'volunteer',
@@ -47,7 +49,8 @@
         'A city-wide network of independent trappers make our Trap-Neuter-Return mission possible, bringing us cats to spay and neuter four days a week, Wednesdays through Saturdays.',
       background_image_url: 'get_involved/trap.png',
       background_image_alt: 'A cat in a cage',
-      light_shadow: true
+      light_shadow: true,
+      link_url: 'https://www.youtube.com/watch?v=IarsSTLUdTw'
     },
     {
       label: 'foster',
@@ -55,7 +58,8 @@
         'Although FixNation is not a shelter or a rescue, we partner with many organizations that are always in need of loving foster families for adoptable cats.',
       background_image_url: 'get_involved/foster.png',
       background_image_alt: 'A person holding a cat',
-      light_shadow: false
+      light_shadow: false,
+      link_url: 'https://kittenrescue.org/volunteer/fostering/'
     },
     {
       label: 'caregiving',
@@ -96,7 +100,7 @@
   ];
 </script>
 
-<div class="root">
+<div class="root" id="get_involved">
   <h1>Get Involved</h1>
   <p>
     There are so many ways you can help homeless cats in your area. FixNation is looking for you!

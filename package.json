@@ -15,6 +15,7 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.19.1",
     "@sveltejs/adapter-auto": "next",
+    "@sveltejs/adapter-static": "^2.0.1",
     "@sveltejs/kit": "next",
     "@typescript-eslint/eslint-plugin": "^5.42.1",
     "@typescript-eslint/parser": "^5.42.1",

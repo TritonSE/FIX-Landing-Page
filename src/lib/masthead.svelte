@@ -52,8 +52,12 @@
           </p>
         </div>
         <div id="button_container">
-          <button id="involveButton">Get Involved</button>
-          <button id="donateButton">Donate</button>
+          <a href="#get_involved"><button id="involve_button">Get Involved</button></a>
+          <a
+            href="https://fixnation.networkforgood.com/projects/182719-helping-cats-and-communities-through-tnr-2023"
+          >
+            <button id="donate_button">Donate</button>
+          </a>
         </div>
       </div>
 
@@ -175,8 +179,8 @@
     justify-self: center;
     z-index: 1;
   }
-  #involveButton,
-  #donateButton {
+  #involve_button,
+  #donate_button {
     width: 12vw;
     height: 4vw;
     left: 1.485vw;
@@ -196,19 +200,19 @@
     flex-grow: 0;
     cursor: pointer;
   }
-  #involveButton {
+  #involve_button {
     color: var(--color-primary);
   }
-  #donateButton {
+  #donate_button {
     background: var(--color-primary);
     color: white;
     border: 1.5px solid var(--color-white);
   }
-  #involveButton:hover {
+  #involve_button:hover {
     background-color: var(--color-secondary);
     color: var(--color-white);
   }
-  #donateButton:hover {
+  #donate_button:hover {
     background-color: var(--color-white);
     color: var(--color-primary);
   }
@@ -296,8 +300,8 @@
     #masthead {
       justify-content: center;
     }
-    #involveButton,
-    #donateButton {
+    #involve_button,
+    #donate_button {
       width: 13vw;
       height: 4vw;
       font-size: 1.7vw;
@@ -381,8 +385,8 @@
       margin: auto;
     }
 
-    #involveButton,
-    #donateButton {
+    #involve_button,
+    #donate_button {
       height: 9vw;
       font-size: 15px;
       border-radius: 4px;
@@ -397,8 +401,8 @@
   }
 
   @media only screen and (max-width: 300px) {
-    #involveButton,
-    #donateButton {
+    #involve_button,
+    #donate_button {
       font-size: 12px;
       min-width: 90px;
     }
