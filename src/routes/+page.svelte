@@ -1,17 +1,25 @@
+<!--
+  +page.svelte:
+    App entrypoint.
+-->
 <script>
   import Masthead from '$lib/masthead.svelte';
   import Stats from '$lib/stats.svelte';
   import CatStories from '$lib/cat_stories/index.svelte';
   import CatSuperhero from '../lib/cat_superhero.svelte';
+  import GetInvolved from '../lib/get_involved/index.svelte';
   import Footer from '$lib/footer.svelte';
-  import Involved from '$lib/involved.svelte';
+
+  // MVP "Get Involved" section:
+  // import Involved from '$lib/involved.svelte';
 </script>
 
 <Masthead />
 <Stats />
 <CatStories />
 <CatSuperhero />
-<Involved />
+<GetInvolved />
+<!-- <Involved /> -->
 <Footer />
 
 <svelte:head>

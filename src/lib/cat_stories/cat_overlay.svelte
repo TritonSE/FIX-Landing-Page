@@ -1,38 +1,25 @@
-<script>
+<!--
+  cat_overlay.svelte:
+    A styled modal that contains info and images
+    about a particular cat.
+-->
+<script lang="ts">
   import Button from '$lib/button.svelte';
-  import SideOverlay from '../side_overlay.svelte';
+  import SideOverlay from './side_overlay.svelte';
   import CatPost from './cat_post.svelte';
   import Paw from './paw.svelte';
 
-  /**
-   * @type {{
-   *  name: string;
-   *   desc_full: string;
-   *  ig_username: string;
-   *  n_followers: number;
-   *  ig_link: string;
-   *  image_path: string;
-   * }}
-   */
-  export let catData;
-  /**
-   * @type boolean
-   */
-  export let open;
-  /**
-   * @type {() => void}
-   */
-  export let onClose;
+  import type { CatData } from './types.ts';
 
-  const INDICES = [1, 2, 3];
-  /**
-   * @param {number} number
-   */
-  function formatNum(number) {
-    if (number > 1000) {
-      return Math.floor(number / 1000) + 'K';
+  export let data: CatData;
+  export let open: boolean;
+  export let onClose: () => void;
+
+  function formatNum(n: number) {
+    if (n > 1000) {
+      return Math.floor(n / 1000) + 'K';
     }
-    return number;
+    return n;
   }
 </script>
 
@@ -42,35 +29,35 @@
       <img src="/cat_stories/close.svg" alt="Close" />
     </button>
     <div class="row root-row">
-      <Paw name={catData.name} />
+      <Paw name={data.name} />
       <div class="column">
-        <p>{catData.desc_full}</p>
+        <p>{data.desc}</p>
         <div class="row small-gap ig-margin">
           <img
             class="profile-picture"
-            alt={catData.name}
-            src={`cat_stories/profile_pictures/${catData.name}.png`}
+            alt={data.name}
+            src={`cat_stories/profile_pictures/${data.name}.png`}
           />
           <div class="column">
-            <a href={`https://www.instagram.com/${catData.ig_username}/?hl=en`}
-              ><p class="username nomargin">{catData.ig_username}</p></a
+            <a href={`https://www.instagram.com/${data.ig_username}/?hl=en`}
+              ><p class="username nomargin">{data.ig_username}</p></a
             >
-            <p class="nomargin">{`${formatNum(catData.n_followers)} followers`}</p>
+            <p class="nomargin">{`${formatNum(data.n_followers)} followers`}</p>
           </div>
 
           <div class="vertical-divider" />
 
-          <a href={catData.ig_link}>
+          <a href={data.ig_link}>
             <Button>Follow Me</Button>
           </a>
         </div>
 
         <div class="row large-gap">
-          {#each INDICES as index}
+          {#each Array(3) as _, i}
             <CatPost
-              image_url="cat_stories/post_images/{catData.name}/post{index}.png"
-              image_alt={catData.name}
-              link_to={catData.ig_link}
+              image_url="cat_stories/post_images/{data.name}/post{i + 1}.png"
+              image_alt={data.name}
+              link_to={data.ig_link}
             />
           {/each}
         </div>
@@ -78,7 +65,7 @@
     </div>
 
     <div class="top-image-container">
-      <img class="top-image" src={catData.image_path} alt={catData.name} />
+      <img class="top-image" src={data.image_path} alt={data.name} />
     </div>
   </div>
 </SideOverlay>
