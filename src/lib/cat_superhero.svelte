@@ -3,6 +3,8 @@
     A roadmap with Trap-Neuter-Return information.
 -->
 <script lang="ts">
+  import { base } from '$app/paths';
+
   type RowData = {
     title: string;
     text: string;
@@ -47,14 +49,14 @@
 <div class="container">
   <div class="bubble">
     <div class="crop">
-      <img src="/roadmap/bubble.svg" class="point" alt="Speech bubble" />
-      <img src="/roadmap/round_bubble.svg" class="round" alt="Round speech bubble" />
+      <img src="{base}/roadmap/bubble.svg" class="point" alt="Speech bubble" />
+      <img src="{base}/roadmap/round_bubble.svg" class="round" alt="Round speech bubble" />
     </div>
     <div class="header">
       <h1 class="main">how to become a</h1>
       <h1 class="comics">CAT SUPERHERO</h1>
       <h1 class="comics-desktop">cat SUPERHERO</h1>
-      <img class="cat" src="/roadmap/hero.svg" alt="Cat superhero" />
+      <img class="cat" src="{base}/roadmap/hero.svg" alt="Cat superhero" />
     </div>
   </div>
 
@@ -63,8 +65,12 @@
       <div class="step_container {title.toLowerCase() + i}">
         <div class="row">
           <div class="marker">
-            <img src="/roadmap/marker.svg" alt="Roadmap marker" />
-            <img class="shadow" src="/roadmap/marker_shadow.svg" alt="Roadmap marker shadow" />
+            <img src="{base}/roadmap/marker.svg" alt="Roadmap marker" />
+            <img
+              class="shadow"
+              src="{base}/roadmap/marker_shadow.svg"
+              alt="Roadmap marker shadow"
+            />
           </div>
           <div class="text">
             <h1>{i + 1}. {title}</h1>
@@ -77,12 +83,6 @@
 </div>
 
 <style>
-  @font-face {
-    font-family: 'Comics';
-    font-style: normal;
-    font-weight: normal;
-    src: url(/fonts/Comics.ttf);
-  }
   .roadmap {
     background-repeat: no-repeat;
     background-size: 100% auto;
@@ -116,7 +116,7 @@
   @media screen and (min-width: 1100px) {
     .roadmap {
       min-height: 50vw;
-      background-image: url(/roadmap/curved_road.svg);
+      background-image: url(@base/roadmap/curved_road.svg);
     }
     .find0 {
       top: 22.5vw;
@@ -154,8 +154,8 @@
   /* Tablet View */
   @media screen and (min-width: 676px) and (max-width: 1099px) {
     .roadmap {
-      background-image: url(/roadmap/tablet_curved_road.svg);
-      min-height: 100vw;
+      background-image: url(@base/roadmap/tablet_curved_road.svg);
+      min-height: 110vw;
     }
     .text h1 {
       font-size: 1.8vw !important;
@@ -276,7 +276,7 @@
 
       justify-content: center;
       align-items: center;
-      background-image: url(/roadmap/cloud.svg);
+      background-image: url(@base/roadmap/cloud.svg);
       background-repeat: no-repeat;
       background-size: contain;
       position: relative;
@@ -381,10 +381,11 @@
     }
     /* Roadmap, markers, and text */
     .roadmap {
-      background-image: url(/roadmap/road.svg);
+      background-image: url(@base/roadmap/road.svg);
       background-repeat: no-repeat;
       background-size: auto 100%;
       padding-top: 6rem;
+      padding-bottom: 5vw;
       margin: 0 1rem;
     }
     .roadmap .row {

@@ -11,6 +11,8 @@
 
   import type { CatData } from './types.ts';
 
+  import { base } from '$app/paths';
+
   export let data: CatData;
   export let open: boolean;
   export let onClose: () => void;
@@ -26,7 +28,7 @@
 <SideOverlay {open} {onClose}>
   <div class="root">
     <button class="close-button" on:click={onClose}>
-      <img src="/cat_stories/close.svg" alt="Close" />
+      <img src="{base}/cat_stories/close.svg" alt="Close" />
     </button>
     <div class="row root-row">
       <Paw name={data.name} />
@@ -36,7 +38,7 @@
           <img
             class="profile-picture"
             alt={data.name}
-            src={`cat_stories/profile_pictures/${data.name}.png`}
+            src="{base}/cat_stories/profile_pictures/{data.name}.png"
           />
           <div class="column">
             <a href={`https://www.instagram.com/${data.ig_username}/?hl=en`}

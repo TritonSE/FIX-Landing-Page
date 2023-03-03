@@ -5,14 +5,18 @@ const dev = process.argv.includes('dev');
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-  // Consult https://github.com/sveltejs/svelte-preprocess
-  // for more information about preprocessors
-  preprocess: preprocess(),
+  // Static site generator requires inclusion of
+  //   '/static' base URL, development site requires
+  //   it to be absent
+  preprocess: preprocess({
+    replace: [[/@base/g, dev ? '' : '/static']]
+  }),
 
   kit: {
     adapter: adapter(),
     paths: {
-      base: dev ? '' : '/FIX-Landing-Page'
+      base: dev ? '' : '/FIX-Landing-Page',
+      relative: false
     }
   }
 };

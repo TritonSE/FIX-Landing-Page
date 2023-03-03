@@ -9,6 +9,8 @@
 
   import type { CatData } from './types.ts';
 
+  import { base } from '$app/paths';
+
   const CAT_DATA: CatData = [
     {
       name: 'Shadow',
@@ -17,7 +19,7 @@
       ig_link: 'https://www.instagram.com/shadowthehomedepotcat_/?hl=en',
       ig_username: 'shadowthehomedepotcat_',
       n_followers: 295,
-      image_path: 'cat_stories/shadow.png'
+      image_path: `${base}/cat_stories/shadow.png`
     },
     {
       name: 'Close Up',
@@ -26,7 +28,7 @@
       ig_link: 'https://www.instagram.com/closeupthecemeterycat/?hl=en',
       ig_username: 'closeupthecemeterycat',
       n_followers: 9873,
-      image_path: 'cat_stories/close_up_full.png'
+      image_path: `${base}/cat_stories/close_up_full.png`
     },
     {
       name: 'Almira',
@@ -35,7 +37,7 @@
       ig_link: 'https://www.instagram.com/disneylandcats/?hl=en',
       ig_username: 'disneylandcats',
       n_followers: 110000,
-      image_path: 'cat_stories/almira_full.png'
+      image_path: `${base}/cat_stories/almira_full.png`
     }
   ];
 
@@ -60,7 +62,7 @@
   <div class="stories-grid">
     <div class="cat-image-container">
       <CatImage
-        image_url="/cat_stories/shadow.png"
+        image_url="{base}/cat_stories/shadow.png"
         image_alt="Shadow"
         on:click={() => openCatOverlay(0)}
         on:keydown={(e) => {
@@ -72,7 +74,11 @@
       {#if windowWidth <= 600}
         <Paw name={CAT_DATA[0].name} />
         <a href={CAT_DATA[0].ig_link}>
-          <img src="/cat_stories/instagram_white.svg" alt="Instagram Logo" class="instagram-logo" />
+          <img
+            src="{base}/cat_stories/instagram_white.svg"
+            alt="Instagram Logo"
+            class="instagram-logo"
+          />
         </a>
       {/if}
     </div>
@@ -98,18 +104,18 @@
     <div class="column large-gap">
       <div class="cat-image-container">
         {#if windowWidth <= 600}
-          <CatImage image_url="/cat_stories/close_up_full.png" image_alt="Close Up" />
+          <CatImage image_url="{base}/cat_stories/close_up_full.png" image_alt="Close Up" />
           <Paw name={CAT_DATA[1].name} />
           <a href={CAT_DATA[1].ig_link}>
             <img
-              src="/cat_stories/instagram_white.svg"
+              src="{base}/cat_stories/instagram_white.svg"
               alt="Instagram Logo"
               class="instagram-logo"
             />
           </a>
         {:else}
           <CatImage
-            image_url="/cat_stories/close_up_cropped.png"
+            image_url="{base}/cat_stories/close_up_cropped.png"
             image_alt="Close Up"
             on:click={() => openCatOverlay(1)}
             on:keydown={(e) => {
@@ -151,18 +157,18 @@
     <div class="column large-gap">
       <div class="cat-image-container">
         {#if windowWidth <= 600}
-          <CatImage image_url="/cat_stories/almira_full.png" image_alt="Almira" />
+          <CatImage image_url="{base}/cat_stories/almira_full.png" image_alt="Almira" />
           <Paw name={CAT_DATA[2].name} />
           <a href={CAT_DATA[2].ig_link}>
             <img
-              src="/cat_stories/instagram_white.svg"
+              src="{base}/cat_stories/instagram_white.svg"
               alt="Instagram Logo"
               class="instagram-logo"
             />
           </a>
         {:else}
           <CatImage
-            image_url="/cat_stories/almira_cropped.png"
+            image_url="{base}/cat_stories/almira_cropped.png"
             image_alt="Almira"
             on:click={() => openCatOverlay(2)}
             on:keydown={(e) => {
