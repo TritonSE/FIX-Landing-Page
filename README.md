@@ -24,7 +24,7 @@ This will automatically open the site in a browser.
 
 ### Committing Changes
 
-When committing changes, run the linter and auto-formatter ([prettier](https://prettier.io):
+When committing changes, run the linter and auto-formatter ([prettier](https://prettier.io)):
 
 ```bash
 yarn format

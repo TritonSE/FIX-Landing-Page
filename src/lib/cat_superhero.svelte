@@ -3,6 +3,8 @@
     A roadmap with Trap-Neuter-Return information.
 -->
 <script lang="ts">
+  import { base } from '$app/paths';
+
   type RowData = {
     title: string;
     text: string;
@@ -47,25 +49,33 @@
 <div class="container">
   <div class="bubble">
     <div class="crop">
-      <img src="/roadmap/bubble.svg" alt="Speech bubble" />
+      <img src="{base}/roadmap/bubble.svg" class="point" alt="Speech bubble" />
+      <img src="{base}/roadmap/round_bubble.svg" class="round" alt="Round speech bubble" />
     </div>
     <div class="header">
       <h1 class="main">how to become a</h1>
       <h1 class="comics">CAT SUPERHERO</h1>
-      <img class="cat" src="/roadmap/hero.svg" alt="Cat superhero" />
+      <h1 class="comics-desktop">cat SUPERHERO</h1>
+      <img class="cat" src="{base}/roadmap/hero.svg" alt="Cat superhero" />
     </div>
   </div>
 
   <div class="roadmap">
     {#each rows as { title, text }, i}
-      <div class="row">
-        <div class="marker">
-          <img src="/roadmap/marker.svg" alt="Roadmap marker" />
-          <img class="shadow" src="/roadmap/marker_shadow.svg" alt="Roadmap marker shadow" />
-        </div>
-        <div class="text">
-          <h1>{i + 1}. {title}</h1>
-          <p class:first={i == 0}>{text}</p>
+      <div class="step_container {title.toLowerCase() + i}">
+        <div class="row">
+          <div class="marker">
+            <img src="{base}/roadmap/marker.svg" alt="Roadmap marker" />
+            <img
+              class="shadow"
+              src="{base}/roadmap/marker_shadow.svg"
+              alt="Roadmap marker shadow"
+            />
+          </div>
+          <div class="text">
+            <h1>{i + 1}. {title}</h1>
+            <p class:first={i == 0}>{text}</p>
+          </div>
         </div>
       </div>
     {/each}
@@ -73,26 +83,260 @@
 </div>
 
 <style>
-  @font-face {
-    font-family: 'Comics';
-    font-style: normal;
-    font-weight: normal;
-    src: url(/fonts/Comics.ttf);
+  .roadmap {
+    background-repeat: no-repeat;
+    background-size: 100% auto;
+    padding-bottom: 20vw;
   }
-
-  /* Mobile variant only */
-  @media screen and (max-width: 600px) {
+  @media screen and (min-width: 1501px) {
+    .roadmap {
+      margin: 0;
+    }
+  }
+  @media screen and (min-width: 1301px) and (max-width: 1500px) {
+    .roadmap {
+      margin-top: 3vw;
+    }
+  }
+  @media screen and (min-width: 1001px) and (max-width: 1300px) {
+    .roadmap {
+      margin-top: 5vw;
+    }
+  }
+  @media screen and (min-width: 820px) and (max-width: 1000px) {
+    .roadmap {
+      margin-top: 9vw;
+    }
+  }
+  @media screen and (min-width: 677px) and (max-width: 819px) {
+    .roadmap {
+      margin-top: 12vw;
+    }
+  }
+  @media screen and (min-width: 1100px) {
+    .roadmap {
+      min-height: 50vw;
+      background-image: url(@base/roadmap/curved_road.svg);
+    }
+    .find0 {
+      top: 22.5vw;
+      left: 3vw;
+    }
+    .feed1 {
+      top: 30vw;
+      left: 19.5vw;
+    }
+    .trap2 {
+      top: 50vw;
+      left: 9vw;
+    }
+    .fixnation3 {
+      top: 40vw;
+      left: 33vw;
+    }
+    .hold4 {
+      top: 26.5vw;
+      right: 34vw;
+    }
+    .fix5 {
+      top: 55vw;
+      right: 37vw;
+    }
+    .hold6 {
+      top: 46vw;
+      right: 18vw;
+    }
+    .return7 {
+      top: 60vw;
+      right: 7vw;
+    }
+  }
+  /* Tablet View */
+  @media screen and (min-width: 676px) and (max-width: 1099px) {
+    .roadmap {
+      background-image: url(@base/roadmap/tablet_curved_road.svg);
+      min-height: 110vw;
+    }
+    .text h1 {
+      font-size: 1.8vw !important;
+      padding: 3vw 0 0 4vw;
+    }
+    .text p {
+      font-size: 1.6vw !important;
+      padding: 0 3.5vw 2.5vw 3.5vw;
+      max-width: 21vw !important;
+    }
+    .find0 {
+      top: 19vw;
+      left: 3vw;
+    }
+    .feed1 {
+      top: 40vw;
+      left: 1vw;
+    }
+    .trap2 {
+      top: 44vw;
+      left: 30vw;
+    }
+    .fixnation3 {
+      top: 60vw;
+      left: 40vw;
+    }
+    .hold4 {
+      top: 80vw;
+      left: 15vw;
+    }
+    .fix5 {
+      top: 78vw;
+      left: 50vw;
+    }
+    .hold6 {
+      top: 92vw;
+      right: 7vw;
+    }
+    .return7 {
+      top: 114vw;
+      right: 2vw;
+    }
+  }
+  /* Desktop variant only */
+  @media screen and (min-width: 676px) {
     h1,
     p {
       color: var(--color-secondary-accent);
     }
+    img {
+      width: 16vw;
+    }
+    .cat {
+      width: 16vw;
+    }
+    .container {
+      position: relative;
+      background: var(--color-gray);
+      height: fit-content;
+    }
+    .bubble .crop {
+      position: absolute;
+      right: 0;
+      width: 36vw;
+    }
+    .crop img {
+      width: 90%;
+    }
+    .crop .round {
+      position: absolute;
+      right: 12vw;
+    }
+    .crop .point {
+      position: absolute;
+      right: 37vw;
+    }
+    .bubble {
+      margin-bottom: -10rem;
+    }
+    .bubble .header {
+      position: relative;
+      z-index: 2;
+      padding: 11vw 0 0 1vw;
+    }
+    .header .main {
+      font-size: 2.3vw;
+      margin: -7vw 0 0 33.5vw;
+      white-space: nowrap;
+      text-transform: capitalize;
+      font-family: 'Comics', sans-serif !important;
+    }
+    .header .comics-desktop {
+      font-family: 'Comics', sans-serif !important;
+      font-size: 2.9vw;
+      margin: -6vw 0 0 60.5vw;
+      height: auto;
+      width: 21vw;
+      word-wrap: break-word;
+      text-align: center;
+    }
+    .header .comics {
+      opacity: 0;
+      position: absolute;
+    }
+    .header .cat {
+      position: absolute;
+      z-index: 2;
+      width: 15vw;
+      height: auto;
+      top: 16vw;
+      right: 8vw;
+    }
+    .row {
+      display: flex;
+      flex-direction: column;
+      width: fit-content;
+      max-width: 25vw;
 
+      justify-content: center;
+      align-items: center;
+      background-image: url(@base/roadmap/cloud.svg);
+      background-repeat: no-repeat;
+      background-size: contain;
+      position: relative;
+    }
+    .row .marker {
+      width: 2vw;
+      position: absolute;
+      z-index: 1;
+      top: -2.5vw;
+    }
+    .marker img {
+      width: 3vw;
+      position: absolute;
+      left: 0.3rem;
+    }
+    .marker img.shadow {
+      position: absolute;
+      left: 0.675rem;
+      top: 0.125rem;
+      z-index: -1;
+    }
+    .text h1 {
+      font-family: 'ITC Avant Garde', sans-serif !important;
+      font-size: 1vw;
+      text-transform: uppercase;
+      padding: 3vw 0 0 4vw;
+    }
+    .text p {
+      font-size: 0.9vw;
+      padding: 0 3.5vw 2.5vw 3.5vw;
+      max-width: 10vw;
+    }
+    .step_container {
+      width: fit-content;
+      margin: 0;
+      padding: 0;
+      position: absolute;
+    }
+  }
+
+  /* Mobile variant only */
+  @media screen and (max-width: 675px) {
+    h1,
+    p {
+      color: var(--color-secondary-accent);
+    }
+    img {
+      width: 10px;
+    }
+    .cat {
+      width: 10px;
+    }
     .container {
       position: relative;
       background: var(--color-gray);
     }
-
     /* Text bubble and cat image */
+    .round {
+      visibility: hidden;
+    }
     .bubble {
       margin-bottom: -6rem;
     }
@@ -124,6 +368,9 @@
       margin: 0 4rem 0 32vw;
       white-space: nowrap;
     }
+    .header .comics-desktop {
+      visibility: hidden;
+    }
     .header .cat {
       position: absolute;
       z-index: 1;
@@ -132,13 +379,13 @@
       top: 38vw;
       right: 2vw;
     }
-
     /* Roadmap, markers, and text */
     .roadmap {
-      background-image: url(/roadmap/road.svg);
+      background-image: url(@base/roadmap/road.svg);
       background-repeat: no-repeat;
       background-size: auto 100%;
       padding-top: 6rem;
+      padding-bottom: 5vw;
       margin: 0 1rem;
     }
     .roadmap .row {

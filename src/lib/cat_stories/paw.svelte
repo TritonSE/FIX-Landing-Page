@@ -3,12 +3,14 @@
     A reusable paw image component.
 -->
 <script>
+  import { base } from '$app/paths';
+
   export let name = '';
 </script>
 
 <div>
   <h2>{name}</h2>
-  <img src="/cat_stories/paw.svg" alt="Cat paw" />
+  <img src="{base}/cat_stories/paw.svg" alt="Cat paw" />
 </div>
 
 <style>

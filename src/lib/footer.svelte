@@ -4,22 +4,26 @@
 -->
 <script>
   import Button from '$lib/button.svelte';
+
+  import { base } from '$app/paths';
 </script>
 
 <div class="container">
   <div class="blob-image">
-    <img src="/icons/blob.svg" alt="footer blob" id="footer_blob" />
+    <img src="{base}/icons/blob.svg" alt="footer blob" id="footer_blob" />
   </div>
   <div id="blob-content">
     <a href="https://fixnation.org">
       <Button secondary small fill>FixNation Website</Button>
     </a>
     <div class="spacer" />
-    <Button secondary small fill>Sign up for Newsletter</Button>
+    <a href="https://fixnation.org/#fca_eoi_form_8649">
+      <Button secondary small fill>Sign up for Newsletter</Button>
+    </a>
     <p id="copyright">© 2020 FixNation, Inc. All Rights Reserved.</p>
   </div>
   <div id="banner">
-    <img src="/icons/logo.svg" alt="TSE logo" id="logo" />
+    <img src="{base}/icons/logo.svg" alt="TSE logo" id="logo" />
     <span>Built for free by&nbsp;</span>
     <a href="https://tse.ucsd.edu/">Triton Software Engineering</a>
   </div>

@@ -6,6 +6,8 @@
 <script lang="ts">
   import { fade } from 'svelte/transition';
 
+  import { base } from '$app/paths';
+
   const n_backgrounds = 6;
   const alts = [
     'Cat with a sunset',
@@ -34,16 +36,21 @@
 <div id="masthead">
   {#each new Array(n_backgrounds) as _, i}
     {#if index === i}
-      <img id="background" transition:fade src={`/masthead/backgrounds/bg${i}.png`} alt={alts[i]} />
+      <img
+        id="background"
+        transition:fade
+        src="{base}/masthead/backgrounds/bg{i}.png"
+        alt={alts[i]}
+      />
     {/if}
   {/each}
   <div id="masthead_main_container">
     <div id="logo_container">
-      <img src="/masthead/fixnation_logo.svg" alt="logo for fixnation" id="logo" />
+      <img src="{base}/masthead/fixnation_logo.svg" alt="logo for fixnation" id="logo" />
     </div>
     <div id="masthead_content_container">
       <div id="action_container">
-        <img src="/masthead/title_blob.svg" alt="blue blob" id="text_background_blob" />
+        <img src="{base}/masthead/title_blob.svg" alt="blue blob" id="text_background_blob" />
         <div id="words_container">
           <h1 id="subtitle_text">Compassionate Care for Community Cats</h1>
           <p id="subtitle_description">
@@ -52,15 +59,19 @@
           </p>
         </div>
         <div id="button_container">
-          <button id="involveButton">Get Involved</button>
-          <button id="donateButton">Donate</button>
+          <a href="#get_involved"><button id="involve_button">Get Involved</button></a>
+          <a
+            href="https://fixnation.networkforgood.com/projects/182719-helping-cats-and-communities-through-tnr-2023"
+          >
+            <button id="donate_button">Donate</button>
+          </a>
         </div>
       </div>
 
       <div id="icons">
         {#each Object.entries(socials) as [site, href]}
           <a {href} target="_blank" rel="noreferrer noopener" class="icon_item">
-            <img src="/masthead/{site}.svg" alt="{site} logo" class="icon" />
+            <img src="{base}/masthead/{site}.svg" alt="{site} logo" class="icon" />
           </a>
         {/each}
       </div>
@@ -68,9 +79,13 @@
 
     <div id="arrow_animation_container">
       <div id="arrow_container">
-        <img src="/masthead/white_arrow.png" alt="white arrow" class="white_arrow one" />
-        <img src="/masthead/white_arrow.png" alt="white arrow" class="white_arrow two" />
-        <img src="/masthead/white_arrow.png" alt="white arrow" class="white_arrow three" />
+        {#each new Array(3) as _, i}
+          <img
+            src="{base}/masthead/white_arrow.png"
+            alt="white arrow"
+            class="white_arrow arrow_{i}"
+          />
+        {/each}
       </div>
     </div>
   </div>
@@ -175,8 +190,8 @@
     justify-self: center;
     z-index: 1;
   }
-  #involveButton,
-  #donateButton {
+  #involve_button,
+  #donate_button {
     width: 12vw;
     height: 4vw;
     left: 1.485vw;
@@ -196,19 +211,19 @@
     flex-grow: 0;
     cursor: pointer;
   }
-  #involveButton {
+  #involve_button {
     color: var(--color-primary);
   }
-  #donateButton {
+  #donate_button {
     background: var(--color-primary);
     color: white;
     border: 1.5px solid var(--color-white);
   }
-  #involveButton:hover {
+  #involve_button:hover {
     background-color: var(--color-secondary);
     color: var(--color-white);
   }
-  #donateButton:hover {
+  #donate_button:hover {
     background-color: var(--color-white);
     color: var(--color-primary);
   }
@@ -264,20 +279,16 @@
   }
   .white_arrow {
     height: 2vw;
-  }
-  .one,
-  .two,
-  .three {
     animation: mouse-scroll 0.7s infinite;
     animation-direction: alternate;
   }
-  .one {
+  .arrow_1 {
     animation-delay: alternate;
   }
-  .two {
+  .arrow_2 {
     animation-delay: 0.2s;
   }
-  .three {
+  .arrow_3 {
     animation-delay: 0.3s;
   }
   @keyframes mouse-scroll {
@@ -296,8 +307,8 @@
     #masthead {
       justify-content: center;
     }
-    #involveButton,
-    #donateButton {
+    #involve_button,
+    #donate_button {
       width: 13vw;
       height: 4vw;
       font-size: 1.7vw;
@@ -381,8 +392,8 @@
       margin: auto;
     }
 
-    #involveButton,
-    #donateButton {
+    #involve_button,
+    #donate_button {
       height: 9vw;
       font-size: 15px;
       border-radius: 4px;
@@ -397,8 +408,8 @@
   }
 
   @media only screen and (max-width: 300px) {
-    #involveButton,
-    #donateButton {
+    #involve_button,
+    #donate_button {
       font-size: 12px;
       min-width: 90px;
     }

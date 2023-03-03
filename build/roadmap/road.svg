@@ -1,0 +1,10 @@
+<svg
+  width="37"
+  height="650"
+  viewBox="0 0 37 650"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <rect width="37" height="645" rx="18.5" fill="#008E7E" />
+  <line x1="18" y1="750" x2="18" y2="0" stroke="white" stroke-width="2" stroke-dasharray="8 10" />
+</svg>
