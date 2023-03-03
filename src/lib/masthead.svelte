@@ -152,7 +152,6 @@
   }
   #action_container {
     box-sizing: border-box;
-    height: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -212,6 +211,7 @@
     cursor: pointer;
   }
   #involve_button {
+    background: var(--color-white);
     color: var(--color-primary);
   }
   #donate_button {
@@ -344,6 +344,8 @@
     }
 
     #logo_container {
+      position: absolute;
+      top: 0;
       padding-top: 20px;
     }
 
@@ -353,7 +355,7 @@
 
     #masthead_content_container {
       position: relative;
-      top: -60px;
+      top: 10px;
     }
     #subtitle_text {
       width: 97%;
@@ -361,7 +363,7 @@
     }
     #action_container {
       position: relative;
-      top: 35vw;
+      top: 45vw;
       padding-top: 17vw;
       padding-left: 1rem;
     }
@@ -395,7 +397,7 @@
     #involve_button,
     #donate_button {
       height: 9vw;
-      font-size: 15px;
+      font-size: 13px;
       border-radius: 4px;
       margin-right: 10vw;
       width: 25vw;
