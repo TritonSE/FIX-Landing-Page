@@ -4,46 +4,102 @@
 -->
 <script lang="ts">
   import { base } from '$app/paths';
+  import { slide } from 'svelte/transition';
+  import Button from './button.svelte';
+
+  const COMMON_IMAGE_PATH = 'roadmap/steps';
 
   type RowData = {
     title: string;
     text: string;
+    imageName: string;
+    imageAlt: string;
+    extraText: string;
+    resourceLink: string;
   };
 
   const rows: RowData[] = [
     {
       title: 'Find',
-      text: 'Find a cat who needs your help'
+      text: 'Find a homeless cat who needs your help',
+      imageName: 'find.png',
+      imageAlt: '',
+      extraText:
+        'Is it a cat or a kitten? Does it look injured, ill or hungry? Does it have an ear tip (a sign that it’s a community cat)? Is it friendly? Here are some tips to help you figure out if the kitty is homeless.',
+      resourceLink: ''
     },
     {
       title: 'Feed',
-      text: 'Feed the cat in the afternoon and evening'
+      text: 'Feed the cat in the afternoon or evening',
+      imageName: 'feed.png',
+      imageAlt: '',
+      extraText:
+        'Get kitty on a regular feeding schedule, putting out dry food and water each afternoon or evening. This makes trapping a lot easier later! You can even make a DIY feeding station.',
+      resourceLink: ''
+    },
+    {
+      title: 'Prep',
+      text: 'Get a loaner trap from FixNation and book an appointment.',
+      imageName: 'prep.png',
+      imageAlt: '',
+      extraText:
+        'Watch our online training video with easy step-by-step instructions, then borrow a special humane trap and cloth cover from our clinic. Make an appointment online. You’re all set!',
+      resourceLink: ''
     },
     {
       title: 'Trap',
-      text: 'Set trap, wait, trap cat and rejoice!'
-    },
-    {
-      title: 'FixNation',
-      text: 'Get free resources from FixNation and make an appointment'
+      text: 'Set trap, wait, trap cat and rejoice!',
+      imageName: 'trap.png',
+      imageAlt: '',
+      extraText:
+        'Trap between 4 pm to 11.30 pm the evening before your appointment. Set food on some tin foil and place under the trap (not inside). Keep an eye on the trap – never leave it unattended – and wait for kitty to go inside. Be patient! Trap-Neuter-Return is the first step towards a happier and healthier life for your community cat friend.',
+      resourceLink: ''
     },
     {
       title: 'Hold',
-      text: "Hold cat overnight until next day's surgery"
+      text: 'Hold cat overnight until surgery the next day',
+      // TODO: Add image and content for this one (it's not on Figma)
+      imageName: 'trap.png',
+      imageAlt: '',
+      extraText: ''
     },
     {
       title: 'Fix',
-      text: 'Fix cat for free at FixNation'
+      text: 'Take the cat to get fixed (for free!).',
+      imageName: 'fix.png',
+      imageAlt: '',
+      extraText:
+        'Feed kittens a teapoon of wet food at 6 am on surgery day; no food or water for older cats. Cover the car seats with plastic and securely place the traps on top. Arrive at FixNation between 7-8.30 am, leave kitty in car and wait in line to check-in. (Here’s a sneak peek of the check-in process!) FixNation will spay/neuter the cat and provide vaccines, flea treatment, fluids, pain medication and an ear tip. Pick-up from 3 - 4.30 pm.',
+      resourceLink: ''
     },
     {
-      title: 'Hold',
-      text: 'Hold cat overnight for recovery'
+      title: 'Watch',
+      text: 'Keep the cat one more night for recovery.',
+      imageName: 'find.png',
+      imageAlt: '',
+      extraText:
+        'Take kitty home in the covered trap and keep in a warm, quiet place overnight once again. Feed a ¼ can of wet food about six hours post-op (check paperwork for exact time). Check kitty once an hour, every hour, until bedtime. Here are some more post-op tips!',
+      resourceLink: ''
     },
     {
       title: 'Return',
-      text: 'Return cat to where it was trapped'
+      text: 'Return the cat to where it was trapped',
+      imageName: 'find.png',
+      imageAlt: '',
+      extraText:
+        'This is the big moment…release the cat where you trapped it the morning after surgery. Freedom!!!! Here’s a video about community cats that shows a kitty getting released. Clean the trap and trap cover and return to FixNation during opening hours.',
+      resourceLink: ''
     }
   ];
+
+  let rowsExpanded = rows.map((row) => false);
+
+  function toggleRowExpanded(index: number) {
+    console.log('TOGGLING!');
+    const newRowsExpanded = [...rowsExpanded];
+    newRowsExpanded[index] = !newRowsExpanded[index];
+    rowsExpanded = newRowsExpanded;
+  }
 </script>
 
 <div class="container">
@@ -61,7 +117,8 @@
   </div>
 
   <div class="roadmap">
-    {#each rows as { title, text }, i}
+    <img class="road-image" src="@base/roadmap/road.svg" alt="Road" />
+    {#each rows as { title, text, imageName, imageAlt, extraText, resourceLink }, i}
       <div class="step_container {title.toLowerCase() + i}">
         <div class="row">
           <div class="marker">
@@ -73,8 +130,31 @@
             />
           </div>
           <div class="text">
-            <h1>{i + 1}. {title}</h1>
+            <div class="title-row">
+              <h1>{i + 1}. {title}</h1>
+              <div
+                aria-expanded={rowsExpanded[i]}
+                class="toggle-button"
+                on:click={() => {
+                  toggleRowExpanded(i);
+                }}
+                on:keydown={() => {
+                  toggleRowExpanded(i);
+                }}
+              />
+            </div>
             <p class:first={i == 0}>{text}</p>
+            {#if rowsExpanded[i]}
+              <div class="accordion-item" transition:slide={{ duration: 200 }}>
+                <img
+                  src="{base}/{COMMON_IMAGE_PATH}/{imageName}"
+                  alt={imageAlt}
+                  class="accordion-image"
+                />
+                <p class:first={i == 0}>{extraText}</p>
+              </div>
+              <a href={resourceLink}><Button>Resource 1</Button></a>
+            {/if}
           </div>
         </div>
       </div>
@@ -88,6 +168,39 @@
     background-size: 100% auto;
     padding-bottom: 20vw;
   }
+
+  .title-row {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .toggle-button {
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid var(--color-secondary-accent);
+    transition: transform 0.2s ease-in;
+  }
+
+  .toggle-button[aria-expanded='true'] {
+    transform: scaleY(-1);
+  }
+
+  .toggle-button:hover {
+    cursor: pointer;
+  }
+
+  .accordion-image {
+    width: 100%;
+  }
+
+  .road-image {
+    display: none;
+  }
+
   @media screen and (min-width: 1501px) {
     .roadmap {
       margin: 0;
@@ -335,7 +448,7 @@
     }
     /* Text bubble and cat image */
     .round {
-      visibility: hidden;
+      display: none;
     }
     .bubble {
       margin-bottom: -6rem;
@@ -381,22 +494,35 @@
     }
     /* Roadmap, markers, and text */
     .roadmap {
-      background-image: url(@base/roadmap/road.svg);
+      display: block;
+      background-image: none;
       background-repeat: no-repeat;
       background-size: auto 100%;
-      padding-top: 6rem;
+      padding-top: 18rem;
       padding-bottom: 5vw;
       margin: 0 1rem;
+      position: relative;
+    }
+    .road-image {
+      position: absolute;
+      left: 0;
+      height: calc(100% - 27rem);
+      width: 60px;
+      object-fit: cover;
     }
     .roadmap .row {
       display: flex;
       align-items: flex-start;
       justify-content: space-between;
+      padding-right: 2rem;
     }
     .row .marker {
       width: 2.3125rem;
       position: relative;
       z-index: 1;
+    }
+    .step_container {
+      padding-left: 10px;
     }
     .marker img {
       width: 1.625rem;
