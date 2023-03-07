@@ -5,7 +5,7 @@
   import logo from '$lib/icons/logo.svg';
 
   import animated_blob from '$lib/icons/animated_blob.svg';
-  import { fly } from 'svelte/transition';
+  import { fade, fly } from 'svelte/transition';
 
   let visible = false;
   let showForm = false;
@@ -50,7 +50,7 @@
     </div>
   {/if}
   {#if showForm}
-    <div id="newsletter_input" transition:fly={{ x: 200, y: 200, duration: 500 }}>
+    <div id="newsletter_input" in:fly={{ x: 200, y: 200, duration: 500 }}>
       <h4>Sign up for our newsletter to stay in touch!</h4>
       <input id="name-input" bind:value={name} placeholder="Name" />
       <input id="email-input" bind:value={email} placeholder="Email" />
@@ -102,7 +102,7 @@
 
   #thank-you {
     text-align: center;
-    color: white;
+    color: var(--color-white);
   }
 
   #newsletter_input h4 {
