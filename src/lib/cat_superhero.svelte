@@ -14,7 +14,7 @@
     text: string;
     imageName: string;
     imageAlt: string;
-    extraText: string;
+    extraContent: string;
     resourceLink: string;
   };
 
@@ -24,7 +24,7 @@
       text: 'Find a homeless cat who needs your help',
       imageName: 'find.png',
       imageAlt: '',
-      extraText:
+      extraContent:
         'Is it a cat or a kitten? Does it look injured, ill or hungry? Does it have an ear tip (a sign that it’s a community cat)? Is it friendly? Here are some tips to help you figure out if the kitty is homeless.',
       resourceLink: ''
     },
@@ -33,8 +33,8 @@
       text: 'Feed the cat in the afternoon or evening',
       imageName: 'feed.png',
       imageAlt: '',
-      extraText:
-        'Get kitty on a regular feeding schedule, putting out dry food and water each afternoon or evening. This makes trapping a lot easier later! You can even make a DIY feeding station.',
+      extraContent:
+        'Get kitty on a regular feeding schedule, putting out dry food and water each afternoon or evening. This makes trapping a lot easier later! You can even make a <a href="https://fixnation.org/shelters-feeding-stations/">DIY feeding station.</a>',
       resourceLink: ''
     },
     {
@@ -42,8 +42,8 @@
       text: 'Get a loaner trap from FixNation and book an appointment.',
       imageName: 'prep.png',
       imageAlt: '',
-      extraText:
-        'Watch our online training video with easy step-by-step instructions, then borrow a special humane trap and cloth cover from our clinic. Make an appointment online. You’re all set!',
+      extraContent:
+        'Watch our <a href="https://www.youtube.com/watch?v=JgatHzlxnv0&t=2s">online training video</a> with easy step-by-step instructions, then borrow a special humane trap and cloth cover from our clinic. <a href="https://fixnation.org/about-tnr/free-feral-application/">Make an appointment online.</a> You’re all set!',
       resourceLink: ''
     },
     {
@@ -51,8 +51,8 @@
       text: 'Set trap, wait, trap cat and rejoice!',
       imageName: 'trap.png',
       imageAlt: '',
-      extraText:
-        'Trap between 4 pm to 11.30 pm the evening before your appointment. Set food on some tin foil and place under the trap (not inside). Keep an eye on the trap – never leave it unattended – and wait for kitty to go inside. Be patient! Trap-Neuter-Return is the first step towards a happier and healthier life for your community cat friend.',
+      extraContent:
+        'Trap between 4 pm to 11.30 pm the evening before your appointment. Set food on some tin foil and place under the trap (not inside). Keep an eye on the trap – never leave it unattended – and wait for kitty to go inside. Be patient! <a href="https://www.youtube.com/watch?v=IarsSTLUdTw">Trap-Neuter-Return</a> is the first step towards a happier and healthier life for your community cat friend.',
       resourceLink: ''
     },
     {
@@ -61,33 +61,34 @@
       // TODO: Add image and content for this one (it's not on Figma)
       imageName: 'trap.png',
       imageAlt: '',
-      extraText: ''
+      extraContent: '',
+      resourceLink: ''
     },
     {
       title: 'Fix',
       text: 'Take the cat to get fixed (for free!).',
       imageName: 'fix.png',
       imageAlt: '',
-      extraText:
-        'Feed kittens a teapoon of wet food at 6 am on surgery day; no food or water for older cats. Cover the car seats with plastic and securely place the traps on top. Arrive at FixNation between 7-8.30 am, leave kitty in car and wait in line to check-in. (Here’s a sneak peek of the check-in process!) FixNation will spay/neuter the cat and provide vaccines, flea treatment, fluids, pain medication and an ear tip. Pick-up from 3 - 4.30 pm.',
+      extraContent:
+        'Feed kittens a teapoon of wet food at 6 am on surgery day; no food or water for older cats. Cover the car seats with plastic and securely place the traps on top. Arrive at FixNation between 7-8.30 am, leave kitty in car and wait in line to check-in. (Here’s a <a href="https://www.facebook.com/LuxePaws/videos/3379488712127276/">sneak peek of the check-in process!</a>) FixNation will spay/neuter the cat and provide vaccines, flea treatment, fluids, pain medication and an ear tip. Pick-up from 3 - 4.30 pm.',
       resourceLink: ''
     },
     {
       title: 'Watch',
       text: 'Keep the cat one more night for recovery.',
-      imageName: 'find.png',
+      imageName: 'watch.png',
       imageAlt: '',
-      extraText:
-        'Take kitty home in the covered trap and keep in a warm, quiet place overnight once again. Feed a ¼ can of wet food about six hours post-op (check paperwork for exact time). Check kitty once an hour, every hour, until bedtime. Here are some more post-op tips!',
+      extraContent:
+        'Take kitty home in the covered trap and keep in a warm, quiet place overnight once again. Feed a ¼ can of wet food about six hours post-op (check paperwork for exact time). Check kitty once an hour, every hour, until bedtime. Here are some <a href="https://www.alleycat.org/community-cat-care/post-surgery-care/>more post-op tips!</a>',
       resourceLink: ''
     },
     {
       title: 'Return',
       text: 'Return the cat to where it was trapped',
-      imageName: 'find.png',
+      imageName: 'return.png',
       imageAlt: '',
-      extraText:
-        'This is the big moment…release the cat where you trapped it the morning after surgery. Freedom!!!! Here’s a video about community cats that shows a kitty getting released. Clean the trap and trap cover and return to FixNation during opening hours.',
+      extraContent:
+        'This is the big moment…release the cat where you trapped it the morning after surgery. Freedom!!!! Here’s a <a href="https://www.youtube.com/watch?v=3-pK4sjVHcQ">video about community cats</a> that shows a kitty getting released. Clean the trap and trap cover and return to FixNation during opening hours.',
       resourceLink: ''
     }
   ];
@@ -117,8 +118,8 @@
   </div>
 
   <div class="roadmap">
-    <img class="road-image" src="@base/roadmap/road.svg" alt="Road" />
-    {#each rows as { title, text, imageName, imageAlt, extraText, resourceLink }, i}
+    <div class="road-image"><div class="road-line" /></div>
+    {#each rows as { title, text, imageName, imageAlt, extraContent, resourceLink }, i}
       <div class="step_container {title.toLowerCase() + i}">
         <div class="row">
           <div class="marker">
@@ -151,9 +152,11 @@
                   alt={imageAlt}
                   class="accordion-image"
                 />
-                <p class:first={i == 0}>{extraText}</p>
+                <p class:first={i == 0}>{@html extraContent}</p>
               </div>
-              <a href={resourceLink}><Button>Resource 1</Button></a>
+              <div class="resource-link">
+                <a href={resourceLink}><Button scaleTransition={true}>Resource 1</Button></a>
+              </div>
             {/if}
           </div>
         </div>
@@ -170,31 +173,9 @@
   }
 
   .title-row {
-    margin-top: 20px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-  }
-
-  .toggle-button {
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 10px solid var(--color-secondary-accent);
-    transition: transform 0.2s ease-in;
-  }
-
-  .toggle-button[aria-expanded='true'] {
-    transform: scaleY(-1);
-  }
-
-  .toggle-button:hover {
-    cursor: pointer;
-  }
-
-  .accordion-image {
-    width: 100%;
   }
 
   .road-image {
@@ -239,11 +220,11 @@
       top: 30vw;
       left: 19.5vw;
     }
-    .trap2 {
+    .prep2 {
       top: 50vw;
       left: 9vw;
     }
-    .fixnation3 {
+    .trap3 {
       top: 40vw;
       left: 33vw;
     }
@@ -255,7 +236,7 @@
       top: 55vw;
       right: 37vw;
     }
-    .hold6 {
+    .watch6 {
       top: 46vw;
       right: 18vw;
     }
@@ -287,11 +268,11 @@
       top: 40vw;
       left: 1vw;
     }
-    .trap2 {
+    .prep2 {
       top: 44vw;
       left: 30vw;
     }
-    .fixnation3 {
+    .trap3 {
       top: 60vw;
       left: 40vw;
     }
@@ -303,7 +284,7 @@
       top: 78vw;
       left: 50vw;
     }
-    .hold6 {
+    .watch6 {
       top: 92vw;
       right: 7vw;
     }
@@ -503,13 +484,51 @@
       margin: 0 1rem;
       position: relative;
     }
-    .road-image {
-      position: absolute;
-      left: 0;
-      height: calc(100% - 27rem);
-      width: 60px;
-      object-fit: cover;
+
+    .toggle-button {
+      width: 0;
+      height: 0;
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;
+      border-top: 10px solid var(--color-secondary-accent);
+      transition: transform 0.2s ease-in;
     }
+
+    .toggle-button[aria-expanded='true'] {
+      transform: scaleY(-1);
+    }
+
+    .toggle-button:hover {
+      cursor: pointer;
+    }
+
+    .accordion-image {
+      width: 100%;
+    }
+
+    .road-image {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      position: absolute;
+      top: 6rem;
+      left: 0;
+      border-radius: 90px;
+      background: var(--color-primary);
+      height: calc(100% - 6rem);
+      width: 60px;
+    }
+
+    .road-line {
+      height: 100%;
+      width: 4px;
+      background-image: url(@base/roadmap/road_border.png);
+    }
+
+    .resource-link {
+      margin-bottom: 20px;
+    }
+
     .roadmap .row {
       display: flex;
       align-items: flex-start;
@@ -537,7 +556,7 @@
     }
     .row .text {
       flex: 1;
-      padding-left: 1rem;
+      padding-left: 1.5rem;
     }
     .text h1 {
       font-family: 'Comics', sans-serif !important;
