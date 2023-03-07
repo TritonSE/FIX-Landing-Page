@@ -24,7 +24,7 @@
   }
 </script>
 
-<div class="container">
+<div class="container" style="height: {visible ? '900px' : '400px'}">
   <img src={blob} alt="footer blob" id="footer_blob" />
   <div id="blob-content">
     <a href="https://fixnation.org">
@@ -43,7 +43,7 @@
   </div>
 
   {#if visible}
-    <div class="animated_blob-container" transition:fly={{ x: 200, y: 200, duration: 500 }}>
+    <div class="animated_blob-container" transition:fly={{ x: 200, y: 200, duration: 700 }}>
       <div id="animated_blob">
         <img src={animated_blob} alt="animated footer blob" id="animated_footer_blob" />
       </div>
@@ -75,7 +75,7 @@
     overflow: hidden;
     position: relative;
     z-index: 0;
-    height: 900px;
+    transition: height 0s;
   }
 
   input {
