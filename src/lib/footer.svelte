@@ -5,7 +5,7 @@
   import logo from '$lib/icons/logo.svg';
 
   import animated_blob from '$lib/icons/animated_blob.svg';
-  import { fade, fly } from 'svelte/transition';
+  import { fly } from 'svelte/transition';
 
   let visible = false;
   let showForm = false;
