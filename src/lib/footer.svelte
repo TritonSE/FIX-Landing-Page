@@ -3,6 +3,7 @@
 
   import blob from '$lib/icons/blob.svg';
   import logo from '$lib/icons/logo.svg';
+  import road from '$lib/icons/mobile_footer.svg';
 
   import animated_blob from '$lib/icons/animated_blob.svg';
   import { fly } from 'svelte/transition';
@@ -32,6 +33,17 @@
     </a>
     <div class="spacer" />
     <Button secondary small fill <button on:click={() => ((visible = true), (showForm = true))}>
+      Sign up for Newsletter</Button
+    >
+    <p id="copyright">© 2020 FixNation, Inc. All Rights Reserved.</p>
+  </div>
+  <img src={road} alt="footer road" id="road" />
+  <div id="road-content">
+    <a href="https://fixnation.org">
+      <Button small fill>FixNation Website</Button>
+    </a>
+    <div class="spacer" />
+    <Button small fill <button on:click={() => ((visible = true), (showForm = true))}>
       Sign up for Newsletter</Button
     >
     <p id="copyright">© 2020 FixNation, Inc. All Rights Reserved.</p>
@@ -139,6 +151,22 @@
     max-width: 50rem;
     min-width: 35rem;
   }
+  #road {
+    overflow: hidden;
+    width: 65vw;
+    margin: 0;
+    position: absolute;
+    vertical-align: top;
+    top: 8rem;
+    z-index: -1;
+    max-width: 50rem;
+    min-width: 35rem;
+    display: none;
+  }
+
+  #road-content {
+    display: none;
+  }
 
   #animated_footer_blob {
     vertical-align: bottom;
@@ -170,7 +198,8 @@
     overflow: hidden;
   }
 
-  #blob-content {
+  #blob-content,
+  #road-content {
     overflow: hidden;
     position: absolute;
     bottom: 52px;
@@ -222,6 +251,17 @@
       top: 32rem;
       right: 2rem;
     }
+
+    @media screen and (max-width: 600px) {
+      #footer_blob {
+        display: none;
+      }
+      #road,
+      #road-content {
+        display: block;
+      }
+    }
+
     #newsletter_input input {
       width: 10rem;
     }
@@ -231,6 +271,7 @@
     }
   }
   @media only screen and (max-width: 400px) {
+    #road-content,
     #blob-content {
       bottom: 90px;
     }
