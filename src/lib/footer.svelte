@@ -43,7 +43,7 @@
       <Button small fill>FixNation Website</Button>
     </a>
     <div class="spacer" />
-    <Button small fill <button on:click={() => ((visible = true), (showForm = true))}>
+    <Button small secondary fill <button on:click={() => ((visible = true), (showForm = true))}>
       Sign up for Newsletter</Button
     >
   </div>
@@ -271,12 +271,14 @@
     }
     #road-content {
       overflow: hidden;
-      top: 350px;
-      left: 120px;
-      margin: 0rem 1rem;
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
+      margin: 0rem 1rem;
+      /*
+      top: 350px;
+      left: 120px;
+      */
     }
     #animated_footer_blob {
       bottom: -10;
