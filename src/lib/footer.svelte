@@ -46,7 +46,6 @@
     <Button small fill <button on:click={() => ((visible = true), (showForm = true))}>
       Sign up for Newsletter</Button
     >
-    <p id="copyright">© 2020 FixNation, Inc. All Rights Reserved.</p>
   </div>
   <div id="banner">
     <img src={logo} alt="TSE logo" id="logo" />
@@ -131,6 +130,17 @@
     margin-bottom: 2rem;
   }
 
+  #animated_footer_blob {
+    vertical-align: bottom;
+    position: absolute;
+    margin: 0;
+    bottom: 0;
+    right: 0;
+    z-index: -3;
+    max-width: 90vw;
+    min-width: 40rem;
+  }
+
   .animated_blob-container {
     position: absolute;
     bottom: 0;
@@ -151,32 +161,17 @@
     max-width: 50rem;
     min-width: 35rem;
   }
+
   #road {
-    overflow: hidden;
-    width: 65vw;
+    width: 50rvw;
     margin: 0;
-    position: absolute;
-    vertical-align: top;
     top: 8rem;
-    z-index: -1;
+    z-index: -4;
     max-width: 50rem;
     min-width: 35rem;
+    width: 100%;
+    position: relative;
     display: none;
-  }
-
-  #road-content {
-    display: none;
-  }
-
-  #animated_footer_blob {
-    vertical-align: bottom;
-    position: absolute;
-    margin: 0;
-    bottom: 0;
-    right: 0;
-    z-index: -3;
-    max-width: 90vw;
-    min-width: 40rem;
   }
 
   #logo {
@@ -204,6 +199,11 @@
     position: absolute;
     bottom: 52px;
     left: 12px;
+  }
+
+  #road-content {
+    display: none;
+    left: 120px;
   }
 
   .spacer {
@@ -251,49 +251,48 @@
       top: 32rem;
       right: 2rem;
     }
-
-    @media screen and (max-width: 600px) {
-      #footer_blob {
-        display: none;
-      }
-      #road,
-      #road-content {
-        display: block;
-      }
-    }
-
-    #newsletter_input input {
-      width: 10rem;
-    }
     #newsletter_input h4 {
       margin-bottom: 0;
       font-size: 18px !important;
     }
   }
-  @media only screen and (max-width: 400px) {
-    #road-content,
+  @media screen and (max-width: 600px) {
+    #newsletter_input,
+    #thank-you {
+      top: 35rem;
+    }
+    #footer_blob,
     #blob-content {
-      bottom: 90px;
+      display: none;
+    }
+    #road,
+    #road-content {
+      display: block;
+    }
+    #road-content {
+      overflow: hidden;
+      top: 350px;
+      left: 120px;
+      margin: 0rem 1rem;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+    }
+    #animated_footer_blob {
+      bottom: -10;
+    }
+  }
+
+  @media only screen and (max-width: 400px) {
+    #road-content {
+      bottom: 400px;
     }
     #banner {
       flex-direction: column;
       min-height: 85px;
     }
-    #newsletter_input,
-    #thank-you {
-      align-items: flex-end;
-      top: 32rem;
-    }
     #newsletter_input input {
-      width: 10rem;
-      margin: 0.25rem;
-    }
-    #newsletter_input h4 {
-      font-size: 16px !important;
-      margin-bottom: 0.5 rem;
-    }
-    #email-input {
-      margin-bottom: 20rem;
+      margin: 0.5rem;
     }
   }
 </style>
