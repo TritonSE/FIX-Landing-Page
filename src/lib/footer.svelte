@@ -60,7 +60,7 @@
       </div>
     </div>
   {/if}
-  {#if showForm}
+  {#if showForm && !submitted}
     <div id="newsletter_input" in:fly={{ x: 200, y: 200, duration: 500 }}>
       <h4>Sign up for our newsletter to stay in touch!</h4>
       <input id="name-input" bind:value={name} placeholder="Name" />
