@@ -25,7 +25,7 @@
   }
 </script>
 
-<div class="container" style="height: {visible ? '900px' : '400px'}">
+<div class="container" style="height: {visible ? '150vh' : '70vh'}">
   <img src={blob} alt="footer blob" id="footer_blob" />
   <div id="blob-content">
     <a href="https://fixnation.org">
@@ -37,8 +37,11 @@
     >
     <p id="copyright">© 2020 FixNation, Inc. All Rights Reserved.</p>
   </div>
-  <img src={road} alt="footer road" id="road" />
-  <div id="road-content">
+  <img src={road} alt="footer road" id="road" style="top: {visible ? '38rem' : '15rem'}" />
+  <div
+    id="road-content"
+    style="top: {visible ? '770px' : '450px'}; left: {visible ? '120px' : '120px'}"
+  >
     <a href="https://fixnation.org">
       <Button small fill>FixNation Website</Button>
     </a>
@@ -107,7 +110,7 @@
     justify-content: center;
     position: absolute;
     z-index: 1;
-    top: 20rem;
+    top: 45rem;
     right: 30rem;
   }
 
@@ -165,7 +168,6 @@
   #road {
     width: 50rvw;
     margin: 0;
-    top: 8rem;
     z-index: -4;
     max-width: 50rem;
     min-width: 35rem;
@@ -231,15 +233,15 @@
     }
     #newsletter_input,
     #thank-you {
-      top: 25rem;
+      top: 50rem;
       right: 20rem;
     }
   }
   @media only screen and (max-width: 1000px) {
     #newsletter_input,
     #thank-you {
-      top: 30rem;
-      right: 4rem;
+      top: 55rem;
+      right: 12rem;
     }
     #newsletter_input h4 {
       font-size: 18px !important;
@@ -248,7 +250,7 @@
   @media only screen and (max-width: 700px) {
     #newsletter_input,
     #thank-you {
-      top: 32rem;
+      top: 56rem;
       right: 2rem;
     }
     #newsletter_input h4 {
@@ -259,7 +261,10 @@
   @media screen and (max-width: 600px) {
     #newsletter_input,
     #thank-you {
-      top: 35rem;
+      top: 60rem;
+    }
+    #thank-you {
+      right: 5rem;
     }
     #footer_blob,
     #blob-content {
@@ -268,17 +273,11 @@
     #road,
     #road-content {
       display: block;
-    }
-    #road-content {
       overflow: hidden;
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
       margin: 0rem 1rem;
-      /*
-      top: 350px;
-      left: 120px;
-      */
     }
     #animated_footer_blob {
       bottom: -10;
