@@ -49,7 +49,7 @@
     <div class="stat-container">
       {#each rows as { stat, text }, i}
 
-        <div class="card">
+        <div class="card" id="card{i}">
           <img src="{base}/stats/stats{i+1}.png" alt="stats pictures"/>
           <div class="text-container">
             <h1>{stat}</h1>
@@ -58,6 +58,7 @@
         </div>
       {/each}
     </div>
+
 
     <!-- <div class="stat-container">
       <img src="{base}/icons/ic_clinic_stat.svg" class="icon" alt="clinic icon" />
@@ -78,112 +79,127 @@
 </div>
 
 <style>
-  .container {
-    max-width: 83vw;
-    margin: 0 auto;
-  }
+  @media screen and (max-width: 430px) {
+    .container {
+      max-width: 90vw;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-  #mission-statement {
-    font-family: 'Avenir';
-    margin: 6rem 9rem;
-  }
+    #mission-statement {
+      font-family: 'Avenir';
+      margin: 6rem 9rem;
 
-  p {
-    text-align: center;
-    margin: 0px;
-    font-size: 2vw;
-  }
-  /* .icon {
-    display: block;
-    margin: auto;
-  } */
-  .flex-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin: 0 12.5rem 4rem;
-    color: var(--color-secondary-accent);
-  }
+      font-style: normal;
+      font-weight: 500;
+      font-size: 3.9vw;
+      line-height: 150%;
 
-  /* https://stackoverflow.com/questions/47505426/html-horizontal-scrollbar-for-card-divs */
-  .stat-container {
-    align-items: stretch;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    overflow-x: auto;
-    overflow-y: hidden;
-  }
-  .card {
-    position: relative;
-    max-width: 33.333%;
-    padding: .75rem;
-    flex-basis: 33.333%;
-    flex-grow: 0;
-    flex-shrink: 0;
-    margin-right: 12vw;
-    align-items: center;
-  }
+      text-align: center;
+      letter-spacing: 0.02em;
 
-  .card img {
-    width: 30vw;
-    height: auto;
-    border-radius: 1.5vw;
-    margin: auto;
-  }
+      color: #000000;
+    }
 
-  .text-container {
-    position: absolute;
-    left: 27%;
-    bottom: 25%;
+    /* .icon {
+      display: block;
+      margin: auto;
+    } */
+    .flex-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 0 12.5rem 4rem;
+      color: var(--color-secondary-accent);
+    }
 
-    height: 20vw;
-    width: 20vw;
+    /* https://stackoverflow.com/questions/47505426/html-horizontal-scrollbar-for-card-divs */
+    .stat-container {
+      align-items: stretch;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      overflow-y: hidden;
+    }
+    .card {
+      position: relative;
+      max-width: 100%;
+      padding: .10rem;
+      flex-basis: 33.333%;
+      flex-grow: 0;
+      flex-shrink: 0;
+      margin-right: 7vw;
+      margin-left: 2.5vw;
+      align-items: center;
+    }
 
-    background: rgba(0,142,126,0.75);
-    box-shadow: 0px 0.3vw 0.3vw rgba(0, 0, 0, 0.25);
-    border-radius: 0.3vw;
-  }
+    #card2 {
+      margin-right: 2.5vw;
+    }
 
-  .text-container h1 p {
-    font-family: 'Rubik', sans-serif !important;
-    margin: 0;
-    opacity:unset;
-  }
+    .card img {
+      width: 85vw;
+      height: auto;
+      border-radius: 2.5vw;
+      margin: auto;
+    }
 
-  .text-container h1 {
-    font-style: normal;
-    font-weight: 700;
-    font-size: 6.8vw;
-    line-height: 150%;
+    .text-container {
+      position: absolute;
+      left: 17%;
+      bottom: 25%;
 
-    text-align: center;
-    letter-spacing: 0.02em;
+      height: 57vw;
+      width: 57vw;
 
-    color: #FFFFFF;
-  }
+      background: rgba(0,142,126,0.75);
+      box-shadow: 0px 0.3vw 0.3vw rgba(0, 0, 0, 0.25);
+      border-radius: 1.2vw;
+    }
 
-  .text-container p {
-    position: absolute;
-    left: 3%;
-    bottom: 15%;
+    .text-container h1 p {
+      font-family: 'Rubik', sans-serif !important;
+      margin: 0;
+    }
 
-    font-style: normal;
-    font-weight: 900;
-    font-size: 1.7vw;
-    line-height: 2.3vw;
+    .text-container h1 {
+      font-style: normal;
+      font-weight: 700;
+      font-size: 20vw;
+      line-height: 100%;
 
-    text-align: center;
+      text-align: center;
+      letter-spacing: 0.02em;
 
-    color: #FFFFFF;
-  }
+      color: #FFFFFF;
+    }
+
+    .text-container p {
+      position: absolute;
+      left: 11.5%;
+      top: 50%;
+      width: 44.2vw;
+
+      font-family: 'Avenir';
+      font-style: normal;
+      font-weight: 500;
+      font-size: 4.5vw;
+      line-height: 150%;
+
+      text-align: center;
+      letter-spacing: 0.02em;
+      word-wrap: break-word;
+
+      color: #FFFFFF;
+    }
 
   @media screen and (max-width: 950px) {
     #mission-statement {
-      margin: 6rem 1rem 4rem;
+      margin: 6rem 1rem 2rem;
     }
     .flex-container {
-      margin: 0 4rem 4rem;
+      margin: 0 4rem 2rem;
     }
   }
 
@@ -194,12 +210,6 @@
     }
     .stat-container {
       margin-top: 4rem;
-    }
-    .icon {
-      width: 6rem;
-    }
-    h3 {
-      font-size: 48px !important;
     }
   }
 </style>
