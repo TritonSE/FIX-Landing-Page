@@ -1,41 +1,43 @@
-<script>
+<!--
+  index.svelte:
+    Cat stories entrypoint.
+-->
+<script lang="ts">
   import CatImage from './cat_image.svelte';
   import Paw from './paw.svelte';
   import CatOverlay from './cat_overlay.svelte';
 
-  const CAT_DATA = [
+  import type { CatData } from './types.ts';
+
+  import { base } from '$app/paths';
+
+  const CAT_DATA: CatData = [
     {
       name: 'Shadow',
-      desc_abbreviated:
-        'I’m the queen of the Home Depot in Woodland Hills, where I serve as the store’s resident mouser. I came to FixNation for spay surgery and was returned the next day to my home turf, where I’m back to patrolling the aisles of the garden center and making customers smile. I’ve been told I’m an excellent example of a healthy and thriving working cat.',
-      desc_full:
-        'I’m the queen of the Home Depot in Woodland Hills, where I serve as the store’s resident mouser. I came to FixNation for spay surgery and was returned the next day to my home turf, where I’m back to patrolling the aisles of the garden center and making customers smile. I’ve been told I’m an excellent example of a healthy and thriving working cat.',
+      desc: 'I’m the queen of the Home Depot in Woodland Hills, where I serve as the store’s resident mouser. I came to FixNation for spay surgery and was returned the next day to my home turf, where I’m back to patrolling the aisles of the garden center and making customers smile. I’ve been told I’m an excellent example of a healthy and thriving working cat.',
+      abbrev_len: Infinity,
       ig_link: 'https://www.instagram.com/shadowthehomedepotcat_/?hl=en',
       ig_username: 'shadowthehomedepotcat_',
       n_followers: 295,
-      image_path: 'cat_stories/shadow.png'
+      image_path: `${base}/cat_stories/shadow.png`
     },
     {
       name: 'Close Up',
-      desc_abbreviated:
-        'Nice to meet you! I’m your well-known resident of Hollywood Forever. You can find me sunning on gravestones. The owners of my iconic cemetery...',
-      desc_full:
-        'Nice to meet you! I’m your well-known resident of Hollywood Forever. You can find me sunning on gravestones. The owners of my iconic cemetery came to FixNation years ago and asked them to spay and neuter all the community cats living on the grounds. Pretty cool right? FixNation still provides these services. ',
+      desc: 'Nice to meet you! I’m your well-known resident of Hollywood Forever. You can find me sunning on gravestones. The owners of my iconic cemetery came to FixNation years ago and asked them to spay and neuter all the community cats living on the grounds. Pretty cool right? FixNation still provides these services. ',
+      abbrev_len: 1412,
       ig_link: 'https://www.instagram.com/closeupthecemeterycat/?hl=en',
       ig_username: 'closeupthecemeterycat',
       n_followers: 9873,
-      image_path: 'cat_stories/close_up_full.png'
+      image_path: `${base}/cat_stories/close_up_full.png`
     },
     {
       name: 'Almira',
-      desc_abbreviated:
-        'I’m one of the cats at Jay Leno’s famous garage in the San Fernando Valley which is just a stone’s throw from our clinic. FixNation has...',
-      desc_full:
-        'I’m one of the cats at Jay Leno’s famous garage in the San Fernando Valley which is just a stone’s throw from our clinic. FixNation has sterilized a number of the Disneyland Cats living within the famous theme park and resort. We’ve all been TNR’d and are now looked after by their own team of caregivers.',
+      desc: 'I’m one of the cats at Jay Leno’s famous garage in the San Fernando Valley which is just a stone’s throw from our clinic. FixNation has sterilized a number of the Disneyland Cats living within the famous theme park and resort. We’ve all been TNR’d and are now looked after by their own team of caregivers.',
+      abbrev_len: 135,
       ig_link: 'https://www.instagram.com/disneylandcats/?hl=en',
       ig_username: 'disneylandcats',
       n_followers: 110000,
-      image_path: 'cat_stories/almira_full.png'
+      image_path: `${base}/cat_stories/almira_full.png`
     }
   ];
 
@@ -60,7 +62,7 @@
   <div class="stories-grid">
     <div class="cat-image-container">
       <CatImage
-        image_url="/cat_stories/shadow.png"
+        image_url="{base}/cat_stories/shadow.png"
         image_alt="Shadow"
         on:click={() => openCatOverlay(0)}
         on:keydown={(e) => {
@@ -72,14 +74,18 @@
       {#if windowWidth <= 600}
         <Paw name={CAT_DATA[0].name} />
         <a href={CAT_DATA[0].ig_link}>
-          <img src="/cat_stories/instagram_white.svg" alt="Instagram Logo" class="instagram-logo" />
+          <img
+            src="{base}/cat_stories/instagram_white.svg"
+            alt="Instagram Logo"
+            class="instagram-logo"
+          />
         </a>
       {/if}
     </div>
     <div class="column">
       {#if windowWidth > 600}<Paw name={CAT_DATA[0].name} />{/if}
       <p class="medium-margin-above">
-        {CAT_DATA[0].desc_full}
+        {CAT_DATA[0].desc}
       </p>
       {#if windowWidth > 600}
         <button
@@ -98,18 +104,18 @@
     <div class="column large-gap">
       <div class="cat-image-container">
         {#if windowWidth <= 600}
-          <CatImage image_url="/cat_stories/close_up_full.png" image_alt="Close Up" />
+          <CatImage image_url="{base}/cat_stories/close_up_full.png" image_alt="Close Up" />
           <Paw name={CAT_DATA[1].name} />
           <a href={CAT_DATA[1].ig_link}>
             <img
-              src="/cat_stories/instagram_white.svg"
+              src="{base}/cat_stories/instagram_white.svg"
               alt="Instagram Logo"
               class="instagram-logo"
             />
           </a>
         {:else}
           <CatImage
-            image_url="/cat_stories/close_up_cropped.png"
+            image_url="{base}/cat_stories/close_up_cropped.png"
             image_alt="Close Up"
             on:click={() => openCatOverlay(1)}
             on:keydown={(e) => {
@@ -127,7 +133,7 @@
         <div class="column">
           {#if windowWidth > 600}
             <p>
-              {CAT_DATA[1].desc_abbreviated}
+              {CAT_DATA[1].desc.substring(0, CAT_DATA[1].abbrev_len)}
             </p>
             <button
               class="underline-text"
@@ -142,7 +148,7 @@
             </button>
           {:else}
             <p>
-              {CAT_DATA[1].desc_full}
+              {CAT_DATA[1].desc}
             </p>
           {/if}
         </div>
@@ -151,18 +157,18 @@
     <div class="column large-gap">
       <div class="cat-image-container">
         {#if windowWidth <= 600}
-          <CatImage image_url="/cat_stories/almira_full.png" image_alt="Almira" />
+          <CatImage image_url="{base}/cat_stories/almira_full.png" image_alt="Almira" />
           <Paw name={CAT_DATA[2].name} />
           <a href={CAT_DATA[2].ig_link}>
             <img
-              src="/cat_stories/instagram_white.svg"
+              src="{base}/cat_stories/instagram_white.svg"
               alt="Instagram Logo"
               class="instagram-logo"
             />
           </a>
         {:else}
           <CatImage
-            image_url="/cat_stories/almira_cropped.png"
+            image_url="{base}/cat_stories/almira_cropped.png"
             image_alt="Almira"
             on:click={() => openCatOverlay(2)}
             on:keydown={(e) => {
@@ -180,7 +186,7 @@
         <div class="column">
           {#if windowWidth > 600}
             <p>
-              {CAT_DATA[2].desc_abbreviated}
+              {CAT_DATA[2].desc.substring(0, CAT_DATA[2].abbrev_len)}
             </p>
             <button
               href="javascript:void(0)"
@@ -196,7 +202,7 @@
             </button>
           {:else}
             <p>
-              {CAT_DATA[2].desc_full}
+              {CAT_DATA[2].desc}
             </p>
           {/if}
         </div>
@@ -205,9 +211,9 @@
   </div>
 
   <CatOverlay
+    data={CAT_DATA[openOverlayIndex]}
     open={openOverlayIndex !== -1}
     onClose={closeCatOverlay}
-    catData={CAT_DATA[openOverlayIndex]}
   />
 </div>
 

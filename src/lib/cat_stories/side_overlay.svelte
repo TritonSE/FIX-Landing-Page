@@ -1,20 +1,14 @@
-<script>
+<!--
+  side_overlay.svelte:
+    A generic modal component with a black overlay.
+-->
+<script lang="ts">
   import { fade, fly } from 'svelte/transition';
 
-  /**
-   * @type boolean
-   */
-  export let open;
+  export let open: boolean;
+  export let onClose: () => void;
 
-  /**
-   * @type {() => void}
-   */
-  export let onClose;
-
-  /**
-   * @param {{ key: string; }} event
-   */
-  function handleKeyPress(event) {
+  function handleKeyPress(event: KeyboardEvent) {
     if (event.key === 'Escape') {
       onClose();
     }

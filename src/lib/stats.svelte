@@ -1,7 +1,9 @@
+<!--
+  stats.svelte:
+    A component showing statistics about FixNation's clinic.
+-->
 <script>
-  import clinic_ic from '$lib/icons/ic_clinic_stat.svg';
-  import spayed_ic from '$lib/icons/ic_spayed_stat.svg';
-  import volunteer_ic from '$lib/icons/ic_volunteer_stat.svg';
+  import { base } from '$app/paths';
 </script>
 
 <div class="container">
@@ -12,17 +14,17 @@
   </p>
   <div class="flex-container">
     <div class="stat-container">
-      <img src={clinic_ic} class="icon" alt="clinic icon" />
+      <img src="{base}/icons/ic_clinic_stat.svg" class="icon" alt="clinic icon" />
       <h3 class="display">1</h3>
       <p>largest clinic for<br />homeless cats</p>
     </div>
     <div class="stat-container">
-      <img src={spayed_ic} class="icon" alt="sprayed icon" />
+      <img src="{base}/icons/ic_spayed_stat.svg" class="icon" alt="sprayed icon" />
       <h3 class="display">220k</h3>
       <p>total cats spayed<br />or neutered</p>
     </div>
     <div class="stat-container">
-      <img src={volunteer_ic} class="icon" alt="volunteer icon" />
+      <img src="{base}/icons/ic_volunteer_stat.svg" class="icon" alt="volunteer icon" />
       <h3 class="display">12k</h3>
       <p>TNR volunteers trained</p>
     </div>
@@ -30,13 +32,6 @@
 </div>
 
 <style>
-  @font-face {
-    font-family: 'Rubik';
-    font-style: normal;
-    font-weight: 700;
-    src: url(/fonts/Rubik_Bold.ttf);
-  }
-
   .container {
     max-width: 90rem;
     margin: 0 auto;

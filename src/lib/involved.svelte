@@ -1,7 +1,10 @@
+<!--
+  involved.svelte:
+    MVP variant of the "Get Involved" section.
+    Contains three columns that become rows on mobile.
+-->
 <script>
-  import volunteer from '$lib/icons/volunteer.svg';
-  import donate from '$lib/icons/donate.svg';
-  import employment from '$lib/icons/employment.svg';
+  import { base } from '$app/paths';
 </script>
 
 <div class="container">
@@ -11,15 +14,15 @@
   </p>
   <div class="flex-container">
     <div class="footer-container">
-      <img src={volunteer} class="icon" alt="volunteer icon" />
+      <img src="{base}/icons/volunteer.svg" class="icon" alt="volunteer icon" />
       <p class="icon-desc">Volunteer</p>
     </div>
     <div class="footer-container">
-      <img src={donate} class="icon" alt="donate icon" />
+      <img src="{base}/icons/donate.svg" class="icon" alt="donate icon" />
       <p class="icon-desc">Donate</p>
     </div>
     <div class="footer-container">
-      <img src={employment} class="icon" alt="employment icon" />
+      <img src="{base}/icons/employment.svg" class="icon" alt="employment icon" />
       <p class="icon-desc">Employment</p>
     </div>
   </div>
