@@ -59,6 +59,15 @@
       {/each}
     </div>
 
+    <div class="nav-container">
+      <img src="{base}/stats/arrow.png" class="left-arrow">
+      {#each rows as i}
+        <a href="#card{i}">
+          <img src="{base}/stats/circle.png" id="dot{i}">
+        </a>
+      {/each}
+      <img src="{base}/stats/arrow.png" class="right-arrow">
+    </div>
 
     <!-- <div class="stat-container">
       <img src="{base}/icons/ic_clinic_stat.svg" class="icon" alt="clinic icon" />
@@ -106,7 +115,6 @@
       margin: auto;
     } */
     .flex-container {
-      display: flex;
       justify-content: space-between;
       align-items: center;
       margin: 0 12.5rem 4rem;
@@ -119,6 +127,12 @@
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
+      overscroll-behavior: contain;
+      scroll-snap-type: x mandatory;
+
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+
       overflow-x: auto;
       overflow-y: hidden;
     }
@@ -131,7 +145,8 @@
       flex-shrink: 0;
       margin-right: 7vw;
       margin-left: 2.5vw;
-      align-items: center;
+
+      scroll-snap-align: center;
     }
 
     #card2 {
@@ -193,6 +208,19 @@
 
       color: #FFFFFF;
     }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin: 5% auto 0% auto;
+      width: 40%;
+    }
+
+    .right-arrow {
+      transform: scaleX(-1);
+    }
+  }
 
   @media screen and (max-width: 950px) {
     #mission-statement {
