@@ -20,21 +20,21 @@
       text: 'total cats spayed or neutered'
     },
     {
+      stat: '21%',
+      text: 'of cats abandoned because of their residency'
+    },
+    {
       stat: '12k',
       text: 'TNR volunteers trained'
     },
-    // {
-    //   stat: '75%',
-    //   text: 'Cats are feral'
-    // },
-    // {
-    //   stat: '89%',
-    //   text: "Profits go directly to FixNation programs"
-    // },
-    // {
-    //   stat: '21%',
-    //   text: 'of cats abandoned because of their residency'
-    // }
+    {
+      stat: '89%',
+      text: "Profits go directly to FixNation programs"
+    },
+    {
+      stat: '35%',
+      text: 'Cats acquire as strays'
+    }
   ];
 </script>
 
@@ -49,7 +49,7 @@
     <div class="stat-container">
       {#each rows as { stat, text }, i}
 
-        <div class="card" id="card{i}">
+        <div class="card" id="card-{i}">
           <img src="{base}/stats/stats{i+1}.png" alt="stats pictures"/>
           <div class="text-container">
             <h1>{stat}</h1>
@@ -62,28 +62,12 @@
     <div class="nav-container">
       <img src="{base}/stats/arrow.png" class="left-arrow">
       {#each rows as i}
-        <a href="#card{i}">
+        <a href="#card-{i}">
           <img src="{base}/stats/circle.png" id="dot{i}">
         </a>
       {/each}
       <img src="{base}/stats/arrow.png" class="right-arrow">
     </div>
-
-    <!-- <div class="stat-container">
-      <img src="{base}/icons/ic_clinic_stat.svg" class="icon" alt="clinic icon" />
-      <h3 class="display">1</h3>
-      <p>largest clinic for<br />homeless cats</p>
-    </div>
-    <div class="stat-container">
-      <img src="{base}/icons/ic_spayed_stat.svg" class="icon" alt="sprayed icon" />
-      <h3 class="display">220k</h3>
-      <p>total cats spayed<br />or neutered</p>
-    </div>
-    <div class="stat-container">
-      <img src="{base}/icons/ic_volunteer_stat.svg" class="icon" alt="volunteer icon" />
-      <h3 class="display">12k</h3>
-      <p>TNR volunteers trained</p>
-    </div> -->
   </div>
 </div>
 
