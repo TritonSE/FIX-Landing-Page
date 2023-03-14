@@ -1,7 +1,6 @@
 <script>
   import header_img from '../../static/about/about_header.png';
   import { onMount } from 'svelte';
-
   import lax from 'lax.js';
 
   onMount(() => {
@@ -12,11 +11,11 @@
       scrollY: {
         translateX: [
           ['elInY', 'elCenterY', 'elOutY'],
-          [0, 'screenWidth/8', 'screenWidth/8']
+          [0, 'screenWidth/16', 'screenWidth/16']
         ],
         translateY: [
           ['elInY', 'elCenterY', 'elOutY'],
-          ['screenWidth/8', 0, 0]
+          ['screenWidth/6', 0, 0]
         ]
       }
     });
@@ -29,18 +28,23 @@
         ],
         translateY: [
           ['elInY', 'elCenterY', 'elOutY'],
-          [0, 'screenWidth/8', 'screenWidth/8']
+          [0, 'screenWidth/12', 'screenWidth/12']
         ]
       }
     });
   });
 </script>
 
-<h2>Thousands of cats are needlessly euthanized in Los Angeles each year,</h2>
-<p>
-  their only fault being that they don’t have a home. Los Angeles is home to one of the nation’s
-  largest populations of homeless cats with an estimated one to three million living on the streets.
-</p>
+<div id="about-text">
+  <div class="text-wrapper">
+    <h2>Thousands of cats are needlessly<br />euthanized in Los Angeles each year,</h2>
+    <p>
+      their only fault being that they don’t have a home. Los Angeles is home to one of the nation’s<br
+      />
+      largest populations of homeless cats with an estimated one to three million living on the streets.
+    </p>
+  </div>
+</div>
 <img id="about-header" src="/about/about_header.png" alt="cat header" />
 <div id="flex-container">
   <div class="row">
@@ -73,15 +77,17 @@
       </p>
     </div>
   </div>
-  <div class="text">
-    <h3>Our mission</h3>
-    <p>
-      Our mission is to humanely reduce the population of homeless cats in Los Angeles by
-      sterilizing as many as possible and allowing their numbers to naturally decline over time.
-    </p>
-    <div class="img-container">
-      <img src="/about/logo_blob.svg" alt="blob accent" />
-      <img src="/about/logo.svg" alt="Fix Nation logo" />
+  <div id="mission-container">
+    <div id="mission-text">
+      <h3>Our mission</h3>
+      <p>
+        Our mission is to humanely reduce the population of homeless cats in Los Angeles by
+        sterilizing as many as possible and allowing their numbers to naturally decline over time.
+      </p>
+    </div>
+    <div id="logo-container">
+      <img id="logo-blob" src="/about/logo_blob.svg" alt="blob accent" />
+      <img id="logo-img" src="/about/logo.svg" alt="Fix Nation logo" />
     </div>
   </div>
 </div>
@@ -92,17 +98,54 @@
     position: relative;
   }
 
+  #mission-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+  }
+
+  #logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+  }
+
+  #mission-text {
+    margin-left: 10vw;
+    margin-right: 5vw;
+  }
+
+  #logo-blob {
+    grid-column: 1;
+    grid-row: 1;
+    padding-top: 15%;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    margin: auto;
+  }
+
+  #logo-img {
+    position: absolute;
+    z-index: 1;
+  }
+
   .blob {
     grid-column: 1 / span 8;
     grid-row: 1;
     padding-top: 15%;
   }
+
   .img {
     padding-left: 15%;
     grid-row: 1;
     grid-column: 4/-1;
     z-index: 1;
   }
+
   .row {
     display: flex;
     justify-content: space-around;
@@ -120,5 +163,17 @@
 
   #about-header {
     width: 100%;
+  }
+
+  #about-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .text-wrapper {
+    margin: 2rem 0rem 1rem 0rem;
+    text-align: left;
+    width: 50vw;
   }
 </style>
