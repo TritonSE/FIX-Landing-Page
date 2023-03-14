@@ -1,5 +1,39 @@
 <script>
   import header_img from '../../static/about/about_header.png';
+  import { onMount } from 'svelte';
+
+  import lax from 'lax.js';
+
+  onMount(() => {
+    lax.init();
+    lax.addDriver('scrollY', () => window.scrollY);
+
+    lax.addElements('#bottom-img', {
+      scrollY: {
+        translateX: [
+          ['elInY', 'elCenterY', 'elOutY'],
+          [0, 'screenWidth/8', 'screenWidth/8']
+        ],
+        translateY: [
+          ['elInY', 'elCenterY', 'elOutY'],
+          ['screenWidth/8', 0, 0]
+        ]
+      }
+    });
+
+    lax.addElements('#top-img', {
+      scrollY: {
+        translateX: [
+          ['elInY', 'elCenterY', 'elOutY'],
+          ['screenWidth/8', 0, 0]
+        ],
+        translateY: [
+          ['elInY', 'elCenterY', 'elOutY'],
+          [0, 'screenWidth/8', 'screenWidth/8']
+        ]
+      }
+    });
+  });
 </script>
 
 <h2>Thousands of cats are needlessly euthanized in Los Angeles each year,</h2>
@@ -7,44 +41,84 @@
   their only fault being that they don’t have a home. Los Angeles is home to one of the nation’s
   largest populations of homeless cats with an estimated one to three million living on the streets.
 </p>
-<img src="/about/about_header.png" alt="cat header" />
-<div>
-  <h3>“We need to do something!”</h3>
-  <p>
-    Eager to find a solution to the problem, Karn Myers and her husband Mark Dodge launched
-    FixNation--the first full-time, permanent spay/neuter facility in Los Angeles. Now, their
-    award-winning programs serve as a model for other communities and charities dealing with similar
-    situations on a global scale.
-  </p>
-  <div>
-    <img src="/about/top_blob.svg" alt="blob accent" />
-    <img src="/about/top_image.png" alt="volunteering" />
+<img id="about-header" src="/about/about_header.png" alt="cat header" />
+<div id="flex-container">
+  <div class="row">
+    <div class="text">
+      <h3>“We need to do something!”</h3>
+      <p>
+        Eager to find a solution to the problem, Karn Myers and her husband Mark Dodge launched
+        FixNation--the first full-time, permanent spay/neuter facility in Los Angeles. Now, their
+        award-winning programs serve as a model for other communities and charities dealing with
+        similar situations on a global scale.
+      </p>
+    </div>
+    <div class="img-container" id="top-img">
+      <img class="blob" src="/about/top_blob.svg" alt="blob accent" />
+      <img class="img" src="/about/top_image.png" alt="volunteering" />
+    </div>
   </div>
-</div>
-<div>
-  <h3>For the love of cats</h3>
-  <p>
-    At the heart of our high-volume, high-quality spay/neuter clinic is an experienced and expert
-    team that genuinely cares about cats. In addition to free spay/neuter surgery, every homeless
-    cat brought to FixNation receives vaccinations, fluids, antibiotics, pain medication and flea
-    treatment.
-  </p>
-  <div>
-    <img src="/about/bottom_blob.svg" alt="blob accent" />
-    <img src="/about/bottom_image.png" alt="love cats" />
+  <div class="row">
+    <div class="img-container" id="bottom-img">
+      <img class="blob" src="/about/bottom_blob.svg" alt="blob accent" />
+      <img class="img" src="/about/bottom_image.png" alt="love cats" />
+    </div>
+    <div class="text">
+      <h3>For the love of cats</h3>
+      <p>
+        At the heart of our high-volume, high-quality spay/neuter clinic is an experienced and
+        expert team that genuinely cares about cats. In addition to free spay/neuter surgery, every
+        homeless cat brought to FixNation receives vaccinations, fluids, antibiotics, pain
+        medication and flea treatment.
+      </p>
+    </div>
   </div>
-</div>
-<div>
-  <h3>Our mission</h3>
-  <p>
-    Our mission is to humanely reduce the population of homeless cats in Los Angeles by sterilizing
-    as many as possible and allowing their numbers to naturally decline over time.
-  </p>
-  <div>
-    <img src="/about/logo_blob.svg" alt="blob accent" />
-    <img src="/about/logo.svg" alt="Fix Nation logo" />
+  <div class="text">
+    <h3>Our mission</h3>
+    <p>
+      Our mission is to humanely reduce the population of homeless cats in Los Angeles by
+      sterilizing as many as possible and allowing their numbers to naturally decline over time.
+    </p>
+    <div class="img-container">
+      <img src="/about/logo_blob.svg" alt="blob accent" />
+      <img src="/about/logo.svg" alt="Fix Nation logo" />
+    </div>
   </div>
 </div>
 
 <style>
+  .img-container {
+    display: grid;
+    position: relative;
+  }
+
+  .blob {
+    grid-column: 1 / span 8;
+    grid-row: 1;
+    padding-top: 15%;
+  }
+  .img {
+    padding-left: 15%;
+    grid-row: 1;
+    grid-column: 4/-1;
+    z-index: 1;
+  }
+  .row {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .text {
+    width: 450px;
+  }
+
+  #flex-container {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: space-around; */
+  }
+
+  #about-header {
+    width: 100%;
+  }
 </style>
