@@ -10,4 +10,5 @@ export interface CatData {
   n_followers: string;
   ig_link: string;
   image_path: string;
+  mobile_image_path: string;
 }

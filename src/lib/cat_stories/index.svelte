@@ -3,13 +3,16 @@
     Cat stories entrypoint.
 -->
 <script lang="ts">
+  import { onMount } from 'svelte';
+
+  import { base } from '$app/paths';
+
   import CatImage from './cat_image.svelte';
   import Paw from './paw.svelte';
   import CatOverlay from './cat_overlay.svelte';
+  import CarouselItem from './carousel_item.svelte';
 
   import type { CatData } from './types.ts';
-
-  import { base } from '$app/paths';
 
   const CAT_DATA: CatData = [
     {
@@ -19,7 +22,8 @@
       ig_link: 'https://www.instagram.com/shadowthehomedepotcat_/?hl=en',
       ig_username: 'shadowthehomedepotcat_',
       n_followers: 295,
-      image_path: `${base}/cat_stories/shadow.png`
+      image_path: `${base}/cat_stories/shadow.png`,
+      mobile_image_path: `${base}/cat_stories/shadow_mobile.png`
     },
     {
       name: 'Close Up',
@@ -28,7 +32,8 @@
       ig_link: 'https://www.instagram.com/closeupthecemeterycat/?hl=en',
       ig_username: 'closeupthecemeterycat',
       n_followers: 9873,
-      image_path: `${base}/cat_stories/close_up_full.png`
+      image_path: `${base}/cat_stories/close_up_full.png`,
+      mobile_image_path: `${base}/cat_stories/close_up_mobile.png`
     },
     {
       name: 'Almira',
@@ -37,7 +42,8 @@
       ig_link: 'https://www.instagram.com/disneylandcats/?hl=en',
       ig_username: 'disneylandcats',
       n_followers: 110000,
-      image_path: `${base}/cat_stories/almira_full.png`
+      image_path: `${base}/cat_stories/almira_full.png`,
+      mobile_image_path: `${base}/cat_stories/almira_mobile.png`
     }
   ];
 
@@ -49,9 +55,117 @@
     openOverlayIndex = -1;
   }
 
-  function openCatOverlay(index) {
+  function openCatOverlay(index: number) {
     openOverlayIndex = index;
   }
+
+  let lastScrollLeft: number | null = null;
+  let lastScrollTimestampMS = 0;
+  let justSnapped = false;
+  let snapTimestampMS = null;
+  let snapTimeout = null;
+
+  function getNodeTransform(node: HTMLElement, center: number) {
+    const rect = node.getBoundingClientRect();
+    const val = Math.pow(
+      Math.cos(((Math.PI / 2) * (rect.left + rect.width / 2 - center) * 0.4) / center),
+      center <= 250 ? 1 : 2
+    );
+    const clamp = Math.max(0.75, Math.min(1, val));
+    return clamp;
+    //return 1;
+  }
+
+  function scrollStoriesContainer(e: Event) {
+    if (!e.target) return;
+    let { scrollWidth, clientWidth, scrollLeft, childNodes } = e.target as HTMLDivElement;
+    const center = clientWidth / 2;
+    const currTimestampMS = new Date().getTime();
+
+    if (currTimestampMS - lastScrollTimestampMS >= 300) {
+      if (clientWidth + scrollLeft + 400 > scrollWidth) {
+        // At far right of scoll container, scrolling right
+        lastScrollTimestampMS = currTimestampMS;
+        (e.target as HTMLDivElement).scrollBy({ left: -scrollWidth / 2 });
+      } else if (scrollLeft < 400) {
+        // At far left of scroll container, scrolling left
+        lastScrollTimestampMS = currTimestampMS;
+        (e.target as HTMLDivElement).scrollBy({ left: scrollWidth / 2 });
+      }
+    }
+
+    childNodes.forEach((_childNode) => {
+      const childNode = _childNode as HTMLElement;
+      if (childNode.style) {
+        childNode.style.transform = 'scale(1)';
+        childNode.offsetHeight;
+        const clamp = getNodeTransform(childNode, center);
+        childNode.style.transform = `scale(${clamp})`;
+      }
+    });
+
+    const scrollSpeed = scrollLeft - lastScrollLeft;
+    if (!justSnapped && Math.abs(scrollSpeed) < 3) {
+      let nearestChildNode: HTMLElement | null = null;
+      let nearestChildXToScrollTo: number | null = null;
+
+      let shouldBreak = false;
+      childNodes.forEach((_childNode) => {
+        if (shouldBreak) return;
+        const childNode = _childNode as HTMLElement;
+        const childRect = childNode.getBoundingClientRect?.();
+        if (!childRect) return;
+        const xToScrollTo = scrollLeft + childRect.left - center + childRect.width / 2;
+        if ((xToScrollTo - scrollLeft) * scrollSpeed > 0) {
+          if (nearestChildNode === null) {
+            nearestChildNode = childNode;
+            nearestChildXToScrollTo = xToScrollTo;
+          } else {
+            if (
+              Math.abs(xToScrollTo - scrollLeft) < Math.abs(nearestChildXToScrollTo - scrollLeft)
+            ) {
+              nearestChildNode = childNode;
+              nearestChildXToScrollTo = xToScrollTo;
+            }
+          }
+        } else if (Math.abs(xToScrollTo - scrollLeft) < 20) {
+          nearestChildNode = null;
+          shouldBreak = true;
+        }
+      });
+      if (nearestChildNode) {
+        if (currTimestampMS - snapTimestampMS < 100) {
+          return;
+        } else {
+          snapTimestampMS = currTimestampMS;
+          snapTimeout = setTimeout(
+            () =>
+              (e.target as HTMLDivElement).scrollTo({
+                left: nearestChildXToScrollTo
+              }),
+            100
+          );
+        }
+        justSnapped = true;
+      } else {
+        justSnapped = false;
+      }
+    } else {
+      justSnapped = false;
+    }
+
+    lastScrollLeft = scrollLeft;
+  }
+
+  onMount(() => {
+    const storiesContainer = document.querySelector('.stories-container');
+    if (storiesContainer) {
+      storiesContainer.addEventListener('scroll', scrollStoriesContainer);
+      storiesContainer.scrollBy({
+        left: storiesContainer.scrollWidth / 4 - storiesContainer.clientWidth / 2
+      });
+    }
+  });
 </script>
 
 <svelte:window bind:innerWidth={windowWidth} />
@@ -59,35 +173,33 @@
 <div class="root">
   <h1>Community Cats</h1>
   <h2>We’re feral, stray or owned pet cat who used to roam the outdoors. FixNation found us!</h2>
-  <div class="stories-grid">
-    <div class="cat-image-container">
-      <CatImage
-        image_url="{base}/cat_stories/shadow.png"
-        image_alt="Shadow"
-        on:click={() => openCatOverlay(0)}
-        on:keydown={(e) => {
-          if (e.key === 'Enter' || e.key === 'Space') {
-            openCatOverlay(0);
-          }
-        }}
-      />
-      {#if windowWidth <= 600}
+  <div class="stories-container">
+    {#if windowWidth <= 600}
+      <!-- Repeat them for wrap-around scrolling -->
+      <CarouselItem catData={CAT_DATA[0]} />
+      <CarouselItem catData={CAT_DATA[1]} />
+      <CarouselItem catData={CAT_DATA[2]} />
+      <CarouselItem catData={CAT_DATA[0]} />
+      <CarouselItem catData={CAT_DATA[1]} />
+      <CarouselItem catData={CAT_DATA[2]} />
+    {:else}
+      <div class="cat-image-container">
+        <CatImage
+          image_url="{base}/cat_stories/shadow.png"
+          image_alt="Shadow"
+          on:click={() => openCatOverlay(0)}
+          on:keydown={(e) => {
+            if (e.key === 'Enter' || e.key === 'Space') {
+              openCatOverlay(0);
+            }
+          }}
+        />
+      </div>
+      <div class="column">
         <Paw name={CAT_DATA[0].name} />
-        <a href={CAT_DATA[0].ig_link}>
-          <img
-            src="{base}/cat_stories/instagram_white.svg"
-            alt="Instagram Logo"
-            class="instagram-logo"
-          />
-        </a>
-      {/if}
-    </div>
-    <div class="column">
-      {#if windowWidth > 600}<Paw name={CAT_DATA[0].name} />{/if}
-      <p class="medium-margin-above">
-        {CAT_DATA[0].desc}
-      </p>
-      {#if windowWidth > 600}
+        <p class="medium-margin-above">
+          {CAT_DATA[0].desc}
+        </p>
         <button
           class="underline-text"
           on:click={() => openCatOverlay(0)}
@@ -99,21 +211,9 @@
         >
           See more
         </button>
-      {/if}
-    </div>
-    <div class="column large-gap">
-      <div class="cat-image-container">
-        {#if windowWidth <= 600}
-          <CatImage image_url="{base}/cat_stories/close_up_full.png" image_alt="Close Up" />
-          <Paw name={CAT_DATA[1].name} />
-          <a href={CAT_DATA[1].ig_link}>
-            <img
-              src="{base}/cat_stories/instagram_white.svg"
-              alt="Instagram Logo"
-              class="instagram-logo"
-            />
-          </a>
-        {:else}
+      </div>
+      <div class="column large-gap">
+        <div class="cat-image-container">
           <CatImage
             image_url="{base}/cat_stories/close_up_cropped.png"
             image_alt="Close Up"
@@ -124,14 +224,10 @@
               }
             }}
           />
-        {/if}
-      </div>
-      <div class="row">
-        {#if windowWidth > 600}
+        </div>
+        <div class="row">
           <Paw name={CAT_DATA[1].name} />
-        {/if}
-        <div class="column">
-          {#if windowWidth > 600}
+          <div class="column">
             <p>
               {CAT_DATA[1].desc.substring(0, CAT_DATA[1].abbrev_len)}
             </p>
@@ -146,27 +242,11 @@
             >
               See more
             </button>
-          {:else}
-            <p>
-              {CAT_DATA[1].desc}
-            </p>
-          {/if}
+          </div>
         </div>
       </div>
-    </div>
-    <div class="column large-gap">
-      <div class="cat-image-container">
-        {#if windowWidth <= 600}
-          <CatImage image_url="{base}/cat_stories/almira_full.png" image_alt="Almira" />
-          <Paw name={CAT_DATA[2].name} />
-          <a href={CAT_DATA[2].ig_link}>
-            <img
-              src="{base}/cat_stories/instagram_white.svg"
-              alt="Instagram Logo"
-              class="instagram-logo"
-            />
-          </a>
-        {:else}
+      <div class="column large-gap">
+        <div class="cat-image-container">
           <CatImage
             image_url="{base}/cat_stories/almira_cropped.png"
             image_alt="Almira"
@@ -177,14 +257,10 @@
               }
             }}
           />
-        {/if}
-      </div>
-      <div class="row">
-        {#if windowWidth > 600}
+        </div>
+        <div class="row">
           <Paw name={CAT_DATA[2].name} />
-        {/if}
-        <div class="column">
-          {#if windowWidth > 600}
+          <div class="column">
             <p>
               {CAT_DATA[2].desc.substring(0, CAT_DATA[2].abbrev_len)}
             </p>
@@ -200,14 +276,10 @@
             >
               See more
             </button>
-          {:else}
-            <p>
-              {CAT_DATA[2].desc}
-            </p>
-          {/if}
+          </div>
         </div>
       </div>
-    </div>
+    {/if}
   </div>
 
   <CatOverlay
@@ -240,7 +312,7 @@
     background-color: var(--color-gray);
   }
 
-  .stories-grid {
+  .stories-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 90px;
@@ -286,12 +358,6 @@
     color: var(--color-black);
   }
 
-  .instagram-logo {
-    position: absolute;
-    right: 18px;
-    bottom: 18px;
-  }
-
   @media screen and (max-width: 900px) {
     h1 {
       font-size: 22px;
@@ -309,7 +375,7 @@
       padding: 40px;
     }
 
-    .stories-grid {
+    .stories-container {
       padding-top: 40px;
       gap: 65px;
     }
@@ -328,18 +394,28 @@
       font-size: 18px;
     }
 
+    p {
+      text-align: center;
+    }
+
     .root {
       padding: 16px;
     }
 
-    .stories-grid {
-      grid-template-columns: 100%;
-      gap: 40px;
+    .stories-container {
+      display: flex;
+      flex-direction: row;
+      overflow: scroll;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+
+      gap: 20px;
       padding-top: 16px;
+      /* scroll-snap-type: x mandatory; */
     }
 
-    .medium-margin-above {
-      margin-top: -16px;
+    .stories-container::-webkit-scrollbar {
+      display: none;
     }
   }
 </style>
