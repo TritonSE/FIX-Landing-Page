@@ -7,18 +7,21 @@
   export let small = false;
   export let secondary = false;
   export let fill = false;
-  export let scaleTransition = false;
+  export let externalLink = false;
+  export let noMarginBottom = false;
+
+  let className = '';
+  if (externalLink) {
+    className += 'transition-in external-link ';
+  }
+  if (noMarginBottom) {
+    className += 'no-margin-bottom ';
+  }
 </script>
 
-{#if scaleTransition}
-  <button on:click class:small class:secondary class:fill class="transition-in">
-    <slot />
-  </button>
-{:else}
-  <button on:click class:small class:secondary class:fill>
-    <slot />
-  </button>
-{/if}
+<button on:click class:small class:secondary class:fill class={className}>
+  <slot />
+</button>
 
 <style>
   button {
@@ -31,6 +34,20 @@
     border-radius: 4px;
     border: none;
     cursor: pointer;
+  }
+
+  .external-link {
+    width: 130px;
+    height: 32px;
+    font-size: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
+  }
+
+  .no-margin-bottom {
+    margin-bottom: 0;
   }
 
   .transition-in {

@@ -15,7 +15,8 @@
     imageName: string;
     imageAlt: string;
     extraContent: string;
-    resourceLink: string;
+    resourceTexts: string[];
+    resourceLinks: string[];
   };
 
   const rows: RowData[] = [
@@ -26,7 +27,8 @@
       imageAlt: '',
       extraContent:
         'Is it a cat or a kitten? Does it look injured, ill or hungry? Does it have an ear tip (a sign that it’s a community cat)? Is it friendly? Here are some tips to help you figure out if the kitty is homeless.',
-      resourceLink: ''
+      resourceTexts: ['Tips'],
+      resourceLinks: ['https://fixnation.org/about-tnr/faqs/']
     },
     {
       title: 'Feed',
@@ -35,7 +37,8 @@
       imageAlt: '',
       extraContent:
         'Get kitty on a regular feeding schedule, putting out dry food and water each afternoon or evening. This makes trapping a lot easier later! You can even make a <a href="https://fixnation.org/shelters-feeding-stations/">DIY feeding station.</a>',
-      resourceLink: ''
+      resourceTexts: ['DIY Feeding Station'],
+      resourceLinks: ['https://fixnation.org/shelters-feeding-stations/']
     },
     {
       title: 'Prep',
@@ -44,7 +47,11 @@
       imageAlt: '',
       extraContent:
         'Watch our <a href="https://www.youtube.com/watch?v=JgatHzlxnv0&t=2s">online training video</a> with easy step-by-step instructions, then borrow a special humane trap and cloth cover from our clinic. <a href="https://fixnation.org/about-tnr/free-feral-application/">Make an appointment online.</a> You’re all set!',
-      resourceLink: ''
+      resourceTexts: ['Training Videos', 'Make Appointment'],
+      resourceLinks: [
+        'https://www.youtube.com/watch?v=JgatHzlxnv0&t=2s',
+        'https://fixnation.org/about-tnr/free-feral-application/'
+      ]
     },
     {
       title: 'Trap',
@@ -53,16 +60,18 @@
       imageAlt: '',
       extraContent:
         'Trap between 4 pm to 11.30 pm the evening before your appointment. Set food on some tin foil and place under the trap (not inside). Keep an eye on the trap – never leave it unattended – and wait for kitty to go inside. Be patient! <a href="https://www.youtube.com/watch?v=IarsSTLUdTw">Trap-Neuter-Return</a> is the first step towards a happier and healthier life for your community cat friend.',
-      resourceLink: ''
+      resourceTexts: ['TNR'],
+      resourceLinks: ['https://www.youtube.com/watch?v=IarsSTLUdTw']
     },
     {
       title: 'Hold',
-      text: 'Hold cat overnight until surgery the next day',
-      // TODO: Add image and content for this one (it's not on Figma)
-      imageName: 'trap.png',
+      text: 'Hold the cat overnight until surgery the next day',
+      imageName: 'hold.png',
       imageAlt: '',
-      extraContent: '',
-      resourceLink: ''
+      extraContent:
+        'Congrats, you got the cat! Cover the trap and keep it in a warm, quiet place overnight (like a bathroom or a heated garage). Check the cat once an hour, every hour, until bedtime. Here are some <a href="https://fixnation.org/about-tnr/pre-post-surgery-instructions/">more pre-op tips!</a>',
+      resourceTexts: ['Pre-op Tips'],
+      resourceLinks: ['https://fixnation.org/about-tnr/pre-post-surgery-instructions/']
     },
     {
       title: 'Fix',
@@ -71,7 +80,8 @@
       imageAlt: '',
       extraContent:
         'Feed kittens a teapoon of wet food at 6 am on surgery day; no food or water for older cats. Cover the car seats with plastic and securely place the traps on top. Arrive at FixNation between 7-8.30 am, leave kitty in car and wait in line to check-in. (Here’s a <a href="https://www.facebook.com/LuxePaws/videos/3379488712127276/">sneak peek of the check-in process!</a>) FixNation will spay/neuter the cat and provide vaccines, flea treatment, fluids, pain medication and an ear tip. Pick-up from 3 - 4.30 pm.',
-      resourceLink: ''
+      resourceTexts: ['Check-in Process'],
+      resourceLinks: ['https://www.facebook.com/LuxePaws/videos/3379488712127276/']
     },
     {
       title: 'Watch',
@@ -79,8 +89,9 @@
       imageName: 'watch.png',
       imageAlt: '',
       extraContent:
-        'Take kitty home in the covered trap and keep in a warm, quiet place overnight once again. Feed a ¼ can of wet food about six hours post-op (check paperwork for exact time). Check kitty once an hour, every hour, until bedtime. Here are some <a href="https://www.alleycat.org/community-cat-care/post-surgery-care/>more post-op tips!</a>',
-      resourceLink: ''
+        'Take kitty home in the covered trap and keep in a warm, quiet place overnight once again. Feed a ¼ can of wet food about six hours post-op (check paperwork for exact time). Check kitty once an hour, every hour, until bedtime. Here are some <a href="https://www.alleycat.org/community-cat-care/post-surgery-care/">more post-op tips!</a>',
+      resourceTexts: ['Post-ops tips'],
+      resourceLinks: ['https://www.alleycat.org/community-cat-care/post-surgery-care/']
     },
     {
       title: 'Return',
@@ -89,14 +100,14 @@
       imageAlt: '',
       extraContent:
         'This is the big moment…release the cat where you trapped it the morning after surgery. Freedom!!!! Here’s a <a href="https://www.youtube.com/watch?v=3-pK4sjVHcQ">video about community cats</a> that shows a kitty getting released. Clean the trap and trap cover and return to FixNation during opening hours.',
-      resourceLink: ''
+      resourceTexts: ['Community Cat Video'],
+      resourceLinks: ['https://www.youtube.com/watch?v=3-pK4sjVHcQ']
     }
   ];
 
-  let rowsExpanded = rows.map((row) => false);
+  let rowsExpanded = rows.map(() => false);
 
   function toggleRowExpanded(index: number) {
-    console.log('TOGGLING!');
     const newRowsExpanded = [...rowsExpanded];
     newRowsExpanded[index] = !newRowsExpanded[index];
     rowsExpanded = newRowsExpanded;
@@ -119,7 +130,7 @@
 
   <div class="roadmap">
     <div class="road-image"><div class="road-line" /></div>
-    {#each rows as { title, text, imageName, imageAlt, extraContent, resourceLink }, i}
+    {#each rows as { title, text, imageName, imageAlt, extraContent, resourceTexts, resourceLinks }, i}
       <div class="step_container {title.toLowerCase() + i}">
         <div class="row">
           <div class="marker">
@@ -154,9 +165,20 @@
                 />
                 <p class:first={i == 0}>{@html extraContent}</p>
               </div>
-              <div class="resource-link">
-                <a href={resourceLink}><Button scaleTransition={true}>Resource 1</Button></a>
-              </div>
+              {#each resourceTexts as resourceText, j}
+                <div class="resource-link">
+                  <a href={resourceLinks[j]} class="link-no-underline"
+                    ><Button externalLink={true} noMarginBottom={true}
+                      ><img
+                        src="{base}/icons/ic_external_link.svg"
+                        alt="External Link"
+                        class="external-link-icon"
+                      />
+                      {resourceText}</Button
+                    ></a
+                  >
+                </div>
+              {/each}
             {/if}
           </div>
         </div>
@@ -506,6 +528,16 @@
       width: 100%;
     }
 
+    .external-link-icon {
+      width: 14px !important;
+      height: 14px !important;
+      margin-bottom: 3px;
+    }
+
+    .link-no-underline {
+      text-decoration: none;
+    }
+
     .road-image {
       display: flex;
       flex-direction: row;
@@ -526,7 +558,7 @@
     }
 
     .resource-link {
-      margin-bottom: 20px;
+      margin-bottom: 5px;
     }
 
     .roadmap .row {
@@ -566,10 +598,10 @@
     }
     .text p {
       font-size: 14px;
-      margin: 0 0 1.375rem 0;
     }
-    .text p.first {
-      width: 50vw;
+
+    .text {
+      margin: 0 0 1.375rem 0;
     }
   }
 </style>
