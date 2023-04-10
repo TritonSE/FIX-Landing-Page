@@ -73,7 +73,63 @@
     );
     const clamp = Math.max(0.75, Math.min(1, val));
     return clamp;
-    //return 1;
+  }
+
+  function scaleChildren(childNodes, center) {
+    childNodes.forEach((_childNode) => {
+      const childNode = _childNode as HTMLElement;
+      if (childNode.childNodes.length > 0 && (childNode.childNodes[0] as HTMLElement).style) {
+        (childNode.childNodes[0] as HTMLElement).style.transform = 'scale(1)';
+        childNode.offsetHeight;
+        const clamp = getNodeTransform(childNode, center);
+        (childNode.childNodes[0] as HTMLElement).style.transform = `scale(${clamp})`;
+      }
+    });
+  }
+
+  function parseTransform(transformStr: string) {
+    const regexMatch = transformStr.match(/scale\((.*)\)/);
+    if (!regexMatch || regexMatch.length < 1) {
+      return 1;
+    }
+    return parseInt(regexMatch[0]);
+  }
+
+  function getLargestChild(parent: HTMLElement) {
+    let largest: HTMLElement | null = null;
+    for (const child of parent.childNodes) {
+      if (
+        (child.childNodes?.length > 0 && (child.childNodes[0] as HTMLElement)).style &&
+        (largest === null ||
+          parseTransform((child.childNodes[0] as HTMLElement).style.transform) >
+            parseTransform(largest.childNodes[0].style.transform))
+      ) {
+        largest = child as HTMLElement;
+      }
+    }
+    return largest;
+  }
+
+  function extractNameAndIndexFromId(carouselItem: HTMLElement) {
+    return carouselItem.id.split('-');
+  }
+
+  function getIdFromNameAndIndex(name: string, index: number) {
+    return `${name}-${index}`;
+  }
+
+  function getNeighboringNode(parent: HTMLElement, child: HTMLElement, next: boolean) {
+    const [childName, childIndex] = extractNameAndIndexFromId(child);
+    const childIdToFind = getIdFromNameAndIndex(childName, (childIndex + (next ? 1 : 2)) % 3);
+    return document.getElementById(childIdToFind);
+  }
+
+  function getDistanceBetweenNodes(node1: HTMLElement, node2: HTMLElement) {
+    const rect1 = node1.getBoundingClientRect();
+    const rect2 = node2.getBoundingClientRect();
+    const center1 = rect1.x + rect1.width / 2;
+    const center2 = rect2.x + rect2.width / 2;
+    return center1 - center2;
   }
 
   function scrollStoriesContainer(e: Event) {
@@ -82,77 +138,46 @@
     const center = clientWidth / 2;
     const currTimestampMS = new Date().getTime();
 
-    if (currTimestampMS - lastScrollTimestampMS >= 300) {
-      if (clientWidth + scrollLeft + 400 > scrollWidth) {
+    const scrollSpeed = scrollLeft - lastScrollLeft;
+    if (Math.abs(scrollSpeed) < 4 && currTimestampMS - lastScrollTimestampMS >= 1000) {
+      const largestChild = getLargestChild(e.target);
+      if (clientWidth + scrollLeft + 200 > (2 / 3) * scrollWidth) {
         // At far right of scoll container, scrolling right
         lastScrollTimestampMS = currTimestampMS;
-        (e.target as HTMLDivElement).scrollBy({ left: -scrollWidth / 2 });
+        clearTimeout(snapTimeout);
+
+        let xToScrollTo =
+          scrollLeft +
+          getDistanceBetweenNodes(getNeighboringNode(e.target, largestChild, false), largestChild);
+        if (xToScrollTo > scrollWidth) {
+          xToScrollTo -= scrollWidth;
+        }
+        if (xToScrollTo < 0) {
+          xToScrollTo += scrollWidth;
+        }
+        snapTimeout = setTimeout(() => {
+          (e.target as HTMLDivElement).scrollTo({ left: xToScrollTo });
+        }, 300);
       } else if (scrollLeft < 400) {
         // At far left of scroll container, scrolling left
         lastScrollTimestampMS = currTimestampMS;
-        (e.target as HTMLDivElement).scrollBy({ left: scrollWidth / 2 });
+        clearTimeout(snapTimeout);
+        let xToScrollTo =
+          scrollLeft +
+          getDistanceBetweenNodes(getNeighboringNode(e.target, largestChild, true), largestChild);
+        if (xToScrollTo > scrollWidth) {
+          xToScrollTo -= scrollWidth;
+        }
+        if (xToScrollTo < 0) {
+          xToScrollTo += scrollWidth;
+        }
+        snapTimeout = setTimeout(() => {
+          (e.target as HTMLDivElement).scrollTo({ left: xToScrollTo });
+        }, 300);
       }
     }
 
-    childNodes.forEach((_childNode) => {
-      const childNode = _childNode as HTMLElement;
-      if (childNode.style) {
-        childNode.style.transform = 'scale(1)';
-        childNode.offsetHeight;
-        const clamp = getNodeTransform(childNode, center);
-        childNode.style.transform = `scale(${clamp})`;
-      }
-    });
-
-    const scrollSpeed = scrollLeft - lastScrollLeft;
-    if (!justSnapped && Math.abs(scrollSpeed) < 3) {
-      let nearestChildNode: HTMLElement | null = null;
-      let nearestChildXToScrollTo: number | null = null;
-
-      let shouldBreak = false;
-      childNodes.forEach((_childNode) => {
-        if (shouldBreak) return;
-        const childNode = _childNode as HTMLElement;
-        const childRect = childNode.getBoundingClientRect?.();
-        if (!childRect) return;
-        const xToScrollTo = scrollLeft + childRect.left - center + childRect.width / 2;
-        if ((xToScrollTo - scrollLeft) * scrollSpeed > 0) {
-          if (nearestChildNode === null) {
-            nearestChildNode = childNode;
-            nearestChildXToScrollTo = xToScrollTo;
-          } else {
-            if (
-              Math.abs(xToScrollTo - scrollLeft) < Math.abs(nearestChildXToScrollTo - scrollLeft)
-            ) {
-              nearestChildNode = childNode;
-              nearestChildXToScrollTo = xToScrollTo;
-            }
-          }
-        } else if (Math.abs(xToScrollTo - scrollLeft) < 20) {
-          nearestChildNode = null;
-          shouldBreak = true;
-        }
-      });
-      if (nearestChildNode) {
-        if (currTimestampMS - snapTimestampMS < 100) {
-          return;
-        } else {
-          snapTimestampMS = currTimestampMS;
-          snapTimeout = setTimeout(
-            () =>
-              (e.target as HTMLDivElement).scrollTo({
-                left: nearestChildXToScrollTo
-              }),
-            100
-          );
-        }
-        justSnapped = true;
-      } else {
-        justSnapped = false;
-      }
-    } else {
-      justSnapped = false;
-    }
+    scaleChildren(childNodes, center);
 
     lastScrollLeft = scrollLeft;
   }
@@ -176,12 +201,15 @@
   <div class="stories-container">
     {#if windowWidth <= 600}
       <!-- Repeat them for wrap-around scrolling -->
-      <CarouselItem catData={CAT_DATA[0]} />
-      <CarouselItem catData={CAT_DATA[1]} />
-      <CarouselItem catData={CAT_DATA[2]} />
-      <CarouselItem catData={CAT_DATA[0]} />
-      <CarouselItem catData={CAT_DATA[1]} />
-      <CarouselItem catData={CAT_DATA[2]} />
+      <CarouselItem catData={CAT_DATA[0]} index={0} />
+      <CarouselItem catData={CAT_DATA[1]} index={0} />
+      <CarouselItem catData={CAT_DATA[2]} index={0} />
+      <CarouselItem catData={CAT_DATA[0]} index={1} />
+      <CarouselItem catData={CAT_DATA[1]} index={1} />
+      <CarouselItem catData={CAT_DATA[2]} index={1} />
+      <CarouselItem catData={CAT_DATA[0]} index={2} />
+      <CarouselItem catData={CAT_DATA[1]} index={2} />
+      <CarouselItem catData={CAT_DATA[2]} index={2} />
     {:else}
       <div class="cat-image-container">
         <CatImage
@@ -411,7 +439,7 @@
 
       gap: 20px;
       padding-top: 16px;
-      /* scroll-snap-type: x mandatory; */
+      scroll-snap-type: x mandatory;
     }
 
     .stories-container::-webkit-scrollbar {
