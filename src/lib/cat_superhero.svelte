@@ -6,6 +6,15 @@
   import { base } from '$app/paths';
   import Modal from '$lib/modal.svelte';
   let open = false;
+  export let modalIndex = -1;
+
+  function closeModal() {
+    modalIndex = -1;
+  }
+
+  function openModal(index) {
+    modalIndex = index;
+  }
 
   type RowData = {
     title: string;
@@ -48,12 +57,12 @@
   ];
 </script>
 
-<Modal  {open}/>
+<Modal {open}/>
 
 <div class="container">
   <div class="bubble">
     <div class="crop">
-      <img src="{base}/roadmap/bubble.svg" class="point" alt="Speech bubble" />
+      <img src="{base}/roadmap/bubble.svg" class="point" alt="Speech bubble"/>
       <img src="{base}/roadmap/round_bubble.svg" class="round" alt="Round speech bubble" />
     </div>
     <div class="header">
@@ -66,9 +75,13 @@
 
   <div class="roadmap">
     {#each rows as { title, text }, i}
-      <div class="step_container {title.toLowerCase() + i}" 
+      <div class="step_container {title.toLowerCase() + i}"
       on:click={() => {
-        open = !open;
+        if(window.innerWidth > 675){
+          open = !open;
+          modalIndex = i;
+          openModal(i);
+        }
       }}
       on:keydown={() => {
         open = !open;
@@ -90,6 +103,11 @@
       </div>
     {/each}
   </div>
+  <Modal
+  cur={openModal}
+  open={modalIndex !== -1}
+  onClose={closeModal}
+/>
 </div>
 
 <style>
