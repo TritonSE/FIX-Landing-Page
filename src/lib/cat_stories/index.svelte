@@ -61,8 +61,6 @@
 
   let lastScrollLeft: number | null = null;
   let lastScrollTimestampMS = 0;
-  let justSnapped = false;
-  let snapTimestampMS = null;
   let snapTimeout = null;
 
   function getNodeTransform(node: HTMLElement, center: number) {
