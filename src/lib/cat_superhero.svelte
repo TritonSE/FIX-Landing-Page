@@ -4,6 +4,8 @@
 -->
 <script lang="ts">
   import { base } from '$app/paths';
+  import Modal from '$lib/modal.svelte';
+  let open = false;
 
   type RowData = {
     title: string;
@@ -46,6 +48,8 @@
   ];
 </script>
 
+<Modal  {open}/>
+
 <div class="container">
   <div class="bubble">
     <div class="crop">
@@ -62,7 +66,13 @@
 
   <div class="roadmap">
     {#each rows as { title, text }, i}
-      <div class="step_container {title.toLowerCase() + i}">
+      <div class="step_container {title.toLowerCase() + i}" 
+      on:click={() => {
+        open = !open;
+      }}
+      on:keydown={() => {
+        open = !open;
+      }}>
         <div class="row">
           <div class="marker">
             <img src="{base}/roadmap/marker.svg" alt="Roadmap marker" />
