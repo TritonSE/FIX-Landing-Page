@@ -62,6 +62,23 @@
   let lastScrollLeft: number | null = null;
   let lastScrollTimestampMS = 0;
   let snapTimeout = null;
+  let periodicTimeout = null;
+  let periodicScrollLeft: number | null = null;
+
+  function scrollIfNotMoving(scrollCB: () => void) {
+    const storiesContainer = document.querySelector('.stories-container');
+    if (
+      periodicScrollLeft !== null &&
+      storiesContainer !== null &&
+      storiesContainer.scrollLeft === periodicScrollLeft
+    ) {
+      clearTimeout(periodicTimeout);
+      scrollCB();
+    } else {
+      periodicTimeout = setTimeout(() => scrollIfNotMoving(scrollCB), 50);
+    }
+    periodicScrollLeft = storiesContainer.scrollLeft;
+  }
 
   function getNodeTransform(node: HTMLElement, center: number) {
     const rect = node.getBoundingClientRect();
@@ -154,8 +171,8 @@
           xToScrollTo += scrollWidth;
         }
         snapTimeout = setTimeout(() => {
-          (e.target as HTMLDivElement).scrollTo({ left: xToScrollTo });
-        }, 300);
+          scrollIfNotMoving(() => (e.target as HTMLDivElement).scrollTo({ left: xToScrollTo }));
+        }, 50);
       } else if (scrollLeft < 400) {
         // At far left of scroll container, scrolling left
         lastScrollTimestampMS = currTimestampMS;
@@ -170,8 +187,8 @@
           xToScrollTo += scrollWidth;
         }
         snapTimeout = setTimeout(() => {
-          (e.target as HTMLDivElement).scrollTo({ left: xToScrollTo });
-        }, 300);
+          scrollIfNotMoving(() => (e.target as HTMLDivElement).scrollTo({ left: xToScrollTo }));
+        }, 50);
       }
     }
 
