@@ -10,6 +10,7 @@
   import type { CatData } from './types.ts';
 
   import { base } from '$app/paths';
+  import { browser } from '$app/environment';
 
   const CAT_DATA: CatData = [
     {
@@ -45,12 +46,24 @@
 
   let openOverlayIndex = -1;
 
+  function updateScrollBehavior() {
+    if (browser) {
+      if (openOverlayIndex !== -1) {
+        document.body.style.overflow = 'hidden';
+      } else {
+        document.body.style.overflow = 'unset';
+      }
+    }
+  }
+
   function closeCatOverlay() {
     openOverlayIndex = -1;
+    updateScrollBehavior();
   }
 
   function openCatOverlay(index) {
     openOverlayIndex = index;
+    updateScrollBehavior();
   }
 </script>
 
