@@ -10,12 +10,20 @@
     lax.addElements('#bottom-img', {
       scrollY: {
         translateX: [
-          ['elInY', 'elCenterY', 'elOutY'],
-          [0, 'screenWidth/16', 'screenWidth/16']
+          ['elInY', 'elCenterY'],
+          ["screenWidth/4", 0]
         ],
         translateY: [
-          ['elInY', 'elCenterY', 'elOutY'],
-          ['screenWidth/6', 0, 0]
+          ['elInY', 'elCenterY'],
+          ["-screenHeight/4", 0]
+        ],
+        scale: [
+          ['elInY', 'elCenterY'],
+          [0.4, 1]
+        ],
+        opacity: [
+          ['elInY', 'elCenterY'],
+          [0, 1]
         ]
       }
     });
@@ -23,13 +31,70 @@
     lax.addElements('#top-img', {
       scrollY: {
         translateX: [
-          ['elInY', 'elCenterY', 'elOutY'],
-          ['screenWidth/8', 0, 0]
+          ['elInY', 'elCenterY'],
+          ['-screenWidth/4', 0]
         ],
         translateY: [
-          ['elInY', 'elCenterY', 'elOutY'],
-          [0, 'screenWidth/12', 'screenWidth/12']
+          ['elInY', 'elCenterY'],
+          ['screenHeight/4', 0]
+        ],
+        scale: [
+          ['elInY', 'elCenterY'],
+          [0.4, 1]
+        ],
+        opacity: [
+          ['elInY', 'elCenterY'],
+          [0, 1]
         ]
+      }
+    });
+
+    lax.addElements('#top-title', {
+      scrollY: {
+        translateX: [
+          ['elInY', 'elCenterY'],
+          ['elWidth/2', 0]
+        ],
+        translateY: [
+          ['elInY', 'elCenterY'],
+          ['-elHeight', 0]
+        ],
+
+      }
+    });
+
+    lax.addElements('#top-par', {
+      scrollY: {
+        translateX: [
+          ['elInY', 'elCenterY'],
+          ['-elWidth/2', 0]
+        ],
+        translateY: [
+          ['elInY', 'elCenterY'],
+          ['elHeight', 0]
+        ],
+      }
+    });
+
+    lax.addElements('#bottom-title', {
+      scrollY: {
+        translateX: [
+          ['elInY', 'elCenterY'],
+          ['-elWidth/2', 0]
+        ],
+        translateY: [
+          ['elInY', 'elCenterY'],
+          ['elHeight', 0]
+        ],
+      }
+    });
+    lax.addElements('#bottom-par', {
+      scrollY: {
+      
+        translateY: [
+          ['elInY', 'elCenterY'],
+          ['elHeight', 0]
+        ],
       }
     });
   });
@@ -49,8 +114,8 @@
 <div id="flex-container">
   <div class="row">
     <div class="text">
-      <h3>“We need to do something!”</h3>
-      <p>
+      <h3 id="top-title">“We need to do something!”</h3>
+      <p id="top-par">
         Eager to find a solution to the problem, Karn Myers and her husband Mark Dodge launched
         FixNation--the first full-time, permanent spay/neuter facility in Los Angeles. Now, their
         award-winning programs serve as a model for other communities and charities dealing with
@@ -68,8 +133,8 @@
       <img class="img" src="/about/bottom_image.png" alt="love cats" />
     </div>
     <div class="text">
-      <h3>For the love of cats</h3>
-      <p>
+      <h3 id="bottom-title">For the love of cats</h3>
+      <p id="bottom-par">
         At the heart of our high-volume, high-quality spay/neuter clinic is an experienced and
         expert team that genuinely cares about cats. In addition to free spay/neuter surgery, every
         homeless cat brought to FixNation receives vaccinations, fluids, antibiotics, pain
@@ -163,6 +228,7 @@
 
   #about-header {
     width: 100%;
+    margin-bottom: 5rem;
   }
 
   #about-text {
