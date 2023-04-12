@@ -4,6 +4,7 @@
 -->
 <script lang="ts">
   import { base } from '$app/paths';
+  import { onMount } from 'svelte';
 
   type RowData = {
     stat: string;
@@ -36,15 +37,24 @@
       text: 'Cats acquire as strays'
     }
   ];
+
+  let width;
+  let el: any, x: any;
+
+	onMount(() => {
+		el.addEventListener('scroll', () => {
+			x = el.scrollLeft;
+		});
+	});
 </script>
 
-<div class="container">
+<div bind:clientWidth={width} class="container">
   <p id="mission-statement">
     FixNation’s mission is to reduce the population of homeless cats by sterilizing as many as
     possible while demonstrating the effectiveness of Trap-Neuter-Return and colony management for
     the humane care of homeless cats.
   </p>
-  <div class="flex-container">
+  <div bind:this={el} class="flex-container">
 
     <div class="stat-container">
       {#each rows as { stat, text }, i}
@@ -58,17 +68,16 @@
         </div>
       {/each}
     </div>
-
-    <div class="nav-container">
-      <img src="{base}/stats/arrow.png" class="left-arrow">
-      {#each rows as i}
-        <a href="#card-{i}">
-          <img src="{base}/stats/circle.png" id="dot{i}">
-        </a>
-      {/each}
-      <img src="{base}/stats/arrow.png" class="right-arrow">
-    </div>
   </div>
+
+  <div class="nav-container">
+    <img src="{base}/stats/arrow.png" class="left-arrow">
+    {#each new Array(6) as _, i}
+      <div class="dot" class:active={(x >= width * i) && (x < width * (i + 1))}></div>
+    {/each}
+    <img src="{base}/stats/arrow.png" class="right-arrow">
+  </div>
+
 </div>
 
 <style>
@@ -94,15 +103,19 @@
       color: #000000;
     }
 
-    /* .icon {
-      display: block;
-      margin: auto;
-    } */
     .flex-container {
       justify-content: space-between;
       align-items: center;
       margin: 0 12.5rem 4rem;
       color: var(--color-secondary-accent);
+      
+      overscroll-behavior: contain;
+      scroll-snap-type: x mandatory;
+
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+
+      overflow-x: scroll;
     }
 
     /* https://stackoverflow.com/questions/47505426/html-horizontal-scrollbar-for-card-divs */
@@ -111,14 +124,6 @@
       display: flex;
       flex-direction: row;
       flex-wrap: nowrap;
-      overscroll-behavior: contain;
-      scroll-snap-type: x mandatory;
-
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-
-      overflow-x: auto;
-      overflow-y: hidden;
     }
     .card {
       position: relative;
@@ -131,10 +136,6 @@
       margin-left: 2.5vw;
 
       scroll-snap-align: center;
-    }
-
-    #card2 {
-      margin-right: 2.5vw;
     }
 
     .card img {
@@ -180,7 +181,7 @@
       top: 50%;
       width: 44.2vw;
 
-      font-family: 'Avenir';
+      font-family: 'Avenir' !important; 
       font-style: normal;
       font-weight: 500;
       font-size: 4.5vw;
@@ -197,13 +198,28 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: 5% auto 0% auto;
+      margin: -3% auto 5%;
       width: 40%;
     }
 
     .right-arrow {
       transform: scaleX(-1);
     }
+
+    .dot {
+		width: 2vw;
+		height: 2vw;
+		border-radius: 1vw;
+		margin-top: 1vw;
+		margin-right: 1vw;
+    background: #D8D8D8;
+		float: left;
+    }
+    .dot.active {
+      background: #20525C;
+    }
+
+    
   }
 
   @media screen and (max-width: 950px) {
