@@ -6,15 +6,8 @@
   import { base } from '$app/paths';
   import Modal from '$lib/modal.svelte';
   let open = false;
-  export let modalIndex = -1;
+  let j = -1;
 
-  function closeModal() {
-    modalIndex = -1;
-  }
-
-  function openModal(index) {
-    modalIndex = index;
-  }
 
   type RowData = {
     title: string;
@@ -57,7 +50,7 @@
   ];
 </script>
 
-<Modal {open}/>
+<Modal {open} cur={j}/>
 
 <div class="container">
   <div class="bubble">
@@ -80,8 +73,7 @@
         on:click={() => {
           if(window.innerWidth > 675){
             open = !open;
-            modalIndex = i;
-            openModal(i);
+            j = i;
           }
         }}
         on:keydown={() => {
@@ -103,11 +95,7 @@
       </div>
     {/each}
   </div>
-  <Modal
-  cur={openModal}               
-  open={modalIndex !== -1}
-  onClose={closeModal}
-/>
+  <Modal/>
 </div>
 
 <style>
@@ -312,6 +300,7 @@
 
     .row:hover {
       background-image: url(@base/roadmap/cloud_hover.svg);
+      cursor: pointer;
     }
     .row .marker {
       width: 2vw;

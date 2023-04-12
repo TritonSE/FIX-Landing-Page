@@ -2,8 +2,8 @@
   export let open = false;
   import { fly } from 'svelte/transition';
   import { tick } from 'svelte';
-  import  modalIndex  from './cat_superhero.svelte';
 
+  export let cur = 0;
   let dir = false;
   let entries = [
     {
@@ -66,7 +66,7 @@
       }}
     />
     {#each entries as entry, index}
-      {#if modalIndex == index}
+      {#if cur == index}
         <div class="content" in:fly={{ x: dir ? 50 : -50 }} out:fly={{ x: dir ? -50 : 50 }}>
           <div
             class="x-out"
