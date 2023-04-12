@@ -46,6 +46,10 @@
         small
         fill
         on:click={() => {
+          name = '';
+          email = '';
+
+          done = false;
           newsletter = true;
         }}>Sign Up for Newsletter</Button
       >
@@ -179,6 +183,11 @@
     border: transparent;
     padding: 0 0.5rem;
     box-sizing: border-box;
+  }
+  @media only screen and (min-width: 1600px) {
+    .newsletter {
+      bottom: -10vw;
+    }
   }
 
   .mobile {
