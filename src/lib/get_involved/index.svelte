@@ -155,5 +155,8 @@
     .cards {
       grid-template-columns: 1fr;
     }
+    .root {
+      margin-bottom: 0;
+    }
   }
 </style>

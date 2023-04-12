@@ -7,9 +7,10 @@
   export let small = false;
   export let secondary = false;
   export let fill = false;
+  export let style = '';
 </script>
 
-<button on:click class:small class:secondary class:fill>
+<button on:click class:small class:secondary class:fill {style}>
   <slot />
 </button>
 
