@@ -75,18 +75,18 @@
 
   <div class="roadmap">
     {#each rows as { title, text }, i}
-      <div class="step_container {title.toLowerCase() + i}"
-      on:click={() => {
-        if(window.innerWidth > 675){
+      <div class="step_container {title.toLowerCase() + i}">
+        <div class="row"
+        on:click={() => {
+          if(window.innerWidth > 675){
+            open = !open;
+            modalIndex = i;
+            openModal(i);
+          }
+        }}
+        on:keydown={() => {
           open = !open;
-          modalIndex = i;
-          openModal(i);
-        }
-      }}
-      on:keydown={() => {
-        open = !open;
-      }}>
-        <div class="row">
+        }}>
           <div class="marker">
             <img src="{base}/roadmap/marker.svg" alt="Roadmap marker" />
             <img
@@ -104,7 +104,7 @@
     {/each}
   </div>
   <Modal
-  cur={openModal}
+  cur={openModal}               
   open={modalIndex !== -1}
   onClose={closeModal}
 />
@@ -308,6 +308,10 @@
       background-repeat: no-repeat;
       background-size: contain;
       position: relative;
+    }
+
+    .row:hover {
+      background-image: url(@base/roadmap/cloud_hover.svg);
     }
     .row .marker {
       width: 2vw;
