@@ -38,12 +38,12 @@
     }
   ];
 
-  let width;
-  let el: any, x: any;
+  let width: any;
+  let el: any, boxes: any = [], focused = 0, x = 0;
 
 	onMount(() => {
 		el.addEventListener('scroll', () => {
-			x = el.scrollLeft;
+			focused = Math.floor(el.scrollLeft / width);
 		});
 	});
 </script>
@@ -59,7 +59,7 @@
     <div class="stat-container">
       {#each rows as { stat, text }, i}
 
-        <div class="card" id="card-{i}">
+        <div bind:this={boxes[i]} class="card" id="card-{i}">
           <img src="{base}/stats/stats{i+1}.png" alt="stats pictures"/>
           <div class="text-container">
             <h1>{stat}</h1>
@@ -71,11 +71,21 @@
   </div>
 
   <div class="nav-container">
-    <img src="{base}/stats/arrow.png" class="left-arrow">
+    <input type="image" src="{base}/stats/arrow.png" class="left-arrow" alt="left arrow" 
+      on:click={() => {
+        if (!boxes[focused - 1]) return;
+        boxes[focused - 1].scrollIntoView({ block: 'nearest', inline: 'center' });
+      }}
+    />
     {#each new Array(6) as _, i}
-      <div class="dot" class:active={(x >= width * i) && (x < width * (i + 1))}></div>
+        <div class="dot" class:active={i === focused}></div>
     {/each}
-    <img src="{base}/stats/arrow.png" class="right-arrow">
+    <input type="image" src="{base}/stats/arrow.png" class="right-arrow" alt="right arrow" 
+      on:click={() => {
+        if (!boxes[focused + 1]) return;
+        boxes[focused + 1].scrollIntoView({ block: 'nearest', inline: 'center' });
+      }}
+    />
   </div>
 
 </div>
