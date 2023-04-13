@@ -7,19 +7,10 @@
   export let small = false;
   export let secondary = false;
   export let fill = false;
-  export let externalLink = false;
-  export let noMarginBottom = false;
-
-  let className = '';
-  if (externalLink) {
-    className += 'transition-in external-link ';
-  }
-  if (noMarginBottom) {
-    className += 'no-margin-bottom ';
-  }
+  export let style = '';
 </script>
 
-<button on:click class:small class:secondary class:fill class={className}>
+<button on:click class:small class:secondary class:fill {style}>
   <slot />
 </button>
 
@@ -34,25 +25,6 @@
     border-radius: 4px;
     border: none;
     cursor: pointer;
-  }
-
-  .external-link {
-    width: 130px;
-    height: 32px;
-    font-size: 10px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 5px;
-  }
-
-  .no-margin-bottom {
-    margin-bottom: 0;
-  }
-
-  .transition-in {
-    animation-duration: 0.2s;
-    animation-name: slidein;
   }
 
   button:hover {
@@ -91,15 +63,5 @@
     width: unset !important;
     padding: 12px 24px;
     margin-bottom: 12px;
-  }
-
-  @keyframes slidein {
-    from {
-      height: 0;
-    }
-
-    to {
-      height: 48px;
-    }
   }
 </style>

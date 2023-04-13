@@ -4,21 +4,8 @@
 -->
 <script lang="ts">
   import { base } from '$app/paths';
-  import { slide } from 'svelte/transition';
-  import Button from './button.svelte';
-
-  const COMMON_IMAGE_PATH = 'roadmap/steps';
-
-  type RowData = {
-    title: string;
-    text: string;
-    imageName: string;
-    imageAlt: string;
-    extraContent: string;
-    resourceTexts: string[];
-    resourceLinks: string[];
-  };
-
+  import type { RowData } from './types';
+  import AccordionItem from '../accordion_item.svelte';
   const rows: RowData[] = [
     {
       title: 'Find',
@@ -105,11 +92,17 @@
     }
   ];
 
-  let rowsExpanded = rows.map(() => false);
+  let rowsExpanded = rows.map(() => true);
 
   function toggleRowExpanded(index: number) {
     const newRowsExpanded = [...rowsExpanded];
     newRowsExpanded[index] = !newRowsExpanded[index];
+    rowsExpanded = newRowsExpanded;
+  }
+
+  function closeRow(index: number) {
+    const newRowsExpanded = [...rowsExpanded];
+    newRowsExpanded[index] = false;
     rowsExpanded = newRowsExpanded;
   }
 </script>
@@ -130,8 +123,8 @@
 
   <div class="roadmap">
     <div class="road-image"><div class="road-line" /></div>
-    {#each rows as { title, text, imageName, imageAlt, extraContent, resourceTexts, resourceLinks }, i}
-      <div class="step_container {title.toLowerCase() + i}">
+    {#each rows as rowData, i}
+      <div class="step_container {rowData.title.toLowerCase() + i}">
         <div class="row">
           <div class="marker">
             <img src="{base}/roadmap/marker.svg" alt="Roadmap marker" />
@@ -142,44 +135,25 @@
             />
           </div>
           <div class="text">
-            <div class="title-row">
-              <h1>{i + 1}. {title}</h1>
-              <div
-                aria-expanded={rowsExpanded[i]}
-                class="toggle-button"
-                on:click={() => {
-                  toggleRowExpanded(i);
-                }}
-                on:keydown={() => {
-                  toggleRowExpanded(i);
-                }}
-              />
+            <div
+              class="title-row"
+              on:click={() => {
+                toggleRowExpanded(i);
+              }}
+              on:keydown={() => {
+                toggleRowExpanded(i);
+              }}
+            >
+              <h1>{i + 1}. {rowData.title}</h1>
+              <div aria-expanded={rowsExpanded[i]} class="toggle-button" />
             </div>
-            <p class:first={i == 0}>{text}</p>
-            {#if rowsExpanded[i]}
-              <div class="accordion-item" transition:slide={{ duration: 200 }}>
-                <img
-                  src="{base}/{COMMON_IMAGE_PATH}/{imageName}"
-                  alt={imageAlt}
-                  class="accordion-image"
-                />
-                <p class:first={i == 0}>{@html extraContent}</p>
-              </div>
-              {#each resourceTexts as resourceText, j}
-                <div class="resource-link">
-                  <a href={resourceLinks[j]} class="link-no-underline"
-                    ><Button externalLink={true} noMarginBottom={true}
-                      ><img
-                        src="{base}/icons/ic_external_link.svg"
-                        alt="External Link"
-                        class="external-link-icon"
-                      />
-                      {resourceText}</Button
-                    ></a
-                  >
-                </div>
-              {/each}
-            {/if}
+            <p class:first={i == 0}>{rowData.text}</p>
+            <AccordionItem
+              {rowData}
+              index={i}
+              expanded={rowsExpanded[i]}
+              onClose={() => closeRow(i)}
+            />
           </div>
         </div>
       </div>
@@ -198,6 +172,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
   }
 
   .road-image {
@@ -513,29 +488,15 @@
       border-left: 10px solid transparent;
       border-right: 10px solid transparent;
       border-top: 10px solid var(--color-secondary-accent);
-      transition: transform 0.2s ease-in;
+      transition: transform 0.2s;
     }
 
     .toggle-button[aria-expanded='true'] {
-      transform: scaleY(-1);
+      transform: rotate(180deg);
     }
 
-    .toggle-button:hover {
+    .title-row:hover {
       cursor: pointer;
-    }
-
-    .accordion-image {
-      width: 100%;
-    }
-
-    .external-link-icon {
-      width: 14px !important;
-      height: 14px !important;
-      margin-bottom: 3px;
-    }
-
-    .link-no-underline {
-      text-decoration: none;
     }
 
     .road-image {
@@ -553,12 +514,8 @@
 
     .road-line {
       height: 100%;
-      width: 4px;
-      background-image: url(@base/roadmap/road_border.png);
-    }
-
-    .resource-link {
-      margin-bottom: 5px;
+      width: 0;
+      border-left: 4px dashed white;
     }
 
     .roadmap .row {
