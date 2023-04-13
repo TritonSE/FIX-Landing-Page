@@ -71,16 +71,17 @@
   </div>
 
   <div class="nav-container">
-    <input type="image" src="{base}/stats/arrow.png" class="left-arrow" alt="left arrow" 
+    <input type="image" src="{base}/stats/arrow.png" class="left-arrow" class:active={!boxes[focused - 1]} alt="left arrow" 
       on:click={() => {
         if (!boxes[focused - 1]) return;
         boxes[focused - 1].scrollIntoView({ block: 'nearest', inline: 'center' });
       }}
+      
     />
     {#each new Array(6) as _, i}
-        <div class="dot" class:active={i === focused}></div>
+    <div class="dot" class:active={i === focused}></div>
     {/each}
-    <input type="image" src="{base}/stats/arrow.png" class="right-arrow" alt="right arrow" 
+    <input type="image" src="{base}/stats/arrow.png" class="right-arrow" class:active={!boxes[focused + 1]} alt="right arrow" 
       on:click={() => {
         if (!boxes[focused + 1]) return;
         boxes[focused + 1].scrollIntoView({ block: 'nearest', inline: 'center' });
@@ -212,8 +213,17 @@
       width: 40%;
     }
 
+
+    .left-arrow.active {
+      filter: invert(99%) sepia(0%) saturate(28%) hue-rotate(211deg) brightness(105%) contrast(69%);
+    }
+
     .right-arrow {
       transform: scaleX(-1);
+    }
+
+    .right-arrow.active {
+      filter: invert(99%) sepia(0%) saturate(28%) hue-rotate(211deg) brightness(105%) contrast(69%);
     }
 
     .dot {
@@ -222,14 +232,13 @@
 		border-radius: 1vw;
 		margin-top: 1vw;
 		margin-right: 1vw;
+    margin-bottom: 0.5vw;
     background: #D8D8D8;
 		float: left;
     }
     .dot.active {
       background: #20525C;
     }
-
-    
   }
 
   @media screen and (max-width: 950px) {
