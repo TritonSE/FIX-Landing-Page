@@ -5,7 +5,7 @@
 <script lang="ts">
   import { base } from '$app/paths';
   import type { RowData } from './types';
-  import AccordionItem from '../accordion_item.svelte';
+  import AccordionItem from './accordion_item.svelte';
   const rows: RowData[] = [
     {
       title: 'Find',
@@ -514,8 +514,8 @@
 
     .road-line {
       height: 100%;
-      width: 0;
-      border-left: 4px dashed white;
+      width: 4px;
+      background-image: url("data:image/svg+xml,%3csvg width='4%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='4%25' height='100%25' fill='none' stroke='white' stroke-width='4' stroke-dasharray='4%2c20' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
     }
 
     .roadmap .row {
