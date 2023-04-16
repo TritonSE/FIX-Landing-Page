@@ -1,3 +1,7 @@
+<!--
+  mobile_stories_carousel.svelte:
+    Cat stories carousel for mobile.
+-->
 <script lang="ts">
   import { onDestroy, onMount } from 'svelte';
 
@@ -19,14 +23,16 @@
 
   /**
    * An object containing the applied scale transforms to each carousel item, used to
-   * easily access and modify each node's scale to scale up the item in the middle of the screen.
-   * Keys are formatted the same way as the keys of "carouselItems", and values are numeric scale transforms to apply to each item.
+   * easily access and modify each node's scale to scale up the item in the middle of
+   * the screen. Keys are formatted the same way as the keys of "carouselItems", and
+   * values are numeric scale transforms to apply to each item.
    */
   let nodeTransforms: Record<string, number> = {};
 
   /**
    * The previous "scrollLeft" value of the carousel container, from the last time
-   * the container was scrolled. Used in scroll listener to determine scroll speed & direction of container.
+   * the container was scrolled. Used in scroll listener to determine the scroll speed
+   * and direction of the container.
    */
   let lastScrollLeft: number | null = null;
 
@@ -37,27 +43,32 @@
   let lastWrapTimestampMS = 0;
 
   /**
-   * The timeout (time delay) set to wrap the carousel items around. The purpose of the delay is
-   * to wait for the scrolling or auto-snapping to naturally finish before wrapping, providing a smoother UX.
+   * The timeout (time delay) set to wrap the carousel items around. The purpose
+   *  of the delay is to wait for the scrolling or auto-snapping to naturally finish
+   *  before wrapping, providing a smoother UX.
    */
   let wrapTimeout: number | null = null;
 
   /**
-   * The timeout set to check if the carousel container is finished scrolling, and wrap it if it is.
+   * The timeout set to check if the carousel container is finished scrolling,
+   * and wrap it if it is.
    */
   let periodicWrapCheckTimeout: number | null = null;
 
   /**
-   * The scrollLeft of the carousel container the last time the periodic wrap check was called.
-   * Compared from one call to the next to determine when the difference is 0, meaning the container
-   * is done with its natural snapping/scrolling and can be wrapped.
+   * The scrollLeft of the carousel container the last time the periodic wrap
+   * check was called. Compared from one call to the next to determine when the
+   * difference is 0, meaning the container is done with its natural
+   * snapping/scrolling and can be wrapped.
    */
   let lastWrapCheckScrollLeft: number | null = null;
 
   /**
-   * Checks whether the carousel container is finished moving, and if it is, wrap it around.
+   * Checks whether the carousel container is finished moving, and if it is,
+   * wrap it around.
    *
-   *  @param wrapCallback Callback function to wrap the container, called once the movement is finished
+   *  @param wrapCallback Callback function to wrap the container, called once
+   *  the movement is finished
    */
   function wrapIfNotMoving(wrapCallback: () => void) {
     if (
@@ -76,7 +87,8 @@
   }
 
   /**
-   * Calculates the scale that should be applied to a given carousel item, in order to scale the items proportionally to how close they are to the center.
+   * Calculates the scale that should be applied to a given carousel item,
+   * in order to scale the items proportionally to how close they are to the center.
    *
    * @param carouselItem The item to calculate the scale for
    * @param containerCenterX The x-coordinate of the container's center on the screen
@@ -144,7 +156,9 @@
   }
 
   /**
-   * Determines the ID of a carousel item based on the cat name and index. This way, an ID uniquely identifies one of the 9 items.
+   * Determines the ID of a carousel item based on the cat name and index.
+   * This way, an ID uniquely identifies one of the 9 items.
+   *
    * @param name The name of the cat for this item
    * @param index The index of the set of items this item is in
    *
@@ -159,7 +173,8 @@
    *
    * @param parent The parent node (carousel items container)
    * @param child The child node (carousel item)
-   * @param next Whether to get the next item, i.e. immediately to the right (if true) or previous item, i.e. immediately to the left (if false)
+   * @param next Whether to get the next item, i.e. immediately to the right (if true)
+   * or previous item, i.e. immediately to the left (if false)
    *
    * @return The immediate neighbor of the carousel item node in the given direction
    */
@@ -170,7 +185,8 @@
   }
 
   /**
-   * Calculates the horizontal distance, in pixels, between 2 nodes. Returns a positive distance if node 1 is farther right, and negative if node 2 is farther right
+   * Calculates the horizontal distance, in pixels, between 2 nodes. Returns a positive distance
+   * if node 1 is farther right, and negative if node 2 is farther right
    * @param node1 The first node
    * @param node2 The second node
    *
@@ -186,7 +202,8 @@
 
   /**
    * Scroll listener for when the carousel container is scrolled. Does the following:
-   * 1. If the container is near the left or right end, and almost done scrolling, wraps it around to produce an infinite scroll effect
+   * 1. If the container is near the left or right end, and almost done scrolling,
+   * wraps it around to produce an infinite scroll effect
    * 2. Scales all items in the carousel proportional to their proximity to the center of the screen
    */
   function handleCarouselContainerScrollontainer(e: Event) {

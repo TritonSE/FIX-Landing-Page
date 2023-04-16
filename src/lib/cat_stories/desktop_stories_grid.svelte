@@ -1,3 +1,7 @@
+<!--
+  desktop_stories_grid.svelte:
+    Grid display of cat stories for desktop & tablet.
+-->
 <script lang="ts">
   import { base } from '$app/paths';
   import CatImage from './cat_image.svelte';
@@ -6,7 +10,8 @@
   import Paw from './paw.svelte';
 
   /**
-   * Index of the carousel item for which the overlay should be open. Is -1 if the overlay is not open.
+   * Index of the carousel item for which the overlay should be open.
+   * -1 if the overlay is not open.
    * Only used on desktop and tablet, not mobile.
    */
   let openOverlayIndex = -1;
