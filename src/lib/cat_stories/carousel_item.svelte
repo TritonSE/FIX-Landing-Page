@@ -1,3 +1,7 @@
+<!--
+  carousel_item.svelte:
+    A card in the Cat Stories carousel for mobile.
+-->
 <script lang="ts">
   import CatImage from './cat_image.svelte';
   import Paw from './paw.svelte';
@@ -5,11 +9,30 @@
 
   import { base } from '$app/paths';
 
+  /**
+   * Data about the cat to display
+   */
   export let catData: CatData;
+
+  /**
+   * Index of set of carousel items this item is in. The items are repeated 3
+   * times, so this index is 0, 1, or 2, depending on which of those 3 sets it
+   * is in.
+   */
   export let index: number;
+
+  /**
+   * An object containing all items in the carousel, used to bind a reference
+   * to this item in that object.
+   */
+  export let carouselItems: Record<string, HTMLElement>;
 </script>
 
-<div class="wrapper" id="{catData.name}-{index}">
+<div
+  class="wrapper"
+  bind:this={carouselItems[`${catData.name}-${index}`]}
+  id="{catData.name}-{index}"
+>
   <div class="column large-gap">
     <div class="cat-image-container">
       <CatImage image_url={catData.mobile_image_path} image_alt={catData.name} />
@@ -47,6 +70,7 @@
     display: flex;
     flex-direction: row;
     gap: 15px;
+    text-align: center;
   }
 
   .cat-image-container {
