@@ -13,11 +13,11 @@
 
   const rows: RowData[] = [
     {
-      stat: '1',
+      stat: '#1',
       text: 'largest clinic for homeless cats'
     },
     {
-      stat: '115k',
+      stat: '220k',
       text: 'total cats spayed or neutered'
     },
     {
@@ -34,7 +34,7 @@
     },
     {
       stat: '35%',
-      text: 'Cats acquire as strays'
+      text: 'Cats acquired as strays'
     }
   ];
 
@@ -59,11 +59,11 @@
     <div class="stat-container">
       {#each rows as { stat, text }, i}
 
-        <div bind:this={boxes[i]} class="card" id="card-{i}">
+        <div bind:this={boxes[i]} class="card">
           <img src="{base}/stats/stats{i+1}.png" alt="stats pictures"/>
           <div class="text-container">
             <h1>{stat}</h1>
-            <p>{text}</p>
+            <p id="text-{i}">{text}</p>
           </div>
         </div>
       {/each}
@@ -71,17 +71,17 @@
   </div>
 
   <div class="nav-container">
-    <input type="image" src="{base}/stats/arrow.png" class="left-arrow" class:active={!boxes[focused - 1]} alt="left arrow" 
+    <input type="image" src="{base}/stats/arrow.png" class="left-arrow" alt="left arrow" class:active={!boxes[focused - 1]}
       on:click={() => {
         if (!boxes[focused - 1]) return;
         boxes[focused - 1].scrollIntoView({ block: 'nearest', inline: 'center' });
       }}
-      
+
     />
-    {#each new Array(6) as _, i}
+    {#each new Array(rows.length) as _, i}
     <div class="dot" class:active={i === focused}></div>
     {/each}
-    <input type="image" src="{base}/stats/arrow.png" class="right-arrow" class:active={!boxes[focused + 1]} alt="right arrow" 
+    <input type="image" src="{base}/stats/arrow.png" class="right-arrow" class:active={!boxes[focused + 1]} alt="right arrow"
       on:click={() => {
         if (!boxes[focused + 1]) return;
         boxes[focused + 1].scrollIntoView({ block: 'nearest', inline: 'center' });
@@ -100,7 +100,6 @@
     }
 
     #mission-statement {
-      font-family: 'Avenir';
       margin: 6rem 9rem;
 
       font-style: normal;
@@ -117,16 +116,13 @@
     .flex-container {
       justify-content: space-between;
       align-items: center;
-      margin: 0 12.5rem 4rem;
       color: var(--color-secondary-accent);
-      
+
       overscroll-behavior: contain;
-      scroll-snap-type: x mandatory;
-
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-
       overflow-x: scroll;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
     }
 
     /* https://stackoverflow.com/questions/47505426/html-horizontal-scrollbar-for-card-divs */
@@ -140,9 +136,7 @@
       position: relative;
       max-width: 100%;
       padding: .10rem;
-      flex-basis: 33.333%;
-      flex-grow: 0;
-      flex-shrink: 0;
+      flex: 0 0 33.333%;
       margin-right: 7vw;
       margin-left: 2.5vw;
 
@@ -170,14 +164,13 @@
     }
 
     .text-container h1 p {
-      font-family: 'Rubik', sans-serif !important;
       margin: 0;
     }
 
     .text-container h1 {
       font-style: normal;
       font-weight: 700;
-      font-size: 20vw;
+      font-size: 17vw;
       line-height: 100%;
 
       text-align: center;
@@ -188,11 +181,10 @@
 
     .text-container p {
       position: absolute;
-      left: 11.5%;
+      left: 9.5%;
       top: 50%;
-      width: 44.2vw;
+      width: 48.3vw;
 
-      font-family: 'Avenir' !important; 
       font-style: normal;
       font-weight: 500;
       font-size: 4.5vw;
@@ -203,6 +195,10 @@
       word-wrap: break-word;
 
       color: #FFFFFF;
+    }
+
+    .text-container #text-5 {
+      width: 46.4vw;
     }
 
     .nav-container {
@@ -227,14 +223,14 @@
     }
 
     .dot {
-		width: 2vw;
-		height: 2vw;
-		border-radius: 1vw;
-		margin-top: 1vw;
-		margin-right: 1vw;
-    margin-bottom: 0.5vw;
-    background: #D8D8D8;
-		float: left;
+      width: 2vw;
+      height: 2vw;
+      border-radius: 1vw;
+      margin-top: 1vw;
+      margin-right: 1vw;
+      margin-bottom: 0.5vw;
+      background: #D8D8D8;
+      float: left;
     }
     .dot.active {
       background: #20525C;
@@ -252,11 +248,7 @@
 
   @media screen and (max-width: 650px) {
     .flex-container {
-      display: block;
-      margin: 0 0 4rem 0;
-    }
-    .stat-container {
-      margin-top: 4rem;
+      margin: 0 0 30vw 0;
     }
   }
 </style>
