@@ -7,7 +7,7 @@
   import { onMount, onDestroy } from 'svelte';
   let sections = [
     {
-      number: '1',
+      number: '#1',
       subtitle: 'largest clinic for homeless cats',
       picture: 'statsv2/statImage1.png'
     },
@@ -40,23 +40,9 @@
 
   let screenWidth: number;
 
-  const updateScreenWidth = () => {
-    screenWidth = window.innerWidth;
-  };
-
-  onMount(() => {
-    if (typeof window !== 'undefined') {
-      window.addEventListener('resize', updateScreenWidth);
-      updateScreenWidth();
-    }
-  });
-
-  onDestroy(() => {
-    if (typeof window !== 'undefined') {
-      window.removeEventListener('resize', updateScreenWidth);
-    }
-  });
 </script>
+
+<svelte:window bind:innerWidth={screenWidth} />
 
 <h1>
   FixNation’s mission is to reduce the population of homeless cats by sterilizing as many as
@@ -68,7 +54,7 @@
     <div class="slider">
       {#each sections as section}
         <section class="section">
-          <img src={section.picture} />
+          <img src={section.picture} alt={section.alt} />
           <span class="rectangle" />
           <div class="text">
             <div class="header">{section.number}</div>
@@ -132,7 +118,7 @@
     width: 14rem;
     height: 14rem;
     margin: 1rem;
-    background: #008e7e;
+    background: var(--color-primary);
     opacity: 0.75;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 4px;
