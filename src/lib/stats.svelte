@@ -30,11 +30,11 @@
     },
     {
       stat: '89%',
-      text: "Profits go directly to FixNation programs"
+      text: "profits go directly to FixNation programs"
     },
     {
       stat: '35%',
-      text: 'Cats acquired as strays'
+      text: 'cats acquired as strays'
     }
   ];
 
@@ -205,7 +205,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin: -3% auto 5%;
+      margin: -12% auto 5%;
       width: 40%;
     }
 
