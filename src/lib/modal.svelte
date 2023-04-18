@@ -96,7 +96,7 @@
           </div>
           <div class="pages">
             <button
-              class="vbutton"
+              class="lvbutton {cur === 0 ? 'lvectActive' : ''}"
               on:click={async () => {
                 if (cur > 0) {
                   dir = false;
@@ -105,7 +105,6 @@
                 }
               }}
             >
-              <img src="/modal/lvector.png" class="lvector-img" alt="lvector" />
             </button>
             {#each new Array(8) as _, i}
               <button
@@ -119,7 +118,7 @@
               />
             {/each}
             <button
-              class="vbutton"
+              class="rvbutton {cur === entries.length - 1 ? 'rvectActive' : ''}"
               on:click={async () => {
                 if (cur < entries.length - 1) {
                   dir = true;
@@ -128,7 +127,6 @@
                 }
               }}
             >
-              <img src="/modal/rvector.png" class="rvector-img" alt="lvector" />
             </button>
           </div>
         </div>
@@ -257,40 +255,42 @@
     align-items: center;
     margin-right: 0px;
     padding-bottom: 2vh;
+    position: relative;
   }
 
-  .pages img {
-    cursor: pointer;
-  }
-
-  .lvector-img {
-    padding-right: 0.6rem;
-    padding-left: 0rem;
-    height: auto;
-    width: 0.7vw;
-    border: '0';
-  }
-
-  .rvector-img {
-    padding-left: 0.6vw;
-    padding-right: 0rem;
-    height: auto;
-    width: 0.7vw;
-  }
-
-  .vbutton {
+  .lvbutton {
+    background-image: url(@base/modal/lvector.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 1rem;
+    height: 1rem;
     border: none;
     appearance: none;
     background-color: inherit;
     align-items: center;
+    cursor: pointer;
+  }
+
+  .rvbutton {
+    background-image: url(@base/modal/rvector.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    width: 1rem;
+    height: 1rem;
+    border: none;
+    appearance: none;
+    background-color: inherit;
+    cursor: pointer;
   }
 
   .ellipse {
     display: block;
     cursor: pointer;
-    height: 1vw;
-    width: 1vw;
-    margin: 0.7vh;
+    height: .7rem;
+    width: .1rem;
+    margin: .3rem;
     background-color: #bbb;
     border-radius: 50%;
     transition: background-color 0.6s ease;
@@ -300,6 +300,14 @@
   .active,
   .ellipse:hover {
     background-color: #717171;
+  }
+
+  .lvectActive{
+    background-image: url(@base/modal/lightlvector.png);
+  }
+
+  .rvectActive{
+    background-image: url(@base/modal/lightrvector.png);
   }
 
   @font-face {
