@@ -1,3 +1,8 @@
+<!-- 
+   about.svelte:
+    A component that provides an overview of 
+    FixNation's initiatives and impact on the community.
+-->
 <script>
   import header_img from '../../static/about/about_header.png';
   import { onMount } from 'svelte';
@@ -99,7 +104,7 @@
   });
 </script>
 
-<div class="web-view">
+<div class="desktop-view">
   <div class="about-container">
     <div class="text-wrapper">
       <h3>Thousands of cats are needlessly euthanized in Los Angeles each year,</h3>
@@ -150,7 +155,7 @@
           sterilizing as many as possible and allowing their numbers to naturally decline over time.
         </p>
       </div>
-      <div id="logo-container">
+      <div class="logo-container">
         <img id="logo-blob" src="/about/logo_blob.svg" alt="blob accent" />
         <img id="logo-img" src="/about/logo.svg" alt="Fix Nation logo" />
       </div>
@@ -160,7 +165,9 @@
 
 <div class="mobile-view">
   <div class="about-container">
-    <img class="about-header" src="/about/mobile-about.png" alt="cat header" />
+    <div id="about-img">
+      <img class="about-header" src="/about/mobile-about.png" alt="cat header" />
+    </div>
     <div class="text-wrapper">
       <h3>Thousands of cats are<br />needlessly euthanized in Los<br />Angeles each year,</h3>
       <p>
@@ -191,12 +198,17 @@
         medication and flea treatment.
       </p>
     </div>
-    <img id="mobile-blob" src="/about/mobile_blob.svg" alt="mobile blob" />
+    <div class="logo-container">
+      <img id="mobile-logo" src="/about/mobile-logo.svg" alt="Fix Nation logo" />
+    </div>
     <div class="mission-container">
-      <p>
-        Our mission is to humanely reduce the population of homeless cats in Los Angeles by
-        sterilizing as many as possible and allowing their numbers to naturally decline over time.
-      </p>
+      <img id="mobile-blob" src="/about/mobile_blob.svg" alt="mobile blob" />
+      <div class="mission-text">
+        <p>
+          Our mission is to humanely reduce the population of homeless cats in Los Angeles by
+          sterilizing as many as possible and allowing their numbers to naturally decline over time.
+        </p>
+      </div>
     </div>
   </div>
 </div>
@@ -207,14 +219,14 @@
     position: relative;
   }
 
-  .web-view .mission-container {
+  .desktop-view .mission-container {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-around;
   }
 
-  #logo-container {
+  .logo-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -242,13 +254,17 @@
     z-index: 1;
   }
 
-  .web-view .blob {
+  #mobile-logo {
+    text-align: center;
+  }
+
+  .desktop-view .blob {
     grid-column: 1 / span 8;
     grid-row: 1;
     padding-top: 15%;
   }
 
-  .web-view .img {
+  .desktop-view .img {
     padding-left: 15%;
     grid-row: 1;
     grid-column: 4/-1;
@@ -287,13 +303,13 @@
     margin-bottom: 5rem;
   }
 
-  .about-container {
+  .desktop-view .about-container {
     display: flex;
     flex-direction: column;
     align-items: center;
   }
 
-  .web-view .text-wrapper {
+  .desktop-view .text-wrapper {
     margin: 2rem 0rem 1rem 0rem;
     text-align: left;
     width: 60vw;
@@ -304,17 +320,24 @@
   }
 
   .mobile-view .about-container {
-    margin-top: 5rem;
+    display: flex;
+    flex-direction: column-reverse;
   }
 
-  .mobile-view .text-wrapper {
+  .mobile-view .text-wrapper,
+  .mobile-view .mission-text {
     position: absolute;
     text-align: center;
-    bottom: -20rem;
     color: var(--color-white);
+    margin-bottom: 6rem;
   }
 
   .mobile-view .about-header {
+    position: relative;
+    margin-top: 6rem;
+  }
+
+  .mobile-view #mobile-blob {
     position: relative;
   }
 
@@ -331,13 +354,27 @@
     margin-bottom: 1rem;
   }
 
-  #mobile-blob {
-    position: relative;
+  .mobile-view .about-container p,
+  h3 {
+    size: 20vw;
   }
 
   .mobile-view .mission-container {
-    position: absolute;
-    top: 125rem;
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  .mobile-view .mission-text {
+    font-weight: bold;
+    margin-bottom: 30vw;
+  }
+
+  .mobile-view .logo-container {
+    margin: 2rem;
+  }
+
+  .mobile-view .img {
+    margin-top: 2rem;
   }
 
   @media only screen and (max-width: 640px) {
@@ -352,17 +389,6 @@
     #mission-par {
       font-size: 16px;
     }
-    /* .blob,
-  .img,  
-  #logo-img {
-    max-width: 80%;
-    max-height: 80%;
-  }
-
-  #logo-blob { 
-    max-width: 100%;
-    max-height: 100%;
-  } */
 
     .text {
       margin: 2rem;
@@ -381,15 +407,10 @@
     #mission-par {
       font-size: 28px;
     }
-    /* .blob,
-  .img {
-    max-width: 100%;
-    max-height: 100%;
-  } */
   }
 
   @media only screen and (max-width: 430px) {
-    .web-view {
+    .desktop-view {
       display: none;
     }
 
@@ -402,6 +423,15 @@
     #logo-blob {
       max-width: 75%;
       max-height: 75%;
+    }
+
+    #mobile-blob {
+      width: 100%;
+    }
+
+    p,
+    h3 {
+      font-size: 4vw;
     }
   }
 </style>
