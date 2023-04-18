@@ -4,42 +4,45 @@
 -->
 <script lang="ts">
   import { base } from '$app/paths';
-  import { onMount, onDestroy } from 'svelte';
   let sections = [
     {
       number: '#1',
       subtitle: 'largest clinic for homeless cats',
-      picture: 'statsv2/statImage1.png'
+      picture: 'statsv2/statImage1.png',
+      alt: 'Sedated cats'
     },
     {
-      number: '115k',
+      number: '220k',
       subtitle: 'total cats spayed or neutered',
-      picture: 'statsv2/statImage2.png'
-    },
-    {
-      number: '12k',
-      subtitle: 'TNR volunteers trained',
-      picture: 'statsv2/statImage3.png'
-    },
-    {
-      number: '75%',
-      subtitle: 'cats are feral',
-      picture: 'statsv2/statImage4.png'
-    },
-    {
-      number: '89%',
-      subtitle: 'profits go directly to FixNation programs',
-      picture: 'statsv2/statImage5.png'
+      picture: 'statsv2/statImage2.png',
+      alt: 'Cat on rug'
     },
     {
       number: '21%',
       subtitle: 'of cats abandoned because their of their residency',
+      picture: 'statsv2/statImage3.png',
+      alt: 'Momma cat with her kittens'
+    },
+    {
+      number: '12k',
+      subtitle: 'TNR volenteers trained',
+      picture: 'statsv2/statImage4.png',
+      alt: 'FixNation staff holding a cat'
+    },
+    {
+      number: '89%',
+      subtitle: 'profits go directly to FixNation programs',
+      picture: 'statsv2/statImage5.png',
+      alt: 'Staff in front of FixNation building'
+    },
+    {
+      number: '35%',
+      subtitle: 'cats acquired as strays',
       picture: 'statsv2/statImage6.png'
     }
   ];
 
   let screenWidth: number;
-
 </script>
 
 <svelte:window bind:innerWidth={screenWidth} />
