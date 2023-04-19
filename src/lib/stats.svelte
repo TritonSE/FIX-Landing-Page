@@ -30,7 +30,7 @@
     },
     {
       stat: '89%',
-      text: "profits go directly to FixNation programs"
+      text: 'profits go directly to FixNation programs'
     },
     {
       stat: '35%',
@@ -39,13 +39,16 @@
   ];
 
   let width: any;
-  let el: any, boxes: any = [], focused = 0, x = 0;
+  let el: any,
+    boxes: any = [],
+    focused = 0,
+    x = 0;
 
-	onMount(() => {
-		el.addEventListener('scroll', () => {
-			focused = Math.floor(el.scrollLeft / width);
-		});
-	});
+  onMount(() => {
+    el.addEventListener('scroll', () => {
+      focused = Math.floor(el.scrollLeft / width);
+    });
+  });
 </script>
 
 <div bind:clientWidth={width} class="container">
@@ -55,12 +58,10 @@
     the humane care of homeless cats.
   </p>
   <div bind:this={el} class="flex-container">
-
     <div class="stat-container">
       {#each rows as { stat, text }, i}
-
         <div bind:this={boxes[i]} class="card">
-          <img src="{base}/stats/stats{i+1}.png" alt="stats pictures"/>
+          <img src="{base}/stats/stats{i + 1}.png" alt="stats pictures" />
           <div class="text-container">
             <h1>{stat}</h1>
             <p id="text-{i}">{text}</p>
@@ -71,24 +72,32 @@
   </div>
 
   <div class="nav-container">
-    <input type="image" src="{base}/stats/arrow.png" class="left-arrow" alt="left arrow" class:active={!boxes[focused - 1]}
+    <input
+      type="image"
+      src="{base}/stats/arrow.png"
+      class="left-arrow"
+      alt="left arrow"
+      class:active={!boxes[focused - 1]}
       on:click={() => {
         if (!boxes[focused - 1]) return;
         boxes[focused - 1].scrollIntoView({ block: 'nearest', inline: 'center' });
       }}
-
     />
     {#each new Array(rows.length) as _, i}
-    <div class="dot" class:active={i === focused}></div>
+      <div class="dot" class:active={i === focused} />
     {/each}
-    <input type="image" src="{base}/stats/arrow.png" class="right-arrow" class:active={!boxes[focused + 1]} alt="right arrow"
+    <input
+      type="image"
+      src="{base}/stats/arrow.png"
+      class="right-arrow"
+      class:active={!boxes[focused + 1]}
+      alt="right arrow"
       on:click={() => {
         if (!boxes[focused + 1]) return;
         boxes[focused + 1].scrollIntoView({ block: 'nearest', inline: 'center' });
       }}
     />
   </div>
-
 </div>
 
 <style>
@@ -135,7 +144,7 @@
     .card {
       position: relative;
       max-width: 100%;
-      padding: .10rem;
+      padding: 0.1rem;
       flex: 0 0 33.333%;
       margin-right: 7vw;
       margin-left: 2.5vw;
@@ -158,7 +167,7 @@
       height: 57vw;
       width: 57vw;
 
-      background: rgba(0,142,126,0.75);
+      background: rgba(0, 142, 126, 0.75);
       box-shadow: 0px 0.3vw 0.3vw rgba(0, 0, 0, 0.25);
       border-radius: 1.2vw;
     }
@@ -176,7 +185,7 @@
       text-align: center;
       letter-spacing: 0.02em;
 
-      color: #FFFFFF;
+      color: #ffffff;
     }
 
     .text-container p {
@@ -194,7 +203,7 @@
       letter-spacing: 0.02em;
       word-wrap: break-word;
 
-      color: #FFFFFF;
+      color: #ffffff;
     }
 
     .text-container #text-5 {
@@ -208,7 +217,6 @@
       margin: -12% auto 5%;
       width: 40%;
     }
-
 
     .left-arrow.active {
       filter: invert(99%) sepia(0%) saturate(28%) hue-rotate(211deg) brightness(105%) contrast(69%);
@@ -229,11 +237,11 @@
       margin-top: 1vw;
       margin-right: 1vw;
       margin-bottom: 0.5vw;
-      background: #D8D8D8;
+      background: #d8d8d8;
       float: left;
     }
     .dot.active {
-      background: #20525C;
+      background: #20525c;
     }
   }
 
