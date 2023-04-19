@@ -9,7 +9,7 @@
   const rows: RowData[] = [
     {
       title: 'Find',
-      text: 'Find a homeless cat who needs your help',
+      text: 'Find a homeless cat who needs your help.',
       imageName: 'find.png',
       imageAlt: '',
       extraContent:
@@ -19,7 +19,7 @@
     },
     {
       title: 'Feed',
-      text: 'Feed the cat in the afternoon or evening',
+      text: 'Feed the cat in the afternoon or evening.',
       imageName: 'feed.png',
       imageAlt: '',
       extraContent:
@@ -52,7 +52,7 @@
     },
     {
       title: 'Hold',
-      text: 'Hold the cat overnight until surgery the next day',
+      text: 'Hold the cat overnight until surgery the next day.',
       imageName: 'hold.png',
       imageAlt: '',
       extraContent:
@@ -82,7 +82,7 @@
     },
     {
       title: 'Return',
-      text: 'Return the cat to where it was trapped',
+      text: 'Return the cat to where it was trapped.',
       imageName: 'return.png',
       imageAlt: '',
       extraContent:
