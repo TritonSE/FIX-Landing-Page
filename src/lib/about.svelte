@@ -4,7 +4,6 @@
     FixNation's initiatives and impact on the community.
 -->
 <script>
-  import header_img from '../../static/about/about_header.png';
   import { onMount } from 'svelte';
   import lax from 'lax.js';
 
