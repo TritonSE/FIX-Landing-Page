@@ -177,10 +177,10 @@
       </p>
     </div>
   </div>
-  <div>
-    <div id="volunteer-container">
-      <img class="img" src="/about/top_image.png" alt="volunteering" />
-      <h3>“We need to do something!”</h3>
+  <div id="volunteer-container">
+    <img class="img" src="/about/top_image.png" alt="volunteering" />
+    <div class="text-block">
+      <h3 class="title">“We need to do something!”</h3>
       <p>
         Eager to find a solution to the problem, Karn Myers and her husband Mark Dodge launched
         FixNation--the first full-time, permanent spay/neuter facility in Los Angeles. Now, their
@@ -188,9 +188,11 @@
         similar situations on a global scale.
       </p>
     </div>
-    <div id="cats-container">
-      <img class="img" src="/about/bottom_image.png" alt="love cats" />
-      <h3>For the love of cats</h3>
+  </div>
+  <div id="cats-container">
+    <img class="img" src="/about/bottom_image.png" alt="love cats" />
+    <div class="text-block">
+      <h3 class="title">For the love of cats</h3>
       <p>
         At the heart of our high-volume, high-quality spay/neuter clinic is an experienced and
         expert team that genuinely cares about cats. In addition to free spay/neuter surgery, every
@@ -198,17 +200,17 @@
         medication and flea treatment.
       </p>
     </div>
-    <div class="logo-container">
-      <img id="mobile-logo" src="/about/mobile-logo.svg" alt="Fix Nation logo" />
-    </div>
-    <div class="mission-container">
-      <img id="mobile-blob" src="/about/mobile_blob.svg" alt="mobile blob" />
-      <div class="mission-text">
-        <p>
-          Our mission is to humanely reduce the population of homeless cats in Los Angeles by
-          sterilizing as many as possible and allowing their numbers to naturally decline over time.
-        </p>
-      </div>
+  </div>
+  <div class="logo-container">
+    <img id="mobile-logo" src="/about/mobile-logo.svg" alt="Fix Nation logo" />
+  </div>
+  <div class="mission-container">
+    <img id="mobile-blob" src="/about/mobile_blob.svg" alt="mobile blob" />
+    <div class="mission-text">
+      <p>
+        Our mission is to humanely reduce the population of homeless cats in Los Angeles by
+        sterilizing as many as possible and allowing their numbers to naturally decline over time.
+      </p>
     </div>
   </div>
 </div>
@@ -256,6 +258,7 @@
 
   #mobile-logo {
     text-align: center;
+    width: 25vw;
   }
 
   .desktop-view .blob {
@@ -311,7 +314,6 @@
 
   .desktop-view .text-wrapper {
     margin: 2rem 0rem 1rem 0rem;
-    text-align: left;
     width: 60vw;
   }
 
@@ -349,6 +351,14 @@
     flex-direction: column;
   }
 
+  .mobile-view .text-block {
+    max-width: 90%;
+  }
+
+  .mobile-view .text-block h3 {
+    margin-left: 1rem;
+  }
+
   .mobile-view p {
     margin: 0rem 1rem;
     margin-bottom: 1rem;
@@ -364,16 +374,20 @@
     flex-direction: column-reverse;
   }
 
-  .mobile-view .mission-text {
+  .mobile-view .mission-text p {
     font-weight: bold;
-    margin-bottom: 30vw;
+    font-size: 5vw !important;
+  }
+
+  .mobile-view .mission-text {
+    margin-bottom: 20vw;
   }
 
   .mobile-view .logo-container {
     margin: 2rem;
   }
 
-  .mobile-view .img {
+  .mobile-view #cats-container .img {
     margin-top: 2rem;
   }
 
@@ -421,17 +435,20 @@
     .img,
     #logo-img,
     #logo-blob {
-      max-width: 75%;
-      max-height: 75%;
+      max-width: 80%;
+      max-height: 80%;
     }
 
     #mobile-blob {
       width: 100%;
     }
 
-    p,
-    h3 {
+    p {
       font-size: 4vw;
+    }
+
+    h3 {
+      font-size: 6vw;
     }
   }
 </style>
