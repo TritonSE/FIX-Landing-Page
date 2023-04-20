@@ -515,7 +515,7 @@
     .road-line {
       height: 100%;
       width: 4px;
-      background-image: url("data:image/svg+xml,%3csvg width='4%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='4%25' height='100%25' fill='none' stroke='white' stroke-width='4' stroke-dasharray='4%2c20' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
+      background-image: url("data:image/svg+xml,%3csvg width='0%25' height='5000%25' xmlns='http://www.w3.org/2000/svg'%3e%3cline x1='0' x2='0' y1='0' y2='5000' fill='none' stroke='white' stroke-width='6' stroke-dasharray='4%2c20' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
     }
 
     .roadmap .row {
