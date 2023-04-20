@@ -255,6 +255,10 @@
     z-index: 1;
   }
 
+  #mission-par {
+    font-weight: bold;
+  }
+
   #mobile-logo {
     text-align: center;
     width: 25vw;
@@ -291,7 +295,7 @@
   }
 
   .text {
-    width: 450px;
+    width: 45vw;
   }
 
   #flex-container {
