@@ -56,7 +56,7 @@
   {#if screenWidth > 675}
     <div class="slider">
       {#each sections as section}
-        <section class="section">
+        <section class="section" class:active={screenWidth >= 2200}>
           <img src={section.picture} alt={section.alt} />
           <span class="rectangle" />
           <div class="text">
@@ -95,6 +95,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
+  }
+  section.active {
+      min-width: 16.65vw;
   }
   img {
     width: 20rem;
