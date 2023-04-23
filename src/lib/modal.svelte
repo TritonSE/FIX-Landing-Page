@@ -1,77 +1,106 @@
-<script>
+<!--
+  modal.svelte:
+    A modal slideshow with Trap-Neuter-Return information.
+-->
+<script lang="ts">
   export let open = false;
   import { fly } from 'svelte/transition';
   import { tick } from 'svelte';
+  import { base } from '$app/paths';
 
   export let cur = 0;
   let dir = false;
+  export let onclose: () => void;
   let entries = [
     {
       title: 'step 1: FIND',
       subtitle: 'Find a homeless cat who needs your help.',
-      info: 'Feed kittens a teapoon of wet food at 6 am on surgery day; no food or water for older cats. Cover the car seats with plastic and securely place the traps on top. Arrive at FixNation between 7-8.30 am. Leave kitty in car and wait in line to check-in. FixNation will spay/neuter the cat and provide vaccines, flea treatment, fluids, pain medication and an ear tip. Pick-up from 3-4.30 pm.',
-      picture: '/modal/cat1.png'
+      info: 'Is it a cat or a kitten? Does it look injured, ill or hungry? Does it have an ear tip (a sign that it’s a community cat)? Is it friendly? Here are some tips to help you figure out if the kitty is homeless.',
+      picture: '/modal/cat1.png',
+      resourceTexts: ['Tips'],
+      resourceLinks: ['https://fixnation.org/about-tnr/faqs/']
     },
     {
       title: 'step 2: FEED',
       subtitle: 'Feed the cat in the afternoon or evening.',
       info: 'Get kitty on a regular feeding schedule, putting out dry food and water each afternoon or evening. This makes trapping a lot easier later!',
-      picture: '/modal/cat2.png'
+      picture: '/modal/cat2.png',
+      resourceTexts: ['DIY Feeding Station'],
+      resourceLinks: ['https://fixnation.org/shelters-feeding-stations/']
     },
     {
       title: 'step 3: PREP',
       subtitle: 'Get a loaner trap from FixNation and book an appointment.',
       info: 'Watch our online training video with easy step-by-step instructions, then borrow a special humane trap and cloth cover from our clinic. Make an appointment online. You’re all set!',
-      picture: '/modal/cat3.png'
+      picture: '/modal/cat3.png',
+      resourceTexts: ['Training Videos', 'Make Appointment'],
+      resourceLinks: [
+        'https://www.youtube.com/watch?v=JgatHzlxnv0&t=2s',
+        'https://fixnation.org/about-tnr/free-feral-application/'
+      ]
     },
     {
       title: 'step 4: TRAP',
       subtitle: 'Set trap, wait, trap cat and rejoice!',
       info: 'Trap between 4 pm to 11.30 pm the evening before your appointment. Set food on some tin foil and place under the trap (not inside). Keep an eye on the trap – never leave it unattended – and wait for kitty to go inside. Be patient! This is the first step towards a happier and healthier life for your feline friend. ',
-      picture: '/modal/cat4.png'
+      picture: '/modal/cat4.png',
+      resourceTexts: ['TNR'],
+      resourceLinks: ['https://www.youtube.com/watch?v=IarsSTLUdTw']
     },
     {
       title: 'step 5: HOLD',
       subtitle: 'Hold the cat overnight until surgery the next day',
       info: 'Congrats, you got the cat! Cover the trap and place it in a warm, quiet place overnight (like a bathroom or a heated garage). Check the cat once an hour, every hour, until bedtime.',
-      picture: '/modal/cat5.png'
+      picture: '/modal/cat5.png',
+      resourceTexts: ['Pre-op Tips'],
+      resourceLinks: ['https://fixnation.org/about-tnr/pre-post-surgery-instructions/']
     },
     {
       title: 'step 6: FIX',
       subtitle: 'Take the cat to get fixed (for free!).',
       info: 'Feed kittens a teapoon of wet food at 6 am on surgery day; no food or water for older cats. Cover the car seats with plastic and securely place the traps on top. Arrive at FixNation between 7-8.30 am. Leave kitty in car and wait in line to check-in. FixNation will spay/neuter the cat and provide vaccines, flea treatment, fluids, pain medication and an ear tip. Pick-up from 3-4.30 pm.',
-      picture: '/modal/cat6.png'
+      picture: '/modal/cat6.png',
+      resourceTexts: ['Check-in Process'],
+      resourceLinks: ['https://www.facebook.com/LuxePaws/videos/3379488712127276/']
     },
     {
-      title: 'step 7 HOLD:',
+      title: 'step 7 WATCH:',
       subtitle: 'Keep the cat one more night for recovery.',
       info: 'Take kitty home in the covered trap and keep in a warm, quiet place overnight. Feed a ¼ can of wet food about six hours post-op (check paperwork for exact time). Check kitty once an hour, every hour, until bedtime. ',
-      picture: '/modal/cat7.png'
+      picture: '/modal/cat7.png',
+      resourceTexts: ['Post-ops tips'],
+      resourceLinks: ['https://www.alleycat.org/community-cat-care/post-surgery-care/']
     },
     {
       title: 'step 8: RETURN',
       subtitle: 'Return the cat to where it was trapped.',
       info: 'This is the big moment…release the cat where you trapped it the morning after surgery. Freedom!!!! Clean the trap and trap cover and return to FixNation during opening hours.',
-      picture: '/modal/cat8.png'
+      picture: '/modal/cat8.png',
+      resourceTexts: ['Community Cat Video'],
+      resourceLinks: ['https://www.youtube.com/watch?v=3-pK4sjVHcQ']
     }
   ];
 </script>
 
 {#if open}
   <div class="modal">
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div
       class="cover"
       on:click={() => {
         open = !open;
+        onclose();
       }}
     />
     {#each entries as entry, index}
       {#if cur == index}
         <div class="content" in:fly={{ x: dir ? 50 : -50 }} out:fly={{ x: dir ? -50 : 50 }}>
+          <!-- svelte-ignore a11y-click-events-have-key-events -->
           <div
             class="x-out"
             on:click={() => {
               open = !open;
+              onclose();
             }}
           >
             x
@@ -88,8 +117,20 @@
               <div class="body-text">
                 {entry.info}
                 <div class="button-row">
-                  <button class="button-resource">resource 1</button>
-                  <button class="button-resource">resource 2</button>
+                  {#each entry.resourceTexts as resourceText, j}
+                    <a href={entry.resourceLinks[j]} class="link-no-underline">
+                      <button class="button-specs"
+                        ><div class="button-resource">
+                          <img
+                            src="{base}/icons/ic_external_link.svg"
+                            alt="External Link"
+                            class="external-link-icon"
+                          />
+                          {resourceText}
+                        </div></button
+                      >
+                    </a>
+                  {/each}
                 </div>
               </div>
             </div>
@@ -104,8 +145,7 @@
                   cur--;
                 }
               }}
-            >
-            </button>
+            />
             {#each new Array(8) as _, i}
               <button
                 class="ellipse"
@@ -126,8 +166,7 @@
                   cur++;
                 }
               }}
-            >
-            </button>
+            />
           </div>
         </div>
       {/if}
@@ -143,21 +182,21 @@
     width: 100%;
     height: 100%;
     overflow: auto;
-    z-index: 10000;
+    z-index: 10;
   }
 
   .cover {
     background: rgba(0, 0, 0, 0.2);
     width: 100%;
     height: 100%;
-    z-index: 2000;
+    z-index: 5;
   }
 
   .content {
     position: fixed;
     background-color: #f0f4f4;
     box-shadow: 0px 4px 16px 11px rgba(32, 82, 92, 0.5);
-    z-index: 10000;
+    z-index: 10;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
@@ -235,17 +274,39 @@
     display: flex;
     flex-direction: row;
     padding-top: 1.5vw;
+    align-items: center;
   }
 
   .button-resource {
-    color: #e5e5e5;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    color: #ffffff;
     background-color: #58c3af;
     border: none;
     margin-right: 3vw;
-    height: 2.6vw;
     border-radius: 0.2rem;
     cursor: pointer;
-    font-size: 1.3vw;
+    font-size: 1.2vw;
+    padding: 0.5vw 1vw;
+  }
+
+  .button-specs {
+    border: none;
+    padding: 0;
+    background-color: transparent;
+  }
+
+  .external-link-icon {
+    width: 16px !important;
+    height: 16px !important;
+    margin-bottom: 3px;
+  }
+
+  .link-no-underline {
+    text-decoration: none;
   }
 
   .pages {
@@ -288,9 +349,9 @@
   .ellipse {
     display: block;
     cursor: pointer;
-    height: .7rem;
-    width: .1rem;
-    margin: .3rem;
+    height: 0.7rem;
+    width: 0.1rem;
+    margin: 0.3rem;
     background-color: #bbb;
     border-radius: 50%;
     transition: background-color 0.6s ease;
@@ -302,11 +363,11 @@
     background-color: #717171;
   }
 
-  .lvectActive{
+  .lvectActive {
     background-image: url(@base/modal/lightlvector.png);
   }
 
-  .rvectActive{
+  .rvectActive {
     background-image: url(@base/modal/lightrvector.png);
   }
 
