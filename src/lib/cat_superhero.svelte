@@ -5,15 +5,19 @@
 <script lang="ts">
   import { base } from '$app/paths';
   import Modal from '$lib/modal.svelte';
-  let open = false;
+  export let open = false;
+  export let onclose = false;
   let j = -1;
-
 
   type RowData = {
     title: string;
     text: string;
   };
 
+  function onModalClose() {
+    onclose = true;
+    open = false;
+  }
   const rows: RowData[] = [
     {
       title: 'Find',
@@ -50,12 +54,12 @@
   ];
 </script>
 
-<Modal {open} cur={j}/>
+<Modal {open} cur={j} onclose={onModalClose} />
 
 <div class="container">
   <div class="bubble">
     <div class="crop">
-      <img src="{base}/roadmap/bubble.svg" class="point" alt="Speech bubble"/>
+      <img src="{base}/roadmap/bubble.svg" class="point" alt="Speech bubble" />
       <img src="{base}/roadmap/round_bubble.svg" class="round" alt="Round speech bubble" />
     </div>
     <div class="header">
@@ -69,16 +73,18 @@
   <div class="roadmap">
     {#each rows as { title, text }, i}
       <div class="step_container {title.toLowerCase() + i}">
-        <div class="row"
-        on:click={() => {
-          if(window.innerWidth > 675){
+        <div
+          class="row"
+          on:click={() => {
+            if (window.innerWidth > 675) {
+              open = !open;
+              j = i;
+            }
+          }}
+          on:keydown={() => {
             open = !open;
-            j = i;
-          }
-        }}
-        on:keydown={() => {
-          open = !open;
-        }}>
+          }}
+        >
           <div class="marker">
             <img src="{base}/roadmap/marker.svg" alt="Roadmap marker" />
             <div class=marker_anim></div>
@@ -96,7 +102,6 @@
       </div>
     {/each}
   </div>
-  <Modal/>
 </div>
 
 <style>
