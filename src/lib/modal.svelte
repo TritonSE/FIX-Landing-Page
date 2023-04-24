@@ -62,7 +62,7 @@
     <div
       class="cover"
       on:click={() => {
-        open = !open;
+        open = false;
       }}
     />
     {#each entries as entry, index}

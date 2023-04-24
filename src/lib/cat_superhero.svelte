@@ -81,6 +81,7 @@
         }}>
           <div class="marker">
             <img src="{base}/roadmap/marker.svg" alt="Roadmap marker" />
+            <div class=marker_anim></div>
             <img
               class="shadow"
               src="{base}/roadmap/marker_shadow.svg"
@@ -302,6 +303,25 @@
       background-image: url(@base/roadmap/cloud_hover.svg);
       cursor: pointer;
     }
+
+    @keyframes glow {
+      0% {
+        background-image: repeating-radial-gradient(transparent 0 10000px);
+      }
+      10% {
+        background-image: repeating-radial-gradient(transparent 0 10000px);
+      }
+      30% {
+        background-image: repeating-radial-gradient(#C4D856CC 0 30px, transparent 30px 10000px);
+      }
+      50% {
+        background-image: repeating-radial-gradient(#C4D856CC 0 30px, #C4D856AA 30px 35px, transparent 35px 10000px);
+      }
+      70% {
+        background-image: repeating-radial-gradient(#C4D856CC 0 30px, #C4D856AA 30px 35px, #C4D85666 35px 40px, transparent 40px 10000px);
+      }
+    }
+
     .row .marker {
       width: 2vw;
       position: absolute;
@@ -313,9 +333,21 @@
       position: absolute;
       left: 0.3rem;
     }
+    .marker_anim{
+      position: absolute;
+      left: -160%;
+      margin-top: -3vw;
+      width: 10vw;
+      height: 10vw;
+      animation-name: glow;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      overflow: hidden;
+      background-repeat: no-repeat;
+      z-index: -2;
+    }
     .marker img.shadow {
       position: absolute;
-      left: 0.675rem;
       top: 0.125rem;
       z-index: -1;
     }
