@@ -37,8 +37,5 @@
     "vite": "4"
   },
   "type": "module",
-  "packageManager": "yarn@3.4.1",
-  "dependencies": {
-    "svelte-swipeable": "^1.0.9"
-  }
+  "packageManager": "yarn@3.4.1"
 }
