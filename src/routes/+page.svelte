@@ -5,6 +5,7 @@
 <script>
   import Masthead from '$lib/masthead.svelte';
   import Stats from '$lib/stats.svelte';
+  import Statsv2 from '$lib/statsv2.svelte';
   import CatStories from '$lib/cat_stories/index.svelte';
   import CatSuperhero from '../lib/cat_superhero.svelte';
   import GetInvolved from '../lib/get_involved/index.svelte';
@@ -17,7 +18,8 @@
 </script>
 
 <Masthead />
-<Stats />
+<!-- <Stats />-->
+<Statsv2 />
 <CatStories />
 <CatSuperhero />
 <GetInvolved />
