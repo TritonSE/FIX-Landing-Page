@@ -26,102 +26,37 @@
 </script>
 
 <div class="stories-container">
-  <div class="cat-image-container">
-    <CatImage
-      image_url="{base}/cat_stories/shadow.png"
-      image_alt="Shadow"
-      on:click={() => openCatOverlay(0)}
-      on:keydown={(e) => {
-        if (e.key === 'Enter' || e.key === 'Space') {
-          openCatOverlay(0);
-        }
-      }}
-    />
-  </div>
-  <div class="column">
-    <Paw name={CAT_DATA[0].name} />
-    <p class="medium-margin-above">
-      {CAT_DATA[0].desc}
-    </p>
-    <button
-      class="underline-text"
-      on:click={() => openCatOverlay(0)}
-      on:keydown={(e) => {
-        if (e.key === 'Enter' || e.key === 'Space') {
-          openCatOverlay(0);
-        }
-      }}
-    >
-      See more
-    </button>
-  </div>
-  <div class="column large-gap">
+  {#each CAT_DATA as data}
     <div class="cat-image-container">
       <CatImage
-        image_url="{base}/cat_stories/close_up_cropped.png"
-        image_alt="Close Up"
-        on:click={() => openCatOverlay(1)}
+        image_url={data.image_path}
+        image_alt="Cat Image"
+        on:click={() => openCatOverlay(0)}
         on:keydown={(e) => {
           if (e.key === 'Enter' || e.key === 'Space') {
-            openCatOverlay(1);
+            openCatOverlay(0);
           }
         }}
       />
     </div>
-    <div class="row">
-      <Paw name={CAT_DATA[1].name} />
-      <div class="column">
-        <p>
-          {CAT_DATA[1].desc.substring(0, CAT_DATA[1].abbrev_len)}
-        </p>
-        <button
-          class="underline-text"
-          on:click={() => openCatOverlay(1)}
-          on:keydown={(e) => {
-            if (e.key === 'Enter' || e.key === 'Space') {
-              openCatOverlay(1);
-            }
-          }}
-        >
-          See more
-        </button>
-      </div>
-    </div>
-  </div>
-  <div class="column large-gap">
-    <div class="cat-image-container">
-      <CatImage
-        image_url="{base}/cat_stories/almira_cropped.png"
-        image_alt="Almira"
-        on:click={() => openCatOverlay(2)}
+    <div class="column">
+      <Paw name={data.name} />
+      <p class="medium-margin-above">
+        {data.desc}
+      </p>
+      <button
+        class="underline-text"
+        on:click={() => openCatOverlay(0)}
         on:keydown={(e) => {
           if (e.key === 'Enter' || e.key === 'Space') {
-            openCatOverlay(2);
+            openCatOverlay(0);
           }
         }}
-      />
+      >
+        See more
+      </button>
     </div>
-    <div class="row">
-      <Paw name={CAT_DATA[2].name} />
-      <div class="column">
-        <p>
-          {CAT_DATA[2].desc.substring(0, CAT_DATA[2].abbrev_len)}
-        </p>
-        <button
-          href="javascript:void(0)"
-          class="underline-text"
-          on:click={() => openCatOverlay(2)}
-          on:keydown={(e) => {
-            if (e.key === 'Enter' || e.key === 'Space') {
-              openCatOverlay(2);
-            }
-          }}
-        >
-          See more
-        </button>
-      </div>
-    </div>
-  </div>
+  {/each}
 </div>
 
 <CatOverlay
@@ -163,6 +98,7 @@
 
   .column {
     display: flex;
+    justify-content: center;
     flex-direction: column;
     gap: 8px;
   }
