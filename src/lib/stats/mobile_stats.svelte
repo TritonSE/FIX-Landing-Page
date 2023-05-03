@@ -1,6 +1,6 @@
 <!--
-  stats.svelte:
-    A component showing statistics about FixNation's clinic.
+  mobile_stats.svelte:
+    A mobile-only component showing statistics about FixNation's clinic.
 -->
 <script lang="ts">
   import { base } from '$app/paths';
@@ -52,11 +52,6 @@
 </script>
 
 <div bind:clientWidth={width} class="container">
-  <p id="mission-statement">
-    FixNation’s mission is to reduce the population of homeless cats by sterilizing as many as
-    possible while demonstrating the effectiveness of Trap-Neuter-Return and colony management for
-    the humane care of homeless cats.
-  </p>
   <div bind:this={el} class="flex-container">
     <div class="stat-container">
       {#each rows as { stat, text }, i}
@@ -112,20 +107,6 @@
       margin-right: auto;
     }
 
-    #mission-statement {
-      margin: 6rem 9rem;
-
-      font-style: normal;
-      font-weight: 500;
-      font-size: 3.9vw;
-      line-height: 150%;
-
-      text-align: center;
-      letter-spacing: 0.02em;
-
-      color: #000000;
-    }
-
     .flex-container {
       justify-content: space-between;
       align-items: center;
@@ -176,15 +157,12 @@
       border-radius: 1.2vw;
     }
 
-    .text-container h1 p {
-      margin: 0;
-    }
-
     .text-container h1 {
       font-style: normal;
       font-weight: 700;
       font-size: 17vw;
       line-height: 100%;
+      font-family: 'Rubik', sans-serif !important;
 
       text-align: center;
       letter-spacing: 0.02em;
