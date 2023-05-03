@@ -3,7 +3,6 @@
     Stats highlighting the value of fixNation's work-v2
 -->
 <script lang="ts">
-  import { base } from '$app/paths';
   let sections = [
     {
       number: '#1',
