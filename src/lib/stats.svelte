@@ -72,31 +72,35 @@
   </div>
 
   <div class="nav-container">
-    <input
-      type="image"
-      src="{base}/stats/arrow.png"
-      class="left-arrow"
-      alt="left arrow"
-      class:active={!boxes[focused - 1]}
+    <button
+      class="arrow flex-center"
+      class:active={boxes[focused - 1]}
       on:click={() => {
         if (!boxes[focused - 1]) return;
         boxes[focused - 1].scrollIntoView({ block: 'nearest', inline: 'center' });
       }}
-    />
+    >
+      <span class="material-icons">arrow_back_ios</span>
+    </button>
     {#each new Array(rows.length) as _, i}
-      <div class="dot" class:active={i === focused} />
+      <div
+        class="dot"
+        class:active={i === focused}
+        on:click={() => {
+          boxes[i].scrollIntoView({ block: 'nearest', inline: 'center' });
+        }}
+      />
     {/each}
-    <input
-      type="image"
-      src="{base}/stats/arrow.png"
-      class="right-arrow"
-      class:active={!boxes[focused + 1]}
-      alt="right arrow"
+    <button
+      class="arrow flex-center"
+      class:active={boxes[focused + 1]}
       on:click={() => {
         if (!boxes[focused + 1]) return;
         boxes[focused + 1].scrollIntoView({ block: 'nearest', inline: 'center' });
       }}
-    />
+    >
+      <span class="material-icons">arrow_forward_ios</span>
+    </button>
   </div>
 </div>
 
@@ -218,16 +222,19 @@
       width: 40%;
     }
 
-    .left-arrow.active {
-      filter: invert(99%) sepia(0%) saturate(28%) hue-rotate(211deg) brightness(105%) contrast(69%);
+    .arrow {
+      margin: 0;
+      background: transparent;
+      border: none;
+      color: var(--color-gray-darker);
+      transition: color 0.2s;
+    }
+    .arrow span {
+      font-size: 12pt;
     }
 
-    .right-arrow {
-      transform: scaleX(-1);
-    }
-
-    .right-arrow.active {
-      filter: invert(99%) sepia(0%) saturate(28%) hue-rotate(211deg) brightness(105%) contrast(69%);
+    .arrow.active {
+      color: var(--color-secondary-accent);
     }
 
     .dot {
@@ -237,11 +244,12 @@
       margin-top: 1vw;
       margin-right: 1vw;
       margin-bottom: 0.5vw;
-      background: #d8d8d8;
+      background: var(--color-gray-darker);
       float: left;
+      transition: background 0.2s;
     }
     .dot.active {
-      background: #20525c;
+      background: var(--color-secondary-accent);
     }
   }
 
