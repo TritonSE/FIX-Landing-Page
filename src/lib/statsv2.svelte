@@ -47,13 +47,13 @@
 
 <svelte:window bind:innerWidth={screenWidth} />
 
-<h1>
+<h4>
   FixNation’s mission is to reduce the population of homeless cats by sterilizing as many as
   possible while demonstrating the effectiveness of Trap-Neuter-Return and colony management for the
   humane care of homeless cats.
-</h1>
+</h4>
 <div>
-  {#if screenWidth > 675}
+  {#if screenWidth > 600}
     <div class="slider">
       {#each sections as section}
         <section class="section" class:active={screenWidth >= 2200}>
@@ -61,7 +61,7 @@
           <span class="rectangle" />
           <div class="text">
             <div class="header">{section.number}</div>
-            <div class="subtitle">{section.subtitle}</div>
+            <p class="subtitle">{section.subtitle}</p>
           </div>
         </section>
       {/each}
@@ -70,12 +70,11 @@
 </div>
 
 <style>
-  h1 {
+  h4 {
     font-family: 'Avenir', sans-serif !important;
     font-style: normal;
     font-weight: 500;
     text-align: center;
-    font-size: 1rem;
     margin: 1vw;
     padding: 2rem;
   }
@@ -97,7 +96,7 @@
     justify-content: center;
   }
   section.active {
-      min-width: 16.65vw;
+    min-width: 16.65vw;
   }
   img {
     width: 20rem;
@@ -114,7 +113,6 @@
   }
   .subtitle {
     color: #ffffff;
-    font-size: 1.3rem;
     font-family: 'Avenir', sans-serif !important;
     font-style: normal;
     font-weight: 40;
@@ -151,7 +149,7 @@
   }
 
   /* Mobile variant only */
-  @media screen and (max-width: 675px) {
+  @media screen and (max-width: 600px) {
     .rectangle {
       width: 60vw;
       height: 60vw;

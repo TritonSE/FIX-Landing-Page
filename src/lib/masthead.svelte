@@ -62,6 +62,8 @@
           <a href="#get_involved"><button id="involve_button">Get Involved</button></a>
           <a
             href="https://fixnation.networkforgood.com/projects/182719-helping-cats-and-communities-through-tnr-2023"
+            target="_blank"
+            rel="noreferrer noopener"
           >
             <button id="donate_button">Donate</button>
           </a>
@@ -191,8 +193,6 @@
   }
   #involve_button,
   #donate_button {
-    width: 12vw;
-    height: 4vw;
     left: 1.485vw;
     top: 21.495vw;
     margin-right: 2vw;
@@ -333,7 +333,7 @@
   @media only screen and (max-width: 600px) {
     #masthead {
       min-height: 140vw;
-      margin-bottom: -6rem;
+      margin-bottom: -2rem;
     }
     #button_container {
       margin-top: 0.01vh;

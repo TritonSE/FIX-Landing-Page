@@ -40,7 +40,11 @@
     </div>
     {#each resourceTexts as resourceText, j}
       <div class="resource-link">
-        <a href={resourceLinks[j]} class="link-no-underline"
+        <a
+          href={resourceLinks[j]}
+          target="_blank"
+          rel="noreferrer noopener"
+          class="link-no-underline"
           ><Button fill={true}
             ><div class="button-contents">
               <img
@@ -58,14 +62,13 @@
 {/if}
 
 <style>
-  @media screen and (min-width: 675px) {
+  @media screen and (min-width: 600px) {
     .accordion-item {
       display: none !important;
     }
   }
 
   .button-contents {
-    font-size: 12px;
     display: flex;
     flex-direction: row;
     align-items: center;
