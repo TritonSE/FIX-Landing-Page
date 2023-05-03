@@ -9,11 +9,13 @@
   import CatSuperhero from '../lib/cat_superhero.svelte';
   import GetInvolved from '../lib/get_involved/index.svelte';
   import Footer from '$lib/footer.svelte';
+  import About from '$lib/about.svelte';
 
   import '../app.css';
 </script>
 
 <Masthead />
+<About />
 <Stats />
 <CatStories />
 <CatSuperhero />
