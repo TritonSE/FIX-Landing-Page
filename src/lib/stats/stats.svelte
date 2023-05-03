@@ -1,9 +1,12 @@
 <!--
   statsv2.svelte:
-    Stats highlighting the value of fixNation's work-v2
+    Stats highlighting the value of FixNation's work
 -->
 <script lang="ts">
   import { base } from '$app/paths';
+
+  import MobileStats from './mobile_stats.svelte';
+
   let sections = [
     {
       number: '#1',
@@ -53,7 +56,7 @@
   humane care of homeless cats.
 </h1>
 <div>
-  {#if screenWidth > 675}
+  {#if screenWidth > 430}
     <div class="slider">
       {#each sections as section}
         <section class="section" class:active={screenWidth >= 2200}>
@@ -66,7 +69,9 @@
         </section>
       {/each}
     </div>
-  {:else}{/if}
+  {:else}
+    <MobileStats />
+  {/if}
 </div>
 
 <style>
@@ -82,7 +87,6 @@
   * {
     box-sizing: border-box;
     margin: 0;
-    padding: 1;
   }
 
   section {
@@ -110,7 +114,7 @@
     font-weight: 700;
     letter-spacing: 0.02rem;
     font-size: 4rem;
-    font-family: 'Rubik';
+    font-family: 'Rubik', sans-serif !important;
   }
   .subtitle {
     color: #ffffff;
@@ -148,24 +152,5 @@
   ::-webkit-scrollbar {
     width: 0px;
     background: transparent; /* make scrollbar transparent */
-  }
-
-  /* Mobile variant only */
-  @media screen and (max-width: 675px) {
-    .rectangle {
-      width: 60vw;
-      height: 60vw;
-    }
-    .text {
-      width: 60vw;
-      height: 60vw;
-    }
-    img {
-      width: 90vw;
-      height: 60vh;
-    }
-    section {
-      scroll-snap-align: none;
-    }
   }
 </style>
