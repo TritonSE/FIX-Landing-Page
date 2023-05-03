@@ -58,7 +58,9 @@
     <div id="banner">
       <img src="{base}/icons/logo.svg" alt="TSE logo" id="logo" />
       <span>Built for free by&nbsp;</span>
-      <a href="https://tse.ucsd.edu/">Triton Software Engineering</a>
+      <a href="https://tse.ucsd.edu/" target="_blank" rel="noreferrer"
+        >Triton Software Engineering</a
+      >
     </div>
   </div>
 
