@@ -9,17 +9,25 @@
 
   onMount(() => {
     lax.init();
-    lax.addDriver('scrollY', () => window.scrollY);
+    lax.addDriver('scrollY', () => window.scrollY, { inertiaEnabled: true });
+
+    const inertia = -0.1;
 
     lax.addElements('#bottom-img', {
       scrollY: {
         translateX: [
           ['elInY', 'elCenterY'],
-          ['screenWidth/4', 0]
+          ['screenWidth/4', 0],
+          {
+            inertia,
+          }
         ],
         translateY: [
           ['elInY', 'elCenterY'],
-          ['-screenHeight/4', 0]
+          ['-screenHeight/4', 0],
+          {
+            inertia,
+          }
         ],
         scale: [
           ['elInY', 'elCenterY'],
@@ -36,11 +44,17 @@
       scrollY: {
         translateX: [
           ['elInY', 'elCenterY'],
-          ['-screenWidth/4', 0]
+          ['-screenWidth/4', 0],
+          {
+            inertia,
+          }
         ],
         translateY: [
           ['elInY', 'elCenterY'],
-          ['screenHeight/4', 0]
+          ['screenHeight/4', 0],
+          {
+            inertia,
+          }
         ],
         scale: [
           ['elInY', 'elCenterY'],
@@ -57,11 +71,17 @@
       scrollY: {
         translateX: [
           ['elInY', 'elCenterY'],
-          ['elWidth/2', 0]
+          ['elWidth/2', 0],
+          {
+            inertia,
+          }
         ],
         translateY: [
           ['elInY', 'elCenterY'],
-          ['-elHeight', 0]
+          ['-elHeight', 0],
+          {
+            inertia,
+          }
         ]
       }
     });
@@ -70,11 +90,17 @@
       scrollY: {
         translateX: [
           ['elInY', 'elCenterY'],
-          ['-elWidth/2', 0]
+          ['-elWidth/2', 0],
+          {
+            inertia,
+          }
         ],
         translateY: [
           ['elInY', 'elCenterY'],
-          ['elHeight', 0]
+          ['elHeight', 0],
+          {
+            inertia,
+          }
         ]
       }
     });
@@ -83,11 +109,17 @@
       scrollY: {
         translateX: [
           ['elInY', 'elCenterY'],
-          ['-elWidth/2', 0]
+          ['-elWidth/2', 0],
+          {
+            inertia,
+          }
         ],
         translateY: [
           ['elInY', 'elCenterY'],
-          ['elHeight', 0]
+          ['elHeight', 0],
+          {
+            inertia,
+          }
         ]
       }
     });
@@ -96,7 +128,10 @@
       scrollY: {
         translateY: [
           ['elInY', 'elCenterY'],
-          ['elHeight', 0]
+          ['elHeight', 0],
+          {
+            inertia,
+          }
         ]
       }
     });
@@ -106,9 +141,9 @@
 <div class="desktop-view">
   <div class="about-container">
     <div class="text-wrapper">
-      <h3>Thousands of cats are needlessly euthanized in Los Angeles each year,</h3>
+      <h3>Thousands of cats are needlessly euthanized in Los Angeles each year.</h3>
       <p>
-        their only fault being that they don’t have a home. Los Angeles is home to one of the
+        Their only fault being that they don’t have a home. Los Angeles is home to one of the
         nation’s largest populations of homeless cats with an estimated one to three million living
         on the streets.
       </p>
@@ -168,9 +203,9 @@
       <img class="about-header" src="/about/mobile-about.png" alt="cat header" />
     </div>
     <div class="text-wrapper">
-      <h3>Thousands of cats are<br />needlessly euthanized in Los<br />Angeles each year,</h3>
+      <h3>Thousands of cats are<br />needlessly euthanized in Los<br />Angeles each year.</h3>
       <p>
-        their only fault being that they don’t have a home. Los Angeles is home to one of the
+        Their only fault being that they don’t have a home. Los Angeles is home to one of the
         nation’s largest populations of homeless cats with an estimated one to three million living
         on the streets.
       </p>
@@ -339,7 +374,6 @@
 
   .mobile-view .about-header {
     position: relative;
-    margin-top: 6rem;
   }
 
   .mobile-view #mobile-blob {
