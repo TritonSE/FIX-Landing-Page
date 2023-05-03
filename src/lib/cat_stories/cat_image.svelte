@@ -29,4 +29,14 @@
       filter: drop-shadow(8px 8px 0px var(--color-accent));
     }
   }
+
+  @media screen and (max-width: 600px) {
+    img {
+      filter: none;
+    }
+
+    img:hover {
+      filter: none;
+    }
+  }
 </style>
