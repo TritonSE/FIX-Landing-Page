@@ -37,6 +37,9 @@
 
   @media screen and (max-width: 900px) {
     div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding: 14px 0px 0px 24px;
     }
 
@@ -47,19 +50,8 @@
     img {
       width: 48px;
       height: 43px;
-    }
-  }
-
-  @media screen and (max-width: 600px) {
-    div {
-      position: absolute;
-      left: 16px;
-      bottom: 16px;
-      padding: 24px 0px 0px 24px;
-    }
-
-    h2 {
-      color: var(--color-white);
+      right: 50%;
+      left: unset;
     }
   }
 </style>
