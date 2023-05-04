@@ -29,6 +29,22 @@
       true
     );
   });
+
+  function clickOutside(element) {
+    const handleClick = (event) => {
+      if (!element.contains(event.target)) {
+        element.dispatchEvent(new CustomEvent('outclick'));
+      }
+    };
+
+    document.addEventListener('click', handleClick, true);
+
+    return {
+      destroy() {
+        document.removeEventListener('click', handleClick, true);
+      }
+    };
+  }
 </script>
 
 <div class="container">
@@ -92,7 +108,11 @@
     >
       <div>
         {#if !done}
-          <div transition:fade={{ duration: 200 }}>
+          <div
+            transition:fade={{ duration: 200 }}
+            use:clickOutside
+            on:outclick={() => (newsletter = false)}
+          >
             <h1>Sign up for our newsletter to stay in touch!</h1>
             <form
               on:submit={(e) => {
