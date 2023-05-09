@@ -19,14 +19,14 @@
           ['elInY', 'elCenterY'],
           ['screenWidth/4', 0],
           {
-            inertia,
+            inertia
           }
         ],
         translateY: [
           ['elInY', 'elCenterY'],
           ['-screenHeight/4', 0],
           {
-            inertia,
+            inertia
           }
         ],
         scale: [
@@ -46,14 +46,14 @@
           ['elInY', 'elCenterY'],
           ['-screenWidth/4', 0],
           {
-            inertia,
+            inertia
           }
         ],
         translateY: [
           ['elInY', 'elCenterY'],
           ['screenHeight/4', 0],
           {
-            inertia,
+            inertia
           }
         ],
         scale: [
@@ -73,14 +73,14 @@
           ['elInY', 'elCenterY'],
           ['elWidth/2', 0],
           {
-            inertia,
+            inertia
           }
         ],
         translateY: [
           ['elInY', 'elCenterY'],
           ['-elHeight', 0],
           {
-            inertia,
+            inertia
           }
         ]
       }
@@ -92,14 +92,14 @@
           ['elInY', 'elCenterY'],
           ['-elWidth/2', 0],
           {
-            inertia,
+            inertia
           }
         ],
         translateY: [
           ['elInY', 'elCenterY'],
           ['elHeight', 0],
           {
-            inertia,
+            inertia
           }
         ]
       }
@@ -111,14 +111,14 @@
           ['elInY', 'elCenterY'],
           ['-elWidth/2', 0],
           {
-            inertia,
+            inertia
           }
         ],
         translateY: [
           ['elInY', 'elCenterY'],
           ['elHeight', 0],
           {
-            inertia,
+            inertia
           }
         ]
       }
@@ -130,7 +130,7 @@
           ['elInY', 'elCenterY'],
           ['elHeight', 0],
           {
-            inertia,
+            inertia
           }
         ]
       }

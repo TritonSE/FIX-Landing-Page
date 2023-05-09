@@ -10,6 +10,7 @@
   import GetInvolved from '../lib/get_involved/index.svelte';
   import Footer from '$lib/footer.svelte';
   import About from '$lib/about.svelte';
+  import FindFixnation from '$lib/find_fixnation.svelte';
 
   import '../app.css';
 </script>
@@ -20,6 +21,7 @@
 <CatStories />
 <CatSuperhero />
 <GetInvolved />
+<FindFixnation />
 <Footer />
 
 <svelte:head>
