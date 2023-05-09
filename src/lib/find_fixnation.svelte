@@ -7,6 +7,7 @@
 </script>
 
 <div class="container">
+  <img src="/find-paws.svg" alt="paw prints" />
   <h1 id="header">Find FixNation</h1>
   <div class="info-container">
     <div class="phone">
