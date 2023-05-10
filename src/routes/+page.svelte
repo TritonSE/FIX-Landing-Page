@@ -24,6 +24,10 @@
 
 <svelte:head>
   <title>FixNation</title>
+  <meta
+    name="description"
+    content="Landing page for FixNation, a Los Angeles-based spay/neuter clinic"
+  />
 </svelte:head>
 
 <style global>

@@ -13,8 +13,13 @@
 
 <a href={link_to}>
   <div class="root">
-    <img src={image_url} alt={image_alt} class="cat-image" />
-    <img src="{base}/cat_stories/instagram_blue.svg" alt="Instagram Logo" class="instagram-logo" />
+    <img src={image_url} alt={image_alt} class="cat-image" loading="lazy" />
+    <img
+      src="{base}/cat_stories/instagram_blue.svg"
+      alt="Instagram Logo"
+      class="instagram-logo"
+      loading="lazy"
+    />
   </div>
 </a>
 

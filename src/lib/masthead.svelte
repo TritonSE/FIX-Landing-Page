@@ -39,7 +39,8 @@
       <img
         id="background"
         transition:fade
-        src="{base}/masthead/backgrounds/bg{i}.png"
+        srcset="{base}/masthead/backgrounds/bg{i}_mobile.avif 360w, {base}/masthead/backgrounds/bg{i}_tablet.avif 720w, {base}/masthead/backgrounds/bg{i}.avif 1440w"
+        sizes="(max-width: 450px) 360px, (max-width: 800px) 720px, 1440px"
         alt={alts[i]}
       />
     {/if}
@@ -81,7 +82,7 @@
       <div id="arrow_container">
         {#each new Array(3) as _, i}
           <img
-            src="{base}/masthead/white_arrow.png"
+            src="{base}/masthead/white_arrow.avif"
             alt="white arrow"
             class="white_arrow arrow_{i}"
           />

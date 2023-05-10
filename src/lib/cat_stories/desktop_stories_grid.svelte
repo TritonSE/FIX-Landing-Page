@@ -28,7 +28,7 @@
 <div class="stories-container">
   <div class="cat-image-container">
     <CatImage
-      image_url="{base}/cat_stories/shadow.png"
+      image_url="{base}/cat_stories/shadow.avif"
       image_alt="Shadow"
       on:click={() => openCatOverlay(0)}
       on:keydown={(e) => {
@@ -58,7 +58,7 @@
   <div class="column large-gap">
     <div class="cat-image-container">
       <CatImage
-        image_url="{base}/cat_stories/close_up_cropped.png"
+        image_url="{base}/cat_stories/close_up_cropped.avif"
         image_alt="Close Up"
         on:click={() => openCatOverlay(1)}
         on:keydown={(e) => {
@@ -91,7 +91,7 @@
   <div class="column large-gap">
     <div class="cat-image-container">
       <CatImage
-        image_url="{base}/cat_stories/almira_cropped.png"
+        image_url="{base}/cat_stories/almira_cropped.avif"
         image_alt="Almira"
         on:click={() => openCatOverlay(2)}
         on:keydown={(e) => {

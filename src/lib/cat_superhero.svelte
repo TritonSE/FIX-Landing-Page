@@ -10,7 +10,7 @@
     {
       title: 'Find',
       text: 'Find a homeless cat who needs your help.',
-      imageName: 'find.png',
+      imageName: 'find.avif',
       imageAlt: '',
       extraContent:
         'Is it a cat or a kitten? Does it look injured, ill or hungry? Does it have an ear tip (a sign that it’s a community cat)? Is it friendly? Here are some tips to help you figure out if the kitty is homeless.',
@@ -20,7 +20,7 @@
     {
       title: 'Feed',
       text: 'Feed the cat in the afternoon or evening.',
-      imageName: 'feed.png',
+      imageName: 'feed.avif',
       imageAlt: '',
       extraContent:
         'Get kitty on a regular feeding schedule, putting out dry food and water each afternoon or evening. This makes trapping a lot easier later! You can even make a <a href="https://fixnation.org/shelters-feeding-stations/">DIY feeding station.</a>',
@@ -30,7 +30,7 @@
     {
       title: 'Prep',
       text: 'Get a loaner trap from FixNation and book an appointment.',
-      imageName: 'prep.png',
+      imageName: 'prep.avif',
       imageAlt: '',
       extraContent:
         'Watch our <a href="https://www.youtube.com/watch?v=JgatHzlxnv0&t=2s">online training video</a> with easy step-by-step instructions, then borrow a special humane trap and cloth cover from our clinic. <a href="https://fixnation.org/about-tnr/free-feral-application/">Make an appointment online.</a> You’re all set!',
@@ -43,7 +43,7 @@
     {
       title: 'Trap',
       text: 'Set trap, wait, trap cat and rejoice!',
-      imageName: 'trap.png',
+      imageName: 'trap.avif',
       imageAlt: '',
       extraContent:
         'Trap between 4 pm to 11.30 pm the evening before your appointment. Set food on some tin foil and place under the trap (not inside). Keep an eye on the trap – never leave it unattended – and wait for kitty to go inside. Be patient! <a href="https://www.youtube.com/watch?v=IarsSTLUdTw">Trap-Neuter-Return</a> is the first step towards a happier and healthier life for your community cat friend.',
@@ -53,7 +53,7 @@
     {
       title: 'Hold',
       text: 'Hold the cat overnight until surgery the next day.',
-      imageName: 'hold.png',
+      imageName: 'hold.avif',
       imageAlt: '',
       extraContent:
         'Congrats, you got the cat! Cover the trap and keep it in a warm, quiet place overnight (like a bathroom or a heated garage). Check the cat once an hour, every hour, until bedtime. Here are some <a href="https://fixnation.org/about-tnr/pre-post-surgery-instructions/">more pre-op tips!</a>',
@@ -63,7 +63,7 @@
     {
       title: 'Fix',
       text: 'Take the cat to get fixed (for free!).',
-      imageName: 'fix.png',
+      imageName: 'fix.avif',
       imageAlt: '',
       extraContent:
         'Feed kittens a teapoon of wet food at 6 am on surgery day; no food or water for older cats. Cover the car seats with plastic and securely place the traps on top. Arrive at FixNation between 7-8.30 am, leave kitty in car and wait in line to check-in. (Here’s a <a href="https://www.facebook.com/LuxePaws/videos/3379488712127276/">sneak peek of the check-in process!</a>) FixNation will spay/neuter the cat and provide vaccines, flea treatment, fluids, pain medication and an ear tip. Pick-up from 3 - 4.30 pm.',
@@ -73,7 +73,7 @@
     {
       title: 'Watch',
       text: 'Keep the cat one more night for recovery.',
-      imageName: 'watch.png',
+      imageName: 'watch.avif',
       imageAlt: '',
       extraContent:
         'Take kitty home in the covered trap and keep in a warm, quiet place overnight once again. Feed a ¼ can of wet food about six hours post-op (check paperwork for exact time). Check kitty once an hour, every hour, until bedtime. Here are some <a href="https://www.alleycat.org/community-cat-care/post-surgery-care/">more post-op tips!</a>',
@@ -83,7 +83,7 @@
     {
       title: 'Return',
       text: 'Return the cat to where it was trapped.',
-      imageName: 'return.png',
+      imageName: 'return.avif',
       imageAlt: '',
       extraContent:
         'This is the big moment…release the cat where you trapped it the morning after surgery. Freedom!!!! Here’s a <a href="https://www.youtube.com/watch?v=3-pK4sjVHcQ">video about community cats</a> that shows a kitty getting released. Clean the trap and trap cover and return to FixNation during opening hours.',
@@ -110,14 +110,19 @@
 <div class="container">
   <div class="bubble">
     <div class="crop">
-      <img src="{base}/roadmap/bubble.svg" class="point" alt="Speech bubble" />
-      <img src="{base}/roadmap/round_bubble.svg" class="round" alt="Round speech bubble" />
+      <img src="{base}/roadmap/bubble.svg" class="point" alt="Speech bubble" loading="lazy" />
+      <img
+        src="{base}/roadmap/round_bubble.svg"
+        class="round"
+        alt="Round speech bubble"
+        loading="lazy"
+      />
     </div>
     <div class="header">
       <h1 class="main">how to become a</h1>
       <h1 class="comics">CAT SUPERHERO</h1>
       <h1 class="comics-desktop">cat SUPERHERO</h1>
-      <img class="cat" src="{base}/roadmap/hero.svg" alt="Cat superhero" />
+      <img class="cat" src="{base}/roadmap/hero.svg" alt="Cat superhero" loading="lazy" />
     </div>
   </div>
 
@@ -127,11 +132,12 @@
       <div class="step_container {rowData.title.toLowerCase() + i}">
         <div class="row">
           <div class="marker">
-            <img src="{base}/roadmap/marker.svg" alt="Roadmap marker" />
+            <img src="{base}/roadmap/marker.svg" alt="Roadmap marker" loading="lazy" />
             <img
               class="shadow"
               src="{base}/roadmap/marker_shadow.svg"
               alt="Roadmap marker shadow"
+              loading="lazy"
             />
           </div>
           <div class="text">

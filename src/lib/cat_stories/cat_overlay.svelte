@@ -28,7 +28,7 @@
 <SideOverlay {open} {onClose}>
   <div class="root">
     <button class="close-button" on:click={onClose}>
-      <img src="{base}/cat_stories/close.svg" alt="Close" />
+      <img src="{base}/cat_stories/close.svg" alt="Close" loading="lazy" />
     </button>
     <div class="row root-row">
       <Paw name={data.name} />
@@ -38,7 +38,8 @@
           <img
             class="profile-picture"
             alt={data.name}
-            src="{base}/cat_stories/profile_pictures/{data.name}.png"
+            src="{base}/cat_stories/profile_pictures/{data.name}.avif"
+            loading="lazy"
           />
           <div class="column">
             <a href={`https://www.instagram.com/${data.ig_username}/?hl=en`}
@@ -57,7 +58,7 @@
         <div class="row large-gap">
           {#each Array(3) as _, i}
             <CatPost
-              image_url="cat_stories/post_images/{data.name}/post{i + 1}.png"
+              image_url="cat_stories/post_images/{data.name}/post{i + 1}.avif"
               image_alt={data.name}
               link_to={data.ig_link}
             />
@@ -67,7 +68,7 @@
     </div>
 
     <div class="top-image-container">
-      <img class="top-image" src={data.image_path} alt={data.name} />
+      <img class="top-image" src={data.image_path} alt={data.name} loading="lazy" />
     </div>
   </div>
 </SideOverlay>

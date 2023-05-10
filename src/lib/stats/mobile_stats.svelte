@@ -56,7 +56,7 @@
     <div class="stat-container">
       {#each rows as { stat, text }, i}
         <div bind:this={boxes[i]} class="card">
-          <img src="{base}/stats/stats{i + 1}.png" alt="stats pictures" />
+          <img src="{base}/stats/Stats{i + 1}.avif" alt="stats pictures" loading="lazy" />
           <div class="text-container">
             <h1>{stat}</h1>
             <p id="text-{i}">{text}</p>

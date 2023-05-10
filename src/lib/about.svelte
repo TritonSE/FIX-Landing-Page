@@ -7,6 +7,8 @@
   import { onMount } from 'svelte';
   import lax from 'lax.js';
 
+  import { base } from '$app/paths';
+
   onMount(() => {
     lax.init();
     lax.addDriver('scrollY', () => window.scrollY, { inertiaEnabled: true });
@@ -19,14 +21,14 @@
           ['elInY', 'elCenterY'],
           ['screenWidth/4', 0],
           {
-            inertia,
+            inertia
           }
         ],
         translateY: [
           ['elInY', 'elCenterY'],
           ['-screenHeight/4', 0],
           {
-            inertia,
+            inertia
           }
         ],
         scale: [
@@ -46,14 +48,14 @@
           ['elInY', 'elCenterY'],
           ['-screenWidth/4', 0],
           {
-            inertia,
+            inertia
           }
         ],
         translateY: [
           ['elInY', 'elCenterY'],
           ['screenHeight/4', 0],
           {
-            inertia,
+            inertia
           }
         ],
         scale: [
@@ -73,14 +75,14 @@
           ['elInY', 'elCenterY'],
           ['elWidth/2', 0],
           {
-            inertia,
+            inertia
           }
         ],
         translateY: [
           ['elInY', 'elCenterY'],
           ['-elHeight', 0],
           {
-            inertia,
+            inertia
           }
         ]
       }
@@ -92,14 +94,14 @@
           ['elInY', 'elCenterY'],
           ['-elWidth/2', 0],
           {
-            inertia,
+            inertia
           }
         ],
         translateY: [
           ['elInY', 'elCenterY'],
           ['elHeight', 0],
           {
-            inertia,
+            inertia
           }
         ]
       }
@@ -111,14 +113,14 @@
           ['elInY', 'elCenterY'],
           ['-elWidth/2', 0],
           {
-            inertia,
+            inertia
           }
         ],
         translateY: [
           ['elInY', 'elCenterY'],
           ['elHeight', 0],
           {
-            inertia,
+            inertia
           }
         ]
       }
@@ -130,7 +132,7 @@
           ['elInY', 'elCenterY'],
           ['elHeight', 0],
           {
-            inertia,
+            inertia
           }
         ]
       }
@@ -149,7 +151,7 @@
       </p>
     </div>
   </div>
-  <img class="about-header" src="/about/about_header.png" alt="cat header" />
+  <img class="about-header" src="{base}/about/about_header.avif" alt="cat header" />
   <div id="flex-container">
     <div class="row">
       <div class="text">
@@ -162,14 +164,14 @@
         </p>
       </div>
       <div class="img-container" id="top-img">
-        <img class="blob" src="/about/top_blob.svg" alt="blob accent" />
-        <img class="img" src="/about/top_image.png" alt="volunteering" />
+        <img class="blob" src="{base}/about/top_blob.svg" alt="blob accent" />
+        <img class="img" src="{base}/about/top_image.avif" alt="volunteering" />
       </div>
     </div>
     <div class="row">
       <div class="img-container" id="bottom-img">
-        <img class="blob" src="/about/bottom_blob.svg" alt="blob accent" />
-        <img class="img" src="/about/bottom_image.png" alt="love cats" />
+        <img class="blob" src="{base}/about/bottom_blob.svg" alt="blob accent" />
+        <img class="img" src="{base}/about/bottom_image.avif" alt="love cats" />
       </div>
       <div class="text">
         <h3 id="bottom-title">For the love of cats</h3>
@@ -190,8 +192,8 @@
         </p>
       </div>
       <div class="logo-container">
-        <img id="logo-blob" src="/about/logo_blob.svg" alt="blob accent" />
-        <img id="logo-img" src="/about/logo.svg" alt="Fix Nation logo" />
+        <img id="logo-blob" src="{base}/about/logo_blob.svg" alt="blob accent" />
+        <img id="logo-img" src="{base}/about/logo.svg" alt="Fix Nation logo" />
       </div>
     </div>
   </div>
@@ -200,7 +202,7 @@
 <div class="mobile-view">
   <div class="about-container">
     <div id="about-img">
-      <img class="about-header" src="/about/mobile-about.png" alt="cat header" />
+      <img class="about-header" src="{base}/about/mobile-about.avif" alt="cat header" />
     </div>
     <div class="text-wrapper">
       <h3>Thousands of cats are<br />needlessly euthanized in Los<br />Angeles each year.</h3>
@@ -212,7 +214,7 @@
     </div>
   </div>
   <div id="volunteer-container">
-    <img class="img" src="/about/top_image.png" alt="volunteering" />
+    <img class="img" src="{base}/about/top_image.avif" alt="volunteering" />
     <div class="text-block">
       <h3 class="title">“We need to do something!”</h3>
       <p>
@@ -224,7 +226,7 @@
     </div>
   </div>
   <div id="cats-container">
-    <img class="img" src="/about/bottom_image.png" alt="love cats" />
+    <img class="img" src="{base}/about/bottom_image.avif" alt="love cats" />
     <div class="text-block">
       <h3 class="title">For the love of cats</h3>
       <p>
@@ -236,10 +238,10 @@
     </div>
   </div>
   <div class="logo-container">
-    <img id="mobile-logo" src="/about/mobile-logo.svg" alt="Fix Nation logo" />
+    <img id="mobile-logo" src="{base}/about/mobile-logo.svg" alt="Fix Nation logo" loading="lazy" />
   </div>
   <div class="mission-container">
-    <img id="mobile-blob" src="/about/mobile_blob.svg" alt="mobile blob" />
+    <img id="mobile-blob" src="{base}/about/mobile_blob.svg" alt="mobile blob" loading="lazy" />
     <div class="mission-text">
       <p>
         Our mission is to humanely reduce the population of homeless cats in Los Angeles by

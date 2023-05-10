@@ -12,8 +12,8 @@ export const CAT_DATA: CatData[] = [
     ig_link: 'https://www.instagram.com/shadowthehomedepotcat_/?hl=en',
     ig_username: 'shadowthehomedepotcat_',
     n_followers: 295,
-    image_path: `${base}/cat_stories/shadow.png`,
-    mobile_image_path: `${base}/cat_stories/shadow_mobile.png`
+    image_path: `${base}/cat_stories/shadow.avif`,
+    mobile_image_path: `${base}/cat_stories/shadow_mobile.avif`
   },
   {
     name: 'Close Up',
@@ -22,8 +22,8 @@ export const CAT_DATA: CatData[] = [
     ig_link: 'https://www.instagram.com/closeupthecemeterycat/?hl=en',
     ig_username: 'closeupthecemeterycat',
     n_followers: 9873,
-    image_path: `${base}/cat_stories/close_up_full.png`,
-    mobile_image_path: `${base}/cat_stories/close_up_mobile.png`
+    image_path: `${base}/cat_stories/close_up_full.avif`,
+    mobile_image_path: `${base}/cat_stories/close_up_mobile.avif`
   },
   {
     name: 'Almira',
@@ -32,7 +32,7 @@ export const CAT_DATA: CatData[] = [
     ig_link: 'https://www.instagram.com/disneylandcats/?hl=en',
     ig_username: 'disneylandcats',
     n_followers: 110000,
-    image_path: `${base}/cat_stories/almira_full.png`,
-    mobile_image_path: `${base}/cat_stories/almira_mobile.png`
+    image_path: `${base}/cat_stories/almira_full.avif`,
+    mobile_image_path: `${base}/cat_stories/almira_mobile.avif`
   }
 ];

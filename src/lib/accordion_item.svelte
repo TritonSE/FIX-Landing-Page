@@ -35,7 +35,12 @@
     class="accordion-item"
   >
     <div>
-      <img src="{base}/{COMMON_IMAGE_PATH}/{imageName}" alt={imageAlt} class="accordion-image" />
+      <img
+        src="{base}/{COMMON_IMAGE_PATH}/{imageName}"
+        alt={imageAlt}
+        class="accordion-image"
+        loading="lazy"
+      />
       <p class:first={index == 0}>{@html extraContent}</p>
     </div>
     {#each resourceTexts as resourceText, j}
@@ -47,6 +52,7 @@
                 src="{base}/icons/ic_external_link.svg"
                 alt="External Link"
                 class="external-link-icon"
+                loading="lazy"
               />
               {resourceText}
             </div></Button

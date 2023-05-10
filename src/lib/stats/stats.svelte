@@ -11,37 +11,37 @@
     {
       number: '#1',
       subtitle: 'largest clinic for homeless cats',
-      picture: 'stats/stats1.png',
+      picture: 'stats/Stats1.avif',
       alt: 'Sedated cats'
     },
     {
       number: '220k',
       subtitle: 'total cats spayed or neutered',
-      picture: 'stats/stats2.png',
+      picture: 'stats/Stats2.avif',
       alt: 'Cat on rug'
     },
     {
       number: '21%',
       subtitle: 'of cats abandoned because their of their residency',
-      picture: 'stats/stats3.png',
+      picture: 'stats/Stats3.avif',
       alt: 'Momma cat with her kittens'
     },
     {
       number: '12k',
       subtitle: 'TNR volenteers trained',
-      picture: 'stats/stats4.png',
+      picture: 'stats/Stats4.avif',
       alt: 'FixNation staff holding a cat'
     },
     {
       number: '89%',
       subtitle: 'profits go directly to FixNation programs',
-      picture: 'stats/stats5.png',
+      picture: 'stats/Stats5.avif',
       alt: 'Staff in front of FixNation building'
     },
     {
       number: '35%',
       subtitle: 'cats acquired as strays',
-      picture: 'stats/stats6.png'
+      picture: 'stats/Stats6.avif'
     }
   ];
 
@@ -60,7 +60,7 @@
     <div class="slider">
       {#each sections as section}
         <section class="section" class:active={screenWidth >= 2200}>
-          <img src={section.picture} alt={section.alt} />
+          <img src="{base}/{section.picture}" alt={section.alt} loading="lazy" />
           <span class="rectangle" />
           <div class="text">
             <div class="header">{section.number}</div>
@@ -101,7 +101,7 @@
     justify-content: center;
   }
   section.active {
-      min-width: 16.65vw;
+    min-width: 16.65vw;
   }
   img {
     width: 20rem;

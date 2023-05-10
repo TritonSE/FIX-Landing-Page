@@ -27,18 +27,28 @@
 
 <a class="container" href={!mobile ? link_url : 'javascript:void(0)'}>
   <div class="root">
-    <img src={background_image_url} alt={background_image_alt} />
+    <img src={background_image_url} alt={background_image_alt} loading="lazy" />
     <div class="label">
       <p>{label}</p>
-      <img class="chevron right" src="{base}/icons/ic_caretright.svg" alt="Right arrow" />
+      <img
+        class="chevron right"
+        src="{base}/icons/ic_caretright.svg"
+        alt="Right arrow"
+        loading="lazy"
+      />
     </div>
     <div class="description {light_shadow ? 'light' : 'dark'}">
       <p>{description}</p>
-      <img class="chevron left" src="{base}/icons/ic_caretright.svg" alt="Left arrow" />
+      <img
+        class="chevron left"
+        src="{base}/icons/ic_caretright.svg"
+        alt="Left arrow"
+        loading="lazy"
+      />
       <a href={link_url} class="external">
         <div>Learn More:</div>
         &nbsp;
-        <img src="{base}/icons/ic_external_link.svg" alt="External link indicator" />
+        <img src="{base}/icons/ic_external_link.svg" alt="External link indicator" loading="lazy" />
       </a>
     </div>
   </div>

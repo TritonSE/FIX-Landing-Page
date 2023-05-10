@@ -34,7 +34,7 @@
 <div class="container">
   <div class="desktop">
     <div class="blob-image">
-      <img src="{base}/icons/blob.svg" alt="footer blob" id="footer_blob" />
+      <img src="{base}/icons/blob.svg" alt="footer blob" id="footer_blob" loading="lazy" />
     </div>
     <div id="blob-content">
       <a href="https://fixnation.org">
@@ -56,14 +56,14 @@
       <p id="copyright">© 2020 FixNation, Inc. All Rights Reserved.</p>
     </div>
     <div id="banner">
-      <img src="{base}/icons/logo.svg" alt="TSE logo" id="logo" />
+      <img src="{base}/icons/logo.svg" alt="TSE logo" id="logo" loading="lazy" />
       <span>Built for free by&nbsp;</span>
       <a href="https://tse.ucsd.edu/">Triton Software Engineering</a>
     </div>
   </div>
 
   <div class="mobile">
-    <img src="{base}/icons/road.svg" alt="footer road" class="road" />
+    <img src="{base}/icons/road.svg" alt="footer road" class="road" loading="lazy" />
     <div class="buttons">
       <a href="https://fixnation.org">
         <Button style="width: 14rem; margin-bottom: 1rem">FixNation Website</Button>

@@ -10,7 +10,7 @@
 
 <div>
   <h2>{name}</h2>
-  <img src="{base}/cat_stories/paw.svg" alt="Cat paw" />
+  <img src="{base}/cat_stories/paw.svg" alt="Cat paw" loading="lazy" />
 </div>
 
 <style>
