@@ -1,9 +1,10 @@
 <script lang="ts">
+  import { onMount, tick } from 'svelte';
+  import { slide } from 'svelte/transition';
+
   import { base } from '$app/paths';
   import Button from '$lib/button.svelte';
   import type { RowData } from '$lib/types';
-  import { onMount } from 'svelte';
-  import { slide } from 'svelte/transition';
 
   let el: HTMLDivElement | null;
   let h = 0;
@@ -15,9 +16,10 @@
 
   const COMMON_IMAGE_PATH = 'roadmap/steps';
 
-  onMount(() => {
+  onMount(async () => {
     if (el) {
       h = el.offsetHeight;
+      await tick();
       onClose();
     }
   });

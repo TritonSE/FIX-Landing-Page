@@ -7,7 +7,8 @@ export interface CatData {
   desc: string;
   abbrev_len: number;
   ig_username: string;
-  n_followers: string;
+  n_followers: number;
   ig_link: string;
   image_path: string;
+  mobile_image_path: string;
 }

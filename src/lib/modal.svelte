@@ -3,14 +3,13 @@
     A modal slideshow with Trap-Neuter-Return information.
 -->
 <script lang="ts">
-  export let open = false;
   import { fly } from 'svelte/transition';
   import { tick } from 'svelte';
   import { base } from '$app/paths';
 
+  export let open = false;
   export let cur = 0;
   let dir = false;
-  export let onclose: () => void;
   let entries = [
     {
       title: 'step 1: FIND',
@@ -99,7 +98,6 @@
             class="x-out"
             on:click={() => {
               open = !open;
-              onclose();
             }}
           >
             x
