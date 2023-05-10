@@ -6,20 +6,21 @@
   import { base } from '$app/paths';
 </script>
 
+<img id="paws" src="/find-paws.svg" alt="paw prints" />
+
 <div class="container">
-  <img src="/find-paws.svg" alt="paw prints" />
   <h1 id="header">Find FixNation</h1>
   <div class="info-container">
     <div class="phone">
       <div class="info-header">
-        <img src="{base}/icons/phone.svg" alt="phone" />
+        <img class="icon" src="{base}/icons/phone.svg" alt="phone" />
         <h3>Phone</h3>
       </div>
       <p>818.524.2287</p>
     </div>
     <div class="location">
       <div class="info-header">
-        <img src="{base}/icons/location.svg" alt="pin" />
+        <img class="icon" src="{base}/icons/location.svg" alt="pin" />
         <h3>Location</h3>
       </div>
       <p>
@@ -30,7 +31,7 @@
     </div>
     <div class="hours">
       <div class="info-header">
-        <img src="{base}/icons/clock.svg" alt="clock" />
+        <img class="icon" src="{base}/icons/clock.svg" alt="clock" />
         <h3>Hours</h3>
       </div>
       <p>
@@ -40,7 +41,7 @@
     </div>
     <div class="email">
       <div class="info-header">
-        <img src="{base}/icons/email.svg" alt="email" />
+        <img class="icon" src="{base}/icons/email.svg" alt="email" />
         <h3>Email</h3>
       </div>
       <p>
@@ -63,6 +64,15 @@
 
   #header {
     text-align: center;
+    position: relative;
+  }
+
+  #paws {
+    position: absolute;
+  }
+
+  .icon {
+    margin-right: 0.5em;
   }
 
   .info-container {
@@ -74,5 +84,6 @@
   .info-header {
     display: flex;
     flex-direction: row;
+    color: var(--color-secondary-accent);
   }
 </style>
