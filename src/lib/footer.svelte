@@ -83,7 +83,7 @@
   <div class="mobile">
     <img src="{base}/icons/road.svg" alt="footer road" class="road" />
     <div class="buttons">
-      <a href="https://fixnation.org">
+      <a href="https://fixnation.org" target="_blank" rel="noreferrer noopener">
         <Button style="width: 14rem; margin-bottom: 1rem">FixNation Website</Button>
       </a>
       <div class="spacer" />

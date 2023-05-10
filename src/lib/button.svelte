@@ -64,4 +64,10 @@
     padding: 12px 24px;
     margin-bottom: 12px;
   }
+
+  @media screen and (max-width: 600px) {
+    button {
+      font-size: 12px;
+    }
+  }
 </style>
