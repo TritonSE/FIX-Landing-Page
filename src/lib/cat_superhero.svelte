@@ -118,7 +118,7 @@
   }
 </script>
 
-<Modal {open} {cur} />
+<Modal bind:open bind:cur />
 
 <div class="container">
   <div class="bubble">
@@ -152,7 +152,7 @@
         >
           <div class="marker">
             <img src="{base}/roadmap/marker.svg" alt="Roadmap marker" />
-            <div class=marker_anim></div>
+            <div class="marker_anim" />
             <img
               class="shadow"
               src="{base}/roadmap/marker_shadow.svg"
@@ -314,6 +314,9 @@
       top: 114vw;
       right: 2vw;
     }
+    .marker img {
+      width: 2rem !important;
+    }
   }
   /* Desktop variant only */
   @media screen and (min-width: 676px) {
@@ -405,39 +408,46 @@
 
     @keyframes glow {
       0% {
-        background-image: repeating-radial-gradient(transparent 0 10000px);
+        background-image: radial-gradient(transparent 0 10000px);
       }
       10% {
-        background-image: repeating-radial-gradient(transparent 0 10000px);
+        background-image: radial-gradient(transparent 0 10000px);
       }
       30% {
-        background-image: repeating-radial-gradient(#C4D856CC 0 30px, transparent 30px 10000px);
+        background-image: radial-gradient(#c4d856cc 0 30px, transparent 30px 10000px);
       }
       50% {
-        background-image: repeating-radial-gradient(#C4D856CC 0 30px, #C4D856AA 30px 35px, transparent 35px 10000px);
+        background-image: radial-gradient(
+          #c4d856cc 0 30px,
+          #c4d856aa 30px 35px,
+          transparent 35px 10000px
+        );
       }
       70% {
-        background-image: repeating-radial-gradient(#C4D856CC 0 30px, #C4D856AA 30px 35px, #C4D85666 35px 40px, transparent 40px 10000px);
+        background-image: radial-gradient(
+          #c4d856cc 0 30px,
+          #c4d856aa 30px 35px,
+          #c4d85666 35px 40px,
+          transparent 40px 10000px
+        );
       }
     }
 
     .row .marker {
-      width: 2vw;
       position: absolute;
       z-index: 1;
       top: -2.5vw;
     }
     .marker img {
-      width: 3vw;
+      width: 2.5rem;
       position: absolute;
-      left: 0.3rem;
+      right: 50%;
+      bottom: 50%;
+      transform: translate(50%, 50%);
     }
-    .marker_anim{
-      position: absolute;
-      left: -160%;
-      margin-top: -3vw;
-      width: 10vw;
-      height: 10vw;
+    .marker_anim {
+      width: 6rem;
+      height: 6rem;
       animation-name: glow;
       animation-duration: 2s;
       animation-iteration-count: infinite;
@@ -447,7 +457,6 @@
     }
     .marker img.shadow {
       position: absolute;
-      top: 0.125rem;
       z-index: -1;
     }
     .text h1 {

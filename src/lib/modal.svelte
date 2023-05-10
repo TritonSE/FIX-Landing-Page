@@ -3,7 +3,7 @@
     A modal slideshow with Trap-Neuter-Return information.
 -->
 <script lang="ts">
-  import { fly } from 'svelte/transition';
+  import { fade, fly } from 'svelte/transition';
   import { tick } from 'svelte';
   import { base } from '$app/paths';
 
@@ -89,6 +89,7 @@
       on:click={() => {
         open = false;
       }}
+      transition:fade
     />
     {#each entries as entry, index}
       {#if cur == index}
@@ -134,7 +135,7 @@
           </div>
           <div class="pages">
             <button
-              class="lvbutton {cur === 0 ? 'lvectActive' : ''}"
+              class="arrow flex-center {cur !== 0 ? 'active' : ''}"
               on:click={async () => {
                 if (cur > 0) {
                   dir = false;
@@ -142,8 +143,10 @@
                   cur--;
                 }
               }}
-            />
-            {#each new Array(8) as _, i}
+            >
+              <span class="material-icons">arrow_back_ios</span>
+            </button>
+            {#each new Array(entries.length) as _, i}
               <button
                 class="ellipse"
                 class:active={cur === i}
@@ -155,7 +158,7 @@
               />
             {/each}
             <button
-              class="rvbutton {cur === entries.length - 1 ? 'rvectActive' : ''}"
+              class="arrow flex-center {cur !== entries.length - 1 ? 'active' : ''}"
               on:click={async () => {
                 if (cur < entries.length - 1) {
                   dir = true;
@@ -163,7 +166,9 @@
                   cur++;
                 }
               }}
-            />
+            >
+              <span class="material-icons">arrow_forward_ios</span>
+            </button>
           </div>
         </div>
       {/if}
@@ -199,7 +204,8 @@
     transform: translate(-50%, -50%);
     padding: 0;
     z-index: 5;
-    height: 35vw;
+    min-height: 35vw;
+    height: 18rem;
     width: 65%;
     border-radius: 2rem;
     display: flex;
@@ -217,14 +223,14 @@
   .x-out {
     padding-top: 25px;
     padding-left: 25px;
-    font-family: 'Comics';
+    font-family: 'Comics', sans-serif;
     position: inherit;
     cursor: pointer;
   }
 
   .title {
     margin: 0 auto;
-    font-family: 'Comics';
+    font-family: 'Comics', sans-serif;
     font-size: 3.5vw;
     padding-top: 30px;
     padding-bottom: 1vh;
@@ -235,7 +241,7 @@
     margin: 0 auto;
     padding: 0px;
     font-size: 1.5vw;
-    font-family: 'Comics';
+    font-family: 'Comics', sans-serif;
     color: #20525c;
   }
 
@@ -311,36 +317,10 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    margin-right: 0px;
-    padding-bottom: 2vh;
-    position: relative;
-  }
-
-  .lvbutton {
-    background-image: url(@base/modal/lvector.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    width: 1rem;
-    height: 1rem;
-    border: none;
-    appearance: none;
-    background-color: inherit;
-    align-items: center;
-    cursor: pointer;
-  }
-
-  .rvbutton {
-    background-image: url(@base/modal/rvector.png);
-    background-repeat: no-repeat;
-    background-size: contain;
-    background-position: center;
-    width: 1rem;
-    height: 1rem;
-    border: none;
-    appearance: none;
-    background-color: inherit;
-    cursor: pointer;
+    position: absolute;
+    right: 50%;
+    bottom: 1vh;
+    transform: translateX(50%);
   }
 
   .ellipse {
@@ -355,7 +335,23 @@
     border: none;
   }
 
-  .active,
+  .arrow {
+    margin: 0;
+    background: transparent;
+    border: none;
+    color: var(--color-gray-darker);
+    transition: color 0.2s;
+  }
+  .arrow span {
+    font-size: 12pt;
+  }
+
+  .arrow.active {
+    color: var(--color-secondary-accent);
+    cursor: pointer;
+  }
+
+  .ellipse.active,
   .ellipse:hover {
     background-color: #717171;
   }
@@ -366,12 +362,5 @@
 
   .rvectActive {
     background-image: url(@base/modal/lightrvector.png);
-  }
-
-  @font-face {
-    font-family: 'Comics';
-    font-style: normal;
-    font-weight: normal;
-    src: url(/fonts/Comics.ttf);
   }
 </style>
