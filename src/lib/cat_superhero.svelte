@@ -4,8 +4,19 @@
 -->
 <script lang="ts">
   import { base } from '$app/paths';
+
   import type { RowData } from './types';
   import AccordionItem from './accordion_item.svelte';
+  import Modal from '$lib/modal.svelte';
+
+  let open = false;
+  let cur = -1;
+
+  type RowData = {
+    title: string;
+    text: string;
+  };
+
   const rows: RowData[] = [
     {
       title: 'Find',
@@ -107,6 +118,8 @@
   }
 </script>
 
+<Modal bind:open bind:cur />
+
 <div class="container">
   <div class="bubble">
     <div class="crop">
@@ -125,9 +138,21 @@
     <div class="road-image"><div class="road-line" /></div>
     {#each rows as rowData, i}
       <div class="step_container {rowData.title.toLowerCase() + i}">
-        <div class="row">
+        <div
+          class="row"
+          on:click={() => {
+            if (window.innerWidth > 675) {
+              open = !open;
+              cur = i;
+            }
+          }}
+          on:keydown={() => {
+            open = !open;
+          }}
+        >
           <div class="marker">
             <img src="{base}/roadmap/marker.svg" alt="Roadmap marker" />
+            <div class="marker_anim" />
             <img
               class="shadow"
               src="{base}/roadmap/marker_shadow.svg"
@@ -289,6 +314,9 @@
       top: 114vw;
       right: 2vw;
     }
+    .marker img {
+      width: 2rem !important;
+    }
   }
   /* Desktop variant only */
   @media screen and (min-width: 601px) {
@@ -373,21 +401,63 @@
       background-size: contain;
       position: relative;
     }
+
+    .row:hover {
+      background-image: url(@base/roadmap/cloud_hover.svg);
+      cursor: pointer;
+    }
+
+    @keyframes glow {
+      0% {
+        background-image: radial-gradient(transparent 0 10000px);
+      }
+      10% {
+        background-image: radial-gradient(transparent 0 10000px);
+      }
+      30% {
+        background-image: radial-gradient(#c4d856cc 0 30px, transparent 30px 10000px);
+      }
+      50% {
+        background-image: radial-gradient(
+          #c4d856cc 0 30px,
+          #c4d856aa 30px 35px,
+          transparent 35px 10000px
+        );
+      }
+      70% {
+        background-image: radial-gradient(
+          #c4d856cc 0 30px,
+          #c4d856aa 30px 35px,
+          #c4d85666 35px 40px,
+          transparent 40px 10000px
+        );
+      }
+    }
+
     .row .marker {
-      width: 2vw;
       position: absolute;
       z-index: 1;
       top: -2.5vw;
     }
     .marker img {
-      width: 3vw;
+      width: 2.5rem;
       position: absolute;
-      left: 0.3rem;
+      right: 50%;
+      bottom: 50%;
+      transform: translate(50%, 50%);
+    }
+    .marker_anim {
+      width: 6rem;
+      height: 6rem;
+      animation-name: glow;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      overflow: hidden;
+      background-repeat: no-repeat;
+      z-index: -2;
     }
     .marker img.shadow {
       position: absolute;
-      left: 0.675rem;
-      top: 0.125rem;
       z-index: -1;
     }
     .text h2 {
