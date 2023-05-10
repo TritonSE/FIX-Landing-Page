@@ -10,13 +10,14 @@
 
   import { base } from '$app/paths';
 
+  const NEWSLETTER_ENDPOINT = 'https://fixnation.org/wp-admin/admin-ajax.php';
+
   let ref;
   let newsletter = false,
     done = false;
-  let name = '',
-    email = '';
-  let nameError = false,
-    emailError = false;
+  let email = '';
+  let emailError = false,
+    failed = false;
 
   onMount(() => {
     document.addEventListener(
@@ -62,9 +63,7 @@
         small
         fill
         on:click={() => {
-          name = '';
           email = '';
-
           done = false;
           newsletter = true;
         }}>Sign Up for Newsletter</Button
@@ -115,25 +114,35 @@
           >
             <h1>Sign up for our newsletter to stay in touch!</h1>
             <form
-              on:submit={(e) => {
+              on:submit={async (e) => {
                 e.preventDefault();
 
-                nameError = !name.trim();
+                failed = false;
                 emailError = !email.trim() || !email.includes('@');
-                if (nameError || emailError) return;
+                if (emailError) return;
 
-                done = true;
-                setTimeout(() => {
-                  newsletter = false;
-                }, 400);
+                try {
+                  const response = await fetch(
+                    NEWSLETTER_ENDPOINT,
+                    {
+                      method: 'POST',
+                      body: `email=${encodeURIComponent(email)}&name=&action=fca_eoi_subscribe&list_id=9a24fade51&form_id=8649&nonce=${Math.random().toString(16).substring(2, 12).padEnd(10)}&timezone=America%2FLos_Angeles&consent_granted=unknown`,
+                    }
+                  );
+                  if (response.ok) {
+                    done = true;
+                    setTimeout(() => {
+                      newsletter = false;
+                    }, 400);
+                  } else {
+                    failed = true;
+                  }
+                } catch (e) {
+                  failed = true;
+                }
               }}
             >
-              <input
-                placeholder="Name"
-                bind:value={name}
-                style="border: {nameError ? '1px solid red' : '1px solid transparent'}"
-              />
-              <br />
+              <p class="error" class:visible={failed}>Failed to load, please try again.</p>
               <input
                 placeholder="Email"
                 type="email"
@@ -196,6 +205,15 @@
   .newsletter h1 {
     font-size: 18px;
     color: var(--color-white);
+  }
+  .newsletter p.error {
+    color: red;
+    opacity: 0;
+    transition: opacity 0.2s;
+    font-size: 8pt; 
+  }
+  .newsletter p.error.visible {
+    opacity: 1;
   }
   .newsletter input {
     width: 10rem;
