@@ -1608,6 +1608,7 @@ __metadata:
     eslint-plugin-import: ^2.26.0
     eslint-plugin-svelte3: ^4.0.0
     husky: ^8.0.2
+    lax.js: ^2.0.3
     prettier: ^2.7.1
     prettier-plugin-svelte: ^2.7.0
     svelte: ^3.44.0
@@ -2291,6 +2292,13 @@ __metadata:
   version: 4.1.5
   resolution: "kleur@npm:4.1.5"
   checksum: 1dc476e32741acf0b1b5b0627ffd0d722e342c1b0da14de3e8ae97821327ca08f9fb944542fb3c126d90ac5f27f9d804edbe7c585bf7d12ef495d115e0f22c12
+  languageName: node
+  linkType: hard
+
+"lax.js@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "lax.js@npm:2.0.3"
+  checksum: 2b72b33a57f83720e0858a8c324bd6b0abf2ea0948829c2e320ea800e67a49d2cceee9fa9e7d6c8ae60954a42eeaa88e6eadeb4b9d262c24620bb7d686b02f7e
   languageName: node
   linkType: hard
 
