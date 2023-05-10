@@ -341,6 +341,7 @@
     }
     #text_background_blob {
       width: 90vw;
+      z-index: 1;
     }
 
     #logo_container {

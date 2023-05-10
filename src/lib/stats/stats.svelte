@@ -1,43 +1,47 @@
 <!--
   statsv2.svelte:
-    Stats highlighting the value of fixNation's work-v2
+    Stats highlighting the value of FixNation's work
 -->
 <script lang="ts">
+  import { base } from '$app/paths';
+
+  import MobileStats from './mobile_stats.svelte';
+
   let sections = [
     {
       number: '#1',
       subtitle: 'largest clinic for homeless cats',
-      picture: 'statsv2/statImage1.png',
+      picture: 'stats/stats1.png',
       alt: 'Sedated cats'
     },
     {
       number: '220k',
       subtitle: 'total cats spayed or neutered',
-      picture: 'statsv2/statImage2.png',
+      picture: 'stats/stats2.png',
       alt: 'Cat on rug'
     },
     {
       number: '21%',
       subtitle: 'of cats abandoned because their of their residency',
-      picture: 'statsv2/statImage3.png',
+      picture: 'stats/stats3.png',
       alt: 'Momma cat with her kittens'
     },
     {
       number: '12k',
       subtitle: 'TNR volenteers trained',
-      picture: 'statsv2/statImage4.png',
+      picture: 'stats/stats4.png',
       alt: 'FixNation staff holding a cat'
     },
     {
       number: '89%',
       subtitle: 'profits go directly to FixNation programs',
-      picture: 'statsv2/statImage5.png',
+      picture: 'stats/stats5.png',
       alt: 'Staff in front of FixNation building'
     },
     {
       number: '35%',
       subtitle: 'cats acquired as strays',
-      picture: 'statsv2/statImage6.png'
+      picture: 'stats/stats6.png'
     }
   ];
 
@@ -52,7 +56,7 @@
   humane care of homeless cats.
 </h4>
 <div>
-  {#if screenWidth > 600}
+  {#if screenWidth > 675}
     <div class="slider">
       {#each sections as section}
         <section class="section" class:active={screenWidth >= 2200}>
@@ -65,7 +69,9 @@
         </section>
       {/each}
     </div>
-  {:else}{/if}
+  {:else}
+    <MobileStats />
+  {/if}
 </div>
 
 <style>
@@ -80,7 +86,6 @@
   * {
     box-sizing: border-box;
     margin: 0;
-    padding: 1;
   }
 
   section {
@@ -108,7 +113,7 @@
     font-weight: 700;
     letter-spacing: 0.02rem;
     font-size: 4rem;
-    font-family: 'Rubik';
+    font-family: 'Rubik', sans-serif !important;
   }
   .subtitle {
     color: #ffffff;
@@ -148,7 +153,7 @@
   }
 
   /* Mobile variant only */
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 675px) {
     .rectangle {
       width: 60vw;
       height: 60vw;
