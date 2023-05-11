@@ -9,6 +9,7 @@
   import Button from '$lib/button.svelte';
 
   import { base } from '$app/paths';
+  import AnimatedBlob from './animated_blob.svelte';
 
   const NEWSLETTER_ENDPOINT = 'https://fixnation.org/wp-admin/admin-ajax.php';
 
@@ -19,21 +20,9 @@
   let emailError = false,
     failed = false;
 
-  onMount(() => {
-    document.addEventListener(
-      'click',
-      (e) => {
-        if (ref && !ref.contains(e.target)) {
-          newsletter = false;
-        }
-      },
-      true
-    );
-  });
-
   function clickOutside(element) {
     const handleClick = (event) => {
-      if (!element.contains(event.target)) {
+      if (checkClickOutsideBlob(event)) {
         element.dispatchEvent(new CustomEvent('outclick'));
       }
     };
@@ -46,6 +35,14 @@
       }
     };
   }
+
+  const checkClickOutsideBlob = (event) => {
+    const blobSvg = document.getElementById('newsletter-blob');
+    if (!blobSvg || blobSvg.childNodes.length === 0) {
+      return true;
+    }
+    return !blobSvg.childNodes[0].contains(event.target) && blobSvg.contains(event.target);
+  };
 </script>
 
 <div class="container">
@@ -105,7 +102,7 @@
       out:fly={{ delay: 500, x: 100, y: 100 }}
       class="newsletter"
     >
-      <div>
+      <div class="newsletter-content">
         {#if !done}
           <div
             transition:fade={{ duration: 200 }}
@@ -122,13 +119,15 @@
                 if (emailError) return;
 
                 try {
-                  const response = await fetch(
-                    NEWSLETTER_ENDPOINT,
-                    {
-                      method: 'POST',
-                      body: `email=${encodeURIComponent(email)}&name=&action=fca_eoi_subscribe&list_id=9a24fade51&form_id=8649&nonce=${Math.random().toString(16).substring(2, 12).padEnd(10)}&timezone=America%2FLos_Angeles&consent_granted=unknown`,
-                    }
-                  );
+                  const response = await fetch(NEWSLETTER_ENDPOINT, {
+                    method: 'POST',
+                    body: `email=${encodeURIComponent(
+                      email
+                    )}&name=&action=fca_eoi_subscribe&list_id=9a24fade51&form_id=8649&nonce=${Math.random()
+                      .toString(16)
+                      .substring(2, 12)
+                      .padEnd(10)}&timezone=America%2FLos_Angeles&consent_granted=unknown`
+                  });
                   if (response.ok) {
                     done = true;
                     setTimeout(() => {
@@ -161,6 +160,7 @@
           <h1>Thank you!</h1>
         </div>
       </div>
+      <div class="newsletter-blob-image"><AnimatedBlob /></div>
     </div>
   {/if}
 </div>
@@ -181,14 +181,24 @@
     height: 72vw;
     min-height: 25rem;
     max-height: 50rem;
-    background-image: url(@base/icons/animated_blob.svg);
-    background-size: 100% 100%;
 
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
   }
+
+  .newsletter-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .newsletter-blob-image {
+    position: absolute;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
   .newsletter > div {
     width: 10rem;
     margin: 0 auto;
@@ -210,7 +220,7 @@
     color: red;
     opacity: 0;
     transition: opacity 0.2s;
-    font-size: 8pt; 
+    font-size: 8pt;
   }
   .newsletter p.error.visible {
     opacity: 1;
