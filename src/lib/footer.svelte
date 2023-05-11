@@ -122,11 +122,20 @@
                 if (emailError) return;
 
                 try {
+                  const body = new URLSearchParams();
+                  body.append('email', email);
+                  body.append('name', '');
+                  body.append('action', 'fca_eoi_subscribe');
+                  body.append('list_id', '9a24fade51');
+                  body.append('form_id', '8649');
+                  body.append('nonce', 'b17279bdd6');
+                  body.append('timezone', 'America/Los_Angeles');
+                  body.append('content_granted', 'unknown');
                   const response = await fetch(
                     NEWSLETTER_ENDPOINT,
                     {
                       method: 'POST',
-                      body: `email=${encodeURIComponent(email)}&name=&action=fca_eoi_subscribe&list_id=9a24fade51&form_id=8649&nonce=${Math.random().toString(16).substring(2, 12).padEnd(10)}&timezone=America%2FLos_Angeles&consent_granted=unknown`,
+                      body
                     }
                   );
                   if (response.ok) {
