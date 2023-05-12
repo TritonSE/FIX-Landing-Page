@@ -105,7 +105,13 @@
     newRowsExpanded[index] = false;
     rowsExpanded = newRowsExpanded;
   }
+
+  import Quiz from './quiz.svelte'
+  let showQuiz = true
+  let quizInd = 0
 </script>
+
+<Quiz bind:showQuiz bind:quizInd></Quiz>
 
 <div class="container">
   <div class="bubble">
