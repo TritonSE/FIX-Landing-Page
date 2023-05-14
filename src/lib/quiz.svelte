@@ -1,7 +1,9 @@
 <script lang="ts">
     import Button from "./button.svelte";
+    import { base } from '$app/paths';
 
     export let showQuiz = false;
+    export let quizComplete = false;
     export let quizInd = 0;
     const questions = [
         {
@@ -30,12 +32,42 @@
             correct: 2,
         }
     ]
-    let correct = 0
-    let totalQuestions = questions.length
+
+    const results = [
+        {
+            text: "GOOD TRY! YOU MIGHT NEED TO SPEND MORE TIME UNDERSTANDING THE TNR ROADMAP AND TRY AGAIN!",
+            imageName: "sad-cat.svg"
+        },
+        {
+            text: "GREAT JOB! YOU’RE ALMOST AN TNR EXPERT, KEEP STUDYING AND YOU GOT IT NEXT TIME!",
+            imageName: "neutral-cat.svg",
+        },
+        {
+            text: "AMAZING JOB! YOU’RE A TNR PRO!! USE WHAT YOU LEARNED AND HELP TEACH OTHERS!",
+            imageName: "happy-cat.svg"
+        }
+    ]
+
+    let correct = 0;
+    let totalQuestions = questions.length;
+    let resultInd = -1;
 
     function checkCorrect(qInd: number, choiceInd:number){
         if (questions[qInd].correct = choiceInd){
             correct++;
+        }
+        quizInd++;
+        if(quizInd == totalQuestions){
+            quizComplete = !quizComplete
+            if(correct < 3){
+                resultInd = 0;
+            }
+            else if(correct < 5){
+                resultInd = 1;
+            }
+            else{
+                resultInd = 2;
+            }
         }
     }
 
@@ -47,7 +79,7 @@
 
 </script>
 
-{#if showQuiz}
+{#if showQuiz && !quizComplete}
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div class="modalPopUp" on:click={handleClickOutside}>
         <div class="modal">
@@ -72,6 +104,28 @@
     </div>
 {/if}
 
+{#if showQuiz && quizComplete}
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <div class="modalPopUp" on:click={handleClickOutside}>
+        <div class="modal">
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <div class="x-out" on:click={() => {showQuiz = !showQuiz;}}>
+                x
+            </div>
+            <div class="content">
+                <div class="result-content">
+                    <div>THANKS FOR PLAYING!</div>
+                    <div>YOU SCORED A {correct}/{totalQuestions}</div>
+                    <div>
+                        <img src="{base}/quiz/{results[resultInd].imageName}" alt="cat">
+                    </div>
+                    <div>{results[resultInd].text}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+{/if}
+
 <style>
     .modalPopUp {
         position: fixed;
@@ -88,7 +142,8 @@
     .modal {
         background-color: #83CDC0;
         padding: 10px;
-        height:60%;
+        height:70%;
+        width:70%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -117,5 +172,13 @@
         margin:30px;
         width:80%;
         margin-bottom: 50px;
+    }
+
+    .result-content{
+        font-size:1.5rem;
+    }
+
+    .result-content > * + *{
+        margin: 20px;
     }
 </style>
