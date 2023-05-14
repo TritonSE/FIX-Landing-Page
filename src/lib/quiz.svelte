@@ -39,57 +39,83 @@
         }
     }
 
+    function handleClickOutside(event: MouseEvent) {
+        if ((event.target as HTMLElement).classList.contains('modalPopUp')) {
+            showQuiz = false;
+        }
+    }
+
 </script>
 
 {#if showQuiz}
-    <div class="modal">
-        <!-- svelte-ignore a11y-click-events-have-key-events -->
-        <div class="x-out" on:click={() => {showQuiz = !showQuiz;}}>
-            x
-        </div>
-        <div class="content">
-            {#each questions as question, index}
-                {#if quizInd == index}
-                    <div class="questionNum">Question {index+1}/{totalQuestions}</div>
-                    <div class="question">{question.question}</div>
-                    {#each question.choices as choice, ind}
-                        <Button secondary on:click={() => checkCorrect(index, ind)} style="color:black; width:40%; margin:10px">
-                            {choice}
-                        </Button>
-                    {/each}
-                {/if}
-            {/each}
+    <!-- svelte-ignore a11y-click-events-have-key-events -->
+    <div class="modalPopUp" on:click={handleClickOutside}>
+        <div class="modal">
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <div class="x-out" on:click={() => {showQuiz = !showQuiz;}}>
+                x
+            </div>
+            <div class="content">
+                {#each questions as question, index}
+                    {#if quizInd == index}
+                        <div class="questionNum">Question {index+1}/{totalQuestions}</div>
+                        <div class="question">{question.question}</div>
+                        {#each question.choices as choice, ind}
+                            <Button secondary on:click={() => checkCorrect(index, ind)} style="color:black; width:60%; height:60px;margin:10px">
+                                {choice}
+                            </Button>
+                        {/each}
+                    {/if}
+                {/each}
+            </div>
         </div>
     </div>
 {/if}
 
 <style>
+    .modalPopUp {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 9999;
+    }
     .modal {
         background-color: #83CDC0;
         padding: 10px;
+        height:60%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        position:relative;
     }
     .content{
-        margin-top: 20px;
+        /* margin-top: 20px; */
+        margin: 40px 30px 40px;
         display:flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
     }
     .x-out {
-        /* padding-top: 25px;
-        padding-left: 25px; */
         font-family: 'Comics', sans-serif;
-        position: relative;
+        position: absolute;
         cursor: pointer;
-        right:10px;
         top: 10px;
-        float:right;
+        right: 10px;
     }
-    .questionNum {
 
-    }
     .question {
         font-size:1.5rem;
-        margin:20px
+        margin:30px;
+        width:80%;
+        margin-bottom: 50px;
     }
 </style>
