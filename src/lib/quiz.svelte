@@ -94,7 +94,7 @@
                         <div class="question">{question.question}</div>
                         {#each question.choices as choice, ind}
                             <Button secondary on:click={() => checkCorrect(index, ind)} style="color:black; width:60%; height:60px;margin:10px">
-                                {choice}
+                                <p class="choice">{choice}</p>
                             </Button>
                         {/each}
                     {/if}
@@ -167,15 +167,39 @@
         right: 10px;
     }
 
+    .questionNum {
+        font-size:1.2rem;
+        font-weight: 500;
+
+        letter-spacing: 0.02em;
+        color: #0C2B35;
+    }
+
     .question {
         font-size:1.5rem;
+        font-weight: 600;
         margin:30px;
         width:80%;
         margin-bottom: 50px;
+
+        color: #0C2B35;
+    }
+
+    .choice {
+        font-size: 1.2rem;
+        font-weight: 600;
+        line-height: 20px;
+
+        color: #0C2B35;
     }
 
     .result-content{
-        font-size:1.5rem;
+        width: 45rem;
+
+        font-size:1.7rem;
+        font-weight: 600;
+
+        color: #0C2B35;
     }
 
     .result-content > * + *{
