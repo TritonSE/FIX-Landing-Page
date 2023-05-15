@@ -101,7 +101,7 @@
     justify-content: center;
   }
   section.active {
-      min-width: 16.65vw;
+    min-width: 16.65vw;
   }
   img {
     width: 20rem;

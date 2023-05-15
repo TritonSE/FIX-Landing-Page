@@ -16,12 +16,23 @@
 
   const COMMON_IMAGE_PATH = 'roadmap/steps';
 
-  onMount(async () => {
-    if (el) {
-      h = el.offsetHeight;
-      await tick();
-      onClose();
+  async function compute_height(el) {
+    h = el.offsetHeight;
+    await tick();
+    onClose();
+  }
+
+  onMount(() => {
+    if (!el) return;
+
+    function resize() {
+      if (window.innerWidth <= 675) {
+        compute_height(el);
+        window.removeEventListener('resize', resize);
+      }
     }
+    if (window.innerWidth <= 675) resize();
+    else window.addEventListener('resize', resize);
   });
 </script>
 
