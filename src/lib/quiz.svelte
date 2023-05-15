@@ -83,6 +83,7 @@
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div class="modalPopUp" on:click={handleClickOutside}>
         <div class="modal">
+            <div id="progressBar" style="width: {(quizInd + 1) * 16.667}%"/>
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             <div class="x-out" on:click={() => {showQuiz = !showQuiz;}}>
                 x
@@ -108,6 +109,7 @@
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div class="modalPopUp" on:click={handleClickOutside}>
         <div class="modal">
+            <div id="progressBar" style="width: {(quizInd + 1) * 16.667}%"/>
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             <div class="x-out" on:click={() => {showQuiz = !showQuiz;}}>
                 x
@@ -151,6 +153,15 @@
         text-align: center;
         position:relative;
     }
+    #progressBar {
+        position: absolute;
+        height: 2%;
+        top: 0;
+        left: 0;
+
+        z-index: 10000;
+        background: #008E7E;
+    }
     .content{
         /* margin-top: 20px; */
         margin: 40px 30px 40px;
@@ -165,6 +176,8 @@
         cursor: pointer;
         top: 10px;
         right: 10px;
+
+        z-index: 10001;
     }
 
     .questionNum {
