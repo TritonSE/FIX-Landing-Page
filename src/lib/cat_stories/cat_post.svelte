@@ -5,7 +5,6 @@
 -->
 <script>
   import { base } from '$app/paths';
-
   export let image_url = '';
   export let image_alt = '';
   export let link_to = '';
