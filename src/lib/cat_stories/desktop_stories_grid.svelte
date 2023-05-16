@@ -23,21 +23,33 @@
   function openCatOverlay(index: number) {
     openOverlayIndex = index;
   }
+
+  const n_backgrounds = 4;
+  let index = 0;
+  const next = () => {
+    index = (index + 1) % n_backgrounds;
+    setTimeout(next, 5000);
+  };
+  next();
 </script>
 
 <div class="stories-container">
-  {#each CAT_DATA as data}
+  {#each CAT_DATA as data, j}
     <div class="cat-image-container">
-      <CatImage
-        image_url={data.image_path}
-        image_alt="Cat Image"
-        on:click={() => openCatOverlay(0)}
-        on:keydown={(e) => {
-          if (e.key === 'Enter' || e.key === 'Space') {
-            openCatOverlay(0);
-          }
-        }}
-      />
+      {#each new Array(n_backgrounds) as _, i}
+        {#if index === i}
+          <CatImage
+            image_url={data['image_path' + i]}
+            image_alt="Cat Image"
+            on:click={() => openCatOverlay(j)}
+            on:keydown={(e) => {
+              if (e.key === 'Enter' || e.key === 'Space') {
+                openCatOverlay(j);
+              }
+            }}
+          />
+        {/if}
+      {/each}
     </div>
     <div class="column">
       <Paw name={data.name} />
@@ -45,7 +57,7 @@
         {data.desc}
       </p>
       <button
-        class="underline-text"
+        class="read-more-button"
         on:click={() => openCatOverlay(0)}
         on:keydown={(e) => {
           if (e.key === 'Enter' || e.key === 'Space') {
@@ -53,7 +65,8 @@
           }
         }}
       >
-        See more
+        <img src="{base}\cat_stories\insta-white.png" alt="insta icon" />
+        Read More!
       </button>
     </div>
   {/each}
@@ -81,18 +94,23 @@
     position: relative;
   }
 
-  .underline-text {
-    color: var(--color-black);
-    background: transparent;
+  .read-more-button {
+    color: var(--color-white);
+    background: #58c3af;
     font-size: 12px;
     margin: 0;
-    padding: 0;
-    text-align: left;
+    padding: 0.5rem;
+    text-align: center;
+    border-radius: 0.3rem;
+    width: 6.5rem;
     border: none;
-    text-decoration: underline;
     cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5px;
   }
-  .underline-text:active {
+  .read-more-button:active {
     color: var(--color-black);
   }
 
@@ -101,12 +119,6 @@
     justify-content: center;
     flex-direction: column;
     gap: 8px;
-  }
-
-  .row {
-    display: flex;
-    flex-direction: row;
-    gap: 15px;
   }
 
   .medium-margin-above {

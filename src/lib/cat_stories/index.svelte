@@ -13,7 +13,7 @@
 
 <div class="root">
   <h1>Community Cats</h1>
-  <h2>We’re feral, stray or owned pet cat who used to roam the outdoors. FixNation found us!</h2>
+  <h2>We’re feral, stray or owned pet cats who used to roam the outdoors. FixNation found us!</h2>
   {#if windowWidth <= 600}
     <MobileStoriesCarousel />
   {:else}

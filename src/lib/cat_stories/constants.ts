@@ -1,6 +1,13 @@
 import { base } from '$app/paths';
 import type { CatData } from './types';
 
+const n_backgrounds = 4;
+let index = 0;
+const next = () => {
+  index = (index + 1) % n_backgrounds;
+  setTimeout(next, 5000);
+};
+next();
 /**
  * Data about each cat to display in the cat stories
  */
@@ -12,7 +19,10 @@ export const CAT_DATA: CatData[] = [
     ig_link: 'https://www.instagram.com/shadowthehomedepotcat_/?hl=en',
     ig_username: 'shadowthehomedepotcat_',
     n_followers: 295,
-    image_path: `${base}/cat_stories/shadow.png`,
+    image_path0: `${base}/cat_stories/shadow0.png`,
+    image_path1: `${base}/cat_stories/shadow1.png`,
+    image_path2: `${base}/cat_stories/shadow2.png`,
+    image_path3: `${base}/cat_stories/shadow3.png`,
     mobile_image_path: `${base}/cat_stories/shadow_mobile.png`
   },
   {
@@ -22,7 +32,10 @@ export const CAT_DATA: CatData[] = [
     ig_link: 'https://www.instagram.com/closeupthecemeterycat/?hl=en',
     ig_username: 'closeupthecemeterycat',
     n_followers: 9873,
-    image_path: `${base}/cat_stories/close_up_full.png`,
+    image_path0: `${base}/cat_stories/close_up0.png`,
+    image_path1: `${base}/cat_stories/close_up1.png`,
+    image_path2: `${base}/cat_stories/close_up2.png`,
+    image_path3: `${base}/cat_stories/close_up3.png`,
     mobile_image_path: `${base}/cat_stories/close_up_mobile.png`
   },
   {
@@ -32,7 +45,10 @@ export const CAT_DATA: CatData[] = [
     ig_link: 'https://www.instagram.com/disneylandcats/?hl=en',
     ig_username: 'disneylandcats',
     n_followers: 110000,
-    image_path: `${base}/cat_stories/almira_full.png`,
+    image_path0: `${base}/cat_stories/almira0.png`,
+    image_path1: `${base}/cat_stories/almira1.png`,
+    image_path2: `${base}/cat_stories/almira2.png`,
+    image_path3: `${base}/cat_stories/almira3.png`,
     mobile_image_path: `${base}/cat_stories/almira_mobile.png`
   }
 ];

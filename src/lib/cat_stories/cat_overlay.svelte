@@ -67,7 +67,7 @@
     </div>
 
     <div class="top-image-container">
-      <img class="top-image" src={data.image_path} alt={data.name} />
+      <img class="top-image" src={data.image_path0} alt={data.name} />
     </div>
   </div>
 </SideOverlay>
