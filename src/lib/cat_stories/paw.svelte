@@ -1,10 +1,16 @@
+<!--
+  paw.svelte:
+    A reusable paw image component.
+-->
 <script>
+  import { base } from '$app/paths';
+
   export let name = '';
 </script>
 
 <div>
   <h2>{name}</h2>
-  <img src="/cat_stories/paw.svg" alt="Cat paw" />
+  <img src="{base}/cat_stories/paw.svg" alt="Cat paw" />
 </div>
 
 <style>
@@ -31,6 +37,9 @@
 
   @media screen and (max-width: 900px) {
     div {
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding: 14px 0px 0px 24px;
     }
 
@@ -41,19 +50,8 @@
     img {
       width: 48px;
       height: 43px;
-    }
-  }
-
-  @media screen and (max-width: 600px) {
-    div {
-      position: absolute;
-      left: 16px;
-      bottom: 16px;
-      padding: 24px 0px 0px 24px;
-    }
-
-    h2 {
-      color: var(--color-white);
+      right: 50%;
+      left: unset;
     }
   }
 </style>

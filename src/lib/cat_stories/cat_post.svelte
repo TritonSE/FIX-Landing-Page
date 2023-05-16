@@ -1,4 +1,11 @@
+<!--
+  cat_post.svelte:
+    A component for a single Instagram post.
+    Will be populated with actual Instagram post data later on.
+-->
 <script>
+  import { base } from '$app/paths';
+
   export let image_url = '';
   export let image_alt = '';
   export let link_to = '';
@@ -7,7 +14,7 @@
 <a href={link_to}>
   <div class="root">
     <img src={image_url} alt={image_alt} class="cat-image" />
-    <img src="/cat_stories/instagram_blue.svg" alt="Instagram Logo" class="instagram-logo" />
+    <img src="{base}/cat_stories/instagram_blue.svg" alt="Instagram Logo" class="instagram-logo" />
   </div>
 </a>
 
