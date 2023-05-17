@@ -11,14 +11,14 @@
 <div class="container">
   <h1 id="header">Find FixNation</h1>
   <div class="info-container">
-    <div class="phone">
+    <div class="info-section">
       <div class="info-header">
         <img class="icon" src="{base}/icons/phone.svg" alt="phone" />
         <h3>Phone</h3>
       </div>
       <p>818.524.2287</p>
     </div>
-    <div class="location">
+    <div class="info-section">
       <div class="info-header">
         <img class="icon" src="{base}/icons/location.svg" alt="pin" />
         <h3>Location</h3>
@@ -29,7 +29,7 @@
         91352
       </p>
     </div>
-    <div class="hours">
+    <div class="info-section">
       <div class="info-header">
         <img class="icon" src="{base}/icons/clock.svg" alt="clock" />
         <h3>Hours</h3>
@@ -39,7 +39,7 @@
         7:00am to 5:00pm
       </p>
     </div>
-    <div class="email">
+    <div class="info-section">
       <div class="info-header">
         <img class="icon" src="{base}/icons/email.svg" alt="email" />
         <h3>Email</h3>
@@ -91,7 +91,13 @@
     .container {
       margin-top: 10rem;
     }
+
     .info-container {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .info-section {
       display: flex;
       flex-direction: column;
       align-items: center;
