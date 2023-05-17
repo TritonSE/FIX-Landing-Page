@@ -86,4 +86,16 @@
     flex-direction: row;
     color: var(--color-secondary-accent);
   }
+
+  @media only screen and (max-width: 640px) {
+    .container {
+      margin-top: 10rem;
+    }
+    .info-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
 </style>
