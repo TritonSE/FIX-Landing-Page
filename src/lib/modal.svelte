@@ -15,7 +15,7 @@
       title: 'step 1: FIND',
       subtitle: 'Find a homeless cat who needs your help.',
       info: 'Is it a cat or a kitten? Does it look injured, ill or hungry? Does it have an ear tip (a sign that it’s a community cat)? Is it friendly? Here are some tips to help you figure out if the kitty is homeless.',
-      picture: '/modal/cat1.png',
+      picture: '/modal/cat1.avif',
       resourceTexts: ['Tips'],
       resourceLinks: ['https://fixnation.org/about-tnr/faqs/']
     },
@@ -23,7 +23,7 @@
       title: 'step 2: FEED',
       subtitle: 'Feed the cat in the afternoon or evening.',
       info: 'Get kitty on a regular feeding schedule, putting out dry food and water each afternoon or evening. This makes trapping a lot easier later!',
-      picture: '/modal/cat2.png',
+      picture: '/modal/cat2.avif',
       resourceTexts: ['DIY Feeding Station'],
       resourceLinks: ['https://fixnation.org/shelters-feeding-stations/']
     },
@@ -31,7 +31,7 @@
       title: 'step 3: PREP',
       subtitle: 'Get a loaner trap from FixNation and book an appointment.',
       info: 'Watch our online training video with easy step-by-step instructions, then borrow a special humane trap and cloth cover from our clinic. Make an appointment online. You’re all set!',
-      picture: '/modal/cat3.png',
+      picture: '/modal/cat3.avif',
       resourceTexts: ['Training Videos', 'Make Appointment'],
       resourceLinks: [
         'https://www.youtube.com/watch?v=JgatHzlxnv0&t=2s',
@@ -42,7 +42,7 @@
       title: 'step 4: TRAP',
       subtitle: 'Set trap, wait, trap cat and rejoice!',
       info: 'Trap between 4 pm to 11.30 pm the evening before your appointment. Set food on some tin foil and place under the trap (not inside). Keep an eye on the trap – never leave it unattended – and wait for kitty to go inside. Be patient! This is the first step towards a happier and healthier life for your feline friend. ',
-      picture: '/modal/cat4.png',
+      picture: '/modal/cat4.avif',
       resourceTexts: ['TNR'],
       resourceLinks: ['https://www.youtube.com/watch?v=IarsSTLUdTw']
     },
@@ -50,7 +50,7 @@
       title: 'step 5: HOLD',
       subtitle: 'Hold the cat overnight until surgery the next day',
       info: 'Congrats, you got the cat! Cover the trap and place it in a warm, quiet place overnight (like a bathroom or a heated garage). Check the cat once an hour, every hour, until bedtime.',
-      picture: '/modal/cat5.png',
+      picture: '/modal/cat5.avif',
       resourceTexts: ['Pre-op Tips'],
       resourceLinks: ['https://fixnation.org/about-tnr/pre-post-surgery-instructions/']
     },
@@ -58,7 +58,7 @@
       title: 'step 6: FIX',
       subtitle: 'Take the cat to get fixed (for free!).',
       info: 'Feed kittens a teapoon of wet food at 6 am on surgery day; no food or water for older cats. Cover the car seats with plastic and securely place the traps on top. Arrive at FixNation between 7-8.30 am. Leave kitty in car and wait in line to check-in. FixNation will spay/neuter the cat and provide vaccines, flea treatment, fluids, pain medication and an ear tip. Pick-up from 3-4.30 pm.',
-      picture: '/modal/cat6.png',
+      picture: '/modal/cat6.avif',
       resourceTexts: ['Check-in Process'],
       resourceLinks: ['https://www.facebook.com/LuxePaws/videos/3379488712127276/']
     },
@@ -66,7 +66,7 @@
       title: 'step 7 WATCH:',
       subtitle: 'Keep the cat one more night for recovery.',
       info: 'Take kitty home in the covered trap and keep in a warm, quiet place overnight. Feed a ¼ can of wet food about six hours post-op (check paperwork for exact time). Check kitty once an hour, every hour, until bedtime. ',
-      picture: '/modal/cat7.png',
+      picture: '/modal/cat7.avif',
       resourceTexts: ['Post-ops tips'],
       resourceLinks: ['https://www.alleycat.org/community-cat-care/post-surgery-care/']
     },
@@ -74,7 +74,7 @@
       title: 'step 8: RETURN',
       subtitle: 'Return the cat to where it was trapped.',
       info: 'This is the big moment…release the cat where you trapped it the morning after surgery. Freedom!!!! Clean the trap and trap cover and return to FixNation during opening hours.',
-      picture: '/modal/cat8.png',
+      picture: '/modal/cat8.avif',
       resourceTexts: ['Community Cat Video'],
       resourceLinks: ['https://www.youtube.com/watch?v=3-pK4sjVHcQ']
     }
@@ -360,10 +360,10 @@
   }
 
   .lvectActive {
-    background-image: url(@base/modal/lightlvector.png);
+    background-image: url(@base/modal/lightlvector.avif);
   }
 
   .rvectActive {
-    background-image: url(@base/modal/lightrvector.png);
+    background-image: url(@base/modal/lightrvector.avif);
   }
 </style>

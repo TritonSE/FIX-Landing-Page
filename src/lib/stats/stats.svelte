@@ -4,6 +4,7 @@
 -->
 <script lang="ts">
   import { base } from '$app/paths';
+  import { onMount } from 'svelte';
 
   import MobileStats from './mobile_stats.svelte';
 
@@ -11,41 +12,72 @@
     {
       number: '#1',
       subtitle: 'largest clinic for homeless cats',
-      picture: 'stats/Stats1.avif',
+      picture: 'stats/stats1.avif',
       alt: 'Sedated cats'
     },
     {
       number: '220k',
       subtitle: 'total cats spayed or neutered',
-      picture: 'stats/Stats2.avif',
+      picture: 'stats/stats2.avif',
       alt: 'Cat on rug'
     },
     {
       number: '21%',
       subtitle: 'of cats abandoned because their of their residency',
-      picture: 'stats/Stats3.avif',
+      picture: 'stats/stats3.avif',
       alt: 'Momma cat with her kittens'
     },
     {
       number: '12k',
       subtitle: 'TNR volenteers trained',
-      picture: 'stats/Stats4.avif',
+      picture: 'stats/stats4.avif',
       alt: 'FixNation staff holding a cat'
     },
     {
       number: '89%',
       subtitle: 'profits go directly to FixNation programs',
-      picture: 'stats/Stats5.avif',
+      picture: 'stats/stats5.avif',
       alt: 'Staff in front of FixNation building'
     },
     {
       number: '35%',
       subtitle: 'cats acquired as strays',
-      picture: 'stats/Stats6.avif'
+      picture: 'stats/stats6.avif'
     }
   ];
 
+  let statsContainer;
+
   let screenWidth: number;
+
+  let lastScrollTop: number | null = null;
+
+  const isElementVisible = (element: HTMLElement) => {
+    return (
+      element &&
+      element.getBoundingClientRect().y + element.getBoundingClientRect().height >= 0 &&
+      element.getBoundingClientRect().y <= window.innerHeight
+    );
+  };
+
+  const handleScroll = () => {
+    if (isElementVisible(statsContainer)) {
+      if (lastScrollTop !== null) {
+        statsContainer.scrollBy({
+          left: (document.documentElement.scrollTop - lastScrollTop) * 0.5
+        });
+      }
+      lastScrollTop = document.documentElement.scrollTop;
+    }
+  };
+
+  onMount(() => {
+    document.addEventListener('scroll', handleScroll, { passive: false });
+
+    // setInterval(handleScroll, 1500)
+
+    return () => document.removeEventListener('scroll', handleScroll);
+  });
 </script>
 
 <svelte:window bind:innerWidth={screenWidth} />
@@ -57,17 +89,19 @@
 </h1>
 <div>
   {#if screenWidth > 430}
-    <div class="slider">
-      {#each sections as section}
-        <section class="section" class:active={screenWidth >= 2200}>
-          <img src="{base}/{section.picture}" alt={section.alt} loading="lazy" />
-          <span class="rectangle" />
-          <div class="text">
-            <div class="header">{section.number}</div>
-            <div class="subtitle">{section.subtitle}</div>
-          </div>
-        </section>
-      {/each}
+    <div class="slider" bind:this={statsContainer}>
+      <div style="min-width:3000px" class="slider">
+        {#each sections as section}
+          <section class="section" class:active={screenWidth >= 2200}>
+            <img src="{base}/{section.picture}" alt={section.alt} loading="lazy" />
+            <span class="rectangle" />
+            <div class="text">
+              <div class="header">{section.number}</div>
+              <div class="subtitle">{section.subtitle}</div>
+            </div>
+          </section>
+        {/each}
+      </div>
     </div>
   {:else}
     <MobileStats />

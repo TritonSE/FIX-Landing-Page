@@ -12,13 +12,17 @@
   import About from '$lib/about.svelte';
 
   import '../app.css';
+  import TnrInfo from '$lib/tnr_info.svelte';
+  import ApplicationVideo from '$lib/application_video.svelte';
 </script>
 
 <Masthead />
 <About />
 <Stats />
 <CatStories />
+<TnrInfo />
 <CatSuperhero />
+<ApplicationVideo />
 <GetInvolved />
 <Footer />
 
