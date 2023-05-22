@@ -51,6 +51,7 @@
     let correct = 0;
     let totalQuestions = questions.length;
     let resultInd = -1;
+    let currentTab = 0;
 
     function checkCorrect(qInd: number, choiceInd:number){
         if (questions[qInd].correct = choiceInd){
@@ -77,52 +78,79 @@
         }
     }
 
+    function switchTab(tab: number) {
+        currentTab = tab;
+    }
+
 </script>
 
 {#if showQuiz && !quizComplete}
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div class="modalPopUp" on:click={handleClickOutside}>
-        <div class="modal">
-            <div id="progressBar" style="width: {(quizInd + 1) * 16.667}%"/>
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <div class="x-out" on:click={() => {showQuiz = !showQuiz;}}>
-                x
+        <div class="anotherOne">
+            <div class="tabs">
+                <button class={currentTab === 0 ? 'active' : ''} on:click={() => switchTab(0)}>Quiz</button>
+                <button class={currentTab === 1 ? 'active' : ''} on:click={() => switchTab(1)}>Review Road Map</button>
             </div>
-            <div class="content">
-                {#each questions as question, index}
-                    {#if quizInd == index}
-                        <div class="questionNum">Question {index+1}/{totalQuestions}</div>
-                        <div class="question">{question.question}</div>
-                        {#each question.choices as choice, ind}
-                            <Button secondary on:click={() => checkCorrect(index, ind)} style="color:black; width:60%; height:60px;margin:10px">
-                                <p class="choice">{choice}</p>
-                            </Button>
+            <div class="modal">
+                <div id="progressBar" style="width: {(quizInd + 1) * 16.667}%"/>
+                <!-- svelte-ignore a11y-click-events-have-key-events -->
+                <div class="x-out" on:click={() => {showQuiz = !showQuiz;}}>
+                    x
+                </div>
+                <div class="content">
+                    {#if currentTab == 0}
+                        {#each questions as question, index}
+                            {#if quizInd == index}
+                                <div class="questionNum">Question {index+1}/{totalQuestions}</div>
+                                <div class="question">{question.question}</div>
+                                {#each question.choices as choice, ind}
+                                    <Button secondary on:click={() => checkCorrect(index, ind)} style="color:black; width:60%; height:60px;margin:10px">
+                                        <p class="choice">{choice}</p>
+                                    </Button>
+                                {/each}
+                            {/if}
                         {/each}
                     {/if}
-                {/each}
+                    {#if currentTab == 1}
+                        <div>HELLO</div>
+                    {/if}
+                </div>
             </div>
         </div>
+
     </div>
 {/if}
 
 {#if showQuiz && quizComplete}
     <!-- svelte-ignore a11y-click-events-have-key-events -->
     <div class="modalPopUp" on:click={handleClickOutside}>
-        <div class="modal">
-            <div id="progressBar" style="width: {(quizInd + 1) * 16.667}%"/>
-            <!-- svelte-ignore a11y-click-events-have-key-events -->
-            <div class="x-out" on:click={() => {showQuiz = !showQuiz;}}>
-                x
+        <div class="anotherOne">
+            <div class="tabs">
+                <button class={currentTab === 0 ? 'active' : ''} on:click={() => switchTab(0)}>Quiz</button>
+                <button class={currentTab === 1 ? 'active' : ''} on:click={() => switchTab(1)}>Review Road Map</button>
             </div>
-            <div class="content">
-                <div class="result-content">
-                    <div>THANKS FOR PLAYING!</div>
-                    <div>YOU SCORED A {correct}/{totalQuestions}</div>
-                    <div>
-                        <img src="{base}/quiz/{results[resultInd].imageName}" alt="cat">
-                    </div>
-                    <div>{results[resultInd].text}</div>
+            <div class="modal">
+                <div id="progressBar" style="width: {(quizInd + 1) * 16.667}%"/>
+                <!-- svelte-ignore a11y-click-events-have-key-events -->
+                <div class="x-out" on:click={() => {showQuiz = !showQuiz;}}>
+                    x
                 </div>
+                {#if currentTab == 0}
+                    <div class="content">
+                        <div class="result-content">
+                            <div>THANKS FOR PLAYING!</div>
+                            <div>YOU SCORED A {correct}/{totalQuestions}</div>
+                            <div>
+                                <img src="{base}/quiz/{results[resultInd].imageName}" alt="cat">
+                            </div>
+                            <div>{results[resultInd].text}</div>
+                        </div>
+                    </div>
+                {/if}
+                {#if currentTab == 1}
+                    <div>HELLO</div>
+                {/if}
             </div>
         </div>
     </div>
@@ -141,30 +169,40 @@
         background-color: rgba(0, 0, 0, 0.5);
         z-index: 9999;
     }
+
+    .anotherOne {
+        align-items: center !important;
+        justify-content: center;
+        height: 70%;
+        width: 70%;
+    }
+
     .modal {
         background-color: #83CDC0;
         padding: 10px;
-        height:70%;
-        width:70%;
+        height:100%;
+        width:100%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         text-align: center;
         position:relative;
+        padding: 0;
+        overflow: hidden;
     }
+
     #progressBar {
         position: absolute;
         height: 2%;
         top: 0;
         left: 0;
-
         z-index: 10000;
         background: #008E7E;
     }
     .content{
         /* margin-top: 20px; */
-        margin: 40px 30px 40px;
+        margin: 100px 30px 80px;
         display:flex;
         flex-direction: column;
         align-items: center;
@@ -218,4 +256,34 @@
     .result-content > * + *{
         margin: 20px;
     }
+
+    .tabs {
+        display: flex;
+        justify-content: flex-start; /* Align tabs to the left */
+        background-color: transparent;
+        align-self: flex-start;
+        /* position: absolute; */
+        top: 0;
+        left: 0;
+    }
+
+    .tabs button {
+        background-color: white;
+        border: none;
+        outline: none;
+        cursor: pointer;
+        padding: 10px 10px;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: black;
+        width: 150px;
+        border-radius: 5px 5px 0 0;
+    }
+
+    .tabs button.active {
+        color: #0C2B35;
+        background-color: #83CDC0;
+    }
+    
+
 </style>
