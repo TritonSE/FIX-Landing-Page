@@ -48,26 +48,46 @@
         }
     ]
 
+    const defaultButton = "color:black; width:60%; height:60px; margin:10px";
+    const correctButton = "color:black; width:60%; height:60px; margin:10px; border:.25vw solid #3BB966; border-radius:0.5vw;";
+    const wrongButton = "color:black; width:60%; height:60px; margin:10px; border:.25vw solid #B82424; border-radius:0.5vw;";
+
     let correct = 0;
     let totalQuestions = questions.length;
     let resultInd = -1;
     let currentTab = 0;
+    let timesClicked = 0;
+    let buttonClicked = -1;
 
     function checkCorrect(qInd: number, choiceInd:number){
-        if (questions[qInd].correct = choiceInd){
-            correct++;
+        buttonClicked = choiceInd;
+
+        if (timesClicked < 2) {
+            timesClicked++;
         }
-        quizInd++;
-        if(quizInd == totalQuestions){
-            quizComplete = !quizComplete
-            if(correct < 3){
-                resultInd = 0;
-            }
-            else if(correct < 5){
-                resultInd = 1;
-            }
-            else{
-                resultInd = 2;
+
+        if ((questions[qInd].correct == choiceInd)){
+            console.log(timesClicked, choiceInd);
+            if (timesClicked == 1) {
+                correct++;
+                timesClicked++;
+            } else if (timesClicked == 2) {
+                quizInd++;
+                timesClicked = 0;
+                buttonClicked = -1;
+
+                if(quizInd == totalQuestions){
+                    quizComplete = !quizComplete
+                    if(correct < 3){
+                        resultInd = 0;
+                    }
+                    else if(correct < 5){
+                        resultInd = 1;
+                    }
+                    else{
+                        resultInd = 2;
+                    }
+                }
             }
         }
     }
@@ -81,7 +101,6 @@
     function switchTab(tab: number) {
         currentTab = tab;
     }
-
 </script>
 
 {#if showQuiz && !quizComplete}
@@ -105,9 +124,9 @@
                                 <div class="questionNum">Question {index+1}/{totalQuestions}</div>
                                 <div class="question">{question.question}</div>
                                 {#each question.choices as choice, ind}
-                                    <Button secondary on:click={() => checkCorrect(index, ind)} style="color:black; width:60%; height:60px;margin:10px">
-                                        <p class="choice">{choice}</p>
-                                    </Button>
+                                        <Button secondary on:click={() => checkCorrect(index, ind)} style="{((timesClicked >= 1 && (questions[index].correct == ind) ? (correctButton) : ((buttonClicked == ind) ? (wrongButton) : (defaultButton))))}">
+                                            <p class="choice">{choice}</p>
+                                        </Button>
                                 {/each}
                             {/if}
                         {/each}
@@ -284,6 +303,6 @@
         color: #0C2B35;
         background-color: #83CDC0;
     }
-    
+
 
 </style>
