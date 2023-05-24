@@ -48,6 +48,39 @@
         }
     ]
 
+    const roadMap = [
+        {
+            header: "Find a homeless cat who needs your help",
+            content: "Is it a cat or a kitten? Does it look injured, ill or hungry? Does it have an ear tip (a sign that it's a community cat)? Is it friendly? Here are some tips to help you figure out if the kitty is homeless.",
+            imgPath: "numbers/one",
+        },
+        {
+            header: "Feed the cat in the afternoon or evening.",
+            content: "Get kitty on a regular feeding schedule, putting out dry food and water each afternoon or evening. This makes trapping a lot easier later! You can even make a DIY feeding station.",
+            imgPath:"numbers/two",
+        },
+        {
+            header: "Get a loaner trap from FixNation and book an appointment.",
+            content: "Watch our online training video with easy step-by-step instructions, then borrow a special humane trap and cloth cover from our clinic. Make an appointment online. You're all set!",
+            imgPath: "numbers/three",
+        },
+        {
+            header: "Set trap, wait, trap cat and rejoice!",
+            content: " Trap between 4 pm to 11.30 pm the evening before your appointment. Set food on some tin foil and place under the trap (not inside). Keep an eye on the trap - never leave it unattended - and wait for kitty to go inside. Be patient! Trap-Neuter-Return is the first step towards a happier and healthier life for your community cat friend.",
+            imgPath: "numbers/four"
+        },
+        {
+            header: "Hold the cat overnight until surgery the next day.",
+            content: "Congrats, you got the cat! Cover the trap and keep it in a warm, quiet place overnight (like a bathroom or a heated garage). Check the cat once an hour, every hour, until bedtime. Here are some more pre-op tips!",
+            imgPath: "numbers/five",
+        },
+        {
+            header: "Take the cat to get fixed (for free!).",
+            content: "Feed kittens a teapoon of wet food at 6 am on surgery day; no food or water for older cats. Cover the car seats with plastic and securely place the traps on top. Arrive at FixNation between 7-8.30 am, leave kitty in car and wait in line to check-in. (Here's a sneak peek of the check in process!) FixNation will spay/neuter the cat and provide vaccines, flea treatment, fluids, pain medication, and an ear tip. Pick-up from 3-4:30 pm.",
+            imgPath: "numbers/six" 
+        }
+    ]
+
     const correctButton = "border:.25vw solid #3BB966; border-radius:0.7vw;";
     const wrongButton = "border:.25vw solid #B82424; border-radius:0.7vw;";
 
@@ -221,7 +254,7 @@
     }
     .content{
         /* margin-top: 20px; */
-        margin: 6vw 1vw 80px ;
+        margin: 5vw 1vw 80px ;
         display:flex;
         flex-direction: column;
         align-items: center;
