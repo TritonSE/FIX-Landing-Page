@@ -22,11 +22,12 @@
     loading="lazy"
   />
   <p>
-    Lorem ipsum dolor sit amet consectetur. In sit et orci pellentesque tellus. Id ut elementum hac
-    enim arcu. Dolor bibendum pulvinar viverra condimentum tellus enim. Nec ut risus vel lobortis
-    non. Netus turpis nunc curabitur sed tincidunt tellus quis eros. Proin pellentesque elit felis
-    morbi donec vulputate habitasse nulla. Mauris venenatis amet at morbi commodo penatibus eget
-    eget faucibus.
+    Trap-Neuter-Return (TNR) is is the most humane and effective way to manage community cat
+    populations. Volunteers capture homeless cats and kittens in special traps, take them to a vet
+    or spay/neuter clinic for surgery, then return them the next day to where they were found.
+    During their procedure, cats also have one ear ‘tipped’. This easy-to-see marker tells other
+    trappers that a cat is already “fixed”. Community cats that are sterilized are often healthier
+    and live longer than other free-roaming kitties!
   </p>
 </div>
 
@@ -35,7 +36,7 @@
     position: relative;
     display: flex;
     flex-direction: row;
-    padding: 120px 120px 120px 50px;
+    padding: 120px 12% 120px 12%;
   }
 
   .bubbles {
@@ -44,7 +45,6 @@
     top: 0;
     left: 280px;
     justify-content: start !important;
-    width: 100vw;
     gap: 20px;
   }
 
@@ -128,7 +128,7 @@
 
     .bubbles {
       top: 20px;
-      left: 80px;
+      right: 120px;
       flex-direction: column;
       gap: 50px;
     }
@@ -143,6 +143,18 @@
 
     p {
       font-size: 14px;
+    }
+  }
+
+  @media screen and (max-width: 550px) {
+    .person-image {
+      margin-top: 120px;
+    }
+  }
+
+  @media screen and (max-width: 450px) {
+    .person-image {
+      margin-top: 160px;
     }
   }
 </style>

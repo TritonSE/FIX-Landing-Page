@@ -1,25 +1,30 @@
 <script>
   import { base } from '$app/paths';
   import Button from './button.svelte';
+
+  let windowWidth = 0;
 </script>
 
+<svelte:window bind:innerWidth={windowWidth} />
 <div class="root">
   <div class="bubble">
     <img src="{base}/roadmap/bubble.svg" alt="Speech bubble" loading="lazy" />
     <h1 class="text">Sign up to be a CAT SUPER HERO!</h1>
-    <div class="button-wrapper"><Button fill>Transfer Application</Button></div>
+    <div class="button-wrapper"><Button fill>Trapper Application</Button></div>
   </div>
 
-  <iframe
-    width="560"
-    height="315"
-    src="https://www.youtube.com/embed/JgatHzlxnv0"
-    title="YouTube video player"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen
-    loading="lazy"
-  />
+  <div class="video-container">
+    <iframe
+      width={windowWidth < 620 ? 'auto' : windowWidth < 1000 || windowWidth > 1300 ? 560 : 280}
+      height={windowWidth < 620 ? 'auto' : windowWidth < 1000 || windowWidth > 1300 ? 315 : 158}
+      src="https://www.youtube.com/embed/JgatHzlxnv0"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen
+      loading="lazy"
+    />
+  </div>
 </div>
 
 <style>
@@ -29,7 +34,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 40px;
-    padding: 100px 150px 150px 80px;
+    padding: 100px 50px 150px 40px;
   }
 
   .bubble {
@@ -38,15 +43,15 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    padding: 20px;
-    margin: 0 175px;
+    padding: 75px;
+    width: 100%;
   }
 
   .bubble img {
     position: absolute;
     z-index: 1;
-    height: 175%;
-    width: 175%;
+    height: 100%;
+    width: 100%;
   }
 
   .text {
@@ -56,16 +61,49 @@
     z-index: 2;
     max-width: 480px;
     text-align: center;
+    margin: 0;
   }
 
   .button-wrapper {
     z-index: 2;
   }
 
-  @media screen and (max-width: 675px) {
+  .video-container {
+    border-radius: 12px;
+    overflow: hidden;
+    filter: drop-shadow(0px 20px 30px rgba(0, 0, 0, 0.3));
+    min-width: 560px;
+    min-height: 315px;
+  }
+
+  @media screen and (max-width: 1300px) {
+    .text {
+      font-size: 24px;
+    }
+
+    .video-container {
+      min-width: 280px;
+      min-height: 158px;
+    }
+  }
+
+  @media screen and (max-width: 1000px) {
+    .text {
+      font-size: 18px;
+    }
+
     .root {
       flex-direction: column;
       padding: 50px;
+    }
+
+    .bubble {
+      padding: 120px 80px;
+      width: 80%;
+    }
+
+    .bubble img {
+      height: auto;
     }
   }
 </style>
