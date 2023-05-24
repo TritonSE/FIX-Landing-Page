@@ -52,32 +52,32 @@
         {
             header: "Find a homeless cat who needs your help",
             content: "Is it a cat or a kitten? Does it look injured, ill or hungry? Does it have an ear tip (a sign that it's a community cat)? Is it friendly? Here are some tips to help you figure out if the kitty is homeless.",
-            imgPath: "numbers/one",
+            imgPath: "numbers/one.svg",
         },
         {
             header: "Feed the cat in the afternoon or evening.",
             content: "Get kitty on a regular feeding schedule, putting out dry food and water each afternoon or evening. This makes trapping a lot easier later! You can even make a DIY feeding station.",
-            imgPath:"numbers/two",
+            imgPath:"numbers/two.svg",
         },
         {
             header: "Get a loaner trap from FixNation and book an appointment.",
             content: "Watch our online training video with easy step-by-step instructions, then borrow a special humane trap and cloth cover from our clinic. Make an appointment online. You're all set!",
-            imgPath: "numbers/three",
+            imgPath: "numbers/three.svg",
         },
         {
             header: "Set trap, wait, trap cat and rejoice!",
             content: " Trap between 4 pm to 11.30 pm the evening before your appointment. Set food on some tin foil and place under the trap (not inside). Keep an eye on the trap - never leave it unattended - and wait for kitty to go inside. Be patient! Trap-Neuter-Return is the first step towards a happier and healthier life for your community cat friend.",
-            imgPath: "numbers/four"
+            imgPath: "numbers/four.svg"
         },
         {
             header: "Hold the cat overnight until surgery the next day.",
             content: "Congrats, you got the cat! Cover the trap and keep it in a warm, quiet place overnight (like a bathroom or a heated garage). Check the cat once an hour, every hour, until bedtime. Here are some more pre-op tips!",
-            imgPath: "numbers/five",
+            imgPath: "numbers/two.svg",
         },
         {
             header: "Take the cat to get fixed (for free!).",
             content: "Feed kittens a teapoon of wet food at 6 am on surgery day; no food or water for older cats. Cover the car seats with plastic and securely place the traps on top. Arrive at FixNation between 7-8.30 am, leave kitty in car and wait in line to check-in. (Here's a sneak peek of the check in process!) FixNation will spay/neuter the cat and provide vaccines, flea treatment, fluids, pain medication, and an ear tip. Pick-up from 3-4:30 pm.",
-            imgPath: "numbers/six" 
+            imgPath: "numbers/two.svg" 
         }
     ]
 
@@ -166,7 +166,19 @@
                         {/each}
                     {/if}
                     {#if currentTab == 1}
-                        <div>HELLO</div>
+                        <div class="roadMapContent">
+                            {#each roadMap as item}
+                                <div class="roadMap">
+                                    <div>
+                                        <img class="number" src="{base}/quiz/{item.imgPath}" alt="cat">
+                                    </div>
+                                    <div>
+                                        <div class="header">{item.header}</div>
+                                        <div class="description">{item.content}</div>
+                                    </div>
+                                </div>
+                            {/each}
+                        </div>
                     {/if}
                 </div>
             </div>
@@ -202,7 +214,21 @@
                     </div>
                 {/if}
                 {#if currentTab == 1}
-                    <div>HELLO</div>
+                    <div class="content">
+                        <div class="roadMapContent">
+                            {#each roadMap as item}
+                                <div class="roadMap">
+                                    <div>
+                                        <img class="number" src="{base}/quiz/{item.imgPath}" alt="cat">
+                                    </div>
+                                    <div>
+                                        <div class="header">{item.header}</div>
+                                        <div class="description">{item.content}</div>
+                                    </div>
+                                </div>
+                            {/each}
+                        </div>
+                    </div>
                 {/if}
             </div>
         </div>
@@ -226,7 +252,7 @@
     .anotherOne {
         align-items: center !important;
         justify-content: center;
-        height: 70%;
+        height: 80%;
         width: 70%;
     }
 
@@ -244,6 +270,30 @@
         overflow: hidden;
     }
 
+    .roadMapContent {
+        padding: 2vw;
+    }
+
+    .roadMap{
+        display: flex;
+        text-align: left;
+        justify-content: flex-start;
+    }
+
+    .number{
+        height: auto;
+        margin: 20px 40px 20px 0;
+    }
+
+    .header {
+        font-weight: 600;
+        margin-bottom: 5px;
+    }
+
+    .description {
+        margin-bottom: 10px;
+    }
+
     #progressBar {
         position: absolute;
         height: 1.5vw;
@@ -254,7 +304,7 @@
     }
     .content{
         /* margin-top: 20px; */
-        margin: 5vw 1vw 80px ;
+        margin: 4vw 1vw 80px ;
         display:flex;
         flex-direction: column;
         align-items: center;

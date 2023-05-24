@@ -106,8 +106,12 @@
     rowsExpanded = newRowsExpanded;
   }
 
+  function toggleQuiz(){
+    showQuiz = !showQuiz
+  }
+
   import Quiz from './quiz.svelte'
-  let showQuiz = true
+  let showQuiz = false
   let quizInd = 0
 </script>
 
@@ -133,12 +137,19 @@
       <div class="step_container {rowData.title.toLowerCase() + i}">
         <div class="row">
           <div class="marker">
-            <img src="{base}/roadmap/marker.svg" alt="Roadmap marker" />
-            <img
+            {#if i == 0 }
+              <div class="flag"><img src="{base}/roadmap/startFlag.svg" alt="Roadmap marker" /></div>
+            {:else if i == 7}
+              <button on:click={() => toggleQuiz()}><div class="testFlag"><img src="{base}/roadmap/testFlag.svg" alt="Roadmap marker" /></div></button>
+            {:else}
+              <img src="{base}/roadmap/marker.svg" alt="Roadmap marker" />
+              <img
               class="shadow"
               src="{base}/roadmap/marker_shadow.svg"
               alt="Roadmap marker shadow"
             />
+            {/if}
+
           </div>
           <div class="text">
             <div
@@ -184,6 +195,18 @@
   .road-image {
     display: none;
   }
+
+  .flag img{
+    height: auto;
+    width: 6vw !important;
+  }
+
+  .testFlag img{
+    height: auto;
+    width: 7vw !important;
+  }
+
+
 
   @media screen and (min-width: 1501px) {
     .roadmap {
