@@ -48,9 +48,8 @@
         }
     ]
 
-    const defaultButton = "color:black; width:60%; height:60px; margin:10px";
-    const correctButton = "color:black; width:60%; height:60px; margin:10px; border:.25vw solid #3BB966; border-radius:0.5vw;";
-    const wrongButton = "color:black; width:60%; height:60px; margin:10px; border:.25vw solid #B82424; border-radius:0.5vw;";
+    const correctButton = "border:.25vw solid #3BB966; border-radius:0.7vw;";
+    const wrongButton = "border:.25vw solid #B82424; border-radius:0.7vw;";
 
     let correct = 0;
     let totalQuestions = questions.length;
@@ -107,8 +106,8 @@
     <div class="modalPopUp" on:click={handleClickOutside}>
         <div class="anotherOne">
             <div class="tabs">
-                <button class={currentTab === 0 ? 'active' : ''} on:click={() => switchTab(0)}>Quiz</button>
-                <button class={currentTab === 1 ? 'active' : ''} on:click={() => switchTab(1)}>Review Road Map</button>
+                <button class={currentTab === 0 ? 'active quiz' : 'quiz'} on:click={() => switchTab(0)}>Quiz</button>
+                <button class={currentTab === 1 ? 'active' : ''} on:click={() => switchTab(1)}>Review Roadmap</button>
             </div>
             <div class="modal">
                 <div id="progressBar" style="width: {(quizInd + 1) * 16.667}%"/>
@@ -123,7 +122,10 @@
                                 <div class="questionNum">Question {index+1}/{totalQuestions}</div>
                                 <div class="question">{question.question}</div>
                                 {#each question.choices as choice, ind}
-                                        <Button secondary on:click={() => checkCorrect(index, ind)} style="{((timesClicked >= 1 && (questions[index].correct == ind) ? (correctButton) : ((buttonClicked == ind) ? (wrongButton) : (defaultButton))))}">
+                                        <Button secondary 
+                                            on:click={() => checkCorrect(index, ind)} 
+                                            style="color:black; width:60%; height:5vw; margin:15px;{((timesClicked >= 1 && (questions[index].correct == ind) ? (correctButton) : ((buttonClicked == ind) ? (wrongButton) : (""))))}"
+                                        >
                                             <p class="choice">{choice}</p>
                                         </Button>
                                 {/each}
@@ -145,8 +147,8 @@
     <div class="modalPopUp" on:click={handleClickOutside}>
         <div class="anotherOne">
             <div class="tabs">
-                <button class={currentTab === 0 ? 'active' : ''} on:click={() => switchTab(0)}>Quiz</button>
-                <button class={currentTab === 1 ? 'active' : ''} on:click={() => switchTab(1)}>Review Road Map</button>
+                <button class={currentTab === 0 ? 'active quiz' : 'quiz'} on:click={() => switchTab(0)}>Quiz</button>
+                <button class={currentTab === 1 ? 'active' : ''} on:click={() => switchTab(1)}>Review Roadmap</button>
             </div>
             <div class="modal">
                 <div id="progressBar" style="width: {(quizInd + 1) * 16.667}%"/>
@@ -160,7 +162,7 @@
                             <div>THANKS FOR PLAYING!</div>
                             <div>YOU SCORED A {correct}/{totalQuestions}</div>
                             <div>
-                                <img src="{base}/quiz/{results[resultInd].imageName}" alt="cat">
+                                <img class="cat" src="{base}/quiz/{results[resultInd].imageName}" alt="cat">
                             </div>
                             <div>{results[resultInd].text}</div>
                         </div>
@@ -197,7 +199,6 @@
 
     .modal {
         background-color: #83CDC0;
-        padding: 10px;
         height:100%;
         width:100%;
         display: flex;
@@ -212,7 +213,7 @@
 
     #progressBar {
         position: absolute;
-        height: 2%;
+        height: 1.5vw;
         top: 0;
         left: 0;
         z-index: 10000;
@@ -220,42 +221,46 @@
     }
     .content{
         /* margin-top: 20px; */
-        margin: 100px 30px 80px;
+        margin: 6vw 1vw 80px ;
         display:flex;
         flex-direction: column;
         align-items: center;
         justify-content: center;
     }
     .x-out {
-        font-family: 'Comics', sans-serif;
+        font-family: 'Avenir';
+        font-size: 2.5vw;
+        color: white;
         position: absolute;
         cursor: pointer;
-        top: 10px;
-        right: 10px;
+        top: 1.2vw;
+        right: 0.8vw;
 
         z-index: 10001;
     }
 
     .questionNum {
-        font-size:1.2rem;
+        font-size:1.5vw;
         font-weight: 500;
+        margin-top: calc(190px - 0.8 * 11vw);
+        margin-bottom: 2vw;
 
         letter-spacing: 0.02em;
         color: #0C2B35;
     }
 
     .question {
-        font-size:1.5rem;
+        font-size:1.8vw;
         font-weight: 600;
         margin:30px;
-        width:80%;
-        margin-bottom: 50px;
+        width:60%;
+        margin-bottom: 3vw;
 
         color: #0C2B35;
     }
 
     .choice {
-        font-size: 1.2rem;
+        font-size: 1.5vw;
         font-weight: 600;
         line-height: 20px;
 
@@ -263,16 +268,27 @@
     }
 
     .result-content{
-        width: 45rem;
+        width: 60%;
 
-        font-size:1.7rem;
+        font-size:1.5vw;
         font-weight: 600;
+        line-height: 2.5vw;
 
         color: #0C2B35;
     }
 
     .result-content > * + *{
         margin: 20px;
+    }
+
+    .result-content:first-child {
+        margin-top: calc(190px - 10vw);
+    }
+
+    .cat {
+        width: 17vw;
+        height: auto;
+        margin: 1vw;
     }
 
     .tabs {
@@ -290,17 +306,28 @@
         border: none;
         outline: none;
         cursor: pointer;
-        padding: 10px 10px;
-        font-size: 0.8rem;
+        padding: 0.2vw 0.2vw;
+
+        font-family: 'Comics';
+        font-size: 0.9vw;
         font-weight: 600;
+        letter-spacing: 0.1em;
+
         color: black;
-        width: 150px;
+        width: 9.5vw;
+        height: 2.5vw;
         border-radius: 5px 5px 0 0;
+        border-style: solid;
+        border-color: #20525C;
     }
 
     .tabs button.active {
         color: #0C2B35;
         background-color: #83CDC0;
+    }
+
+    .tabs .quiz {
+        width: 5vw;
     }
 
 
