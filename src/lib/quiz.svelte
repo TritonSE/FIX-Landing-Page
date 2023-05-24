@@ -67,7 +67,6 @@
         }
 
         if ((questions[qInd].correct == choiceInd)){
-            console.log(timesClicked, choiceInd);
             if (timesClicked == 1) {
                 correct++;
                 timesClicked++;
