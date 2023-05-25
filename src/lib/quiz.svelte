@@ -128,8 +128,7 @@
     function playAgain() {
         quizComplete = false;
         quizInd = 0;
-
-        console.log(quizComplete, quizInd);
+        correct = 0;
     }
 
     function handleClickOutside(event: MouseEvent) {
@@ -383,7 +382,7 @@
     }
 
     .result-content:first-child {
-        margin-top: calc(190px - 5vw);
+        margin-top: calc(190px - 9vw);
     }
 
     .cat {
