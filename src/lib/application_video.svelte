@@ -10,7 +10,13 @@
   <div class="bubble">
     <img src="{base}/roadmap/bubble.svg" alt="Speech bubble" loading="lazy" />
     <h1 class="text">Sign up to be a CAT SUPER HERO!</h1>
-    <div class="button-wrapper"><Button fill>Trapper Application</Button></div>
+    <div class="button-wrapper">
+      <a
+        href="https://fixnation.org/about-tnr/free-feral-application/"
+        target="_blank"
+        rel="noreferrer noopener"><Button fill>Trapper Application</Button></a
+      >
+    </div>
   </div>
 
   <div class="video-container">
