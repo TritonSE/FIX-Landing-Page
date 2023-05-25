@@ -65,8 +65,8 @@
   .card-outer {
     min-height: 20.5vw;
     max-height: 20.5vw;
-    min-width: 33vw;
-    max-width: 33vw;
+    min-width: calc(100vw / 3);
+    max-width: calc(100vw / 3);
     perspective: 1000px;
     overflow: hidden;
     transition: transform 0.8s;
@@ -76,8 +76,8 @@
     position: relative;
     min-height: 20.5vw;
     max-height: 20.5vw;
-    min-width: 33vw;
-    max-width: 33vw;
+    min-width: calc(100vw / 3);
+    max-width: calc(100vw / 3);
     perspective: 1000px;
     text-align: center;
     transition: transform 0.8s;

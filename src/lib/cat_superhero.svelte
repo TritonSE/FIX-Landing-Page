@@ -12,11 +12,6 @@
   let open = false;
   let cur = -1;
 
-  type RowData = {
-    title: string;
-    text: string;
-  };
-
   const rows: RowData[] = [
     {
       title: 'Find',
