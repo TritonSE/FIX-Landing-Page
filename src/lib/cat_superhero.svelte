@@ -281,6 +281,7 @@
       font-size: 1.6vw !important;
       padding: 0 3.5vw 2.5vw 3.5vw;
       max-width: 21vw !important;
+      margin-top: 0;
     }
     .find0 {
       top: 19vw;
@@ -437,7 +438,7 @@
     .row .marker {
       position: absolute;
       z-index: 1;
-      top: -2.5vw;
+      top: -3vw;
     }
     .marker img {
       width: 2.5rem;

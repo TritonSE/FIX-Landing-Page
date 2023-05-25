@@ -295,6 +295,9 @@
     font-size: 1.2vw;
     padding: 0.5vw 1vw;
   }
+  .button-resource:hover {
+    background-color: var(--color-primary-dark);
+  }
 
   .button-specs {
     border: none;
