@@ -94,22 +94,19 @@
     function checkCorrect(qInd: number, choiceInd:number) {
         buttonClicked = choiceInd;
 
-        if (timesClicked < 2) {
+        if (timesClicked >= 0) {
             timesClicked++;
         }
 
-        if ((questions[qInd].correct == choiceInd)){
-            if (timesClicked == 1) {
-                correct++;
-                timesClicked++;
-            }
+        if ((questions[qInd].correct == choiceInd) && timesClicked == 1){
+            correct++;
         }
     }
 
     function nextQuestion() {
         quizInd++;
 
-        if (timesClicked == 2) {
+        if (timesClicked >= 1) {
             timesClicked = 0;
             buttonClicked = -1;
         }
