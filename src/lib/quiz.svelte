@@ -91,7 +91,7 @@
     let timesClicked = 0;
     let buttonClicked = -1;
 
-    function checkCorrect(qInd: number, choiceInd:number){
+    function checkCorrect(qInd: number, choiceInd:number) {
         buttonClicked = choiceInd;
 
         if (timesClicked < 2) {
@@ -102,23 +102,28 @@
             if (timesClicked == 1) {
                 correct++;
                 timesClicked++;
-            } else if (timesClicked == 2) {
-                quizInd++;
-                timesClicked = 0;
-                buttonClicked = -1;
+            }
+        }
+    }
 
-                if(quizInd == totalQuestions){
-                    quizComplete = !quizComplete
-                    if(correct < 3){
-                        resultInd = 0;
-                    }
-                    else if(correct < 5){
-                        resultInd = 1;
-                    }
-                    else{
-                        resultInd = 2;
-                    }
-                }
+    function nextQuestion() {
+        quizInd++;
+
+        if (timesClicked == 2) {
+            timesClicked = 0;
+            buttonClicked = -1;
+        }
+
+        if(quizInd == totalQuestions){
+            quizComplete = !quizComplete
+            if(correct < 3){
+                resultInd = 0;
+            }
+            else if(correct < 5){
+                resultInd = 1;
+            }
+            else{
+                resultInd = 2;
             }
         }
     }
@@ -157,13 +162,21 @@
                                 {#each question.choices as choice, ind}
                                         <Button secondary 
                                             on:click={() => checkCorrect(index, ind)} 
-                                            style="color:black; width:60%; height:5vw; margin:15px;{((timesClicked >= 1 && (questions[index].correct == ind) ? (correctButton) : ((buttonClicked == ind) ? (wrongButton) : (""))))}"
+                                            style="color:black; width:36vw; height:5vw; margin:15px;{((timesClicked >= 1 && (questions[index].correct == ind) ? (correctButton) : ((buttonClicked == ind) ? (wrongButton) : (""))))}"
                                         >
                                             <p class="choice">{choice}</p>
                                         </Button>
                                 {/each}
                             {/if}
                         {/each}
+                        {#if timesClicked >= 1}
+                            <Button
+                                on:click={() => nextQuestion()}
+                                style="width:4.5vw; height:2vw; background: #008E7E; border-radius: 4px; font-size:0.9vw; margin-left: 50vw;"
+                            >
+                                Next &gt;
+                            </Button>
+                        {/if}
                     {/if}
                     {#if currentTab == 1}
                         <div class="roadMapContent">
@@ -325,7 +338,7 @@
     .questionNum {
         font-size:1.5vw;
         font-weight: 500;
-        margin-top: calc(190px - 0.8 * 11vw);
+        margin-top: calc(190px - 6vw);
         margin-bottom: 2vw;
 
         letter-spacing: 0.02em;
@@ -336,7 +349,7 @@
         font-size:1.8vw;
         font-weight: 600;
         margin:30px;
-        width:60%;
+        width:40vw;
         margin-bottom: 3vw;
 
         color: #0C2B35;
@@ -365,7 +378,7 @@
     }
 
     .result-content:first-child {
-        margin-top: calc(190px - 10vw);
+        margin-top: calc(190px - 5vw);
     }
 
     .cat {
