@@ -125,6 +125,13 @@
         }
     }
 
+    function playAgain() {
+        quizComplete = false;
+        quizInd = 0;
+
+        console.log(quizComplete, quizInd);
+    }
+
     function handleClickOutside(event: MouseEvent) {
         if ((event.target as HTMLElement).classList.contains('modalPopUp')) {
             showQuiz = false;
@@ -220,6 +227,7 @@
                                 <img class="cat" src="{base}/quiz/{results[resultInd].imageName}" alt="cat">
                             </div>
                             <div>{results[resultInd].text}</div>
+                            <Button on:click={() => {playAgain()}} style="width:6vw; height: 3vw; margin-top: 0.5vw; background: #58C3AF; border-radius: 4px; font-size: 0.7vw">Play again!</Button>
                         </div>
                     </div>
                 {/if}
