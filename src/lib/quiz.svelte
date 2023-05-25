@@ -195,7 +195,7 @@
                 <button class={currentTab === 0 ? 'active quiz' : 'quiz'} on:click={() => switchTab(0)}>Quiz</button>
                 <button class={currentTab === 1 ? 'active' : ''} on:click={() => switchTab(1)}>Review Roadmap</button>
             </div>
-            <div class="modal">
+            <div class="modal result" style="{(currentTab == 0) ? ("background-color: white;") : ("background-color: #83CDC0;")}">
                 <div id="progressBar" style="width: {(quizInd + 1) * 16.667}%"/>
                 <!-- svelte-ignore a11y-click-events-have-key-events -->
                 <div class="x-out" on:click={() => {showQuiz = !showQuiz;}}>
