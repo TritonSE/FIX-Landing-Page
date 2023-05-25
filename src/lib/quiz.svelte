@@ -39,11 +39,11 @@
             imageName: "sad-cat.svg"
         },
         {
-            text: "GREAT JOB! YOU’RE ALMOST AN TNR EXPERT, KEEP STUDYING AND YOU GOT IT NEXT TIME!",
+            text: "GREAT JOB! YOU’RE ALMOST A CAT SUPERHERO, KEEP STUDYING AND YOU GOT IT NEXT TIME!",
             imageName: "neutral-cat.svg",
         },
         {
-            text: "AMAZING JOB! YOU’RE A TNR PRO!! USE WHAT YOU LEARNED AND HELP TEACH OTHERS!",
+            text: "AMAZING JOB! YOU’RE A CAT SUPERHERO!! USE WHAT YOU LEARNED AND HELP TEACH OTHERS!",
             imageName: "happy-cat.svg"
         }
     ]
