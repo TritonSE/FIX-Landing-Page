@@ -1,6 +1,7 @@
 <script lang="ts">
     import Button from "./button.svelte";
     import { base } from '$app/paths';
+    import { onMount } from 'svelte';
 
     export let showQuiz = false;
     export let quizComplete = false;
@@ -81,8 +82,8 @@
         }
     ]
 
-    const correctButton = "border:.25vw solid #3BB966; border-radius:0.7vw;";
-    const wrongButton = "border:.25vw solid #B82424; border-radius:0.7vw;";
+    let correctButton = "border:" + ((screen.width <= 425) ? ("1vw") : (".25vw")) + " solid #3BB966; border-radius: 0.7vw;";
+    let wrongButton = "border:" + ((screen.width <= 425) ? ("1vw") : (".25vw")) +  " solid #B82424; border-radius:0.7vw;";
 
     let correct = 0;
     let totalQuestions = questions.length;
@@ -165,7 +166,7 @@
                                 {#each question.choices as choice, ind}
                                         <Button secondary 
                                             on:click={() => checkCorrect(index, ind)} 
-                                            style="color:black; width:36vw; height:5vw; margin:15px;{((timesClicked >= 1 && (questions[index].correct == ind) ? (correctButton) : ((buttonClicked == ind) ? (wrongButton) : (""))))}"
+                                            style="color:black; {screen.width <= 425 ? "width:70vw; height:20vw" : "width:36vw; height:5vw"}; margin:15px;{((timesClicked >= 1 && (questions[index].correct == ind) ? (correctButton) : ((buttonClicked == ind) ? (wrongButton) : (""))))}"
                                         >
                                             <p class="choice">{choice}</p>
                                         </Button>
@@ -430,5 +431,31 @@
         width: 5vw;
     }
 
+    @media only screen and (max-width: 426px) {
+        .anotherOne {
+            width: 100%;
+            height: 100%;
+        }
+
+        .tabs {
+            visibility: hidden;
+            height: 0%;
+        }
+
+        .questionNum {
+            font-size: 4.5vw;
+
+            margin-top: calc(320px - 1vw);
+        }
+
+        .question {
+            font-size: 5vw;
+            width: 87%;
+        }
+
+        .choice {
+            font-size: 4vw;
+        }
+    }
 
 </style>
