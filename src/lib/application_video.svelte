@@ -9,7 +9,7 @@
 <div class="root">
   <div class="bubble">
     <img src="{base}/roadmap/bubble.svg" alt="Speech bubble" loading="lazy" />
-    <h1 class="text">Sign up to be a CAT SUPER HERO!</h1>
+    <h1 class="text">Sign up to be a CAT SUPERHERO!</h1>
     <div class="button-wrapper">
       <a
         href="https://fixnation.org/about-tnr/free-feral-application/"
