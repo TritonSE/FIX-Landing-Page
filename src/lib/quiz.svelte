@@ -1,3 +1,5 @@
+<svelte:window bind:outerWidth={width}/>
+
 <script lang="ts">
     import Button from "./button.svelte";
     import { base } from '$app/paths';
@@ -82,8 +84,7 @@
         }
     ]
 
-    let correctButton = "border:" + ((screen.width <= 425) ? ("1vw") : (".25vw")) + " solid #3BB966; border-radius: 0.7vw;";
-    let wrongButton = "border:" + ((screen.width <= 425) ? ("1vw") : (".25vw")) +  " solid #B82424; border-radius:0.7vw;";
+    let width : number;
 
     let correct = 0;
     let totalQuestions = questions.length;
@@ -166,7 +167,8 @@
                                 {#each question.choices as choice, ind}
                                         <Button secondary 
                                             on:click={() => checkCorrect(index, ind)} 
-                                            style="color:black; {screen.width <= 425 ? "width:70vw; height:20vw" : "width:36vw; height:5vw"}; margin:15px;{((timesClicked >= 1 && (questions[index].correct == ind) ? (correctButton) : ((buttonClicked == ind) ? (wrongButton) : (""))))}"
+                                            style="color:black; {width <= 425 ? "width:70vw; height:20vw" : "width:36vw; height:5vw"}; margin:15px;{((timesClicked >= 1 && (questions[index].correct == ind) ? (
+                                                "border:" + (width <= 425) ? ("1vw") : (".25vw") + "solid #3BB966; border-radius: 0.7vw;") : ((buttonClicked == ind) ? ("border:" + ((width <= 425) ? ("1vw") : (".25vw")) +  " solid #B82424; border-radius:0.7vw;") : (""))))}"
                                         >
                                             <p class="choice">{choice}</p>
                                         </Button>
