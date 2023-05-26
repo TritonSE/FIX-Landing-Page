@@ -9,6 +9,7 @@
   import Button from '$lib/button.svelte';
 
   import { base } from '$app/paths';
+  import AnimatedBlob from './animated_blob.svelte';
 
   const NEWSLETTER_ENDPOINT = 'https://fixnation.org/wp-admin/admin-ajax.php';
 
@@ -19,22 +20,10 @@
   let emailError = false,
     failed = false;
 
-  onMount(() => {
-    document.addEventListener(
-      'click',
-      (e) => {
-        if (ref && !ref.contains(e.target)) {
-          newsletter = false;
-        }
-      },
-      true
-    );
-  });
-
   function clickOutside(element) {
     const handleClick = (event) => {
-      if (!element.contains(event.target)) {
-        element.dispatchEvent(new CustomEvent('outclick'));
+      if (checkClickOutsideBlob(event)) {
+        newsletter = false;
       }
     };
 
@@ -46,8 +35,27 @@
       }
     };
   }
+
+  const checkClickOutsideBlob = (event) => {
+    const blobSvg = document.getElementById('newsletter-blob');
+    const newsletterContainer = document.querySelector('.newsletter-content');
+    if (event.target === blobSvg.children[0] || newsletterContainer.contains(event.target)) {
+      return false;
+    }
+    event.preventDefault();
+    return true;
+  };
 </script>
 
+{#if newsletter}
+  <div
+    class="cover"
+    transition:fade
+    on:click={() => {
+      newsletter = false;
+    }}
+  />
+{/if}
 <div class="container">
   <div class="desktop">
     <div class="blob-image">
@@ -105,13 +113,9 @@
       out:fly={{ delay: 500, x: 100, y: 100 }}
       class="newsletter"
     >
-      <div>
+      <div class="newsletter-content">
         {#if !done}
-          <div
-            transition:fade={{ duration: 200 }}
-            use:clickOutside
-            on:outclick={() => (newsletter = false)}
-          >
+          <div transition:fade={{ duration: 200 }} use:clickOutside>
             <h1>Sign up for our newsletter to stay in touch!</h1>
             <form
               on:submit={async (e) => {
@@ -131,13 +135,10 @@
                   body.append('nonce', 'b17279bdd6');
                   body.append('timezone', 'America/Los_Angeles');
                   body.append('content_granted', 'unknown');
-                  const response = await fetch(
-                    NEWSLETTER_ENDPOINT,
-                    {
-                      method: 'POST',
-                      body
-                    }
-                  );
+                  const response = await fetch(NEWSLETTER_ENDPOINT, {
+                    method: 'POST',
+                    body
+                  });
                   if (response.ok) {
                     done = true;
                     setTimeout(() => {
@@ -170,11 +171,22 @@
           <h1>Thank you!</h1>
         </div>
       </div>
+      <div class="newsletter-blob-image"><AnimatedBlob /></div>
     </div>
   {/if}
 </div>
 
 <style>
+  .cover {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+  }
+
   .container {
     position: relative;
     overflow: hidden;
@@ -190,14 +202,23 @@
     height: 72vw;
     min-height: 25rem;
     max-height: 50rem;
-    background-image: url(@base/icons/animated_blob.svg);
-    background-size: 100% 100%;
 
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
   }
+
+  .newsletter-content {
+    position: relative;
+    z-index: 2;
+  }
+  .newsletter-blob-image {
+    position: absolute;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
   .newsletter > div {
     width: 10rem;
     margin: 0 auto;
@@ -219,7 +240,7 @@
     color: red;
     opacity: 0;
     transition: opacity 0.2s;
-    font-size: 8pt; 
+    font-size: 8pt;
   }
   .newsletter p.error.visible {
     opacity: 1;
