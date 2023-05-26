@@ -12,11 +12,6 @@
   let open = false;
   let cur = -1;
 
-  type RowData = {
-    title: string;
-    text: string;
-  };
-
   const rows: RowData[] = [
     {
       title: 'Find',
@@ -169,7 +164,7 @@
                 toggleRowExpanded(i);
               }}
             >
-              <h1>{i + 1}. {rowData.title}</h1>
+              <h2>{i + 1}. {rowData.title}</h2>
               <div aria-expanded={rowsExpanded[i]} class="toggle-button" />
             </div>
             <p class:first={i == 0}>{rowData.text}</p>
@@ -268,12 +263,12 @@
     }
   }
   /* Tablet View */
-  @media screen and (min-width: 676px) and (max-width: 1099px) {
+  @media screen and (min-width: 601px) and (max-width: 1099px) {
     .roadmap {
       background-image: url(@base/roadmap/tablet_curved_road.svg);
       min-height: 110vw;
     }
-    .text h1 {
+    .text h2 {
       font-size: 1.8vw !important;
       padding: 3vw 0 0 4vw;
     }
@@ -320,8 +315,9 @@
     }
   }
   /* Desktop variant only */
-  @media screen and (min-width: 676px) {
+  @media screen and (min-width: 601px) {
     h1,
+    h2,
     p {
       color: var(--color-secondary-accent);
     }
@@ -460,7 +456,7 @@
       position: absolute;
       z-index: -1;
     }
-    .text h1 {
+    .text h2 {
       font-family: 'ITC Avant Garde', sans-serif !important;
       font-size: 1vw;
       text-transform: uppercase;
@@ -480,8 +476,9 @@
   }
 
   /* Mobile variant only */
-  @media screen and (max-width: 675px) {
+  @media screen and (max-width: 600px) {
     h1,
+    h2,
     p {
       color: var(--color-secondary-accent);
     }
@@ -618,14 +615,10 @@
       flex: 1;
       padding-left: 1.5rem;
     }
-    .text h1 {
+    .text h2 {
       font-family: 'Comics', sans-serif !important;
-      font-size: 20px;
       margin: 0;
       text-transform: uppercase;
-    }
-    .text p {
-      font-size: 14px;
     }
 
     .text {

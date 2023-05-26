@@ -12,8 +12,8 @@
 <svelte:window bind:innerWidth={windowWidth} />
 
 <div class="root">
-  <h1>Community Cats</h1>
-  <h2>We’re feral, stray or owned pet cat who used to roam the outdoors. FixNation found us!</h2>
+  <h2>Community Cats</h2>
+  <h4>We’re feral, stray or owned pet cat who used to roam the outdoors. FixNation found us!</h4>
   {#if windowWidth <= 600}
     <MobileStoriesCarousel />
   {:else}
@@ -22,21 +22,16 @@
 </div>
 
 <style>
-  h1,
-  h2 {
+  h2,
+  h4 {
     text-align: center;
   }
 
-  h2 {
+  h4 {
     margin: 0;
-  }
-
-  h2 {
     font-family: 'Avenir', sans-serif !important;
-    font-size: 24px;
     font-weight: normal;
   }
-
   .root {
     padding: 40px 12% 80px 12%;
     padding-bottom: 90px;
@@ -44,24 +39,12 @@
   }
 
   @media screen and (max-width: 900px) {
-    h1 {
-      font-size: 22px;
-    }
-
-    h2 {
-      font-size: 12px;
-    }
-
     .root {
       padding: 40px;
     }
   }
 
   @media screen and (max-width: 600px) {
-    h1 {
-      font-size: 18px;
-    }
-
     .root {
       padding: 0;
     }
