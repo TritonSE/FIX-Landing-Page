@@ -1,6 +1,9 @@
+<svelte:window bind:outerWidth={width}/>
+
 <script lang="ts">
     import Button from "./button.svelte";
     import { base } from '$app/paths';
+    import { onMount } from 'svelte';
 
     export let showQuiz = false;
     export let quizComplete = false;
@@ -91,8 +94,7 @@
         },
     ]
 
-    const correctButton = "border:.25vw solid #3BB966; border-radius:0.7vw;";
-    const wrongButton = "border:.25vw solid #B82424; border-radius:0.7vw;";
+    let width : number;
 
     let correct = 0;
     let totalQuestions = questions.length;
@@ -101,36 +103,44 @@
     let timesClicked = 0;
     let buttonClicked = -1;
 
-    function checkCorrect(qInd: number, choiceInd:number){
+    function checkCorrect(qInd: number, choiceInd:number) {
         buttonClicked = choiceInd;
 
-        if (timesClicked < 2) {
+        if (timesClicked >= 0) {
             timesClicked++;
         }
 
-        if ((questions[qInd].correct == choiceInd)){
-            if (timesClicked == 1) {
-                correct++;
-                timesClicked++;
-            } else if (timesClicked == 2) {
-                quizInd++;
-                timesClicked = 0;
-                buttonClicked = -1;
+        if ((questions[qInd].correct == choiceInd) && timesClicked == 1){
+            correct++;
+        }
+    }
 
-                if(quizInd == totalQuestions){
-                    quizComplete = !quizComplete
-                    if(correct < 3){
-                        resultInd = 0;
-                    }
-                    else if(correct < 5){
-                        resultInd = 1;
-                    }
-                    else{
-                        resultInd = 2;
-                    }
-                }
+    function nextQuestion() {
+        quizInd++;
+
+        if (timesClicked >= 1) {
+            timesClicked = 0;
+            buttonClicked = -1;
+        }
+
+        if(quizInd == totalQuestions){
+            quizComplete = !quizComplete
+            if(correct < 3){
+                resultInd = 0;
+            }
+            else if(correct < 5){
+                resultInd = 1;
+            }
+            else{
+                resultInd = 2;
             }
         }
+    }
+
+    function playAgain() {
+        quizComplete = false;
+        quizInd = 0;
+        correct = 0;
     }
 
     function handleClickOutside(event: MouseEvent) {
@@ -174,13 +184,22 @@
                                 {#each question.choices as choice, ind}
                                         <Button secondary 
                                             on:click={() => checkCorrect(index, ind)} 
-                                            style="color:black; width:60%; height:5vw; margin:15px;{((timesClicked >= 1 && (questions[index].correct == ind) ? (correctButton) : ((buttonClicked == ind) ? (wrongButton) : (""))))}"
+                                            style="color:black; {width <= 425 ? "width:70vw; height:20vw" : "width:36vw; height:5vw"}; margin:15px;{((timesClicked >= 1 && (questions[index].correct == ind) ? (
+                                                "border:" + (width <= 425) ? ("1vw") : (".25vw") + "solid #3BB966; border-radius: 0.7vw;") : ((buttonClicked == ind) ? ("border:" + ((width <= 425) ? ("1vw") : (".25vw")) +  " solid #B82424; border-radius:0.7vw;") : (""))))}"
                                         >
                                             <p class="choice">{choice}</p>
                                         </Button>
                                 {/each}
                             {/if}
                         {/each}
+                        {#if timesClicked >= 1}
+                            <Button
+                                on:click={() => nextQuestion()}
+                                style="width:4.5vw; height:2vw; background: #008E7E; border-radius: 4px; font-size:0.9vw; margin-left: 50vw;"
+                            >
+                                Next &gt;
+                            </Button>
+                        {/if}
                     {/if}
                     {#if currentTab == 1}
                         <div class="roadMapContent" on:scroll={handleRoadmapScroll}>
@@ -217,13 +236,22 @@
                         {#each question.choices as choice, ind}
                                 <Button secondary 
                                     on:click={() => checkCorrect(index, ind)} 
-                                    style="color:black; width:70%; height:15vw; margin:15px;{((timesClicked >= 1 && (questions[index].correct == ind) ? (correctButton) : ((buttonClicked == ind) ? (wrongButton) : (""))))}"
+                                    style="color:black; {width <= 425 ? "width:70vw; height:20vw" : "width:36vw; height:5vw"}; margin:15px;{((timesClicked >= 1 && (questions[index].correct == ind) ? (
+                                        "border:" + (width <= 425) ? ("1vw") : (".25vw") + "solid #3BB966; border-radius: 0.7vw;") : ((buttonClicked == ind) ? ("border:" + ((width <= 425) ? ("1vw") : (".25vw")) +  " solid #B82424; border-radius:0.7vw;") : (""))))}"
                                 >
                                     <p class="choice">{choice}</p>
                                 </Button>
                         {/each}
                     {/if}
                 {/each}
+                {#if timesClicked >= 1}
+                    <Button
+                        on:click={() => nextQuestion()}
+                        style="width:15vw; height:10vw; background: #008E7E; border-radius: 4px; font-size:0.9vw; margin-left: 50vw; justify-content: center !important; align-items: center !important;"
+                    >
+                        <div class="next">Next</div>
+                    </Button>
+                {/if}
             </div>
         </div>
     </div>
@@ -237,7 +265,7 @@
                 <button class={currentTab === 0 ? 'active quiz' : 'quiz'} on:click={() => switchTab(0)}>Quiz</button>
                 <button class={currentTab === 1 ? 'active' : ''} on:click={() => switchTab(1)}>Review Roadmap</button>
             </div>
-            <div class="modal">
+            <div class="modal result" style="{(currentTab == 0) ? ("background-color: white;") : ("background-color: #83CDC0;")}">
                 <div id="progressBar" style="width: {(quizInd + 1) * 16.667}%"/>
                 <!-- svelte-ignore a11y-click-events-have-key-events -->
                 <div class="x-out" on:click={() => {showQuiz = !showQuiz;}}>
@@ -252,6 +280,7 @@
                                 <img class="cat" src="{base}/quiz/{results[resultInd].imageName}" alt="cat">
                             </div>
                             <div>{results[resultInd].text}</div>
+                            <Button on:click={() => {playAgain()}} style="width:8vw; height: 3vw; margin-top: 0.5vw; background: #58C3AF; border-radius: 4px; font-size: 0.7vw"><div id="play-again">Play again!</div></Button>
                         </div>
                     </div>
                 {/if}
@@ -293,6 +322,7 @@
                         <img class="cat" src="{base}/quiz/{results[resultInd].imageName}" alt="cat">
                     </div>
                     <div>{results[resultInd].text}</div>
+                    <Button on:click={() => {playAgain()}} style="width:30vw; height:15vw; margin-top: 0.5vw; background: #58C3AF; border-radius: 4px; font-size: 0.7vw"><div id="play-again">Play again!</div></Button>
                 </div>
             </div>
         </div>
@@ -376,7 +406,7 @@
     }
     .content{
         /* margin-top: 20px; */
-        margin: 3vw 1vw 3vw ;
+        margin: 2vw 1vw 2vw ;
         display:flex;
         flex-direction: column;
         align-items: center;
@@ -397,8 +427,9 @@
     .questionNum {
         font-size:1.5vw;
         font-weight: 500;
-        margin-top: calc(190px - 0.8 * 11vw);
-        margin-bottom: 1vw;
+        margin-top: calc(190px - 6vw);
+        margin-bottom: 2vw;
+
         letter-spacing: 0.02em;
         color: #0C2B35;
     }
@@ -407,8 +438,8 @@
         font-size:1.7vw;
         font-weight: 600;
         margin:30px;
-        width:60%;
-        margin-bottom: 2vw;
+        width:40vw;
+        margin-bottom: 3vw;
 
         color: #0C2B35;
     }
@@ -436,7 +467,7 @@
     }
 
     .result-content:first-child {
-        margin-top: calc(190px - 10vw);
+        margin-top: calc(190px - 9vw);
     }
 
     .cat {
@@ -488,6 +519,10 @@
         display: none;
     }
 
+    #play-again{
+        font-size: 1.2vw;
+    }
+
     @media only screen and (max-width: 430px) {
         .modalPopUp {
             display: none;
@@ -526,6 +561,13 @@
         .choice {
             font-size: 4vw;
             font-weight: 600;
+            align-self: center;
+        }
+
+        .next {
+            font-size: 4vw;
+            font-weight: 600;
+            align-self: center;
         }
 
         .x-out{
@@ -565,6 +607,10 @@
             width: 50vw;
             height: auto;
             margin: 1vw;
+        }
+
+        #play-again {
+            font-size: 5vw;
         }
     }
 
