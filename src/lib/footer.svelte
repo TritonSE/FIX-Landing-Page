@@ -9,28 +9,53 @@
   import Button from '$lib/button.svelte';
 
   import { base } from '$app/paths';
+  import AnimatedBlob from './animated_blob.svelte';
+
+  const NEWSLETTER_ENDPOINT = 'https://fixnation.org/wp-admin/admin-ajax.php';
 
   let ref;
   let newsletter = false,
     done = false;
-  let name = '',
-    email = '';
-  let nameError = false,
-    emailError = false;
+  let email = '';
+  let emailError = false,
+    failed = false;
 
-  onMount(() => {
-    document.addEventListener(
-      'click',
-      (e) => {
-        if (ref && !ref.contains(e.target)) {
-          newsletter = false;
-        }
-      },
-      true
-    );
-  });
+  function clickOutside(element) {
+    const handleClick = (event) => {
+      if (checkClickOutsideBlob(event)) {
+        newsletter = false;
+      }
+    };
+
+    document.addEventListener('click', handleClick, true);
+
+    return {
+      destroy() {
+        document.removeEventListener('click', handleClick, true);
+      }
+    };
+  }
+
+  const checkClickOutsideBlob = (event) => {
+    const blobSvg = document.getElementById('newsletter-blob');
+    const newsletterContainer = document.querySelector('.newsletter-content');
+    if (event.target === blobSvg.children[0] || newsletterContainer.contains(event.target)) {
+      return false;
+    }
+    event.preventDefault();
+    return true;
+  };
 </script>
 
+{#if newsletter}
+  <div
+    class="cover"
+    transition:fade
+    on:click={() => {
+      newsletter = false;
+    }}
+  />
+{/if}
 <div class="container">
   <div class="desktop">
     <div class="blob-image">
@@ -46,9 +71,7 @@
         small
         fill
         on:click={() => {
-          name = '';
           email = '';
-
           done = false;
           newsletter = true;
         }}>Sign Up for Newsletter</Button
@@ -58,14 +81,16 @@
     <div id="banner">
       <img src="{base}/icons/logo.svg" alt="TSE logo" id="logo" />
       <span>Built for free by&nbsp;</span>
-      <a href="https://tse.ucsd.edu/">Triton Software Engineering</a>
+      <a href="https://tse.ucsd.edu/" target="_blank" rel="noreferrer"
+        >Triton Software Engineering</a
+      >
     </div>
   </div>
 
   <div class="mobile">
     <img src="{base}/icons/road.svg" alt="footer road" class="road" />
     <div class="buttons">
-      <a href="https://fixnation.org">
+      <a href="https://fixnation.org" target="_blank" rel="noreferrer noopener">
         <Button style="width: 14rem; margin-bottom: 1rem">FixNation Website</Button>
       </a>
       <div class="spacer" />
@@ -88,30 +113,46 @@
       out:fly={{ delay: 500, x: 100, y: 100 }}
       class="newsletter"
     >
-      <div>
+      <div class="newsletter-content">
         {#if !done}
-          <div transition:fade={{ duration: 200 }}>
+          <div transition:fade={{ duration: 200 }} use:clickOutside>
             <h1>Sign up for our newsletter to stay in touch!</h1>
             <form
-              on:submit={(e) => {
+              on:submit={async (e) => {
                 e.preventDefault();
 
-                nameError = !name.trim();
+                failed = false;
                 emailError = !email.trim() || !email.includes('@');
-                if (nameError || emailError) return;
+                if (emailError) return;
 
-                done = true;
-                setTimeout(() => {
-                  newsletter = false;
-                }, 400);
+                try {
+                  const body = new URLSearchParams();
+                  body.append('email', email);
+                  body.append('name', '');
+                  body.append('action', 'fca_eoi_subscribe');
+                  body.append('list_id', '9a24fade51');
+                  body.append('form_id', '8649');
+                  body.append('nonce', 'b17279bdd6');
+                  body.append('timezone', 'America/Los_Angeles');
+                  body.append('content_granted', 'unknown');
+                  const response = await fetch(NEWSLETTER_ENDPOINT, {
+                    method: 'POST',
+                    body
+                  });
+                  if (response.ok) {
+                    done = true;
+                    setTimeout(() => {
+                      newsletter = false;
+                    }, 400);
+                  } else {
+                    failed = true;
+                  }
+                } catch (e) {
+                  failed = true;
+                }
               }}
             >
-              <input
-                placeholder="Name"
-                bind:value={name}
-                style="border: {nameError ? '1px solid red' : '1px solid transparent'}"
-              />
-              <br />
+              <p class="error" class:visible={failed}>Failed to load, please try again.</p>
               <input
                 placeholder="Email"
                 type="email"
@@ -130,11 +171,22 @@
           <h1>Thank you!</h1>
         </div>
       </div>
+      <div class="newsletter-blob-image"><AnimatedBlob /></div>
     </div>
   {/if}
 </div>
 
 <style>
+  .cover {
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.2);
+    position: fixed;
+    top: 0;
+    left: 0;
+    cursor: pointer;
+  }
+
   .container {
     position: relative;
     overflow: hidden;
@@ -150,14 +202,23 @@
     height: 72vw;
     min-height: 25rem;
     max-height: 50rem;
-    background-image: url(@base/icons/animated_blob.svg);
-    background-size: 100% 100%;
 
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
   }
+
+  .newsletter-content {
+    position: relative;
+    z-index: 2;
+  }
+  .newsletter-blob-image {
+    position: absolute;
+    width: 100% !important;
+    height: 100% !important;
+  }
+
   .newsletter > div {
     width: 10rem;
     margin: 0 auto;
@@ -174,6 +235,15 @@
   .newsletter h1 {
     font-size: 18px;
     color: var(--color-white);
+  }
+  .newsletter p.error {
+    color: red;
+    opacity: 0;
+    transition: opacity 0.2s;
+    font-size: 8pt;
+  }
+  .newsletter p.error.visible {
+    opacity: 1;
   }
   .newsletter input {
     width: 10rem;

@@ -4,8 +4,14 @@
 -->
 <script lang="ts">
   import { base } from '$app/paths';
+
   import type { RowData } from './types';
   import AccordionItem from './accordion_item.svelte';
+  import Modal from '$lib/modal.svelte';
+
+  let open = false;
+  let cur = -1;
+
   const rows: RowData[] = [
     {
       title: 'Find',
@@ -116,6 +122,7 @@
 </script>
 
 <Quiz bind:showQuiz bind:quizInd></Quiz>
+<Modal bind:open bind:cur />
 
 <div class="container">
   <div class="bubble">
@@ -135,7 +142,18 @@
     <div class="road-image"><div class="road-line" /></div>
     {#each rows as rowData, i}
       <div class="step_container {rowData.title.toLowerCase() + i}">
-        <div class="row">
+        <div
+          class="row"
+          on:click={() => {
+            if (window.innerWidth > 675) {
+              open = !open;
+              cur = i;
+            }
+          }}
+          on:keydown={() => {
+            open = !open;
+          }}
+        >
           <div class="marker">
             {#if i == 0 }
               <div class="flag"><img src="{base}/roadmap/startFlag.svg" alt="Roadmap marker" /></div>
@@ -143,11 +161,12 @@
               <button on:click={() => toggleQuiz()}><div class="testFlag"><img src="{base}/roadmap/testFlag.svg" alt="Roadmap marker" /></div></button>
             {:else}
               <img src="{base}/roadmap/marker.svg" alt="Roadmap marker" />
+              <div class="marker_anim" />
               <img
-              class="shadow"
-              src="{base}/roadmap/marker_shadow.svg"
-              alt="Roadmap marker shadow"
-            />
+                class="shadow"
+                src="{base}/roadmap/marker_shadow.svg"
+                alt="Roadmap marker shadow"
+              />
             {/if}
 
           </div>
@@ -161,7 +180,7 @@
                 toggleRowExpanded(i);
               }}
             >
-              <h1>{i + 1}. {rowData.title}</h1>
+              <h2>{i + 1}. {rowData.title}</h2>
               <div aria-expanded={rowsExpanded[i]} class="toggle-button" />
             </div>
             <p class:first={i == 0}>{rowData.text}</p>
@@ -272,12 +291,12 @@
     }
   }
   /* Tablet View */
-  @media screen and (min-width: 676px) and (max-width: 1099px) {
+  @media screen and (min-width: 601px) and (max-width: 1099px) {
     .roadmap {
       background-image: url(@base/roadmap/tablet_curved_road.svg);
       min-height: 110vw;
     }
-    .text h1 {
+    .text h2 {
       font-size: 1.8vw !important;
       padding: 3vw 0 0 4vw;
     }
@@ -285,6 +304,7 @@
       font-size: 1.6vw !important;
       padding: 0 3.5vw 2.5vw 3.5vw;
       max-width: 21vw !important;
+      margin-top: 0;
     }
     .find0 {
       top: 19vw;
@@ -318,10 +338,14 @@
       top: 114vw;
       right: 2vw;
     }
+    .marker img {
+      width: 2rem !important;
+    }
   }
   /* Desktop variant only */
-  @media screen and (min-width: 676px) {
+  @media screen and (min-width: 601px) {
     h1,
+    h2,
     p {
       color: var(--color-secondary-accent);
     }
@@ -401,24 +425,66 @@
       background-size: contain;
       position: relative;
     }
+
+    .row:hover {
+      background-image: url(@base/roadmap/cloud_hover.svg);
+      cursor: pointer;
+    }
+
+    @keyframes glow {
+      0% {
+        background-image: radial-gradient(transparent 0 10000px);
+      }
+      10% {
+        background-image: radial-gradient(transparent 0 10000px);
+      }
+      30% {
+        background-image: radial-gradient(#c4d856cc 0 30px, transparent 30px 10000px);
+      }
+      50% {
+        background-image: radial-gradient(
+          #c4d856cc 0 30px,
+          #c4d856aa 30px 35px,
+          transparent 35px 10000px
+        );
+      }
+      70% {
+        background-image: radial-gradient(
+          #c4d856cc 0 30px,
+          #c4d856aa 30px 35px,
+          #c4d85666 35px 40px,
+          transparent 40px 10000px
+        );
+      }
+    }
+
     .row .marker {
-      width: 2vw;
       position: absolute;
       z-index: 1;
-      top: -2.5vw;
+      top: -3vw;
     }
     .marker img {
-      width: 3vw;
+      width: 2.5rem;
       position: absolute;
-      left: 0.3rem;
+      right: 50%;
+      bottom: 50%;
+      transform: translate(50%, 50%);
+    }
+    .marker_anim {
+      width: 6rem;
+      height: 6rem;
+      animation-name: glow;
+      animation-duration: 2s;
+      animation-iteration-count: infinite;
+      overflow: hidden;
+      background-repeat: no-repeat;
+      z-index: -2;
     }
     .marker img.shadow {
       position: absolute;
-      left: 0.675rem;
-      top: 0.125rem;
       z-index: -1;
     }
-    .text h1 {
+    .text h2 {
       font-family: 'ITC Avant Garde', sans-serif !important;
       font-size: 1vw;
       text-transform: uppercase;
@@ -438,8 +504,9 @@
   }
 
   /* Mobile variant only */
-  @media screen and (max-width: 675px) {
+  @media screen and (max-width: 600px) {
     h1,
+    h2,
     p {
       color: var(--color-secondary-accent);
     }
@@ -576,14 +643,10 @@
       flex: 1;
       padding-left: 1.5rem;
     }
-    .text h1 {
+    .text h2 {
       font-family: 'Comics', sans-serif !important;
-      font-size: 20px;
       margin: 0;
       text-transform: uppercase;
-    }
-    .text p {
-      font-size: 14px;
     }
 
     .text {

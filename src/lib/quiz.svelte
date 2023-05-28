@@ -72,13 +72,23 @@
         {
             header: "Hold the cat overnight until surgery the next day.",
             content: "Congrats, you got the cat! Cover the trap and keep it in a warm, quiet place overnight (like a bathroom or a heated garage). Check the cat once an hour, every hour, until bedtime. Here are some more pre-op tips!",
-            imgPath: "numbers/two.svg",
+            imgPath: "numbers/five.svg",
         },
         {
             header: "Take the cat to get fixed (for free!).",
             content: "Feed kittens a teapoon of wet food at 6 am on surgery day; no food or water for older cats. Cover the car seats with plastic and securely place the traps on top. Arrive at FixNation between 7-8.30 am, leave kitty in car and wait in line to check-in. (Here's a sneak peek of the check in process!) FixNation will spay/neuter the cat and provide vaccines, flea treatment, fluids, pain medication, and an ear tip. Pick-up from 3-4:30 pm.",
-            imgPath: "numbers/two.svg" 
-        }
+            imgPath: "numbers/six.svg" 
+        },
+        {
+            header: "Keep the cat one more night for recovery.",
+            content: "Take kitty home in the covered trap and keep in a warm, quiet place overnight once again. Feed a ¼ can of wet food about six hours post-op (check paperwork for exact time). Check kitty once an hour, every hour, until bedtime. Here are some more post-op tips!",
+            imgPath: "numbers/seven.svg" 
+        },
+        {
+            header: "Return the cat to where it was trapped.",
+            content: "This is the big moment…release the cat where you trapped it the morning after surgery. Freedom!!!! Here’s a video about community cats that shows a kitty getting released. Clean the trap and trap cover and return to FixNation during opening hours.",
+            imgPath: "numbers/eight.svg" 
+        },
     ]
 
     const correctButton = "border:.25vw solid #3BB966; border-radius:0.7vw;";
@@ -132,6 +142,13 @@
     function switchTab(tab: number) {
         currentTab = tab;
     }
+
+    let roadmapScrollTop = 0;
+
+    function handleRoadmapScroll(event: Event) {
+        const target = event.target as HTMLElement;
+        roadmapScrollTop = target.scrollTop;
+    }
 </script>
 
 {#if showQuiz && !quizComplete}
@@ -157,7 +174,7 @@
                                 {#each question.choices as choice, ind}
                                         <Button secondary 
                                             on:click={() => checkCorrect(index, ind)} 
-                                            style="color:black; width:60%; height:5vw; margin:15px;{((timesClicked >= 1 && (questions[index].correct == ind) ? (correctButton) : ((buttonClicked == ind) ? (wrongButton) : (""))))}"
+                                            style="color:black; width:60%; height:4vw; margin:15px;{((timesClicked >= 1 && (questions[index].correct == ind) ? (correctButton) : ((buttonClicked == ind) ? (wrongButton) : (""))))}"
                                         >
                                             <p class="choice">{choice}</p>
                                         </Button>
@@ -166,7 +183,7 @@
                         {/each}
                     {/if}
                     {#if currentTab == 1}
-                        <div class="roadMapContent">
+                        <div class="roadMapContent" on:scroll={handleRoadmapScroll}>
                             {#each roadMap as item}
                                 <div class="roadMap">
                                     <div>
@@ -215,7 +232,8 @@
                 {/if}
                 {#if currentTab == 1}
                     <div class="content">
-                        <div class="roadMapContent">
+                        <div class="roadMapContent" on:scroll={handleRoadmapScroll}>
+                            <div class="scrollable-container">
                             {#each roadMap as item}
                                 <div class="roadMap">
                                     <div>
@@ -227,6 +245,7 @@
                                     </div>
                                 </div>
                             {/each}
+                            </div>
                         </div>
                     </div>
                 {/if}
@@ -247,6 +266,7 @@
         justify-content: center;
         background-color: rgba(0, 0, 0, 0.5);
         z-index: 9999;
+        /* overflow-y: scroll; */
     }
 
     .anotherOne {
@@ -270,14 +290,21 @@
         overflow: hidden;
     }
 
+    .scrollable-container {
+        height: 100%;
+        overflow-y: scroll !important;
+        }
+
     .roadMapContent {
         padding: 2vw;
+        overflow-y:auto !important;
     }
 
     .roadMap{
         display: flex;
         text-align: left;
         justify-content: flex-start;
+        overflow-y: scroll;
     }
 
     .number{
@@ -304,7 +331,7 @@
     }
     .content{
         /* margin-top: 20px; */
-        margin: 4vw 1vw 80px ;
+        margin: 3vw 1vw 3vw ;
         display:flex;
         flex-direction: column;
         align-items: center;
@@ -326,18 +353,17 @@
         font-size:1.5vw;
         font-weight: 500;
         margin-top: calc(190px - 0.8 * 11vw);
-        margin-bottom: 2vw;
-
+        margin-bottom: 1vw;
         letter-spacing: 0.02em;
         color: #0C2B35;
     }
 
     .question {
-        font-size:1.8vw;
+        font-size:1.5vw;
         font-weight: 600;
         margin:30px;
         width:60%;
-        margin-bottom: 3vw;
+        margin-bottom: 2vw;
 
         color: #0C2B35;
     }
