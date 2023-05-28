@@ -158,7 +158,7 @@
             {#if i == 0 }
               <div class="flag"><img src="{base}/roadmap/startFlag.svg" alt="Roadmap marker" /></div>
             {:else if i == 7}
-              <button on:click={() => toggleQuiz()}><div class="testFlag"><img src="{base}/roadmap/testFlag.svg" alt="Roadmap marker" /></div></button>
+              <div class="flag"><img src="{base}/roadmap/testFlag.svg" alt="Roadmap marker" on:click={() => toggleQuiz()}/></div>
             {:else}
               <img src="{base}/roadmap/marker.svg" alt="Roadmap marker" />
               <div class="marker_anim" />
@@ -217,7 +217,7 @@
 
   .flag img{
     height: auto;
-    width: 6vw !important;
+    width: 12vw !important;
   }
 
   .testFlag img{
@@ -429,6 +429,11 @@
     .row:hover {
       background-image: url(@base/roadmap/cloud_hover.svg);
       cursor: pointer;
+    }
+
+    .flag img{
+      height: auto;
+      width: 100px !important;
     }
 
     @keyframes glow {

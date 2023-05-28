@@ -174,7 +174,7 @@
                                 {#each question.choices as choice, ind}
                                         <Button secondary 
                                             on:click={() => checkCorrect(index, ind)} 
-                                            style="color:black; width:60%; height:4vw; margin:15px;{((timesClicked >= 1 && (questions[index].correct == ind) ? (correctButton) : ((buttonClicked == ind) ? (wrongButton) : (""))))}"
+                                            style="color:black; width:60%; height:5vw; margin:15px;{((timesClicked >= 1 && (questions[index].correct == ind) ? (correctButton) : ((buttonClicked == ind) ? (wrongButton) : (""))))}"
                                         >
                                             <p class="choice">{choice}</p>
                                         </Button>
@@ -200,7 +200,32 @@
                 </div>
             </div>
         </div>
+    </div>
 
+    <div class="mobile-view">
+        <div class="modal">
+            <div id="progressBar" style="width: {(quizInd + 1) * 16.667}%"/>
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <div class="x-out" on:click={() => {showQuiz = !showQuiz;}}>
+                x
+            </div>
+            <div class="content">
+                {#each questions as question, index}
+                    {#if quizInd == index}
+                        <div class="questionNum">Question {index+1}/{totalQuestions}</div>
+                        <div class="question">{question.question}</div>
+                        {#each question.choices as choice, ind}
+                                <Button secondary 
+                                    on:click={() => checkCorrect(index, ind)} 
+                                    style="color:black; width:70%; height:15vw; margin:15px;{((timesClicked >= 1 && (questions[index].correct == ind) ? (correctButton) : ((buttonClicked == ind) ? (wrongButton) : (""))))}"
+                                >
+                                    <p class="choice">{choice}</p>
+                                </Button>
+                        {/each}
+                    {/if}
+                {/each}
+            </div>
+        </div>
     </div>
 {/if}
 
@@ -249,6 +274,26 @@
                         </div>
                     </div>
                 {/if}
+            </div>
+        </div>
+    </div>
+
+    <div class="mobile-view">
+        <div class="modal">
+            <div id="progressBar" style="width: {(quizInd + 1) * 16.667}%"/>
+            <!-- svelte-ignore a11y-click-events-have-key-events -->
+            <div class="x-out" on:click={() => {showQuiz = !showQuiz;}}>
+                x
+            </div>
+            <div class="content">
+                <div class="result-content">
+                    <div>THANKS FOR PLAYING!</div>
+                    <div>YOU SCORED A {correct}/{totalQuestions}</div>
+                    <div>
+                        <img class="cat" src="{base}/quiz/{results[resultInd].imageName}" alt="cat">
+                    </div>
+                    <div>{results[resultInd].text}</div>
+                </div>
             </div>
         </div>
     </div>
@@ -359,7 +404,7 @@
     }
 
     .question {
-        font-size:1.5vw;
+        font-size:1.7vw;
         font-weight: 600;
         margin:30px;
         width:60%;
@@ -437,6 +482,90 @@
 
     .tabs .quiz {
         width: 5vw;
+    }
+
+    .mobile-view {
+        display: none;
+    }
+
+    @media only screen and (max-width: 430px) {
+        .modalPopUp {
+            display: none;
+        }
+
+        .mobile-view{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #83CDC0;
+            display: flex;
+            justify-content: center;
+            overflow: hidden;
+            z-index: 10000;
+            align-items: center;
+        }
+
+        .modal {
+            width: 100%;
+            height: 100%;
+            justify-content: center;
+        }
+
+        .questionNum{
+            font-size: 4vw
+        }
+
+        .question{
+            font-size: 5vw;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .choice {
+            font-size: 4vw;
+            font-weight: 600;
+        }
+
+        .x-out{
+            font-size: 40px;
+        }
+
+        .content{
+            margin: 1vw 0.5vw 1vw ;
+            display:flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-top: -50vw;
+        }
+
+        #progressBar {
+            height: 3vw;
+        }
+
+        .result-content {
+            font-size: 5vw;
+            margin:0px;
+            width: 100%;
+            height: 100%;
+            line-height: 25px;
+        }
+
+        .result-content > * + *{
+            margin: 30px;
+        }
+
+        .result-content:first-child {
+            margin-top: calc(190px - 10vw);
+        }
+
+        .cat {
+            width: 50vw;
+            height: auto;
+            margin: 1vw;
+        }
     }
 
 
