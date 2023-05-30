@@ -16,6 +16,8 @@
    */
   let openOverlayIndex = -1;
 
+  let middleIndex = Math.floor(CAT_DATA.length / 2);
+
   function closeCatOverlay() {
     openOverlayIndex = -1;
   }
@@ -58,10 +60,10 @@
       </p>
       <button
         class="read-more-button"
-        on:click={() => openCatOverlay(0)}
+        on:click={() => openCatOverlay(j)}
         on:keydown={(e) => {
           if (e.key === 'Enter' || e.key === 'Space') {
-            openCatOverlay(0);
+            openCatOverlay(j);
           }
         }}
       >
@@ -87,11 +89,17 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 90px;
-    padding-top: 80px;
+    padding: 0;
+    height: 180vw;
+    align-items: center;
   }
 
   .cat-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
+    height: 100%;
   }
 
   .read-more-button {
@@ -129,14 +137,14 @@
     gap: 35px;
   }
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 990px) {
     p {
       font-size: 12px;
     }
 
     .stories-container {
       padding-top: 40px;
-      gap: 65px;
+      height: 160vw;
     }
 
     .medium-margin-above {

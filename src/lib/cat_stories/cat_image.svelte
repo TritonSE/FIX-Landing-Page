@@ -12,9 +12,10 @@
 
 <style>
   img {
-    position: absolute;
     border-radius: 25px;
     width: 100%;
     cursor: pointer;
+    position: absolute;
+    align-items: center;
   }
 </style>

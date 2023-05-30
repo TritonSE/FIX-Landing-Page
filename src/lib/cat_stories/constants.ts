@@ -44,11 +44,24 @@ export const CAT_DATA: CatData[] = [
     abbrev_len: 135,
     ig_link: 'https://www.instagram.com/disneylandcats/?hl=en',
     ig_username: 'disneylandcats',
-    n_followers: 110000,
+    n_followers: 122000,
     image_path0: `${base}/cat_stories/almira0.png`,
     image_path1: `${base}/cat_stories/almira1.png`,
     image_path2: `${base}/cat_stories/almira2.png`,
     image_path3: `${base}/cat_stories/almira3.png`,
     mobile_image_path: `${base}/cat_stories/almira_mobile.png`
+  },
+  {
+    name: 'Shasta',
+    desc: 'Shasta and his brother/littermate Lassen came into our lives sixteen years ago via a local rescue who were looking for someone who could take both brothers as they thought Lassen needed Shasta. The rescue did a fabulous job socializing the kittens who were very sweet, friendly, confident and quickly adapted to Cody, their canine sister.',
+    abbrev_len: 135,
+    ig_link: 'https://www.instagram.com/disneylandcats/?hl=en',
+    ig_username: 'disneylandcats',
+    n_followers: 110000,
+    image_path0: `${base}/cat_stories/shasta0.png`,
+    image_path1: `${base}/cat_stories/shasta1.png`,
+    image_path2: `${base}/cat_stories/shasta0.png`,
+    image_path3: `${base}/cat_stories/shasta1.png`,
+    mobile_image_path: `${base}/cat_stories/shasta_mobile.png`
   }
 ];

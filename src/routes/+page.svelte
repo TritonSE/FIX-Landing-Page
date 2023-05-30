@@ -21,15 +21,6 @@
 <!-- <Stats />-->
 <Statsv2 />
 <CatStories />
-<button
-  on:click={() => {
-    open = !open;
-  }}
->
-  Modal
-</button>
-
-<Modal {open} />
 
 <CatSuperhero />
 <GetInvolved />
