@@ -16,6 +16,8 @@
    */
   let openOverlayIndex = -1;
 
+  let middleIndex = Math.floor(CAT_DATA.length / 2);
+
   function closeCatOverlay() {
     openOverlayIndex = -1;
   }
@@ -41,6 +43,7 @@
           <CatImage
             image_url={data['image_path' + i]}
             image_alt="Cat Image"
+            
             on:click={() => openCatOverlay(j)}
             on:keydown={(e) => {
               if (e.key === 'Enter' || e.key === 'Space') {
@@ -58,10 +61,10 @@
       </p>
       <button
         class="read-more-button"
-        on:click={() => openCatOverlay(0)}
+        on:click={() => openCatOverlay(j)}
         on:keydown={(e) => {
           if (e.key === 'Enter' || e.key === 'Space') {
-            openCatOverlay(0);
+            openCatOverlay(j);
           }
         }}
       >
@@ -87,11 +90,17 @@
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 90px;
-    padding-top: 80px;
+    padding: 0;
+    height: 180vw;
+    align-items: center;
   }
 
   .cat-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
+    height: 100%;
   }
 
   .read-more-button {
