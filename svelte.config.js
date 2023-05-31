@@ -15,7 +15,7 @@ const config = {
   kit: {
     adapter: adapter(),
     paths: {
-      base: dev ? '' : '/FIX-Landing-Page',
+      base: '',
       relative: false
     }
   }

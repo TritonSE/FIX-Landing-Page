@@ -14,6 +14,8 @@
   export let light_shadow = false;
   export let link_url = '';
 
+  const id = 'card-' + Math.random().toString(16).substring(2);
+
   let mobile = false;
   const detectMobile = () => {
     // Crude touchscreen detection via:
@@ -26,10 +28,11 @@
 <svelte:window on:resize={detectMobile} />
 
 <a
+  {id}
   class="container"
-  target="_blank"
-  rel="noreferrer noopener"
-  href={!mobile ? link_url : 'javascript:void(0)'}
+  target={!mobile ? '_blank' : ''}
+  rel={!mobile ? 'noreferrer noopener' : ''}
+  href={!mobile ? link_url : '#' + id}
 >
   <div class="card-outer">
     <div class="card-inner">
@@ -45,7 +48,6 @@
         <img src={background_image_url} alt={background_image_alt} />
         <div class="description {light_shadow ? 'light' : 'dark'}">
           <p>{description}</p>
-          <img class="chevron left" src="{base}/icons/ic_caretright.svg" alt="Left arrow" />
           <a href={link_url} target="_blank" rel="noreferrer noopener" class="external">
             <div>Learn More:</div>
             &nbsp;
@@ -81,6 +83,7 @@
     perspective: 1000px;
     text-align: center;
     transition: transform 0.8s;
+    -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     display: flex;
     align-items: center;
@@ -101,6 +104,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
+    -webkit-transform-style: preserve-3d;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
   }

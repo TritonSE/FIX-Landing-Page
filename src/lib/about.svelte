@@ -7,6 +7,8 @@
   import { onMount } from 'svelte';
   import lax from 'lax.js';
 
+  import { base } from '$app/paths';
+
   onMount(() => {
     lax.init();
     lax.addDriver('scrollY', () => window.scrollY, { inertiaEnabled: true });
@@ -149,7 +151,7 @@
       </p>
     </div>
   </div>
-  <img class="about-header" src="/about/about_header.png" alt="cat header" />
+  <img class="about-header" src="{base}/about/about_header.png" alt="cat header" />
   <div id="flex-container">
     <div class="row">
       <div class="text">
