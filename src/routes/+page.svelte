@@ -13,8 +13,10 @@
   import FindFixnation from '$lib/find_fixnation.svelte';
 
   import '../app.css';
+  import NavbarManager from '$lib/navbar/navbar_manager.svelte';
 </script>
 
+<NavbarManager />
 <Masthead />
 <About />
 <Stats />
