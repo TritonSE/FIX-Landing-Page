@@ -115,3 +115,17 @@ span.caption {
 .gap {
   gap: 1rem;
 }
+
+@media screen and (max-width: 600px) {
+  h2 {
+    font-size: 24px;
+  }
+  h4 {
+    font-size: 12px;
+  }
+
+  p,
+  span {
+    font-size: 12px;
+  }
+}

@@ -41,15 +41,17 @@
             src="{base}/cat_stories/profile_pictures/{data.name}.png"
           />
           <div class="column">
-            <a href={`https://www.instagram.com/${data.ig_username}/?hl=en`}
-              ><p class="username nomargin">{data.ig_username}</p></a
+            <a
+              href={`https://www.instagram.com/${data.ig_username}/?hl=en`}
+              target="_blank"
+              rel="noreferrer noopener"><p class="username nomargin">{data.ig_username}</p></a
             >
             <p class="nomargin">{`${formatNum(data.n_followers)} followers`}</p>
           </div>
 
           <div class="vertical-divider" />
 
-          <a href={data.ig_link}>
+          <a href={data.ig_link} target="_blank" rel="noreferrer noopener">
             <Button>Follow Me</Button>
           </a>
         </div>
@@ -174,14 +176,6 @@
   @media screen and (max-height: 800px) {
     .root-row {
       padding: 25px;
-    }
-
-    .username {
-      font-size: 14px;
-    }
-
-    p {
-      font-size: 14px;
     }
   }
 </style>

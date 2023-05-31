@@ -16,12 +16,23 @@
 
   const COMMON_IMAGE_PATH = 'roadmap/steps';
 
-  onMount(async () => {
-    if (el) {
-      h = el.offsetHeight;
-      await tick();
-      onClose();
+  async function compute_height(el) {
+    h = el.offsetHeight;
+    await tick();
+    onClose();
+  }
+
+  onMount(() => {
+    if (!el) return;
+
+    function resize() {
+      if (window.innerWidth <= 675) {
+        compute_height(el);
+        window.removeEventListener('resize', resize);
+      }
     }
+    if (window.innerWidth <= 675) resize();
+    else window.addEventListener('resize', resize);
   });
 </script>
 
@@ -40,7 +51,11 @@
     </div>
     {#each resourceTexts as resourceText, j}
       <div class="resource-link">
-        <a href={resourceLinks[j]} class="link-no-underline"
+        <a
+          href={resourceLinks[j]}
+          target="_blank"
+          rel="noreferrer noopener"
+          class="link-no-underline"
           ><Button fill={true}
             ><div class="button-contents">
               <img
@@ -58,14 +73,13 @@
 {/if}
 
 <style>
-  @media screen and (min-width: 675px) {
+  @media screen and (min-width: 600px) {
     .accordion-item {
       display: none !important;
     }
   }
 
   .button-contents {
-    font-size: 12px;
     display: flex;
     flex-direction: row;
     align-items: center;
