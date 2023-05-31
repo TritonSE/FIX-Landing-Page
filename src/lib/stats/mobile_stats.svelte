@@ -100,7 +100,7 @@
 </div>
 
 <style>
-  @media screen and (max-width: 430px) {
+  @media screen and (max-width: 675px) {
     .container {
       max-width: 90vw;
       margin-left: auto;
