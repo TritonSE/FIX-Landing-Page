@@ -25,31 +25,48 @@
 
 <svelte:window on:resize={detectMobile} />
 
-<a class="container" href={!mobile ? link_url : 'javascript:void(0)'}>
-  <div class="root">
-    <img src={background_image_url} alt={background_image_alt} loading="lazy" />
-    <div class="label">
-      <p>{label}</p>
-      <img
-        class="chevron right"
-        src="{base}/icons/ic_caretright.svg"
-        alt="Right arrow"
-        loading="lazy"
-      />
-    </div>
-    <div class="description {light_shadow ? 'light' : 'dark'}">
-      <p>{description}</p>
-      <img
-        class="chevron left"
-        src="{base}/icons/ic_caretright.svg"
-        alt="Left arrow"
-        loading="lazy"
-      />
-      <a href={link_url} class="external">
-        <div>Learn More:</div>
-        &nbsp;
-        <img src="{base}/icons/ic_external_link.svg" alt="External link indicator" loading="lazy" />
-      </a>
+<a
+  class="container"
+  target="_blank"
+  rel="noreferrer noopener"
+  href={!mobile ? link_url : 'javascript:void(0)'}
+>
+  <div class="card-outer">
+    <div class="card-inner">
+      <div class="card-front">
+        <img src={background_image_url} alt={background_image_alt} loading="lazy" />
+        <div class="label">
+          <h4>{label}</h4>
+          <img
+            class="chevron right"
+            src="{base}/icons/ic_caretright.svg"
+            alt="Right arrow"
+            loading="lazy"
+          />
+        </div>
+      </div>
+
+      <div class="card-back">
+        <img src={background_image_url} alt={background_image_alt} />
+        <div class="description {light_shadow ? 'light' : 'dark'}">
+          <p>{description}</p>
+          <img
+            class="chevron left"
+            src="{base}/icons/ic_caretright.svg"
+            alt="Left arrow"
+            loading="lazy"
+          />
+          <a href={link_url} target="_blank" rel="noreferrer noopener" class="external">
+            <div>Learn More:</div>
+            &nbsp;
+            <img
+              src="{base}/icons/ic_external_link.svg"
+              alt="External link indicator"
+              loading="lazy"
+            />
+          </a>
+        </div>
+      </div>
     </div>
   </div>
 </a>
@@ -59,31 +76,70 @@
     text-decoration: none;
   }
 
-  .root {
+  .card-outer {
+    min-height: 20.5vw;
+    max-height: 20.5vw;
+    min-width: calc(100vw / 3);
+    max-width: calc(100vw / 3);
+    perspective: 1000px;
+    overflow: hidden;
+    transition: transform 0.8s;
+  }
+
+  .card-inner {
+    position: relative;
+    min-height: 20.5vw;
+    max-height: 20.5vw;
+    min-width: calc(100vw / 3);
+    max-width: calc(100vw / 3);
+    perspective: 1000px;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
     display: flex;
     align-items: center;
     justify-content: center;
     position: relative;
-    min-height: 20.5vw;
-    max-height: 20.5vw;
-    min-width: 32vw;
-    max-width: 32vw;
-    overflow: hidden;
   }
 
   img {
-    position: absolute;
     width: 100%;
     height: 100%;
   }
+  .card-outer:hover .card-inner {
+    transform: rotateY(180deg);
+  }
 
+  .card-front,
+  .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+
+  .card-back {
+    transform: rotateY(180deg);
+  }
+
+  h4,
   p {
     text-align: center;
-    font-weight: 700;
     color: var(--color-white);
+    font-weight: 500;
     z-index: 2;
     width: 90%;
     margin: 0 auto;
+  }
+
+  /* Don't shrink on smaller screens */
+  h4 {
+    font-size: 32px;
+  }
+
+  p {
+    font-size: 16px;
   }
 
   .label,
@@ -98,12 +154,6 @@
     left: 0;
     transition: opacity 0.3s, transform 0.3s;
   }
-  .label {
-    opacity: 1;
-  }
-  .description {
-    opacity: 0;
-  }
   .description.light {
     box-shadow: inset 55.717px 166.319px 170.477px 134.719px rgba(11, 129, 103, 0.73);
   }
@@ -111,20 +161,7 @@
     box-shadow: inset 55.717px 166.319px 170.477px 134.719px rgba(32, 82, 92, 0.78);
   }
 
-  .container:hover .label {
-    opacity: 0;
-  }
-
-  .container:hover .description {
-    opacity: 1;
-  }
-
-  .label p {
-    font-size: 2rem;
-  }
-
   .description p {
-    font-size: 1.5rem;
     font-weight: 300;
   }
 
@@ -144,11 +181,18 @@
     right: 0.25rem;
   }
 
-  .container:hover .external {
-    opacity: 1;
-  }
   .chevron {
     display: none;
+  }
+
+  @media screen and (min-width: 600px) and (max-width: 750px) {
+    h4 {
+      font-size: 24px;
+    }
+
+    p {
+      font-size: 12px;
+    }
   }
 
   @media screen and (min-width: 750px) {
@@ -158,55 +202,17 @@
     }
   }
 
-  @media screen and (max-width: 1200px) {
-    .label p {
-      font-size: 1.5rem;
-    }
-
-    .description p {
-      font-size: 1.25rem;
-    }
-  }
-
-  @media screen and (max-width: 1000px) {
-    .label p {
-      font-size: 1rem;
-    }
-
-    .description p {
-      font-size: 0.75rem;
-    }
-  }
-
   @media screen and (max-width: 600px) {
-    .root {
+    .card-outer,
+    .card-inner {
       min-height: 64vw;
       max-height: 64vw;
       min-width: 100vw;
       max-width: 100vw;
     }
 
-    .label {
-      transform: translateX(0);
-    }
-    .description {
-      transform: translateX(100vw);
-      opacity: 1;
-    }
-    .container:hover .description {
-      transform: translateX(0);
-    }
-
     p {
       width: 85%;
-    }
-
-    .label p {
-      font-size: 1.25rem;
-    }
-
-    .description p {
-      font-size: 1rem;
     }
 
     .external {

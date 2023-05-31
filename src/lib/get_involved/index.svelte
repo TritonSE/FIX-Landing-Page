@@ -103,10 +103,10 @@
 </script>
 
 <div class="root" id="get_involved">
-  <h1>Get Involved</h1>
-  <p>
+  <h2>Get Involved</h2>
+  <h4>
     There are so many ways you can help homeless cats in your area. FixNation is looking for you!
-  </p>
+  </h4>
   <div class="cards">
     {#each CARDS as card}
       <Card {...card} />
@@ -115,18 +115,17 @@
 </div>
 
 <style>
-  h1 {
+  h2 {
     font-family: 'ITC Avant Garde', sans-serif !important;
     margin: 0;
-    font-size: 3rem;
     text-align: center;
   }
 
-  p {
+  h4 {
     font-family: 'Avenir', sans-serif !important;
     margin-bottom: 1.25rem;
-    font-size: 1.5rem;
     text-align: center;
+    font-weight: normal;
   }
 
   .root {
@@ -139,16 +138,7 @@
   .cards {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-  }
-
-  @media screen and (max-width: 900px) {
-    h1 {
-      font-size: 1.5rem;
-    }
-
-    p {
-      font-size: 0.75rem;
-    }
+    width: 100%;
   }
 
   @media screen and (max-width: 600px) {

@@ -11,7 +11,7 @@
   export let link_to = '';
 </script>
 
-<a href={link_to}>
+<a href={link_to} target="_blank" rel="noreferrer noopener">
   <div class="root">
     <img src={image_url} alt={image_alt} class="cat-image" loading="lazy" />
     <img
