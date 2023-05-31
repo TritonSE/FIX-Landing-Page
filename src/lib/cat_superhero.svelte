@@ -351,7 +351,7 @@
     }
     .crop .point {
       position: absolute;
-      right: 37vw;
+      right: 39vw;
     }
     .bubble {
       margin-bottom: -10rem;
@@ -363,7 +363,7 @@
     }
     .header .main {
       font-size: 2.3vw;
-      margin: -7vw 0 0 33.5vw;
+      margin: -7vw 0 0 32.5vw;
       white-space: nowrap;
       text-transform: capitalize;
       font-family: 'Comics', sans-serif !important;
@@ -510,7 +510,7 @@
       overflow: hidden;
     }
     .crop img {
-      width: 110%;
+      width: 100%;
     }
     .bubble .header {
       position: relative;
@@ -528,7 +528,7 @@
     .header .comics {
       font-family: 'Comics', sans-serif !important;
       font-size: 6vw;
-      margin: 0 4rem 0 32vw;
+      margin: 0 4rem 0 24vw;
       white-space: nowrap;
     }
     .header .comics-desktop {

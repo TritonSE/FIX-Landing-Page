@@ -130,7 +130,7 @@
 
   @media screen and (max-width: 500px) {
     .bubble img {
-      width: 125%;
+      width: 115%;
     }
   }
 

@@ -6,12 +6,11 @@
   <div class="bubbles centered">
     <div class="tnr-bubble centered">
       <img src="{base}/roadmap/bubble.svg" alt="Speech bubble" loading="lazy" />
-
-      <h1 class="text">TRAP NEUTER & RETURN?</h1>
+      <h1 class="text">Trap Neuter & Return?</h1>
     </div>
     <div class="what-is-it-bubble centered">
       <img src="{base}/tnr_info/narrow_bubble.svg" alt="Narrow speech bubble" loading="lazy" />
-      <h1 class="text">WHAT IS IT?</h1>
+      <h1 class="text">What is it?</h1>
     </div>
   </div>
 
@@ -45,7 +44,7 @@
     top: 0;
     left: 280px;
     justify-content: start !important;
-    gap: 20px;
+    gap: 65px;
   }
 
   .centered {
@@ -68,7 +67,7 @@
   .text {
     position: relative;
     z-index: 3;
-    font-size: 30px;
+    font-size: 36px;
     color: var(--color-secondary-accent);
     font-family: 'Comics', sans-serif !important;
   }
@@ -111,7 +110,7 @@
     }
 
     .text {
-      font-size: 20px;
+      font-size: 24px;
     }
 
     p {
@@ -138,7 +137,7 @@
     }
 
     .text {
-      font-size: 16px;
+      font-size: 18px;
     }
 
     p {
