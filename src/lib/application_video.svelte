@@ -21,8 +21,20 @@
 
   <div class="video-container">
     <iframe
-      width={windowWidth < 620 ? 'auto' : windowWidth < 1000 || windowWidth > 1300 ? 560 : 280}
-      height={windowWidth < 620 ? 'auto' : windowWidth < 1000 || windowWidth > 1300 ? 315 : 158}
+      width={windowWidth < 620
+        ? 'auto'
+        : windowWidth < 1000 || windowWidth > 1300
+        ? 560
+        : windowWidth > 1125
+        ? 420
+        : 320}
+      height={windowWidth < 620
+        ? 'auto'
+        : windowWidth < 1000 || windowWidth > 1300
+        ? 315
+        : windowWidth > 1125
+        ? 236
+        : 180}
       src="https://www.youtube.com/embed/JgatHzlxnv0"
       title="YouTube video player"
       frameborder="0"
@@ -49,8 +61,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    padding: 75px;
-    width: 100%;
+    padding: 100px;
   }
 
   .bubble img {
@@ -63,7 +74,7 @@
   .text {
     font-size: 36px;
     color: var(--color-secondary-accent);
-    font-family: 'Comics', sans-serif;
+    font-family: 'Comics', sans-serif !important;
     z-index: 2;
     max-width: 480px;
     text-align: center;
@@ -91,6 +102,10 @@
       min-width: 280px;
       min-height: 158px;
     }
+
+    .bubble {
+      padding: 100px 75px;
+    }
   }
 
   @media screen and (max-width: 1000px) {
@@ -110,6 +125,18 @@
 
     .bubble img {
       height: auto;
+    }
+  }
+
+  @media screen and (max-width: 500px) {
+    .bubble img {
+      width: 125%;
+    }
+  }
+
+  @media screen and (max-width: 350px) {
+    .bubble img {
+      width: 150%;
     }
   }
 </style>
