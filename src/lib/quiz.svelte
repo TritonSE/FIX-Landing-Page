@@ -362,7 +362,7 @@
         text-align: center;
         position:relative;
         padding: 0;
-        overflow: hidden;
+        overflow: auto;
     }
 
     .scrollable-container {
