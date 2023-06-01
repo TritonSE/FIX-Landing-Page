@@ -185,7 +185,7 @@
                                         <Button secondary 
                                             on:click={() => checkCorrect(index, ind)} 
                                             style="color:black; {width <= 425 ? "width:70vw; height:20vw" : "width:36vw; height:5vw"}; margin:15px;{((timesClicked >= 1 && (questions[index].correct == ind) ? (
-                                                "border:" + (width <= 425) ? ("1vw") : (".25vw") + "solid #3BB966; border-radius: 0.7vw;") : ((buttonClicked == ind) ? ("border:" + ((width <= 425) ? ("1vw") : (".25vw")) +  " solid #B82424; border-radius:0.7vw;") : (""))))}"
+                                                "border:" + ((width <= 425) ? ("1vw") : (".25vw")) + " solid #3BB966; border-radius: 0.7vw;") : ((buttonClicked == ind) ? ("border:" + ((width <= 425) ? ("1vw") : (".25vw")) +  " solid #B82424; border-radius:0.7vw;") : (""))))}"
                                         >
                                             <p class="choice">{choice}</p>
                                         </Button>
