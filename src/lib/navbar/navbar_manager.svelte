@@ -3,7 +3,7 @@
     Manages the scrolling, percentage, and step logic for the navigation bar, wrapping the NavbarDisplay component.
 -->
 
-<script>
+<script lang="ts">
   import { onDestroy, onMount } from 'svelte';
   import NavbarDisplay from './navbar_display.svelte';
 
@@ -15,7 +15,7 @@
   /**
    * Width in pixels of each cat face image, used to offset the percentage and ensure the faces stay onscreen
    */
-  const FACE_WIDTH = 88;
+  let faceWidth = 88;
 
   /**
    * Current step (which cat face to display, based on how far scrolled the user is)
@@ -33,11 +33,16 @@
   let faceOffset = 0;
 
   const onScroll = () => {
+    const faceImage = document.getElementById('cat-face-image');
+    if (faceImage !== null) {
+      faceWidth = faceImage.getBoundingClientRect().width;
+    }
+
     // Calculate total height based on page height
     let totalHeight = document.documentElement.scrollHeight - window.innerHeight;
 
     // Adjust total height since the cat face has a range of 100vw - 2 * FACE_WIDTH, not just 100vw
-    totalHeight += (FACE_WIDTH * totalHeight) / window.innerWidth;
+    totalHeight += (faceWidth * totalHeight) / window.innerWidth;
 
     // Calculate scroll percentage, using face offset
     scrollPercentage = (window.scrollY / totalHeight + faceOffset) * 100;
@@ -47,11 +52,16 @@
   };
 
   onMount(() => {
+    const faceImage = document.getElementById('cat-face-image');
+    if (faceImage !== null) {
+      faceWidth = faceImage.getBoundingClientRect().width;
+    }
+
     // Initialize scroll percentage with face offset so the cat's face is visible rather than off the left edge
-    scrollPercentage = (FACE_WIDTH / 2 / window.innerWidth) * 100;
+    scrollPercentage = (faceWidth / 2 / window.innerWidth) * 100;
 
     // Initialize face offset so it doesn't have to be recalculated on each scroll
-    faceOffset = FACE_WIDTH / window.innerWidth / 2;
+    faceOffset = faceWidth / window.innerWidth / 2;
 
     document.addEventListener('scroll', onScroll, {
       passive: true

@@ -19,6 +19,7 @@
 <div class="container">
   <div class="filled" style="width: {scrollPercentage}%" />
   <img
+    id="cat-face-image"
     class="cat-face"
     src="{base}/navbar_icons/navbar{step}.svg"
     alt="A cat face"
@@ -29,11 +30,11 @@
 <style>
   .container {
     position: fixed;
-    top: 30px;
+    top: 20px;
     left: 0;
     z-index: 2;
     width: 100%;
-    height: 44px;
+    height: 32px;
     border-radius: 10px;
     background-color: #f1b29e;
   }
@@ -46,7 +47,21 @@
 
   .cat-face {
     position: absolute;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    top: -50%;
+    transform: translateX(-50%);
+    height: 70px;
+  }
+
+  @media screen and (max-width: 675px) {
+    .container {
+      top: unset;
+      bottom: 0;
+    }
+
+    .cat-face {
+      height: 55px;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
   }
 </style>
