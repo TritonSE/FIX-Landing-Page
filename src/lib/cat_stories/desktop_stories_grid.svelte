@@ -37,21 +37,23 @@
 
 <div class="stories-container">
   {#each CAT_DATA as data, j}
-    <div class="cat-image-container">
-      {#each new Array(n_backgrounds) as _, i}
-        {#if index === i}
-          <CatImage
-            image_url={data['image_path' + i]}
-            image_alt="Cat Image"
-            on:click={() => openCatOverlay(j)}
-            on:keydown={(e) => {
-              if (e.key === 'Enter' || e.key === 'Space') {
-                openCatOverlay(j);
-              }
-            }}
-          />
-        {/if}
-      {/each}
+    <div class="column large-gap">
+      <div class="cat-image-container">
+        {#each new Array(n_backgrounds) as _, i}
+          {#if index === i}
+            <CatImage
+              image_url={data['image_path' + i]}
+              image_alt="Cat Image"
+              on:click={() => openCatOverlay(j)}
+              on:keydown={(e) => {
+                if (e.key === 'Enter' || e.key === 'Space') {
+                  openCatOverlay(j);
+                }
+              }}
+            />
+          {/if}
+        {/each}
+      </div>
     </div>
     <div class="column">
       <Paw name={data.name} />
@@ -67,7 +69,9 @@
           }
         }}
       >
-        <img src="{base}\cat_stories\insta-white.png" alt="insta icon" />
+        {#if !(j==3)}
+          <img src="{base}\cat_stories\insta-white.png" alt="insta icon" />
+        {/if}
         Read More!
       </button>
     </div>
@@ -99,7 +103,7 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    height: 100%;
+    height: fit-content;
   }
 
   .read-more-button {
@@ -110,7 +114,7 @@
     padding: 0.5rem;
     text-align: center;
     border-radius: 0.3rem;
-    width: 6.5rem;
+    width: fit-content;
     border: none;
     cursor: pointer;
     display: flex;
@@ -144,7 +148,7 @@
 
     .stories-container {
       padding-top: 40px;
-      height: 160vw;
+      height: 215vw;
     }
 
     .medium-margin-above {

@@ -89,7 +89,7 @@
   }
 
   .large-gap {
-    gap: 24px;
+    gap: 90vw;
     /*transform: scale(calc(max(0.5, 0)));*/
   }
 </style>

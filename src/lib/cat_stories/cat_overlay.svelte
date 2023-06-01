@@ -34,35 +34,37 @@
       <Paw name={data.name} />
       <div class="column">
         <p>{data.desc}</p>
-        <div class="row small-gap ig-margin">
-          <img
-            class="profile-picture"
-            alt={data.name}
-            src="{base}/cat_stories/profile_pictures/{data.name}.png"
-          />
-          <div class="column">
-            <a href={`https://www.instagram.com/${data.ig_username}/?hl=en`}
-              ><p class="username nomargin">{data.ig_username}</p></a
-            >
-            <p class="nomargin">{`${formatNum(data.n_followers)} followers`}</p>
+        {#if data.name != 'Shasta'}
+          <div class="row small-gap ig-margin">
+            <img
+              class="profile-picture"
+              alt={data.name}
+              src="{base}/cat_stories/profile_pictures/{data.name}.png"
+            />
+            <div class="column">
+              <a href={`https://www.instagram.com/${data.ig_username}/?hl=en`}
+                ><p class="username nomargin">{data.ig_username}</p></a
+              >
+              <p class="nomargin">{`${formatNum(data.n_followers)} followers`}</p>
+            </div>
+
+            <div class="vertical-divider" />
+
+            <a href={data.ig_link}>
+              <Button>Follow Me</Button>
+            </a>
           </div>
 
-          <div class="vertical-divider" />
-
-          <a href={data.ig_link}>
-            <Button>Follow Me</Button>
-          </a>
-        </div>
-
-        <div class="row large-gap">
-          {#each Array(3) as _, i}
-            <CatPost
-              image_url="cat_stories/post_images/{data.name}/post{i + 1}.png"
-              image_alt={data.name}
-              link_to={data.ig_link}
-            />
-          {/each}
-        </div>
+          <div class="row large-gap">
+            {#each Array(3) as _, i}
+              <CatPost
+                image_url="cat_stories/post_images/{data.name}/post{i + 1}.png"
+                image_alt={data.name}
+                link_to={data.ig_link}
+              />
+            {/each}
+          </div>
+        {/if}
       </div>
     </div>
 
@@ -88,6 +90,7 @@
   .column {
     display: flex;
     flex-direction: column;
+    align-items: center;
   }
 
   .row {
@@ -105,9 +108,10 @@
 
   .root-row {
     width: 100%;
+    height: 100%;
     box-sizing: border-box;
     background-color: white;
-    align-items: start;
+    align-items: center;
     padding: 50px;
     gap: 45px;
     position: relative;
@@ -159,6 +163,7 @@
   }
 
   .top-image-container {
+    display: block;
     width: 100%;
     height: 100%;
     position: relative;
