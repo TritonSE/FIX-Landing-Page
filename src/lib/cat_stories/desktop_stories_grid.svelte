@@ -37,22 +37,23 @@
 
 <div class="stories-container">
   {#each CAT_DATA as data, j}
-    <div class="cat-image-container">
-      {#each new Array(n_backgrounds) as _, i}
-        {#if index === i}
-          <CatImage
-            image_url={data['image_path' + i]}
-            image_alt="Cat Image"
-            
-            on:click={() => openCatOverlay(j)}
-            on:keydown={(e) => {
-              if (e.key === 'Enter' || e.key === 'Space') {
-                openCatOverlay(j);
-              }
-            }}
-          />
-        {/if}
-      {/each}
+    <div class="column large-gap">
+      <div class="cat-image-container">
+        {#each new Array(n_backgrounds) as _, i}
+          {#if index === i}
+            <CatImage
+              image_url={data['image_path' + i]}
+              image_alt="Cat Image"
+              on:click={() => openCatOverlay(j)}
+              on:keydown={(e) => {
+                if (e.key === 'Enter' || e.key === 'Space') {
+                  openCatOverlay(j);
+                }
+              }}
+            />
+          {/if}
+        {/each}
+      </div>
     </div>
     <div class="column">
       <Paw name={data.name} />
@@ -68,7 +69,9 @@
           }
         }}
       >
-        <img src="{base}\cat_stories\insta-white.png" alt="insta icon" />
+        {#if !(j == 3)}
+          <img src="{base}\cat_stories\insta-white.png" alt="insta icon" />
+        {/if}
         Read More!
       </button>
     </div>
@@ -93,9 +96,15 @@
     padding: 0;
     height: 180vw;
     align-items: center;
+    padding: 0;
+    height: 180vw;
+    align-items: center;
   }
 
   .cat-image-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -111,7 +120,7 @@
     padding: 0.5rem;
     text-align: center;
     border-radius: 0.3rem;
-    width: 6.5rem;
+    width: fit-content;
     border: none;
     cursor: pointer;
     display: flex;
@@ -138,14 +147,14 @@
     gap: 35px;
   }
 
-  @media screen and (max-width: 900px) {
+  @media screen and (max-width: 990px) {
     p {
       font-size: 12px;
     }
 
     .stories-container {
       padding-top: 40px;
-      gap: 65px;
+      height: 215vw;
     }
 
     .medium-margin-above {
