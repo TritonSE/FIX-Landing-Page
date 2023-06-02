@@ -33,7 +33,7 @@
     <div class="row root-row">
       <Paw name={data.name} />
       <div class="column">
-        <p>{data.desc}</p>
+        <p class="long_description">{data.long_desc}</p>
         {#if data.name != 'Shasta'}
           <div class="row small-gap ig-margin">
             <img
@@ -78,7 +78,6 @@
   a {
     text-decoration: none;
   }
-
   .root {
     align-items: center;
     position: relative;
@@ -86,66 +85,58 @@
     flex-direction: column-reverse;
     height: 100vh;
   }
-
   .column {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: start;
   }
 
+  .long_description {
+    margin: 0;
+  }
   .row {
     display: flex;
     flex-direction: row;
   }
-
   .small-gap {
     gap: 1rem;
   }
-
   .large-gap {
     gap: 2rem;
   }
-
   .root-row {
     width: 100%;
-    height: 100%;
     box-sizing: border-box;
     background-color: white;
-    align-items: center;
+    align-items: start;
     padding: 50px;
     gap: 45px;
     position: relative;
     z-index: 1;
   }
-
   .profile-picture {
     width: 48px;
     height: 48px;
     border-radius: 24px;
   }
-
   .username {
     font-size: 18px;
     font-weight: 700;
     color: black;
     text-decoration-line: none;
   }
-
   .nomargin {
     margin: 0;
   }
-
   .vertical-divider {
     width: 0;
     height: 48px;
     border: 1px solid black;
   }
-
   .ig-margin {
     margin-top: 2.5rem;
     margin-bottom: 1.5rem;
   }
-
   .close-button {
     position: absolute;
     z-index: 2;
@@ -157,36 +148,23 @@
     background-color: #58c3af;
     border: none;
   }
-
   .close-button:hover {
     cursor: pointer;
   }
-
   .top-image-container {
-    display: block;
     width: 100%;
     height: 100%;
     position: relative;
   }
-
   .top-image {
     position: absolute;
     width: 100%;
     object-fit: cover;
     transform: translateY(-15%);
   }
-
   @media screen and (max-height: 800px) {
     .root-row {
       padding: 25px;
-    }
-
-    .username {
-      font-size: 14px;
-    }
-
-    p {
-      font-size: 14px;
     }
   }
 </style>
