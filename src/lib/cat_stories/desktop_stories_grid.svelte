@@ -8,6 +8,7 @@
   import CatOverlay from './cat_overlay.svelte';
   import { CAT_DATA } from './constants';
   import Paw from './paw.svelte';
+  import { inview } from 'svelte-inview';
 
   /**
    * Index of the carousel item for which the overlay should be open.
@@ -15,8 +16,16 @@
    * Only used on desktop and tablet, not mobile.
    */
   let openOverlayIndex = -1;
-
   let middleIndex = Math.floor(CAT_DATA.length / 2);
+  let isInView: boolean;
+  export let shouldFade = false;
+
+  function onInViewChange({ detail }) {
+    isInView = detail.inView;
+    if (isInView) {
+      shouldFade = true;
+    }
+  }
 
   function closeCatOverlay() {
     openOverlayIndex = -1;
@@ -38,12 +47,17 @@
 <div class="stories-container">
   {#each CAT_DATA as data, j}
     <div class="column large-gap">
-      <div class="cat-image-container">
+      <div
+        class="cat-image-container"
+        use:inview={{ unobserveOnEnter: true, rootMargin: '-40%' }}
+        on:change={onInViewChange}
+      >
         {#each new Array(n_backgrounds) as _, i}
           {#if index === i}
             <CatImage
               image_url={data['image_path' + i]}
               image_alt="Cat Image"
+              {shouldFade}
               on:click={() => openCatOverlay(j)}
               on:keydown={(e) => {
                 if (e.key === 'Enter' || e.key === 'Space') {
@@ -89,6 +103,13 @@
     margin: 0;
   }
 
+  .wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    height: 100%;
+  }
   .stories-container {
     display: grid;
     grid-template-columns: 1fr 1fr;

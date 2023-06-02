@@ -37,5 +37,8 @@
     "vite": "4"
   },
   "type": "module",
-  "packageManager": "yarn@3.4.1"
+  "packageManager": "yarn@3.4.1",
+  "dependencies": {
+    "svelte-inview": "^4.0.0"
+  }
 }

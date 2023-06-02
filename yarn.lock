@@ -1612,6 +1612,7 @@ __metadata:
     prettier-plugin-svelte: ^2.7.0
     svelte: ^3.44.0
     svelte-check: ^2.7.1
+    svelte-inview: ^4.0.0
     svelte-preprocess: ^4.10.6
     tslib: ^2.3.1
     typescript: ^4.7.4
@@ -3319,6 +3320,15 @@ __metadata:
   peerDependencies:
     svelte: ">=3.19.0"
   checksum: af2e5c356ed6467d6567ce1b908bc077c9d08a89f3ffda81e63989c1c3f374a88b1b67453e86e3674320aa10e7cdf42a10dc551900997b627b4702db447f2bf3
+  languageName: node
+  linkType: hard
+
+"svelte-inview@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "svelte-inview@npm:4.0.0"
+  peerDependencies:
+    svelte: ^3.0.0
+  checksum: 2e8487185ac6cb92a9a143415da58a2ef5e169556c556e9389ac4b3e37e240b18e25ef88eb7cfee35009ac7b52fb234646661686a3af9ea13423ed50104b7b02
   languageName: node
   linkType: hard
 
