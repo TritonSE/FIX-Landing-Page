@@ -100,7 +100,7 @@
   humane care of homeless cats.
 </h4>
 <div>
-  {#if screenWidth > 675}
+  {#if screenWidth > 600}
     <div class="slider" bind:this={statsContainer}>
       <div style="min-width:3000px" class="slider" on:mousewheel={preventScrolling}>
         {#each sections as section}

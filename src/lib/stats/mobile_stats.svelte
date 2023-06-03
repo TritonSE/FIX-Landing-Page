@@ -117,7 +117,6 @@
     margin-left: auto;
     margin-right: auto;
   }
-
   .flex-container {
     justify-content: space-between;
     align-items: center;
@@ -254,7 +253,7 @@
 
   @media screen and (max-width: 650px) {
     .flex-container {
-      margin: 0 0 30vw 0;
+      margin: 0 0 15vw 0;
     }
   }
 </style>

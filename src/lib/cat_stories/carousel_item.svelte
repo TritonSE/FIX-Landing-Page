@@ -7,8 +7,6 @@
   import Paw from './paw.svelte';
   import type { CatData } from './types';
 
-  import { base } from '$app/paths';
-
   /**
    * Data about the cat to display
    */
@@ -38,7 +36,7 @@
       <CatImage image_url={catData.mobile_image_path} image_alt={catData.name} />
       <a href={catData.ig_link}>
         <img
-          src="{base}/cat_stories/instagram_white.svg"
+          src="/cat_stories/instagram_white.svg"
           alt="Instagram Logo"
           class="instagram-logo"
         />

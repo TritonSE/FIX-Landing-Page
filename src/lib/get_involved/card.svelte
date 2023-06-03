@@ -5,8 +5,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
 
-  import { base } from '$app/paths';
-
   export let label = '';
   export let description = '';
   export let background_image_url = '';
@@ -27,9 +25,9 @@
 
 <a
   class="container"
-  target="_blank"
-  rel="noreferrer noopener"
-  href={!mobile ? link_url : 'javascript:void(0)'}
+  target={!mobile ? '_blank' : ''}
+  rel={!mobile ? 'noreferrer noopener' : ''}
+  href={!mobile ? link_url : null}
 >
   <div class="card-outer">
     <div class="card-inner">
@@ -39,7 +37,7 @@
           <h4>{label}</h4>
           <img
             class="chevron right"
-            src="{base}/icons/ic_caretright.svg"
+            src="/icons/ic_caretright.svg"
             alt="Right arrow"
             loading="lazy"
           />
@@ -50,17 +48,11 @@
         <img src={background_image_url} alt={background_image_alt} />
         <div class="description {light_shadow ? 'light' : 'dark'}">
           <p>{description}</p>
-          <img
-            class="chevron left"
-            src="{base}/icons/ic_caretright.svg"
-            alt="Left arrow"
-            loading="lazy"
-          />
           <a href={link_url} target="_blank" rel="noreferrer noopener" class="external">
             <div>Learn More:</div>
             &nbsp;
             <img
-              src="{base}/icons/ic_external_link.svg"
+              src="/icons/ic_external_link.svg"
               alt="External link indicator"
               loading="lazy"
             />
@@ -95,6 +87,7 @@
     perspective: 1000px;
     text-align: center;
     transition: transform 0.8s;
+    -webkit-transform-style: preserve-3d;
     transform-style: preserve-3d;
     display: flex;
     align-items: center;
@@ -115,6 +108,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
+    -webkit-transform-style: preserve-3d;
     -webkit-backface-visibility: hidden;
     backface-visibility: hidden;
   }

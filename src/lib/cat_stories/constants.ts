@@ -1,6 +1,13 @@
 import { base } from '$app/paths';
 import type { CatData } from './types';
 
+import shadow from './img/shadow.png?format=avif';
+import shadow_mobile from './img/shadow_mobile.png?format=avif';
+import close_up from './img/close_up_full.png?format=avif';
+import close_up_mobile from './img/close_up_mobile.png?format=avif';
+import almira from './img/almira_full.png?format=avif';
+import almira_mobile from './img/almira_mobile.png?format=avif';
+
 /**
  * Data about each cat to display in the cat stories
  */
@@ -12,8 +19,8 @@ export const CAT_DATA: CatData[] = [
     ig_link: 'https://www.instagram.com/shadowthehomedepotcat_/?hl=en',
     ig_username: 'shadowthehomedepotcat_',
     n_followers: 295,
-    image_path: `${base}/cat_stories/shadow.avif`,
-    mobile_image_path: `${base}/cat_stories/shadow_mobile.avif`
+    image_path: shadow,
+    mobile_image_path: shadow_mobile,
   },
   {
     name: 'Close Up',
@@ -22,8 +29,8 @@ export const CAT_DATA: CatData[] = [
     ig_link: 'https://www.instagram.com/closeupthecemeterycat/?hl=en',
     ig_username: 'closeupthecemeterycat',
     n_followers: 9873,
-    image_path: `${base}/cat_stories/close_up_full.avif`,
-    mobile_image_path: `${base}/cat_stories/close_up_mobile.avif`
+    image_path: close_up,
+    mobile_image_path: close_up_mobile,
   },
   {
     name: 'Almira',
@@ -32,7 +39,7 @@ export const CAT_DATA: CatData[] = [
     ig_link: 'https://www.instagram.com/disneylandcats/?hl=en',
     ig_username: 'disneylandcats',
     n_followers: 110000,
-    image_path: `${base}/cat_stories/almira_full.avif`,
-    mobile_image_path: `${base}/cat_stories/almira_mobile.avif`
+    image_path: almira,
+    mobile_image_path: almira_mobile,
   }
 ];
