@@ -78,12 +78,6 @@
     }
   };
 
-  const preventScrolling = (e) => {
-    if (e.deltaY === 0) {
-      e.preventDefault();
-    }
-  };
-
   onMount(() => {
     document.addEventListener('scroll', handleScroll, { passive: true });
 
@@ -101,7 +95,7 @@
 <div>
   {#if screenWidth > 600}
     <div class="slider" bind:this={statsContainer}>
-      <div style="min-width:3000px" class="slider" on:mousewheel={preventScrolling}>
+      <div style="min-width:3000px" class="slider">
         {#each sections as section}
           <section class="section" class:active={screenWidth >= 2200}>
             <img src={section.picture} alt={section.alt} loading="lazy" />

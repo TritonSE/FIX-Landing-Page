@@ -178,7 +178,7 @@
               }}
             >
               <h2>{i + 1}. {rowData.title}</h2>
-              <div aria-expanded={rowsExpanded[i]} class="toggle-button" />
+              <div class="toggle-button" />
             </div>
             <p class:first={i == 0}>{rowData.text}</p>
             <AccordionItem

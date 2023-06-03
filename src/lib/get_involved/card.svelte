@@ -97,7 +97,6 @@
 
   img {
     width: 100%;
-    height: 100%;
   }
   .card-outer:hover .card-inner {
     transform: rotateY(180deg);

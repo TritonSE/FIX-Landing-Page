@@ -13,7 +13,6 @@
   import bg3 from './img/backgrounds/bg3.png?format=avif';
   import bg4 from './img/backgrounds/bg4.png?format=avif';
   import bg5 from './img/backgrounds/bg5.png?format=avif';
-  import white_arrow from './img/white_arrow.png?format=avif';
 
   const n_backgrounds = 6;
   const alts = [
@@ -90,11 +89,7 @@
     <div id="arrow_animation_container">
       <div id="arrow_container">
         {#each new Array(3) as _, i}
-          <img
-            src={white_arrow}
-            alt="white arrow"
-            class="white_arrow arrow_{i}"
-          />
+          <span class="material-icons white_arrow arrow_{i}">expand_more</span>
         {/each}
       </div>
     </div>
@@ -143,7 +138,6 @@
     overflow: hidden;
   }
   #masthead_main_container {
-    position: absolute;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -191,7 +185,7 @@
     line-height: 150%;
     letter-spacing: 0.02em;
     box-sizing: border-box;
-    width: 88%;
+    width: 80%;
     color: #f9f9f9;
   }
   #button_container {
@@ -284,10 +278,11 @@
     padding-bottom: 1vw;
     display: flex;
     flex-direction: column;
-    width: 3vw;
   }
   .white_arrow {
-    height: 2vw;
+    margin: -1.5vw;
+    color: var(--color-white);
+    font-size: 5vw;
     animation: mouse-scroll 0.7s infinite linear;
     animation-direction: alternate;
   }
@@ -432,5 +427,10 @@
       font-size: 12px;
       min-width: 90px;
     }
+  }
+
+  #icons {
+    position: absolute;
+    right: 0;
   }
 </style>
