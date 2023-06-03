@@ -332,7 +332,7 @@
   }
 
   @media only screen and (max-width: 1473px) {
-    #background {
+    .background {
       position: absolute;
       width: 100%;
       height: auto;

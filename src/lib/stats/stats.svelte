@@ -49,6 +49,7 @@
       number: '35%',
       subtitle: 'cats acquired as strays',
       picture: stats6,
+      alt: 'Post-operation cat'
     }
   ];
 
@@ -84,9 +85,7 @@
   };
 
   onMount(() => {
-    document.addEventListener('scroll', handleScroll, { passive: false });
-
-    // setInterval(handleScroll, 1500)
+    document.addEventListener('scroll', handleScroll, { passive: true });
 
     return () => document.removeEventListener('scroll', handleScroll);
   });

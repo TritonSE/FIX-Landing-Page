@@ -59,7 +59,7 @@
   onMount(() => {
     el.addEventListener('scroll', () => {
       focused = Math.floor(el.scrollLeft / width);
-    });
+    }, { passive: true });
   });
 </script>
 

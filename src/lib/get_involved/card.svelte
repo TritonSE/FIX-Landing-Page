@@ -236,9 +236,5 @@
       position: absolute;
       right: 0;
     }
-    .chevron.left {
-      left: 0;
-      transform: rotate(180deg);
-    }
   }
 </style>
