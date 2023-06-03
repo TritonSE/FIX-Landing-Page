@@ -7,6 +7,8 @@
   import { tick } from 'svelte';
   import { base } from '$app/paths';
 
+  import cat1 from '../../static/modal/cat1.png?format=avif';
+
   export let open = false;
   export let cur = 0;
   let dir = false;

@@ -341,6 +341,22 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@rollup/pluginutils@npm:^5.0.0":
+  version: 5.0.2
+  resolution: "@rollup/pluginutils@npm:5.0.2"
+  dependencies:
+    "@types/estree": ^1.0.0
+    estree-walker: ^2.0.2
+    picomatch: ^2.3.1
+  peerDependencies:
+    rollup: ^1.20.0||^2.0.0||^3.0.0
+  peerDependenciesMeta:
+    rollup:
+      optional: true
+  checksum: edea15e543bebc7dcac3b0ac8bc7b8e8e6dbd46e2864dbe5dd28072de1fbd5b0e10d545a610c0edaa178e8a7ac432e2a2a52e547ece1308471412caba47db8ce
+  languageName: node
+  linkType: hard
+
 "@sveltejs/adapter-auto@npm:^1.0.0-next.91":
   version: 1.0.3
   resolution: "@sveltejs/adapter-auto@npm:1.0.3"
@@ -415,6 +431,13 @@ __metadata:
   version: 0.5.1
   resolution: "@types/cookie@npm:0.5.1"
   checksum: 9a8d60fc84797122bc399d6bd330fe5780dc7aab032321de705049ea925339f74658bfa418de483a625d51858770efef58df633ff2e20f1bdf7fbd74a52847e2
+  languageName: node
+  linkType: hard
+
+"@types/estree@npm:^1.0.0":
+  version: 1.0.1
+  resolution: "@types/estree@npm:1.0.1"
+  checksum: e9aa175eacb797216fafce4d41e8202c7a75555bc55232dee0f9903d7171f8f19f0ae7d5191bb1a88cb90e65468be508c0df850a9fb81b4433b293a5a749899d
   languageName: node
   linkType: hard
 
@@ -1599,6 +1622,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"estree-walker@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "estree-walker@npm:2.0.2"
+  checksum: 6151e6f9828abe2259e57f5fd3761335bb0d2ebd76dc1a01048ccee22fabcfef3c0859300f6d83ff0d1927849368775ec5a6d265dde2f6de5a1be1721cd94efc
+  languageName: node
+  linkType: hard
+
 "esutils@npm:^2.0.2":
   version: 2.0.3
   resolution: "esutils@npm:2.0.3"
@@ -1713,6 +1743,7 @@ __metadata:
     tslib: ^2.3.1
     typescript: ^4.7.4
     vite: 4
+    vite-imagetools: ^5.0.4
   languageName: unknown
   linkType: soft
 
@@ -2103,6 +2134,15 @@ __metadata:
   version: 5.2.4
   resolution: "ignore@npm:5.2.4"
   checksum: 3d4c309c6006e2621659311783eaea7ebcd41fe4ca1d78c91c473157ad6666a57a2df790fe0d07a12300d9aac2888204d7be8d59f9aaf665b1c7fcdb432517ef
+  languageName: node
+  linkType: hard
+
+"imagetools-core@npm:^4.0.3":
+  version: 4.0.3
+  resolution: "imagetools-core@npm:4.0.3"
+  dependencies:
+    sharp: ^0.32.0
+  checksum: 42127fee86cbca80e1871e19dd21624be6ce53849405cfec7d862c82a08767eeacbb37c351075e8199fc093513d9cfe0b853d440d67b6326dfb6376a4c80456e
   languageName: node
   linkType: hard
 
@@ -3299,7 +3339,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sharp@npm:^0.32.1":
+"sharp@npm:^0.32.0, sharp@npm:^0.32.1":
   version: 0.32.1
   resolution: "sharp@npm:0.32.1"
   dependencies:
@@ -3897,6 +3937,16 @@ __metadata:
   version: 1.0.2
   resolution: "util-deprecate@npm:1.0.2"
   checksum: 474acf1146cb2701fe3b074892217553dfcf9a031280919ba1b8d651a068c9b15d863b7303cb15bd00a862b498e6cf4ad7b4a08fb134edd5a6f7641681cb54a2
+  languageName: node
+  linkType: hard
+
+"vite-imagetools@npm:^5.0.4":
+  version: 5.0.4
+  resolution: "vite-imagetools@npm:5.0.4"
+  dependencies:
+    "@rollup/pluginutils": ^5.0.0
+    imagetools-core: ^4.0.3
+  checksum: 90f66264baa244a883dc3f4fd4624a7d3571cc72b768cf5b474dcef3af81827e7592956678ef0981c4ae34c39a08d640761129540643b01328a5c0e26cc28f84
   languageName: node
   linkType: hard
 

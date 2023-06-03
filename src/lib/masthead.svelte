@@ -4,9 +4,16 @@
     two call-to-action buttons.
 -->
 <script lang="ts">
+  import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
 
-  import { base } from '$app/paths';
+  import bg0 from './masthead/backgrounds/bg0.png?format=avif';
+  import bg1 from './masthead/backgrounds/bg1.png?format=avif';
+  import bg2 from './masthead/backgrounds/bg2.png?format=avif';
+  import bg3 from './masthead/backgrounds/bg3.png?format=avif';
+  import bg4 from './masthead/backgrounds/bg4.png?format=avif';
+  import bg5 from './masthead/backgrounds/bg5.png?format=avif';
+  import white_arrow from './masthead/white_arrow.png?format=avif';
 
   const n_backgrounds = 6;
   const alts = [
@@ -17,12 +24,15 @@
     'Shelby',
     'Bobby'
   ];
+  const bgs = [
+    bg0, bg1, bg2, bg3, bg4, bg5
+  ];
   let index = 0;
-  const next = () => {
-    index = (index + 1) % n_backgrounds;
-    setTimeout(next, 5000);
-  };
-  next();
+  onMount(() => {
+    setInterval(() => {
+      index = (index + 1) % n_backgrounds;
+    }, 5000);
+  });
 
   const socials = {
     facebook: 'https://www.facebook.com/FixNationLA',
@@ -35,23 +45,20 @@
 
 <div id="masthead">
   {#each new Array(n_backgrounds) as _, i}
-    {#if index === i}
-      <img
-        id="background"
-        transition:fade
-        srcset="{base}/masthead/backgrounds/bg{i}_mobile.avif 360w, {base}/masthead/backgrounds/bg{i}_tablet.avif 720w, {base}/masthead/backgrounds/bg{i}.avif 1440w"
-        sizes="(max-width: 450px) 360px, (max-width: 800px) 720px, 1440px"
-        alt={alts[i]}
-      />
-    {/if}
+    <img
+      class="background"
+      style="opacity: {index === i ? 1 : 0}"
+      src={bgs[i]}
+      alt={alts[i]}
+    />
   {/each}
   <div id="masthead_main_container">
     <div id="logo_container">
-      <img src="{base}/masthead/fixnation_logo.svg" alt="logo for fixnation" id="logo" />
+      <img src="/masthead/fixnation_logo.svg" alt="logo for fixnation" id="logo" />
     </div>
     <div id="masthead_content_container">
       <div id="action_container">
-        <img src="{base}/masthead/title_blob.svg" alt="blue blob" id="text_background_blob" />
+        <img src="/masthead/title_blob.svg" alt="blue blob" id="text_background_blob" />
         <div id="words_container">
           <h1 id="subtitle_text">Compassionate Care for Community Cats</h1>
           <p id="subtitle_description">
@@ -74,7 +81,7 @@
       <div id="icons">
         {#each Object.entries(socials) as [site, href]}
           <a {href} target="_blank" rel="noreferrer noopener" class="icon_item">
-            <img src="{base}/masthead/{site}.svg" alt="{site} logo" class="icon" />
+            <img src="/masthead/{site}.svg" alt="{site} logo" class="icon" />
           </a>
         {/each}
       </div>
@@ -84,7 +91,7 @@
       <div id="arrow_container">
         {#each new Array(3) as _, i}
           <img
-            src="{base}/masthead/white_arrow.avif"
+            src={white_arrow}
             alt="white arrow"
             class="white_arrow arrow_{i}"
           />
@@ -95,7 +102,7 @@
 </div>
 
 <style>
-  #background {
+  .background {
     position: absolute;
     box-sizing: border-box;
     height: auto;
@@ -105,6 +112,7 @@
     margin: 0;
     padding: 0;
     top: 0;
+    transition: opacity 1s;
   }
   #logo_container {
     box-sizing: border-box;
@@ -280,17 +288,17 @@
   }
   .white_arrow {
     height: 2vw;
-    animation: mouse-scroll 0.7s infinite;
+    animation: mouse-scroll 0.7s infinite linear;
     animation-direction: alternate;
   }
+  .arrow_0 {
+    animation-delay: 0s;
+  }
   .arrow_1 {
-    animation-delay: alternate;
+    animation-delay: 0.1s;
   }
   .arrow_2 {
     animation-delay: 0.2s;
-  }
-  .arrow_3 {
-    animation-delay: 0.3s;
   }
   @keyframes mouse-scroll {
     0% {
@@ -301,6 +309,13 @@
     }
     100% {
       opacity: 1;
+    }
+  }
+
+  @media only screen and (min-width: 1400px) {
+    #involve_button,
+    #donate_button {
+      padding: 1vw;
     }
   }
 

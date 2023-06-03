@@ -3,46 +3,52 @@
     Stats highlighting the value of FixNation's work
 -->
 <script lang="ts">
-  import { base } from '$app/paths';
   import { onMount } from 'svelte';
 
   import MobileStats from './mobile_stats.svelte';
+
+  import stats1 from './img/stats1.png?format=avif';
+  import stats2 from './img/stats2.png?format=avif';
+  import stats3 from './img/stats3.png?format=avif';
+  import stats4 from './img/stats4.png?format=avif';
+  import stats5 from './img/stats5.png?format=avif';
+  import stats6 from './img/stats6.png?format=avif';
 
   let sections = [
     {
       number: '#1',
       subtitle: 'largest clinic for homeless cats',
-      picture: 'stats/stats1.avif',
+      picture: stats1,
       alt: 'Sedated cats'
     },
     {
       number: '220k',
       subtitle: 'total cats spayed or neutered',
-      picture: 'stats/stats2.avif',
+      picture: stats2,
       alt: 'Cat on rug'
     },
     {
       number: '21%',
       subtitle: 'of cats abandoned because their of their residency',
-      picture: 'stats/stats3.avif',
+      picture: stats3,
       alt: 'Momma cat with her kittens'
     },
     {
       number: '12k',
       subtitle: 'TNR volenteers trained',
-      picture: 'stats/stats4.avif',
+      picture: stats4,
       alt: 'FixNation staff holding a cat'
     },
     {
       number: '89%',
       subtitle: 'profits go directly to FixNation programs',
-      picture: 'stats/stats5.avif',
+      picture: stats5,
       alt: 'Staff in front of FixNation building'
     },
     {
       number: '35%',
       subtitle: 'cats acquired as strays',
-      picture: 'stats/stats6.avif'
+      picture: stats6,
     }
   ];
 
@@ -99,7 +105,7 @@
       <div style="min-width:3000px" class="slider" on:mousewheel={preventScrolling}>
         {#each sections as section}
           <section class="section" class:active={screenWidth >= 2200}>
-            <img src="{base}/{section.picture}" alt={section.alt} loading="lazy" />
+            <img src={section.picture} alt={section.alt} loading="lazy" />
             <span class="rectangle" />
             <div class="text">
               <div class="header">{section.number}</div>

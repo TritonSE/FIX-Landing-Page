@@ -1,3 +1,4 @@
+#!/bin/bash
 
 find static/ \
 -type f \

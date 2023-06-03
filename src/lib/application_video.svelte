@@ -53,6 +53,7 @@
     justify-content: space-between;
     gap: 40px;
     padding: 100px 50px 150px 40px;
+    overflow: hidden;
   }
 
   .bubble {
