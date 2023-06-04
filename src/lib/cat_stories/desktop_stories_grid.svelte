@@ -18,14 +18,34 @@
   let openOverlayIndex = -1;
   let middleIndex = Math.floor(CAT_DATA.length / 2);
   let isInView: boolean;
+  import { onMount } from 'svelte';
   export let shouldFade = false;
 
-  function onInViewChange({ detail }) {
-    isInView = detail.inView;
-    if (isInView) {
-      shouldFade = true;
-    }
-  }
+  let last = [];
+  let anim = { index: 0, ratio: 0 };
+  let image_url = '';
+  onMount(() => {
+    let observers = [];
+
+    const cb = (entries) => {
+      entries.forEach((e) => {
+        last[parseInt(e.target.dataset.ind)] = e.intersectionRatio;
+      });
+
+      const max = last.reduce((prev, next, i) => (last[prev] < next ? i : prev), 0);
+      anim = {
+        index: max,
+        ratio: last[max]
+      };
+    };
+
+    const obs = new IntersectionObserver(cb, {
+      root: null,
+      rootMargin: '0px',
+      threshold: 1.0
+    });
+    boxes.forEach((box) => obs.observe(box));
+  });
 
   function closeCatOverlay() {
     openOverlayIndex = -1;
@@ -47,17 +67,13 @@
 <div class="stories-container">
   {#each CAT_DATA as data, j}
     <div class="column large-gap">
-      <div
-        class="cat-image-container"
-        use:inview={{ unobserveOnEnter: true, rootMargin: '-40%' }}
-        on:change={onInViewChange}
-      >
+      <div class="cat-image-container" data-ind={j}>
         {#each new Array(n_backgrounds) as _, i}
           {#if index === i}
             <CatImage
               image_url={data['image_path' + i]}
               image_alt="Cat Image"
-              {shouldFade}
+              shouldFade={anim.index === j}
               on:click={() => openCatOverlay(j)}
               on:keydown={(e) => {
                 if (e.key === 'Enter' || e.key === 'Space') {
