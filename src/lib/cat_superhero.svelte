@@ -2,8 +2,6 @@
   cat_superhero.svelte:
     A roadmap with Trap-Neuter-Return information.
 -->
-<svelte:window bind:outerWidth={width}/>
-
 <script lang="ts">
   import { base } from '$app/paths';
 
@@ -127,6 +125,7 @@
 
 <Quiz bind:showQuiz bind:quizInd></Quiz>
 <Modal bind:open bind:cur />
+<svelte:window bind:outerWidth={width}/>
 
 <div class="container">
   <div class="bubble">
@@ -159,7 +158,7 @@
           }}
         >
           <div class="marker">
-            {#if i == 0 }
+            {#if i == 0 && width > 430}
               <div class="flag"><img src="{base}/roadmap/startFlag.svg" alt="Roadmap marker" /></div>
             {:else if i == 7 && width > 430}
               <div class="flag"><img src="{base}/roadmap/testFlag.svg" alt="Roadmap marker" on:click={() => toggleQuiz()}/></div>
@@ -230,7 +229,7 @@
 
   .testFlag img{
     height: auto;
-    width: 7vw
+    width: 10vw
   }
 
 
