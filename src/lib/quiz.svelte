@@ -237,7 +237,7 @@
                                 <Button secondary 
                                     on:click={() => checkCorrect(index, ind)} 
                                     style="color:black; {width <= 425 ? "width:70vw; height:20vw" : "width:36vw; height:5vw"}; margin:15px;{((timesClicked >= 1 && (questions[index].correct == ind) ? (
-                                        "border:" + (width <= 425) ? ("1vw") : (".25vw") + "solid #3BB966; border-radius: 0.7vw;") : ((buttonClicked == ind) ? ("border:" + ((width <= 425) ? ("1vw") : (".25vw")) +  " solid #B82424; border-radius:0.7vw;") : (""))))}"
+                                        "border:" + ((width <= 425) ? ("1vw") : (".25vw")) + " solid #3BB966; border-radius: 0.7vw;") : ((buttonClicked == ind) ? ("border:" + ((width <= 425) ? ("1vw") : (".25vw")) +  " solid #B82424; border-radius:0.7vw;") : (""))))}"
                                 >
                                     <p class="choice">{choice}</p>
                                 </Button>
@@ -308,7 +308,7 @@
     </div>
 
     <div class="mobile-view">
-        <div class="modal">
+        <div class="modal result" style="{(currentTab == 0) ? ("background-color: white;") : ("background-color: #83CDC0;")}">
             <div id="progressBar" style="width: {(quizInd + 1) * 16.667}%"/>
             <!-- svelte-ignore a11y-click-events-have-key-events -->
             <div class="x-out" on:click={() => {showQuiz = !showQuiz;}}>
@@ -467,7 +467,7 @@
     }
 
     .result-content:first-child {
-        margin-top: calc(190px - 9vw);
+        margin-top: calc(190px - 6vw);
     }
 
     .cat {
