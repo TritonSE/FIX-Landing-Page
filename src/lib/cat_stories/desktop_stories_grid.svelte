@@ -20,13 +20,12 @@
   let isInView: boolean;
   import { onMount } from 'svelte';
   export let shouldFade = false;
-
+  let stories = [];
   let last = [];
   let anim = { index: 0, ratio: 0 };
   let image_url = '';
   onMount(() => {
     let observers = [];
-
     const cb = (entries) => {
       entries.forEach((e) => {
         last[parseInt(e.target.dataset.ind)] = e.intersectionRatio;
@@ -44,7 +43,7 @@
       rootMargin: '0px',
       threshold: 1.0
     });
-    boxes.forEach((box) => obs.observe(box));
+    stories.forEach((box) => obs.observe(box));
   });
 
   function closeCatOverlay() {
@@ -67,20 +66,34 @@
 <div class="stories-container">
   {#each CAT_DATA as data, j}
     <div class="column large-gap">
-      <div class="cat-image-container" data-ind={j}>
+      <div class="cat-image-container" bind:this={stories[j]} data-ind={j}>
         {#each new Array(n_backgrounds) as _, i}
           {#if index === i}
-            <CatImage
-              image_url={data['image_path' + i]}
-              image_alt="Cat Image"
-              shouldFade={anim.index === j}
-              on:click={() => openCatOverlay(j)}
-              on:keydown={(e) => {
-                if (e.key === 'Enter' || e.key === 'Space') {
-                  openCatOverlay(j);
-                }
-              }}
-            />
+            {#if anim.index === j}
+              <CatImage
+                image_url={data['image_path' + i]}
+                image_alt="Cat Image"
+                shouldFade={anim.index === j}
+                on:click={() => openCatOverlay(j)}
+                on:keydown={(e) => {
+                  if (e.key === 'Enter' || e.key === 'Space') {
+                    openCatOverlay(j);
+                  }
+                }}
+              />
+            {:else}
+              <CatImage
+                image_url={data['image_path' + 0]}
+                image_alt="Cat Image"
+                shouldFade={false}
+                on:click={() => openCatOverlay(j)}
+                on:keydown={(e) => {
+                  if (e.key === 'Enter' || e.key === 'Space') {
+                    openCatOverlay(j);
+                  }
+                }}
+              />
+            {/if}
           {/if}
         {/each}
       </div>
