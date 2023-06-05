@@ -2,6 +2,8 @@
   cat_superhero.svelte:
     A roadmap with Trap-Neuter-Return information.
 -->
+<svelte:window bind:outerWidth={width}/>
+
 <script lang="ts">
   import { base } from '$app/paths';
 
@@ -95,8 +97,10 @@
         'This is the big moment…release the cat where you trapped it the morning after surgery. Freedom!!!! Here’s a <a href="https://www.youtube.com/watch?v=3-pK4sjVHcQ">video about community cats</a> that shows a kitty getting released. Clean the trap and trap cover and return to FixNation during opening hours.',
       resourceTexts: ['Community Cat Video'],
       resourceLinks: ['https://www.youtube.com/watch?v=3-pK4sjVHcQ']
-    }
+    },
   ];
+
+  let width : number;
 
   let rowsExpanded = rows.map(() => true);
 
@@ -157,7 +161,7 @@
           <div class="marker">
             {#if i == 0 }
               <div class="flag"><img src="{base}/roadmap/startFlag.svg" alt="Roadmap marker" /></div>
-            {:else if i == 7}
+            {:else if i == 7 && width > 430}
               <div class="flag"><img src="{base}/roadmap/testFlag.svg" alt="Roadmap marker" on:click={() => toggleQuiz()}/></div>
             {:else}
               <img src="{base}/roadmap/marker.svg" alt="Roadmap marker" />
@@ -168,7 +172,6 @@
                 alt="Roadmap marker shadow"
               />
             {/if}
-
           </div>
           <div class="text">
             <div
@@ -194,6 +197,11 @@
         </div>
       </div>
     {/each}
+    {#if width <= 430}
+      <div class="marker">
+        <div class="flag end"><img src="{base}/roadmap/testFlag.svg" alt="Roadmap marker" on:click={() => toggleQuiz()}/></div>
+      </div>
+    {/if}
   </div>
 </div>
 
@@ -222,7 +230,7 @@
 
   .testFlag img{
     height: auto;
-    width: 7vw !important;
+    width: 7vw
   }
 
 
@@ -577,8 +585,8 @@
       background-image: none;
       background-repeat: no-repeat;
       background-size: auto 100%;
-      padding-top: 18rem;
-      padding-bottom: 5vw;
+      padding-top: 10rem;
+      padding-bottom: 15vw;
       margin: 0 1rem;
       position: relative;
     }
@@ -626,7 +634,7 @@
       padding-right: 2rem;
     }
     .row .marker {
-      width: 2.3125rem;
+      width: 2.315rem;
       position: relative;
       z-index: 1;
     }
@@ -643,6 +651,12 @@
       left: 0.675rem;
       top: 0.125rem;
       z-index: -1;
+    }
+    .marker .end {
+      width: 1.625rem;
+      position: absolute;
+      left: 1.0rem;
+      bottom: 4.0rem;
     }
     .row .text {
       flex: 1;
