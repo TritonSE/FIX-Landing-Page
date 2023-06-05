@@ -3,7 +3,6 @@
 <script lang="ts">
     import Button from "./button.svelte";
     import { base } from '$app/paths';
-    import { onMount } from 'svelte';
 
     export let showQuiz = false;
     export let quizComplete = false;
