@@ -60,8 +60,9 @@
 
     .cat-face {
       height: 55px;
-      top: 50%;
-      transform: translate(-50%, -50%);
+      top: unset;
+      bottom: 0;
+      transform: translateX(-50%);
     }
   }
 </style>
