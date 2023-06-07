@@ -218,9 +218,10 @@
     .dot {
       width: 2vw;
       height: 2vw;
+      min-width: 2vw;
       border-radius: 1vw;
       margin-top: 1vw;
-      margin-right: 1vw;
+      margin-right: 2vw;
       margin-bottom: 0.5vw;
       background: var(--color-gray-darker);
       float: left;
@@ -242,7 +243,7 @@
 
   @media screen and (max-width: 650px) {
     .flex-container {
-      margin: 0 0 30vw 0;
+      margin: 0 0 6rem 0;
     }
   }
 </style>

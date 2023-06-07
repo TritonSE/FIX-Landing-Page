@@ -85,7 +85,6 @@
 
   .wrapper {
     min-width: calc(100vw - 165px);
-    scroll-snap-align: center;
   }
 
   .large-gap {

@@ -132,6 +132,7 @@
     width: 100%;
     height: 100vh;
     overflow: hidden;
+    justify-content: center;
   }
   #masthead_main_container {
     position: absolute;
@@ -202,13 +203,15 @@
     font-family: 'Avenir';
     font-style: normal;
     font-weight: 300;
-    font-size: 1.3vw;
+    font-size: 1.7vw;
     line-height: auto;
     text-align: center;
     flex: none;
     order: 1;
     flex-grow: 0;
     cursor: pointer;
+    width: 13vw;
+    height: 4vw;
   }
   #involve_button {
     background: var(--color-white);
@@ -303,18 +306,6 @@
     }
   }
 
-  @media only screen and (max-width: 1750px) {
-    #masthead {
-      justify-content: center;
-    }
-    #involve_button,
-    #donate_button {
-      width: 13vw;
-      height: 4vw;
-      font-size: 1.7vw;
-    }
-  }
-
   @media only screen and (max-width: 1473px) {
     #background {
       position: absolute;
@@ -335,10 +326,16 @@
       min-height: 140vw;
       margin-bottom: -2rem;
     }
+
+    #icons {
+      margin-bottom: 25px;
+    }
+
     #button_container {
       margin-top: 0.01vh;
       padding-left: 0;
     }
+
     #text_background_blob {
       width: 90vw;
       z-index: 1;

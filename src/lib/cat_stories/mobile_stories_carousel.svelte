@@ -223,40 +223,39 @@
         lastWrapTimestampMS = currTimestampMS;
         clearTimeout(wrapTimeout);
 
-        let xToScrollTo =
-          scrollLeft +
-          calculateXDistanceBetweenNodes(
-            getNeighboringNode(e.target as HTMLElement, largestChild as HTMLElement, false),
-            largestChild as HTMLElement
-          );
+        let xToScrollTo = scrollLeft - (1 / 3) * scrollWidth;
+        // +
+        // calculateXDistanceBetweenNodes(
+        //   getNeighboringNode(e.target as HTMLElement, largestChild as HTMLElement, false),
+        //   largestChild as HTMLElement
+        // );
         if (xToScrollTo > scrollWidth) {
           xToScrollTo -= scrollWidth;
         }
         if (xToScrollTo < 0) {
           xToScrollTo += scrollWidth;
         }
-        wrapTimeout = setTimeout(() => {
-          wrapIfNotMoving(() => (e.target as HTMLDivElement).scrollTo({ left: xToScrollTo }));
-        }, 50);
+        // wrapTimeout = setTimeout(() => {
+        wrapIfNotMoving(() => (e.target as HTMLDivElement).scrollTo({ left: xToScrollTo }));
+        // }, 50);
       } else if (scrollLeft < 400) {
         // At far left of scroll container, scrolling left
         lastWrapTimestampMS = currTimestampMS;
         clearTimeout(wrapTimeout);
-        let xToScrollTo =
-          scrollLeft +
-          calculateXDistanceBetweenNodes(
-            getNeighboringNode(e.target as HTMLElement, largestChild as HTMLElement, true),
-            largestChild as HTMLElement
-          );
+        let xToScrollTo = scrollLeft + (1 / 3) * scrollWidth;
+        // calculateXDistanceBetweenNodes(
+        //   getNeighboringNode(e.target as HTMLElement, largestChild as HTMLElement, true),
+        //   largestChild as HTMLElement
+        // );
         if (xToScrollTo > scrollWidth) {
           xToScrollTo -= scrollWidth;
         }
         if (xToScrollTo < 0) {
           xToScrollTo += scrollWidth;
         }
-        wrapTimeout = setTimeout(() => {
-          wrapIfNotMoving(() => (e.target as HTMLDivElement).scrollTo({ left: xToScrollTo }));
-        }, 50);
+        // wrapTimeout = setTimeout(() => {
+        wrapIfNotMoving(() => (e.target as HTMLDivElement).scrollTo({ left: xToScrollTo }));
+        // }, 50);
       }
     }
 
@@ -304,7 +303,6 @@
     scrollbar-width: none;
     gap: 20px;
     padding-top: 16px;
-    scroll-snap-type: x mandatory;
   }
 
   .stories-container::-webkit-scrollbar {
