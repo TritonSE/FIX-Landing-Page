@@ -305,6 +305,7 @@
     gap: 20px;
     padding-top: 16px;
     scroll-snap-type: x mandatory;
+    margin-bottom: 2rem;
   }
 
   .stories-container::-webkit-scrollbar {

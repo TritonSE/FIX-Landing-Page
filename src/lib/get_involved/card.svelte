@@ -5,16 +5,12 @@
 <script lang="ts">
   import { onMount } from 'svelte';
 
-  import { base } from '$app/paths';
-
   export let label = '';
   export let description = '';
   export let background_image_url = '';
   export let background_image_alt = '';
   export let light_shadow = false;
   export let link_url = '';
-
-  const id = 'card-' + Math.random().toString(16).substring(2);
 
   let mobile = false;
   const detectMobile = () => {
@@ -28,19 +24,23 @@
 <svelte:window on:resize={detectMobile} />
 
 <a
-  {id}
   class="container"
   target={!mobile ? '_blank' : ''}
   rel={!mobile ? 'noreferrer noopener' : ''}
-  href={!mobile ? link_url : '#' + id}
+  href={!mobile ? link_url : null}
 >
   <div class="card-outer">
     <div class="card-inner">
       <div class="card-front">
-        <img src={background_image_url} alt={background_image_alt} />
+        <img src={background_image_url} alt={background_image_alt} loading="lazy" />
         <div class="label">
           <h4>{label}</h4>
-          <img class="chevron right" src="{base}/icons/ic_caretright.svg" alt="Right arrow" />
+          <img
+            class="chevron right"
+            src="/icons/ic_caretright.svg"
+            alt="Right arrow"
+            loading="lazy"
+          />
         </div>
       </div>
 
@@ -51,7 +51,7 @@
           <a href={link_url} target="_blank" rel="noreferrer noopener" class="external">
             <div>Learn More:</div>
             &nbsp;
-            <img src="{base}/icons/ic_external_link.svg" alt="External link indicator" />
+            <img src="/icons/ic_external_link.svg" alt="External link indicator" loading="lazy" />
           </a>
         </div>
       </div>
@@ -93,7 +93,6 @@
 
   img {
     width: 100%;
-    height: 100%;
   }
   .card-outer:hover .card-inner {
     transform: rotateY(180deg);
@@ -231,10 +230,6 @@
       display: block;
       position: absolute;
       right: 0;
-    }
-    .chevron.left {
-      left: 0;
-      transform: rotate(180deg);
     }
   }
 </style>

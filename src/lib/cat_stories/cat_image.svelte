@@ -7,7 +7,7 @@
   export let image_alt = '';
 </script>
 
-<img src={image_url} alt={image_alt} on:click on:keydown />
+<img src={image_url} alt={image_alt} on:click on:keydown loading="lazy" />
 
 <style>
   img {

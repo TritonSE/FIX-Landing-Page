@@ -11,7 +11,21 @@
 
   import type { CatData } from './types.ts';
 
-  import { base } from '$app/paths';
+  import almira from './img/profile_pictures/Almira.png?format=avif';
+  import close_up from './img/profile_pictures/Close Up.png?format=avif';
+  import shadow from './img/profile_pictures/Shadow.png?format=avif';
+
+  import almira_post1 from './img/post_images/Almira/post1.png?format=avif';
+  import almira_post2 from './img/post_images/Almira/post2.png?format=avif';
+  import almira_post3 from './img/post_images/Almira/post3.png?format=avif';
+
+  import close_up_post1 from './img/post_images/Close Up/post1.png?format=avif';
+  import close_up_post2 from './img/post_images/Close Up/post2.png?format=avif';
+  import close_up_post3 from './img/post_images/Close Up/post3.png?format=avif';
+
+  import shadow_post1 from './img/post_images/Shadow/post1.png?format=avif';
+  import shadow_post2 from './img/post_images/Shadow/post2.png?format=avif';
+  import shadow_post3 from './img/post_images/Shadow/post3.png?format=avif';
 
   export let data: CatData;
   export let open: boolean;
@@ -23,23 +37,30 @@
     }
     return n;
   }
+
+  const pfps = {
+    Almira: almira,
+    'Close Up': close_up,
+    Shadow: shadow
+  };
+  const posts = {
+    Almira: [almira_post1, almira_post2, almira_post3],
+    'Close Up': [close_up_post1, close_up_post2, shadow_post3],
+    Shadow: [shadow_post1, shadow_post2, shadow_post3]
+  };
 </script>
 
 <SideOverlay {open} {onClose}>
   <div class="root">
     <button class="close-button" on:click={onClose}>
-      <img src="{base}/cat_stories/close.svg" alt="Close" />
+      <img src="/cat_stories/close.svg" alt="Close" loading="lazy" />
     </button>
     <div class="row root-row">
       <Paw name={data.name} />
       <div class="column">
         <p>{data.desc}</p>
         <div class="row small-gap ig-margin">
-          <img
-            class="profile-picture"
-            alt={data.name}
-            src="{base}/cat_stories/profile_pictures/{data.name}.png"
-          />
+          <img class="profile-picture" alt={data.name} src={pfps[data.name]} loading="lazy" />
           <div class="column">
             <a
               href={`https://www.instagram.com/${data.ig_username}/?hl=en`}
@@ -58,18 +79,14 @@
 
         <div class="row large-gap">
           {#each Array(3) as _, i}
-            <CatPost
-              image_url="cat_stories/post_images/{data.name}/post{i + 1}.png"
-              image_alt={data.name}
-              link_to={data.ig_link}
-            />
+            <CatPost image_url={posts[data.name][i]} image_alt={data.name} link_to={data.ig_link} />
           {/each}
         </div>
       </div>
     </div>
 
     <div class="top-image-container">
-      <img class="top-image" src={data.image_path} alt={data.name} />
+      <img class="top-image" src={data.image_path} alt={data.name} loading="lazy" />
     </div>
   </div>
 </SideOverlay>
