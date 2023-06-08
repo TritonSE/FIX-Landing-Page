@@ -30,26 +30,34 @@
 <style>
   .container {
     position: fixed;
-    top: 20px;
+    top: 0;
     left: 0;
     z-index: 2;
     width: 100%;
-    height: 32px;
-    border-radius: 10px;
+    height: 16px;
     background-color: #f1b29e;
   }
 
   .filled {
     background-color: #b24000;
     height: 100%;
-    border-radius: 10px;
   }
 
   .cat-face {
     position: absolute;
-    top: -50%;
+    top: 0;
     transform: translateX(-50%);
-    height: 70px;
+    height: 30px;
+  }
+
+  @media screen and (min-width: 1600px) {
+    .container {
+      height: 32px;
+    }
+
+    .cat-face {
+      height: 50px;
+    }
   }
 
   @media screen and (max-width: 675px) {
@@ -59,7 +67,7 @@
     }
 
     .cat-face {
-      height: 55px;
+      height: 28px;
       top: unset;
       bottom: 0;
       transform: translateX(-50%);
