@@ -10,12 +10,7 @@
     </div>
   </div>
 
-  <img
-    src="/tnr_info/person.svg"
-    class="person-image"
-    alt="A person pointing"
-    loading="lazy"
-  />
+  <img src="/tnr_info/person.svg" class="person-image" alt="A person pointing" loading="lazy" />
   <p>
     Trap-Neuter-Return (TNR) is is the most humane and effective way to manage community cat
     populations. Volunteers capture homeless cats and kittens in special traps, take them to a vet
@@ -61,6 +56,7 @@
   }
 
   .text {
+    white-space: nowrap;
     position: relative;
     z-index: 3;
     font-size: 36px;
@@ -111,7 +107,7 @@
 
     p {
       margin-left: 25px;
-      margin-top: 25px;
+      margin-top: 32px;
       font-size: 18px;
     }
   }
@@ -144,12 +140,6 @@
   @media screen and (max-width: 550px) {
     .person-image {
       margin-top: 120px;
-    }
-  }
-
-  @media screen and (max-width: 450px) {
-    .person-image {
-      margin-top: 160px;
     }
   }
 </style>

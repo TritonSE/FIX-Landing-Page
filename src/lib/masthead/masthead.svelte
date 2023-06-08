@@ -23,9 +23,7 @@
     'Shelby',
     'Bobby'
   ];
-  const bgs = [
-    bg0, bg1, bg2, bg3, bg4, bg5
-  ];
+  const bgs = [bg0, bg1, bg2, bg3, bg4, bg5];
   let index = 0;
   onMount(() => {
     setInterval(() => {
@@ -44,12 +42,7 @@
 
 <div id="masthead">
   {#each new Array(n_backgrounds) as _, i}
-    <img
-      class="background"
-      style="opacity: {index === i ? 1 : 0}"
-      src={bgs[i]}
-      alt={alts[i]}
-    />
+    <img class="background" style="opacity: {index === i ? 1 : 0}" src={bgs[i]} alt={alts[i]} />
   {/each}
   <div id="masthead_main_container">
     <div id="logo_container">

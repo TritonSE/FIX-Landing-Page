@@ -51,11 +51,7 @@
           <a href={link_url} target="_blank" rel="noreferrer noopener" class="external">
             <div>Learn More:</div>
             &nbsp;
-            <img
-              src="/icons/ic_external_link.svg"
-              alt="External link indicator"
-              loading="lazy"
-            />
+            <img src="/icons/ic_external_link.svg" alt="External link indicator" loading="lazy" />
           </a>
         </div>
       </div>

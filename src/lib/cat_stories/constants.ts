@@ -20,7 +20,7 @@ export const CAT_DATA: CatData[] = [
     ig_username: 'shadowthehomedepotcat_',
     n_followers: 295,
     image_path: shadow,
-    mobile_image_path: shadow_mobile,
+    mobile_image_path: shadow_mobile
   },
   {
     name: 'Close Up',
@@ -30,7 +30,7 @@ export const CAT_DATA: CatData[] = [
     ig_username: 'closeupthecemeterycat',
     n_followers: 9873,
     image_path: close_up,
-    mobile_image_path: close_up_mobile,
+    mobile_image_path: close_up_mobile
   },
   {
     name: 'Almira',
@@ -40,6 +40,6 @@ export const CAT_DATA: CatData[] = [
     ig_username: 'disneylandcats',
     n_followers: 110000,
     image_path: almira,
-    mobile_image_path: almira_mobile,
+    mobile_image_path: almira_mobile
   }
 ];

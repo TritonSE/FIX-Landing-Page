@@ -35,11 +35,7 @@
     <div class="cat-image-container">
       <CatImage image_url={catData.mobile_image_path} image_alt={catData.name} />
       <a href={catData.ig_link}>
-        <img
-          src="/cat_stories/instagram_white.svg"
-          alt="Instagram Logo"
-          class="instagram-logo"
-        />
+        <img src="/cat_stories/instagram_white.svg" alt="Instagram Logo" class="instagram-logo" />
       </a>
     </div>
     <div class="row">

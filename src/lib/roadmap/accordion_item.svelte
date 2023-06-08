@@ -43,11 +43,7 @@
     class="accordion-item"
   >
     <div>
-      <img
-        src={imageName}
-        alt={imageAlt}
-        class="accordion-image"
-      />
+      <img src={imageName} alt={imageAlt} class="accordion-image" />
       <p class:first={index == 0}>{@html extraContent}</p>
     </div>
     {#each resourceTexts as resourceText, j}

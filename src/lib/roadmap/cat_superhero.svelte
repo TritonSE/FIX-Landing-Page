@@ -126,12 +126,7 @@
   <div class="bubble">
     <div class="crop">
       <img src="/roadmap/bubble.svg" class="point" alt="Speech bubble" loading="lazy" />
-      <img
-        src="/roadmap/round_bubble.svg"
-        class="round"
-        alt="Round speech bubble"
-        loading="lazy"
-      />
+      <img src="/roadmap/round_bubble.svg" class="round" alt="Round speech bubble" loading="lazy" />
     </div>
     <div class="header">
       <h1 class="main">how to become a</h1>
@@ -537,7 +532,7 @@
     .header .comics {
       font-family: 'Comics', sans-serif !important;
       font-size: 6vw;
-      margin: 0 4rem 0 24vw;
+      margin: 0 4rem 0 20vw;
       white-space: nowrap;
     }
     .header .comics-desktop {

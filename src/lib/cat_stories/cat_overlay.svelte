@@ -39,14 +39,14 @@
   }
 
   const pfps = {
-    'Almira': almira,
+    Almira: almira,
     'Close Up': close_up,
-    'Shadow': shadow,
+    Shadow: shadow
   };
   const posts = {
-    'Almira': [almira_post1, almira_post2, almira_post3],
+    Almira: [almira_post1, almira_post2, almira_post3],
     'Close Up': [close_up_post1, close_up_post2, shadow_post3],
-    'Shadow': [shadow_post1, shadow_post2, shadow_post3],
+    Shadow: [shadow_post1, shadow_post2, shadow_post3]
   };
 </script>
 
@@ -60,12 +60,7 @@
       <div class="column">
         <p>{data.desc}</p>
         <div class="row small-gap ig-margin">
-          <img
-            class="profile-picture"
-            alt={data.name}
-            src={pfps[data.name]}
-            loading="lazy"
-          />
+          <img class="profile-picture" alt={data.name} src={pfps[data.name]} loading="lazy" />
           <div class="column">
             <a
               href={`https://www.instagram.com/${data.ig_username}/?hl=en`}
@@ -84,11 +79,7 @@
 
         <div class="row large-gap">
           {#each Array(3) as _, i}
-            <CatPost
-              image_url={posts[data.name][i]}
-              image_alt={data.name}
-              link_to={data.ig_link}
-            />
+            <CatPost image_url={posts[data.name][i]} image_alt={data.name} link_to={data.ig_link} />
           {/each}
         </div>
       </div>

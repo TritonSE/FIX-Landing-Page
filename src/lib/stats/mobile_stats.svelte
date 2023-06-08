@@ -21,32 +21,32 @@
     {
       stat: '#1',
       text: 'largest clinic for homeless cats',
-      image: stats1,
+      image: stats1
     },
     {
       stat: '220k',
       text: 'total cats spayed or neutered',
-      image: stats2,
+      image: stats2
     },
     {
       stat: '21%',
       text: 'of cats abandoned because of their residency',
-      image: stats3,
+      image: stats3
     },
     {
       stat: '12k',
       text: 'TNR volunteers trained',
-      image: stats4,
+      image: stats4
     },
     {
       stat: '89%',
       text: 'profits go directly to FixNation programs',
-      image: stats5,
+      image: stats5
     },
     {
       stat: '35%',
       text: 'cats acquired as strays',
-      image: stats6,
+      image: stats6
     }
   ];
 
@@ -57,9 +57,13 @@
     x = 0;
 
   onMount(() => {
-    el.addEventListener('scroll', () => {
-      focused = Math.floor(el.scrollLeft / width);
-    }, { passive: true });
+    el.addEventListener(
+      'scroll',
+      () => {
+        focused = Math.floor(el.scrollLeft / width);
+      },
+      { passive: true }
+    );
   });
 </script>
 
