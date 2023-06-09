@@ -27,7 +27,6 @@
     display: flex;
     flex-direction: row;
     padding: 120px 12% 120px 12%;
-    overflow: hidden;
   }
 
   .bubbles {
@@ -124,6 +123,7 @@
   @media screen and (max-width: 675px) {
     .root {
       flex-direction: column;
+      overflow: hidden;
     }
 
     .bubbles {
