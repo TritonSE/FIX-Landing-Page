@@ -32,6 +32,14 @@ yarn format
 
 Then, the pre-commit check should pass and allow the changes to be pushed.
 
+## Compressing Images
+
+We use AVIF images to replace PNGs since they load faster. Whenever you add new PNG images, you need to copy them to AVIFs using the `compress_images` script. You can run it with:
+
+```bash
+bash ./compress_images.sh
+```
+
 ## Building
 
 To create a production build of the site:

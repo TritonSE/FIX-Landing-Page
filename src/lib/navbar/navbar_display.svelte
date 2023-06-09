@@ -4,7 +4,6 @@
 -->
 
 <script lang="ts">
-  import { base } from '$app/paths';
   /**
    * Current step (which cat face to display, based on how far scrolled the user is)
    */
@@ -21,7 +20,7 @@
   <img
     id="cat-face-image"
     class="cat-face"
-    src="{base}/navbar_icons/navbar{step}.svg"
+    src="/navbar_icons/navbar{step}.svg"
     alt="A cat face"
     style="left: {scrollPercentage}%"
   />
@@ -32,7 +31,7 @@
     position: fixed;
     top: 0;
     left: 0;
-    z-index: 2;
+    z-index: 999;
     width: 100%;
     height: 16px;
     background-color: #f1b29e;
