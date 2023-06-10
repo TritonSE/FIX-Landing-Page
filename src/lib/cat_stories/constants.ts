@@ -66,17 +66,17 @@ export const CAT_DATA: CatData[] = [
     n_followers: 110000,
     image_path0: `${base}/cat_stories/shasta0.png`,
     image_path1: `${base}/cat_stories/shasta1.png`,
-    image_path2: `${base}/cat_stories/shasta0.png`,
+    image_path2: `${base}/cat_stories/shasta2.png`,
     image_path3: `${base}/cat_stories/shasta1.png`,
     mobile_image_path: `${base}/cat_stories/shasta_mobile.png`,
     long_desc:
       'Shasta and his brother/littermate Lassen came into our lives sixteen years ago via a local rescue who were looking for someone who could take both brothers as they \
     thought Lassen needed Shasta. The rescue did a fabulous job socializing the kittens who were very sweet, friendly, confident and quickly adapted to Cody, their canine \
-    sister. Shasta was gentle, intuitive, loved food and a few favorite toys.  He enjoyed spending time in the outdoor Catio that Daddy and Mommy built for their two feline boys and he \
+    sister. \nShasta was gentle, intuitive, loved food and a few favorite toys.  He enjoyed spending time in the outdoor Catio that Daddy and Mommy built for their two feline boys and he \
     adored his special shelf that his daddy made for him when he got older. He also loved to sit on the desk while we worked at home.  And when he (correctly) thought his \
-    mommy needed a break he’d plunk himself down and wouldn’t move until we had a relaxing snuggle. He also joined in for zoom calls. Shasta snuggled into his mommy’s arms when carried. And from kitten hood to \
+    mommy needed a break he’d plunk himself down and wouldn’t move until we had a relaxing snuggle. He also joined in for zoom calls. \nShasta snuggled into his mommy’s arms when carried. And from kitten hood to \
     adulthood, he loved grooming and kneading his humans. And whenever we came home Shasta and Lassen would be waiting by the door like little puppies. \
-    One of the sweetest memories is of Shasta laying on his mommy and daddy and then planting a kiss on his Mommy’s neck the last week of his life. Sweet, calming, unflappable, Shasta was \
+    \nOne of the sweetest memories is of Shasta laying on his mommy and daddy and then planting a kiss on his Mommy’s neck the last week of his life. Sweet, calming, unflappable, Shasta was \
     adored and is dearly missed every day; he will remain in our hearts forever.'
   }
 ];

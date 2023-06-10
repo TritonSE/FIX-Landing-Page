@@ -5,6 +5,7 @@
 export interface CatData {
   name: string;
   desc: string;
+  long_desc: string;
   abbrev_len: number;
   ig_username: string;
   n_followers: number;

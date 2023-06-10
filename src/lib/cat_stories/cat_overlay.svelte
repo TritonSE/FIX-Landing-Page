@@ -33,7 +33,10 @@
     <div class="row root-row">
       <Paw name={data.name} />
       <div class="column">
-        <p class="long_description">{data.long_desc}</p>
+        {#each data.long_desc.split('\n') as paragraph}
+          <p class="long_description">{paragraph}</p>
+          <br>
+        {/each}
         {#if data.name != 'Shasta'}
           <div class="row small-gap ig-margin">
             <img

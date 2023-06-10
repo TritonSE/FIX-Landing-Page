@@ -20,8 +20,8 @@
   let isInView: boolean;
   import { onMount } from 'svelte';
   export let shouldFade = false;
-  let stories = [];
-  let last = [];
+  let stories: HTMLElement[] = [];
+  let last: number[] = [];
   let anim = { index: 0, ratio: 0 };
   let image_url = '';
   onMount(() => {
