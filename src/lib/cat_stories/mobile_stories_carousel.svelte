@@ -296,7 +296,7 @@
 
 <style>
   .stories-container {
-    width: 100vw;
+    width: 100%;
     display: flex;
     flex-direction: row;
     overflow: scroll;

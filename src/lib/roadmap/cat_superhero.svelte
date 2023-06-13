@@ -571,7 +571,7 @@
     .bubble .crop {
       position: absolute;
       z-index: 1;
-      width: 100vw;
+      width: 100%;
       overflow: hidden;
     }
     .crop img {
