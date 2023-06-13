@@ -3,7 +3,10 @@
     "Get Involved" section entrypoint.
 -->
 <script lang="ts">
+  import { onMount } from 'svelte';
+
   import Card from './card.svelte';
+  import TouchCard from './touch_card.svelte';
 
   import events from './img/events.png?format=avif';
   import donation from './img/donation.png?format=avif';
@@ -108,6 +111,14 @@
       link_url: 'https://www.facebook.com/FixNationLA'
     }
   ];
+
+  let touchscreen = false;
+  const detectTouchscreen = () => {
+    // Crude touchscreen detection via:
+    //   https://stackoverflow.com/questions/4817029/whats-the-best-way-to-detect-a-touch-screen-device-using-javascript
+    touchscreen = !!('ontouchstart' in window || navigator.maxTouchPoints > 0);
+  };
+  onMount(detectTouchscreen);
 </script>
 
 <div class="root" id="get_involved">
@@ -116,9 +127,15 @@
     There are so many ways you can help homeless cats in your area. FixNation is looking for you!
   </h4>
   <div class="cards">
-    {#each CARDS as card}
-      <Card {...card} />
-    {/each}
+    {#if !touchscreen}
+      {#each CARDS as card}
+        <Card {card} />
+      {/each}
+    {:else}
+      {#each CARDS as card}
+        <TouchCard {card} />
+      {/each}
+    {/if}
   </div>
 </div>
 
@@ -140,7 +157,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 2rem;
   }
 
   .cards {

@@ -7,14 +7,18 @@
   import { onMount } from 'svelte';
   import { fade } from 'svelte/transition';
 
-  import bg0 from './img/backgrounds/bg0.png?format=avif';
-  import bg1 from './img/backgrounds/bg1.png?format=avif';
-  import bg2 from './img/backgrounds/bg2.png?format=avif';
-  import bg3 from './img/backgrounds/bg3.png?format=avif';
-  import bg4 from './img/backgrounds/bg4.png?format=avif';
-  import bg5 from './img/backgrounds/bg5.png?format=avif';
+  import bg0 from './img/desktop/bg0.png?format=avif';
+  import bg1 from './img/desktop/bg1.png?format=avif';
+  import bg2 from './img/desktop/bg2.png?format=avif';
+  import bg3 from './img/desktop/bg3.png?format=avif';
+  import bg4 from './img/desktop/bg4.png?format=avif';
 
-  const n_backgrounds = 6;
+  import bg0_mobile from './img/mobile/bg0.png?format=avif';
+  import bg1_mobile from './img/mobile/bg1.png?format=avif';
+  import bg2_mobile from './img/mobile/bg2.png?format=avif';
+  import bg3_mobile from './img/mobile/bg3.png?format=avif';
+  import bg4_mobile from './img/mobile/bg4.png?format=avif';
+
   const alts = [
     'Cat with a sunset',
     'Cat kneeling',
@@ -23,7 +27,9 @@
     'Shelby',
     'Bobby'
   ];
-  const bgs = [bg0, bg1, bg2, bg3, bg4, bg5];
+  const bgs = [bg0, bg1, bg2, bg3, bg4];
+  const mobile_bgs = [bg0_mobile, bg1_mobile, bg2_mobile, bg3_mobile, bg4_mobile];
+  const n_backgrounds = bgs.length;
   let index = 0;
   onMount(() => {
     setInterval(() => {
@@ -36,13 +42,23 @@
     instagram: 'https://www.instagram.com/fixnation',
     twitter: 'https://www.twitter.com/fixnation',
     youtube: 'https://www.youtube.com/user/FixNationClinic',
-    yelp: 'https://www.yelp.com/biz/fixnation-los-angeles'
+    tiktok: 'https://www.tiktok.com/@fixnationla',
+    yelp: 'https://www.yelp.com/biz/fixnation-los-angeles',
   };
+
+  $: innerWidth = 0;
 </script>
+
+<svelte:window bind:innerWidth />
 
 <div id="masthead">
   {#each new Array(n_backgrounds) as _, i}
-    <img class="background" style="opacity: {index === i ? 1 : 0}" src={bgs[i]} alt={alts[i]} />
+    <img
+      class="background"
+      style="opacity: {index === i ? 1 : 0}"
+      src={innerWidth > 600 ? bgs[i] : mobile_bgs[i]}
+      alt={alts[i]}
+    />
   {/each}
   <div id="masthead_main_container">
     <div id="logo_container">
@@ -232,6 +248,8 @@
     margin: 1vw;
     width: 1.86vw;
     height: 1.86vw;
+    min-width: 1.5rem;
+    min-height: 1.5rem;
     background: #ffffff;
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
@@ -368,7 +386,7 @@
     }
     #action_container {
       position: relative;
-      top: 45vw;
+      top: 51vw;
       padding-top: 17vw;
       padding-left: 1rem;
     }

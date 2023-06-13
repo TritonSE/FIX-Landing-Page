@@ -22,7 +22,7 @@
       alt: 'Sedated cats'
     },
     {
-      number: '220k',
+      number: '250k',
       subtitle: 'total cats spayed or neutered',
       picture: stats2,
       alt: 'Cat on rug'

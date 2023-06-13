@@ -1,8 +1,8 @@
 <div class="root">
   <div class="bubbles centered">
     <div class="tnr-bubble centered">
-      <img src="/roadmap/bubble.svg" alt="Speech bubble" loading="lazy" />
-      <h1 class="text">Trap Neuter & Return?</h1>
+      <img class="top-bubble" src="/roadmap/bubble.svg" alt="Speech bubble" loading="lazy" />
+      <h1 class="text shifted">Trap Neuter & Return?</h1>
     </div>
     <div class="what-is-it-bubble centered">
       <img src="/tnr_info/narrow_bubble.svg" alt="Narrow speech bubble" loading="lazy" />
@@ -55,6 +55,10 @@
     width: 575px;
   }
 
+  .top-bubble {
+    top: -1rem;
+  }
+
   .text {
     white-space: nowrap;
     position: relative;
@@ -62,6 +66,10 @@
     font-size: 36px;
     color: var(--color-secondary-accent);
     font-family: 'Comics', sans-serif !important;
+  }
+
+  .text.shifted {
+    top: 1rem;
   }
 
   .what-is-it-bubble {
@@ -115,6 +123,7 @@
   @media screen and (max-width: 675px) {
     .root {
       flex-direction: column;
+      overflow: hidden;
     }
 
     .bubbles {

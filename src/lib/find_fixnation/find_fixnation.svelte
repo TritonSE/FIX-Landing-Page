@@ -2,9 +2,8 @@
   find_fixnation.svelte: 
     A component with FixNation's general contact information, location, and hours.
 -->
-<img id="paws" src="/find/paws.svg" alt="paw prints" />
-
 <div class="container">
+  <img id="paws" src="/find/paws.svg" alt="paw prints" />
   <h1 id="header">Find FixNation</h1>
   <div class="info-container">
     <div class="info-section">
@@ -54,8 +53,10 @@
 
 <style>
   .container {
+    position: relative;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
   }
 
   #header {
@@ -83,9 +84,15 @@
     color: var(--color-secondary-accent);
   }
 
+  @media only screen and (max-width: 1000px) {
+    #paws {
+      top: -3rem;
+    }
+  }
+
   @media only screen and (max-width: 640px) {
-    .container {
-      margin-top: 10rem;
+    #paws {
+      top: 0;
     }
 
     .info-container {

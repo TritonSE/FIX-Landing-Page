@@ -3,20 +3,22 @@
     App entrypoint.
 -->
 <script>
+  import NavbarManager from '$lib/navbar/navbar_manager.svelte';
   import Masthead from '$lib/masthead/masthead.svelte';
   import Stats from '$lib/stats/stats.svelte';
   import CatStories from '$lib/cat_stories/cat_stories.svelte';
+  import TnrInfo from '$lib/roadmap/tnr_info.svelte';
   import CatSuperhero from '../lib/roadmap/cat_superhero.svelte';
+  import ApplicationVideo from '$lib/roadmap/application_video.svelte';
   import GetInvolved from '../lib/get_involved/get_involved.svelte';
   import Footer from '$lib/footer/footer.svelte';
   import About from '$lib/about/about.svelte';
   import FindFixnation from '$lib/find_fixnation/find_fixnation.svelte';
 
   import '../app.css';
-  import TnrInfo from '$lib/roadmap/tnr_info.svelte';
-  import ApplicationVideo from '$lib/roadmap/application_video.svelte';
 </script>
 
+<NavbarManager />
 <Masthead />
 <About />
 <Stats />
