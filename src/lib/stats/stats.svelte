@@ -3,49 +3,86 @@
     Stats highlighting the value of FixNation's work
 -->
 <script lang="ts">
-  import { base } from '$app/paths';
+  import { onMount } from 'svelte';
 
   import MobileStats from './mobile_stats.svelte';
+
+  import stats1 from './img/stats1.png?format=avif';
+  import stats2 from './img/stats2.png?format=avif';
+  import stats3 from './img/stats3.png?format=avif';
+  import stats4 from './img/stats4.png?format=avif';
+  import stats5 from './img/stats5.png?format=avif';
+  import stats6 from './img/stats6.png?format=avif';
 
   let sections = [
     {
       number: '#1',
       subtitle: 'largest clinic for homeless cats',
-      picture: 'stats/stats1.png',
+      picture: stats1,
       alt: 'Sedated cats'
     },
     {
-      number: '220k',
+      number: '250k',
       subtitle: 'total cats spayed or neutered',
-      picture: 'stats/stats2.png',
+      picture: stats2,
       alt: 'Cat on rug'
     },
     {
       number: '21%',
       subtitle: 'of cats abandoned because their of their residency',
-      picture: 'stats/stats3.png',
+      picture: stats3,
       alt: 'Momma cat with her kittens'
     },
     {
       number: '12k',
       subtitle: 'TNR volenteers trained',
-      picture: 'stats/stats4.png',
+      picture: stats4,
       alt: 'FixNation staff holding a cat'
     },
     {
       number: '89%',
       subtitle: 'profits go directly to FixNation programs',
-      picture: 'stats/stats5.png',
+      picture: stats5,
       alt: 'Staff in front of FixNation building'
     },
     {
       number: '35%',
       subtitle: 'cats acquired as strays',
-      picture: 'stats/stats6.png'
+      picture: stats6,
+      alt: 'Post-operation cat'
     }
   ];
 
+  let statsContainer;
+
   let screenWidth: number;
+
+  let lastScrollTop: number | null = null;
+
+  const isElementVisible = (element: HTMLElement) => {
+    return (
+      element &&
+      element.getBoundingClientRect().y + element.getBoundingClientRect().height >= 0 &&
+      element.getBoundingClientRect().y <= window.innerHeight
+    );
+  };
+
+  const handleScroll = () => {
+    if (isElementVisible(statsContainer)) {
+      if (lastScrollTop !== null) {
+        statsContainer.scrollBy({
+          left: (document.documentElement.scrollTop - lastScrollTop) * 0.5
+        });
+      }
+      lastScrollTop = document.documentElement.scrollTop;
+    }
+  };
+
+  onMount(() => {
+    document.addEventListener('scroll', handleScroll, { passive: true });
+
+    return () => document.removeEventListener('scroll', handleScroll);
+  });
 </script>
 
 <svelte:window bind:innerWidth={screenWidth} />
@@ -56,18 +93,20 @@
   humane care of homeless cats.
 </h4>
 <div>
-  {#if screenWidth > 675}
-    <div class="slider">
-      {#each sections as section}
-        <section class="section" class:active={screenWidth >= 2200}>
-          <img src={section.picture} alt={section.alt} />
-          <span class="rectangle" />
-          <div class="text">
-            <div class="header">{section.number}</div>
-            <p class="subtitle">{section.subtitle}</p>
-          </div>
-        </section>
-      {/each}
+  {#if screenWidth > 600}
+    <div class="slider" bind:this={statsContainer}>
+      <div style="min-width:3000px" class="slider">
+        {#each sections as section}
+          <section class="section" class:active={screenWidth >= 2200}>
+            <img src={section.picture} alt={section.alt} loading="lazy" />
+            <span class="rectangle" />
+            <div class="text">
+              <div class="header">{section.number}</div>
+              <div class="subtitle">{section.subtitle}</div>
+            </div>
+          </section>
+        {/each}
+      </div>
     </div>
   {:else}
     <MobileStats />

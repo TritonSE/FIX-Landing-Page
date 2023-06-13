@@ -3,11 +3,14 @@
     Grid display of cat stories for desktop & tablet.
 -->
 <script lang="ts">
-  import { base } from '$app/paths';
   import CatImage from './cat_image.svelte';
   import CatOverlay from './cat_overlay.svelte';
   import { CAT_DATA } from './constants';
   import Paw from './paw.svelte';
+
+  import shadow from './img/shadow.png?format=avif';
+  import close_up from './img/close_up_cropped.png?format=avif';
+  import almira_cropped from './img/almira_cropped.png?format=avif';
 
   /**
    * Index of the carousel item for which the overlay should be open.
@@ -28,7 +31,7 @@
 <div class="stories-container">
   <div class="cat-image-container">
     <CatImage
-      image_url="{base}/cat_stories/shadow.png"
+      image_url={shadow}
       image_alt="Shadow"
       on:click={() => openCatOverlay(0)}
       on:keydown={(e) => {
@@ -58,7 +61,7 @@
   <div class="column large-gap">
     <div class="cat-image-container">
       <CatImage
-        image_url="{base}/cat_stories/close_up_cropped.png"
+        image_url={close_up}
         image_alt="Close Up"
         on:click={() => openCatOverlay(1)}
         on:keydown={(e) => {
@@ -91,7 +94,7 @@
   <div class="column large-gap">
     <div class="cat-image-container">
       <CatImage
-        image_url="{base}/cat_stories/almira_cropped.png"
+        image_url={almira_cropped}
         image_alt="Almira"
         on:click={() => openCatOverlay(2)}
         on:keydown={(e) => {
