@@ -43,7 +43,7 @@
     twitter: 'https://www.twitter.com/fixnation',
     youtube: 'https://www.youtube.com/user/FixNationClinic',
     tiktok: 'https://www.tiktok.com/@fixnationla',
-    yelp: 'https://www.yelp.com/biz/fixnation-los-angeles',
+    yelp: 'https://www.yelp.com/biz/fixnation-los-angeles'
   };
 
   $: innerWidth = 0;

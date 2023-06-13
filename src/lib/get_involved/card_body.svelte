@@ -10,7 +10,7 @@
   export let touch = false;
 </script>
 
-<div class="card-outer" class:active={flipped} class:touch={touch}>
+<div class="card-outer" class:active={flipped} class:touch>
   <div class="card-inner">
     <div class="card-front">
       <img src={background_image_url} alt={background_image_alt} loading="lazy" />

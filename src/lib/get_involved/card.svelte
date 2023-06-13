@@ -8,12 +8,7 @@
   export let card = {};
 </script>
 
-<a
-  class="container"
-  target='_blank'
-  rel='noreferrer noopener'
-  href={card.link_url}
->
+<a class="container" target="_blank" rel="noreferrer noopener" href={card.link_url}>
   <CardBody {...card} />
 </a>
 
