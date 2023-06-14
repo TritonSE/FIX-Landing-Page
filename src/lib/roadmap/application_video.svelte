@@ -88,7 +88,7 @@
   .video-container {
     border-radius: 12px;
     overflow: hidden;
-    filter: drop-shadow(0px 20px 30px rgba(0, 0, 0, 0.3));
+    box-shadow: 0 20px 30px rgba(0, 0, 0, 0.3);
     min-width: 560px;
     min-height: 315px;
   }
@@ -130,7 +130,7 @@
 
   @media screen and (max-width: 500px) {
     .bubble img {
-      width: 115%;
+      width: 125%;
     }
   }
 
