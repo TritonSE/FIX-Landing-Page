@@ -6,6 +6,7 @@
   import type { RowData } from './types';
   import AccordionItem from './accordion_item.svelte';
   import Modal from './modal.svelte';
+  import Quiz from './quiz.svelte';
 
   import find from './img/find.png?format=avif';
   import feed from './img/feed.png?format=avif';
@@ -105,6 +106,8 @@
     }
   ];
 
+  let width: number;
+
   let rowsExpanded = rows.map(() => true);
 
   function toggleRowExpanded(index: number) {
@@ -118,9 +121,18 @@
     newRowsExpanded[index] = false;
     rowsExpanded = newRowsExpanded;
   }
+
+  function toggleQuiz() {
+    showQuiz = !showQuiz;
+  }
+
+  let showQuiz = false;
+  let quizInd = 0;
 </script>
 
+<Quiz bind:showQuiz bind:quizInd />
 <Modal bind:open bind:cur />
+<svelte:window bind:innerWidth={width} />
 
 <div class="container">
   <div class="bubble">
@@ -153,14 +165,29 @@
           }}
         >
           <div class="marker">
-            <img src="/roadmap/marker.svg" alt="Roadmap marker" loading="lazy" />
-            <div class="marker_anim" />
-            <img
-              class="shadow"
-              src="/roadmap/marker_shadow.svg"
-              alt="Roadmap marker shadow"
-              loading="lazy"
-            />
+            {#if i == 0 && width > 600}
+              <div class="flag">
+                <img src="/roadmap/startFlag.svg" alt="Roadmap marker" loading="lazy" />
+              </div>
+            {:else if i == 7 && width > 600}
+              <div class="flag shifted">
+                <img
+                  src="/roadmap/testFlag.svg"
+                  alt="Roadmap marker"
+                  on:click={() => toggleQuiz()}
+                  loading="lazy"
+                />
+              </div>
+            {:else}
+              <img src="/roadmap/marker.svg" alt="Roadmap marker" loading="lazy" />
+              <div class="marker_anim" />
+              <img
+                class="shadow"
+                src="/roadmap/marker_shadow.svg"
+                alt="Roadmap marker shadow"
+                loading="lazy"
+              />
+            {/if}
           </div>
           <div class="text">
             <div
@@ -186,6 +213,13 @@
         </div>
       </div>
     {/each}
+    {#if width <= 600}
+      <div class="marker">
+        <div class="flag end">
+          <img src="/roadmap/testFlag.svg" alt="Roadmap marker" on:click={() => toggleQuiz()} />
+        </div>
+      </div>
+    {/if}
   </div>
 </div>
 
@@ -205,6 +239,28 @@
 
   .road-image {
     display: none;
+  }
+
+  .flag.shifted {
+    position: relative;
+    top: 3rem;
+  }
+
+  @media only screen and (max-width: 1200px) {
+    .flag.shifted {
+      top: 1rem;
+    }
+  }
+
+  .flag img {
+    height: auto;
+    max-width: 6rem;
+    width: 12vw !important;
+  }
+
+  .testFlag img {
+    height: auto;
+    width: 10vw;
   }
 
   @media screen and (min-width: 1501px) {
@@ -411,6 +467,11 @@
       cursor: pointer;
     }
 
+    .flag img {
+      height: auto;
+      width: 100px !important;
+    }
+
     @keyframes glow {
       0% {
         background-image: radial-gradient(transparent 0 10000px);
@@ -510,7 +571,7 @@
     .bubble .crop {
       position: absolute;
       z-index: 1;
-      width: 100vw;
+      width: 100%;
       overflow: hidden;
     }
     .crop img {
@@ -552,8 +613,8 @@
       background-image: none;
       background-repeat: no-repeat;
       background-size: auto 100%;
-      padding-top: 18rem;
-      padding-bottom: 5vw;
+      padding-top: 10rem;
+      padding-bottom: 15vw;
       margin: 0 1rem;
       position: relative;
     }
@@ -601,7 +662,7 @@
       padding-right: 2rem;
     }
     .row .marker {
-      width: 2.3125rem;
+      width: 2.315rem;
       position: relative;
       z-index: 1;
     }
@@ -618,6 +679,19 @@
       left: 0.675rem;
       top: 0.125rem;
       z-index: -1;
+    }
+    .flag.end:hover {
+      cursor: pointer;
+    }
+    .marker .end {
+      width: 1.625rem;
+      position: absolute;
+      left: 1rem;
+      bottom: 4rem;
+    }
+    .marker .end img {
+      width: 5rem !important;
+      top: -1rem;
     }
     .row .text {
       flex: 1;

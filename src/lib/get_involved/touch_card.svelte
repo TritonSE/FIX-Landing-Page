@@ -11,7 +11,9 @@
 </script>
 
 <button
-  on:click={() => { flipped = !flipped; }}
+  on:click={() => {
+    flipped = !flipped;
+  }}
   class="container"
 >
   <CardBody {...card} {flipped} touch />
