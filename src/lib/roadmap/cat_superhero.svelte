@@ -6,7 +6,7 @@
   import type { RowData } from './types';
   import AccordionItem from './accordion_item.svelte';
   import Modal from './modal.svelte';
-  import Quiz from './quiz.svelte'
+  import Quiz from './quiz.svelte';
 
   import find from './img/find.png?format=avif';
   import feed from './img/feed.png?format=avif';
@@ -103,10 +103,10 @@
         'This is the big moment…release the cat where you trapped it the morning after surgery. Freedom!!!! Here’s a <a href="https://www.youtube.com/watch?v=3-pK4sjVHcQ">video about community cats</a> that shows a kitty getting released. Clean the trap and trap cover and return to FixNation during opening hours.',
       resourceTexts: ['Community Cat Video'],
       resourceLinks: ['https://www.youtube.com/watch?v=3-pK4sjVHcQ']
-    },
+    }
   ];
 
-  let width : number;
+  let width: number;
 
   let rowsExpanded = rows.map(() => true);
 
@@ -122,17 +122,17 @@
     rowsExpanded = newRowsExpanded;
   }
 
-  function toggleQuiz(){
-    showQuiz = !showQuiz
+  function toggleQuiz() {
+    showQuiz = !showQuiz;
   }
 
-  let showQuiz = false
-  let quizInd = 0
+  let showQuiz = false;
+  let quizInd = 0;
 </script>
 
-<Quiz bind:showQuiz bind:quizInd></Quiz>
+<Quiz bind:showQuiz bind:quizInd />
 <Modal bind:open bind:cur />
-<svelte:window bind:outerWidth={width}/>
+<svelte:window bind:innerWidth={width} />
 
 <div class="container">
   <div class="bubble">
@@ -216,11 +216,7 @@
     {#if width <= 600}
       <div class="marker">
         <div class="flag end">
-          <img
-            src="/roadmap/testFlag.svg"
-            alt="Roadmap marker"
-            on:click={() => toggleQuiz()}
-          />
+          <img src="/roadmap/testFlag.svg" alt="Roadmap marker" on:click={() => toggleQuiz()} />
         </div>
       </div>
     {/if}
@@ -264,7 +260,7 @@
 
   .testFlag img {
     height: auto;
-    width: 10vw
+    width: 10vw;
   }
 
   @media screen and (min-width: 1501px) {
@@ -471,7 +467,7 @@
       cursor: pointer;
     }
 
-    .flag img{
+    .flag img {
       height: auto;
       width: 100px !important;
     }
@@ -575,7 +571,7 @@
     .bubble .crop {
       position: absolute;
       z-index: 1;
-      width: 100vw;
+      width: 100%;
       overflow: hidden;
     }
     .crop img {
@@ -684,11 +680,14 @@
       top: 0.125rem;
       z-index: -1;
     }
+    .flag.end:hover {
+      cursor: pointer;
+    }
     .marker .end {
       width: 1.625rem;
       position: absolute;
-      left: 1.0rem;
-      bottom: 4.0rem;
+      left: 1rem;
+      bottom: 4rem;
     }
     .marker .end img {
       width: 5rem !important;

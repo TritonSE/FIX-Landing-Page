@@ -164,7 +164,7 @@
   }
 </script>
 
-<svelte:window bind:outerWidth={width} />
+<svelte:window bind:innerWidth={width} />
 
 {#if showQuiz && !quizComplete}
   <!-- svelte-ignore a11y-click-events-have-key-events -->
@@ -199,17 +199,13 @@
                   <Button
                     secondary
                     on:click={() => checkCorrect(index, ind)}
-                    style="color:black; {width <= 425
+                    style="color:black;border-radius: 12px; {width <= 425
                       ? 'width:70vw; height:20vw'
                       : 'width:36vw; height:5vw'}; margin:15px;{timesClicked >= 1 &&
                     questions[index].correct == ind
-                      ? 'border:' +
-                        (width <= 425 ? '1vw' : '.25vw') +
-                        ' solid #3BB966; border-radius: 0.7vw;'
+                      ? 'border:' + (width <= 425 ? '1vw' : '.25vw') + ' solid #3BB966;'
                       : buttonClicked == ind
-                      ? 'border:' +
-                        (width <= 425 ? '1vw' : '.25vw') +
-                        ' solid #B82424; border-radius:0.7vw;'
+                      ? 'border:' + (width <= 425 ? '1vw' : '.25vw') + ' solid #B82424;'
                       : ''}"
                   >
                     <p class="choice">{choice}</p>
@@ -220,7 +216,10 @@
             {#if timesClicked >= 1}
               <Button
                 on:click={() => nextQuestion()}
-                style="width:4.5vw; height:2vw; background: #008E7E; border-radius: 4px; font-size:0.9vw; margin-left: 50vw;"
+                style="width:4.5vw; min-width:40px; height:2vw; min-height:16px; background: #008E7E; border-radius: 4px; font-size:{width <=
+                850
+                  ? '8px'
+                  : '0.9vw'}; margin-left: 50vw;"
               >
                 Next &gt;
               </Button>
@@ -273,11 +272,11 @@
                 questions[index].correct == ind
                   ? 'border:' +
                     (width <= 425 ? '1vw' : '.25vw') +
-                    ' solid #3BB966; border-radius: 0.7vw;'
+                    ' solid #3BB966; border-radius:12px;'
                   : buttonClicked == ind
                   ? 'border:' +
                     (width <= 425 ? '1vw' : '.25vw') +
-                    ' solid #B82424; border-radius:0.7vw;'
+                    ' solid #B82424; border-radius:12px;'
                   : ''}"
               >
                 <p class="choice">{choice}</p>
@@ -436,6 +435,7 @@
     position: relative;
     padding: 0;
     overflow: auto;
+    overscroll-behavior: contain;
   }
 
   .scrollable-container {
@@ -452,7 +452,7 @@
     display: flex;
     text-align: left;
     justify-content: flex-start;
-    overflow-y: scroll;
+    overflow-y: hidden;
   }
 
   .number {
@@ -523,6 +523,8 @@
     line-height: 20px;
 
     color: #0c2b35;
+
+    margin: 0;
   }
 
   .result-content {
@@ -596,7 +598,28 @@
     font-size: 1.2vw;
   }
 
-  @media only screen and (max-width: 430px) {
+  @media only screen and (max-width: 850px) {
+    .tabs .quiz {
+      width: 50px;
+    }
+    .tabs button {
+      height: 22px;
+      width: 85px;
+      font-size: 8px;
+    }
+
+    .questionNum {
+      font-size: 14px;
+    }
+  }
+
+  @media only screen and (max-width: 650px) {
+    .description {
+      font-size: 12px;
+    }
+  }
+
+  @media only screen and (max-width: 425px) {
     .modalPopUp {
       display: none;
     }

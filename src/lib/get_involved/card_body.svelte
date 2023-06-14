@@ -10,7 +10,7 @@
   export let touch = false;
 </script>
 
-<div class="card-outer" class:active={flipped} class:touch={touch}>
+<div class="card-outer" class:active={flipped} class:touch>
   <div class="card-inner">
     <div class="card-front">
       <img src={background_image_url} alt={background_image_alt} loading="lazy" />
@@ -43,8 +43,8 @@
   .card-outer {
     min-height: 20.5vw;
     max-height: 20.5vw;
-    min-width: calc(100vw / 3);
-    max-width: calc(100vw / 3);
+    min-width: 100%;
+    max-width: 100%;
     perspective: 1000px;
     overflow: hidden;
     transition: transform 0.8s;
@@ -54,8 +54,8 @@
     position: relative;
     min-height: 20.5vw;
     max-height: 20.5vw;
-    min-width: calc(100vw / 3);
-    max-width: calc(100vw / 3);
+    min-width: 100%;
+    max-width: 100%;
     perspective: 1000px;
     text-align: center;
     transition: transform 0.8s;
@@ -173,8 +173,6 @@
     .card-inner {
       min-height: 64vw;
       max-height: 64vw;
-      min-width: 100vw;
-      max-width: 100vw;
     }
 
     p {
